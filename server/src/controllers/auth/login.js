@@ -1,9 +1,9 @@
 import pool from "../../init/db_conn.js";
-import {comparePassword, generateToken} from "../../helpers/auth.js";
+import {comparePassword, generateTokens, revokeRefreshToken} from "../../helpers/auth.js";
 
 export default async function Login(req, res)  {
     try {
-        const {email, password} = req.body;
+        const { email, password } = req.body;
 
         const result = await pool.query(
             'SELECT * FROM users WHERE email = $1 AND auth_type = $2',
@@ -12,7 +12,7 @@ export default async function Login(req, res)  {
 
         if (!result.rows.length) {
             return res.status(401).json({
-                errors: {credentials: 'Invalid email or password'}
+                errors: { credentials: 'Invalid email or password' }
             });
         }
 
@@ -21,15 +21,21 @@ export default async function Login(req, res)  {
         const isValidPassword = await comparePassword(password, user.password_hash);
         if (!isValidPassword) {
             return res.status(401).json({
-                errors: {credentials: 'Invalid email or password'}
+                errors: { credentials: 'Invalid email or password' }
             });
         }
 
-        const token = generateToken(user);
+        // Revoke any existing refresh tokens for security
+        await revokeRefreshToken(user.id);
+
+        // Generate new tokens
+        const { accessToken, refreshToken, expiresAt } = await generateTokens(user);
 
         res.json({
             message: 'Login successful',
-            token,
+            accessToken,
+            refreshToken,
+            expiresAt,
             user: {
                 id: user.id,
                 email: user.email,
@@ -39,6 +45,6 @@ export default async function Login(req, res)  {
         });
     } catch (error) {
         console.error('Login error:', error);
-        res.status(500).json({message: 'Internal server error'});
+        res.status(500).json({ message: 'Internal server error' });
     }
 }

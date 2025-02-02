@@ -1,5 +1,5 @@
 import pool from "../../init/db_conn.js";
-import {generateToken, hashPassword} from "../../helpers/auth.js";
+import {generateTokens, hashPassword} from "../../helpers/auth.js";
 
 export default async function Signup(req, res) {
     try {
@@ -24,11 +24,13 @@ export default async function Signup(req, res) {
         );
 
         const user = result.rows[0];
-        const token = generateToken(user);
+        const { accessToken, refreshToken, expiresAt } = await generateTokens(user);
 
         res.status(201).json({
             message: 'User created successfully',
-            token,
+            accessToken,
+            refreshToken,
+            expiresAt,
             user: {
                 id: user.id,
                 email: user.email,
