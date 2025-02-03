@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock } from "lucide-react";
-import { forgotPasswordBgDark, forgotPasswordBgLight } from "@/assets";
+import { forgotPasswordBgDark, forgotPasswordBgLight, setPasswordBgDark, setPasswordBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,8 +33,8 @@ function ResetPassword() {
 
     return (
         <Authlayout
-            onLightPoster={forgotPasswordBgLight}
-            onDarkPoster={forgotPasswordBgDark}
+            onLightPoster={setPasswordBgLight}
+            onDarkPoster={setPasswordBgDark}
         >
             <div className="w-full space-y-6">
                 {/* Login Form */}

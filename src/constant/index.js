@@ -1,1 +1,1 @@
-// CONSTANT HERE //
+export const themes = ['dark', 'light']
