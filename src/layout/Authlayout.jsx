@@ -9,7 +9,7 @@ function Authlayout({ children, onLightPoster, onDarkPoster }) {
   const location = useLocation()
 
   const isPageLengthy = ["/sign-up"].includes(location.pathname)
-  const ThemeToggleClass = isPageLengthy ? "mt-10 lg:mt-0 lg:absolute lg:bottom-10 lg:left-8" : "absolute bottom-10 left-8"
+  const ThemeToggleClass = isPageLengthy ? "mt-10 lg:mt-0 sm:absolute sm:bottom-10 sm:left-8" : "absolute bottom-10 left-8"
   const isDarkTheme = theme === themes[0]
 
 

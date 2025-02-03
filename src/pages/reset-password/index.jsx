@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock } from "lucide-react";
-import { forgotPasswordBgDark, forgotPasswordBgLight, setPasswordBgDark, setPasswordBgLight } from "@/assets";
+import {  setPasswordBgDark, setPasswordBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,6 +30,7 @@ function ResetPassword() {
 
         console.log("Form Data:", data);
     };
+    
 
     return (
         <Authlayout
@@ -41,7 +42,7 @@ function ResetPassword() {
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-2">
 
-                        <h1 className="sm:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">set a password</h1>
+                        <h1 className="sm:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">Reset Password</h1>
                         <p className="text-md dark:text-gray-300">Your previous password has been reseted. Please set a new password for your account.</p>
                     </div>
 

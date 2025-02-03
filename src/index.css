@@ -72,3 +72,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+input:-webkit-autofill {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: inherit;
+  transition: background-color 5000s ease-in-out 0s;
+}

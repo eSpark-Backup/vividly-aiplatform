@@ -4,6 +4,7 @@ import SignUp from "./sign-up"
 import ForgotPassword from "./forgot-password"
 import VerifyCode from "./verify-code"
 import ResetPassword from "./reset-password"
+import CreatePassword from "./create-password"
 
 
 export {
@@ -12,5 +13,6 @@ export {
     SignUp,
     ForgotPassword,
     VerifyCode,
-    ResetPassword
+    ResetPassword,
+    CreatePassword
 }

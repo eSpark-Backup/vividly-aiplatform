@@ -7,11 +7,18 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { verifyCodeSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 function VerifyCode() {
 
     const { toast } = useToast();
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const reset = searchParams.get("reset");
+    const create = searchParams.get("create");
+
 
     const {
         register,
@@ -22,6 +29,7 @@ function VerifyCode() {
     });
 
     const onSubmit = (data) => {
+
         toast({
             title: "Success",
             description: "You have successfully verified your code",
@@ -29,7 +37,22 @@ function VerifyCode() {
         })
 
         console.log("Form Data:", data);
+
+        if (reset) {
+            navigate("/reset-password");
+        }
+
+        if (create) {
+            navigate("/create-password");
+        }
     };
+
+
+    useEffect(() => {
+        if (!reset && !create) {
+            navigate("/log-in");
+        }
+    }, []);
 
     return (
         <Authlayout

@@ -25,12 +25,12 @@ function SignUp() {
     const onSubmit = (data) => {
         toast({
             title: "Success",
-            description: "You have successfully created an account",
+            description: "Code sent to your email address",
             type: "success",
         })
 
         console.log("Form Data:", data);
-        navigate("/verify-code");
+        navigate("/verify-code?create=" + data.email);
     };
 
     return (
@@ -64,18 +64,6 @@ function SignUp() {
                         <div className="space-y-2">
                             <Input icon={Mail} type="email" placeholder="Email" {...register("email")} />
                             {errors.email && <p className="text-sm text-[#FF8682]">{errors.email.message}</p>}
-                        </div>
-
-                        {/* Password */}
-                        <div className="space-y-2">
-                            <Input icon={Lock} type="password" placeholder="Password" {...register("password")} />
-                            {errors.password && <p className="text-sm text-[#FF8682]">{errors.password.message}</p>}
-                        </div>
-
-                        {/* Confirm Password */}
-                        <div className="space-y-2">
-                            <Input icon={Lock} type="password" placeholder="Confirm Password" {...register("confirmPassword")} />
-                            {errors.confirmPassword && <p className="text-sm text-[#FF8682]">{errors.confirmPassword.message}</p>}
                         </div>
 
 

@@ -7,11 +7,12 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgotPasswordSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
 
     const { toast } = useToast();
+    const navigate = useNavigate();
 
     const {
         register,
@@ -24,10 +25,11 @@ function ForgotPassword() {
     const onSubmit = (data) => {
         toast({
             title: "Success",
-            description: "You have successfully submitted your email",
+            description: "Code sent to your email address",
             type: "success",
         })
 
+        navigate("/verify-code?reset=" + data.email);
         console.log("Form Data:", data);
     };
 
