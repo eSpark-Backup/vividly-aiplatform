@@ -7,8 +7,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
+import { Link } from "react-router-dom";
 
-export default function LoginPage() {
+function LogIn() {
 
   const { toast } = useToast();
 
@@ -39,7 +40,7 @@ export default function LoginPage() {
         {/* Login Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
-            <h1 className="text-2xl font-bold tracking-tight dark:text-white">LOGIN</h1>
+            <h1 className="lg:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">Login</h1>
             <p className="text-md dark:text-gray-300">How do I get started? Lorem ipsum dolor sit amet.</p>
           </div>
 
@@ -67,7 +68,7 @@ export default function LoginPage() {
             {/* Signup Link */}
             <div className="text-xs">
               <span className="mr-1 dark:text-gray-300">Don't have an account?</span>
-              <span className="text-[#9181F4] p-0 cursor-pointer">Sign up</span>
+              <Link to="/sign-up" className="text-[#9181F4] p-0 cursor-pointer">Sign up</Link>
             </div>
           </div>
         </form>
@@ -96,3 +97,5 @@ export default function LoginPage() {
   );
 }
 
+
+export default LogIn;

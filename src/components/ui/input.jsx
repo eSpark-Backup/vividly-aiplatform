@@ -2,7 +2,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Eye, EyeOff } from "lucide-react"
 
-const Input = React.forwardRef(({ className, type, icon: Icon, ...props }, ref) => {
+const Input = React.forwardRef(({ className, type, icon: Icon, iconClassName, ...props }, ref) => {
   const [showPassword, setShowPassword] = React.useState(false)
 
   const togglePasswordVisibility = () => {
@@ -12,12 +12,12 @@ const Input = React.forwardRef(({ className, type, icon: Icon, ...props }, ref) 
   return (
     <div className="relative">
       <div className={cn(`flex items-center justify-between w-full dark:bg-[#F0EDFFCC] bg-[#B2B0BDCC]  py-4 rounded-xl gap-3`)}>
-        {Icon && <Icon className="absolute left-3 top-1/2 h-6 w-6 -translate-y-1/2 text-[#1C1C1C]" />}
+        {Icon && <Icon className={cn("absolute left-3 top-1/2 h-6 w-6 -translate-y-1/2 text-[#1C1C1C]", iconClassName)} />}
         <input
           type={showPassword ? "text" : type}
           className={cn(
-            "w-full bg-transparent focus:outline-none text-[#1C1C1C] placeholder:text-[#1C1C1C] ",
-            Icon && "pl-11",
+            "w-full bg-transparent focus:outline-none text-[#1C1C1C] placeholder:text-[#1C1C1C] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
+            Icon && "pl-11 pr-6",
             type === "password" && "pr-10",
             className,
           )}
