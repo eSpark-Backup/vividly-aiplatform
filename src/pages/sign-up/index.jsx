@@ -55,7 +55,7 @@ function SignUp() {
                             </div>
 
                             <div className="space-y-2">
-                                <Input icon={Lock} type="text" placeholder="Last Name" {...register("lastName")} />
+                                <Input icon={User} type="text" placeholder="Last Name" {...register("lastName")} />
                                 {errors.lastName && <p className="text-sm text-[#FF8682]">{errors.lastName.message}</p>}
                             </div>
                         </div>
