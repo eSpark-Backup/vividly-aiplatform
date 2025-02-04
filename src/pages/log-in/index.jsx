@@ -8,10 +8,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
+import { useCountries } from "@/hooks/useCountries";
 
 function LogIn() {
 
   const { toast } = useToast();
+
+  const { isLoading, isError, data: countries } = useCountries();
 
   const {
     register,
@@ -53,7 +56,7 @@ function LogIn() {
 
             {/* Password Input */}
             <div className="space-y-2">
-              <Input icon={Lock} type="password" placeholder="Password" {...register("password")} />
+              <Input icon={Lock} type="password" placeholder="Password" {...register("password")}   />
               {errors.password && <p className="text-sm text-[#FF8682]">{errors.password.message}</p>}
               <div className="flex justify-end">
                 <Link to="/forgot-password">
