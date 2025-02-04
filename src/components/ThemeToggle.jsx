@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from './ui/button'
 import { useTheme } from './index'
-import { moonIcon } from '@/assets'
+import { moonIcon, sunIcon } from '@/assets'
 import { themes } from '@/constant'
 
 const ThemeToggle = () => {
@@ -18,7 +18,7 @@ const ThemeToggle = () => {
         className="text-xs"
         icon={<img src={moonIcon}
           alt="Moon Icon"
-          className="w-5 h-5 filter invert"
+          className="w-5 h-5"
         />}
       >
         Dark Mode
@@ -28,7 +28,7 @@ const ThemeToggle = () => {
         size="md"
         onClick={() => setTheme("light")}
         className="text-xs"
-        icon={<img src={moonIcon} alt="Moon Icon"
+        icon={<img src={sunIcon} alt="Moon Icon"
           className="w-5 h-5"
         />}
       >

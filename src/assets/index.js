@@ -22,6 +22,7 @@ import errorIcon from './icons/error.png';
 import successIcon from './icons/success.png';
 import arrowBackIcon from './icons/arrow-back.png';
 import tickIcon from './icons/tick-icon.png';
+import sunIcon from './icons/sun-icon.png';
 
 export {
     vividlyLogoDark,
@@ -41,5 +42,6 @@ export {
     setPasswordBgDark,
     setPasswordBgLight,
     arrowBackIcon,
-    tickIcon
+    tickIcon,
+    sunIcon
 };
