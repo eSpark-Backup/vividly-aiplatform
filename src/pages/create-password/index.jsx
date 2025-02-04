@@ -80,6 +80,7 @@ function CreatePassword() {
                     setShowSuccessDialog(false)
                     navigate("/log-in");
                 }}
+                onCancel={() => setShowSuccessDialog(false)}
             />
         </Authlayout>
     );
