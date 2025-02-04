@@ -1,18 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock } from "lucide-react";
-import {  setPasswordBgDark, setPasswordBgLight, signupBgDark, signupBgLight } from "@/assets";
+import { signupBgDark, signupBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createPasswordSchema} from "@/schema";
-import { useToast } from "@/hooks/use-toast";
+import { createPasswordSchema } from "@/schema";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { ConfirmationDialog } from "@/components/ConfirmationDialog";
 
 
 function CreatePassword() {
+    const [showSuccessDialog, setShowSuccessDialog] = useState(false)
 
-    const { toast } = useToast();
     const navigate = useNavigate();
 
     const {
@@ -24,18 +25,10 @@ function CreatePassword() {
     });
 
     const onSubmit = (data) => {
-        toast({
-            title: "Success",
-            description: "You have successfully created the account",
-            type: "success",
-        })
-       
+        setShowSuccessDialog(true)
         console.log("Form Data:", data);
-
-        navigate("/log-in");
-
     };
-    
+
 
     return (
         <Authlayout
@@ -76,6 +69,18 @@ function CreatePassword() {
                 </form>
 
             </div>
+
+
+            <ConfirmationDialog
+                open={showSuccessDialog}
+                onOpenChange={setShowSuccessDialog}
+                variant="success"
+                desc="Your account has been created successfully."
+                onConfirm={() => {
+                    setShowSuccessDialog(false)
+                    navigate("/log-in");
+                }}
+            />
         </Authlayout>
     );
 }

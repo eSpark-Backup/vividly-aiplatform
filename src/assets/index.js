@@ -11,6 +11,8 @@ import verifyCodeBgDark from './images/verify-code-bg-dark.png';
 import verifyCodeBgLight from './images/verify-code-bg-light.png';
 import setPasswordBgDark from './images/set-password-bg-dark.png';
 import setPasswordBgLight from './images/set-password-bg-light.png';
+import successDialog from './images/success-dialog.png';
+import confirmationDialog from './images/confirmation-dialog.png';
 
 
 
@@ -43,5 +45,7 @@ export {
     setPasswordBgLight,
     arrowBackIcon,
     tickIcon,
-    sunIcon
+    sunIcon,
+    successDialog,
+    confirmationDialog
 };

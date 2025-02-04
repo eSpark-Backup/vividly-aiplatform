@@ -4,6 +4,9 @@ export default {
     content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
   theme: {
   	extend: {
+		boxShadow: {
+			glow: '0px 0px 34px 20px rgba(255, 255, 255, 0.25)',
+		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
