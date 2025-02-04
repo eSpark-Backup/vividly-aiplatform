@@ -57,7 +57,7 @@ function LogIn() {
               {errors.password && <p className="text-sm text-[#FF8682]">{errors.password.message}</p>}
               <div className="flex justify-end">
                 <Link to="/forgot-password">
-                <p className="text-[10px] text-[#FF8682] cursor-pointer">Forgot password?</p>
+                  <p className="text-[10px] text-[#FF8682] cursor-pointer">Forgot password?</p>
                 </Link>
               </div>
             </div>
