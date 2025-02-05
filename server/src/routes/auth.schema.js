@@ -27,6 +27,33 @@ export const signupSchema = yup.object({
     })
 });
 
+export const requestPasswordResetSchema = yup.object({
+    body: yup.object({
+        email: yup
+            .string()
+            .required('Email is required')
+            .email('Invalid email format')
+    })
+});
+
+export const resetPasswordSchema = yup.object({
+    body: yup.object({
+        token: yup
+            .string()
+            .required('Reset token is required'),
+
+        password: yup
+            .string()
+            .required('Password is required')
+            .min(8, 'Password must be at least 8 characters')
+            .max(72, 'Password must not exceed 72 characters')
+            .matches(
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/,
+                'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'
+            )
+    })
+});
+
 export const resendVerificationSchema = yup.object({
     body: yup.object({
         email: yup

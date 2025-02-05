@@ -99,11 +99,14 @@ class EmailService {
 
         try {
             const info = await this.transporter.sendMail(mailOptions);
-            console.log('Password reset email sent:', info.messageId);
+            if (process.env.ENV !== 'prod') {
+                console.log('Password reset email sent:', info.messageId);
+            }
             return true;
         } catch (error) {
-            console.error('Error sending password reset email:', error);
-            throw error;
+            if (process.env.ENV !== 'prod') {
+                console.error('Error sending password reset email:', error);
+            }
         }
     }
 }

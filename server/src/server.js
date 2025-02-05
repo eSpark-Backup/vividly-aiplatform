@@ -13,10 +13,9 @@ const __filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(__filename);
 dotenv.config({path: join(_dirname, '../.env')})
 
-// Load Swagger document
-const swaggerDocument = YAML.load(join(_dirname, 'swagger.yaml'));
 
-// Add to your express app
+const swaggerDocument = YAML.load(join(_dirname, 'docs/swagger.yaml'));
+
 const app = express();
 
 if (process.env.ENV !== 'prod') {

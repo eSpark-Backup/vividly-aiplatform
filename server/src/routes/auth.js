@@ -5,11 +5,20 @@ import {validate} from '../middlewares/validate.js';
 import {
     loginSchema,
     refreshTokenSchema,
+    requestPasswordResetSchema,
     resendVerificationSchema,
+    resetPasswordSchema,
     signupSchema,
     verifyAccountSchema
 } from './auth.schema.js';
-import {login, signup, resendVerification, verifyAccount} from "../controllers/auth/index.js";
+import {
+    login,
+    requestPasswordReset,
+    resendVerification,
+    resetPassword,
+    signup,
+    verifyAccount
+} from "../controllers/auth/index.js";
 
 const router = express.Router();
 
@@ -18,6 +27,12 @@ router.post('/signup', validate(signupSchema), signup);
 
 // Email login with validation
 router.post('/login', validate(loginSchema), login);
+
+// Reset password request
+router.post('/request-password-reset', validate(requestPasswordResetSchema), requestPasswordReset);
+
+// Reset password with token
+router.post('/reset-password', validate(resetPasswordSchema), resetPassword);
 
 router.post('/refresh-token', validate(refreshTokenSchema), async (req, res) => {
     try {
