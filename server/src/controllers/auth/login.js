@@ -1,7 +1,7 @@
 import pool from "../../init/db_conn.js";
 import {comparePassword, generateTokens, revokeRefreshToken} from "../../helpers/auth.js";
 
-export default async function Login(req, res)  {
+export default async function login(req, res)  {
     try {
         const { email, password } = req.body;
 

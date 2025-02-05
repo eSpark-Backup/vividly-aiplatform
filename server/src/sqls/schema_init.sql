@@ -6,15 +6,16 @@ CREATE TYPE subscription_tier AS ENUM ('starter', 'pro', 'enterprise');
 
 CREATE TABLE users
 (
-    id            UUID PRIMARY KEY             DEFAULT uuid_generate_v4(),
-    first_name    VARCHAR(50)         NOT NULL,
-    last_name     VARCHAR(50)         NOT NULL,
-    email         VARCHAR(255) UNIQUE NOT NULL,
-    password_hash VARCHAR(255),
-    auth_type     auth_type           NOT NULL DEFAULT 'email',
-    google_id     VARCHAR(255) UNIQUE,
-    created_at    TIMESTAMP WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP,
-    updated_at    TIMESTAMP WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP
+    id                  UUID PRIMARY KEY             DEFAULT uuid_generate_v4(),
+    first_name          VARCHAR(50)         NOT NULL,
+    last_name           VARCHAR(50)         NOT NULL,
+    email               VARCHAR(255) UNIQUE NOT NULL,
+    password_hash       VARCHAR(255),
+    auth_type           auth_type           NOT NULL DEFAULT 'email',
+    google_id           VARCHAR(255) UNIQUE,
+    created_at          TIMESTAMP WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP,
+    updated_at          TIMESTAMP WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP,
+    verification_status BOOLEAN             NOT NULL DEFAULT false
 );
 
 CREATE TABLE user_profiles

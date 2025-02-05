@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 import {dirname, join} from 'path'
 import {fileURLToPath} from 'url';
 import express from 'express';
@@ -11,7 +13,15 @@ const __filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(__filename);
 dotenv.config({path: join(_dirname, '../.env')})
 
+// Load Swagger document
+const swaggerDocument = YAML.load(join(_dirname, 'swagger.yaml'));
+
+// Add to your express app
 const app = express();
+
+if (process.env.ENV !== 'prod') {
+    app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+}
 
 
 // Middleware

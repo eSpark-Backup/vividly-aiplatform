@@ -2,16 +2,22 @@ import express from 'express';
 import passport from 'passport';
 import {refreshAccessToken, revokeRefreshToken} from '../helpers/auth.js';
 import {validate} from '../middlewares/validate.js';
-import {loginSchema, refreshTokenSchema, signupSchema} from './auth.schema.js';
-import {Login, Signup} from "../controllers/auth/index.js";
+import {
+    loginSchema,
+    refreshTokenSchema,
+    resendVerificationSchema,
+    signupSchema,
+    verifyAccountSchema
+} from './auth.schema.js';
+import {login, signup, resendVerification, verifyAccount} from "../controllers/auth/index.js";
 
 const router = express.Router();
 
 // Email signup with validation
-router.post('/signup', validate(signupSchema), Signup);
+router.post('/signup', validate(signupSchema), signup);
 
 // Email login with validation
-router.post('/login', validate(loginSchema), Login);
+router.post('/login', validate(loginSchema), login);
 
 router.post('/refresh-token', validate(refreshTokenSchema), async (req, res) => {
     try {
@@ -63,5 +69,11 @@ router.get(
         );
     }
 );
+
+// Verify account and set password
+router.post('/verify', validate(verifyAccountSchema), verifyAccount);
+
+// Resend verification email
+router.post('/resend-verification', validate(resendVerificationSchema), resendVerification);
 
 export default router;
