@@ -9,7 +9,7 @@ export function ConfirmationDialog({ open, onOpenChange, variant, desc, onConfir
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-[300px] sm:max-w-[500px] border-0 dark:bg-[#131619] py-12 shadow-glow">
+            <DialogContent className="max-w-[300px] sm:max-w-[500px] border-0 dark:bg-[#131619] py-12 shadow-[0px_0px_34px_20px_rgba(255,255,255,0.25)]">
                 <p
                     onClick={onCancel}
                     className="absolute z-50 cursor-pointer right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
