@@ -1,13 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { User, Lock, Mail } from "lucide-react";
-import { googleIcon, signupBgDark, signupBgLight } from "@/assets";
+import { User, Mail } from "lucide-react";
+import { signupBgDark, signupBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signupSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { GoogleLoginButton } from "@/components";
 
 function SignUp() {
 
@@ -95,14 +96,7 @@ function SignUp() {
                 </div>
 
                 {/* Google Login Button */}
-                <Button
-                    variant="outline" size="lg" className="w-full">
-                    <img src={googleIcon} alt="Google" width={32} height={32} className="mr-2" />
-                    <div>
-                        <span className="mr-1 dark:text-gray-300">Login with</span>
-                        <span className="dark:text-white font-bold">Google</span>
-                    </div>
-                </Button>
+                <GoogleLoginButton />
             </div>
         </Authlayout>
     );

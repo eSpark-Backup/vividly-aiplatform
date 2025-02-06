@@ -1,21 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User, Lock } from "lucide-react";
-import { googleIcon, loginBgDark, loginBgLight } from "@/assets";
+import { loginBgDark, loginBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Link } from "react-router-dom";
-import { useCountries } from "@/hooks/useCountries";
+import { GoogleLoginButton } from "@/components";
 
 function LogIn() {
-
+  
   const { toast } = useToast();
-
-  const { isLoading, isError, data: countries } = useCountries();
-
+  
   const {
     register,
     handleSubmit,
@@ -56,7 +54,7 @@ function LogIn() {
 
             {/* Password Input */}
             <div className="space-y-2">
-              <Input icon={Lock} type="password" placeholder="Password" {...register("password")}   />
+              <Input icon={Lock} type="password" placeholder="Password" {...register("password")} />
               {errors.password && <p className="text-sm text-[#FF8682]">{errors.password.message}</p>}
               <div className="flex justify-end">
                 <Link to="/forgot-password">
@@ -89,14 +87,8 @@ function LogIn() {
         </div>
 
         {/* Google Login Button */}
-        <Button
-          variant="outline" size="lg" className="w-full">
-          <img src={googleIcon} alt="Google" width={32} height={32} className="mr-2" />
-          <div>
-            <span className="mr-1 dark:text-gray-300">Login with</span>
-            <span className="dark:text-white font-bold">Google</span>
-          </div>
-        </Button>
+        <GoogleLoginButton />
+        
       </div>
     </Authlayout>
   );

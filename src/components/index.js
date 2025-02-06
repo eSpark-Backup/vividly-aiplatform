@@ -1,6 +1,9 @@
-import {ThemeProvider, useTheme} from './theme-provider.jsx'
+import GoogleLoginButton from './GoogleLoginButton.jsx'
+import { ThemeProvider, useTheme } from './theme-provider.jsx'
+
 
 export {
-ThemeProvider,
-useTheme,
+    useTheme,
+    ThemeProvider,
+    GoogleLoginButton
 }

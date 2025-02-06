@@ -1,4 +1,5 @@
 import { request } from "@/lib/axios"
+import axios from "axios"
 
 
 // Create Account | POST 
@@ -64,7 +65,7 @@ export async function resetPassword(params) {
         method: "POST",
         data: params
     })
-    
+
     return data
 }
 
@@ -78,6 +79,21 @@ export async function login(params) {
 
     return data
 }
+
+// Google Login | GET
+export async function googleLogin(tokenResponse) {
+    const { data } = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo",
+        {
+            headers: {
+                Authorization: `Bearer ${tokenResponse.access_token}`,
+
+            }
+        }
+    )
+
+    return data
+}
+
 
 
 
