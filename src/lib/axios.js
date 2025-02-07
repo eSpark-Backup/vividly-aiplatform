@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const client = axios.create({ baseURL:  "https://restcountries.com/v3.1"});
+const client = axios.create({ baseURL: import.meta.env.VITE_BASE_URL });
 
 export const request = ({ ...options }) => {
   const token = localStorage.getItem("token");
