@@ -125,8 +125,8 @@ jobs:
           ECR_REPOSITORY: ${{ env.ECR_REPO_NAME }}
           IMAGE_TAG: ${{ env.image_tag }}
         run: |
-          docker compose -f docker-compose.yml -f docker-compose.dev.yml build
-          docker compose -f docker-compose.yml -f docker-compose.dev.yml push
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml build
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml push
           echo "IMAGE $IMAGE_TAG is pushed to $ECR_REGISTRY/$ECR_REPOSITORY"
           echo "image_tag=$IMAGE_TAG" 
           echo "full_image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
@@ -194,6 +194,6 @@ jobs:
           APP_NAME: ${{ secrets.STG_APP_NAME }}
 
         run: |
-          docker compose -f docker-compose.yml -f docker-compose.dev.yml pull
-          docker compose -f docker-compose.yml -f docker-compose.dev.yml -p "vividly_stack_stg" down
-          docker compose -f docker-compose.yml -f docker-compose.dev.yml -p "shwcase_stack_stg" up -d
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml pull
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" down
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "shwcase_stack_stg" up -d
