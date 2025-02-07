@@ -10,10 +10,10 @@ on:
 concurrency: ci-${{ github.repository }}-docker-pipeline
 
 env:
-  path_to_dockerfile: "server/Dockerfile"
-  docker_build_dir: "server/"
+  path_to_dockerfile: "/server/Dockerfile"
+  docker_build_dir: "."
   image_tag: "be-stg-latest"
-  lifecycle_policy_file: "server/policy.json"
+  lifecycle_policy_file: "policy.json"
   backend_s3_bucket: "talent-terraform-bucket"
   backend_iam_role: "terraform-role"
   github_iam_role: "cicd"
