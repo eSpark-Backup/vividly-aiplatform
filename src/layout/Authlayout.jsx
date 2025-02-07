@@ -36,9 +36,9 @@ function Authlayout({ children, onLightPoster, onDarkPoster }) {
     <div className="flex min-h-screen flex-col lg:flex-row dark:bg-[#131619]">
 
       {/* Left Section */}
-      <div className="relative flex-1 w-full lg:w-[45%] p-8 lg:p-12 ">
+      <div className="relative flex-1 w-full lg:w-[45%] p-8 lg:px-10 lg:py-24">
         {/* Logo */}
-        <div className="mb-10 lg:mb-0 lg:absolute lg:top-0 lg:left-8">
+        <div className="mb-10 lg:mb-0 lg:absolute lg:top-1 lg:left-8">
           <div className="flex items-center gap-2">
             <Link to="/">
               <img
