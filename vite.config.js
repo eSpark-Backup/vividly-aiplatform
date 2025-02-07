@@ -11,6 +11,7 @@ export default () => {
       },
     },
     server: {
+      allowedHosts: true,
       watch: {
         usePolling: true,
       },
