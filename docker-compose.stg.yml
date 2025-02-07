@@ -23,7 +23,7 @@ services:
     
     build:
       context: .
-      dockerfile: /server/Dockerfile
+      dockerfile: server/Dockerfile
     ports:
       - ${DOCKER_EXPOSED_PORT_BE}:${DOCKER_APPLICATION_PORT_BE}
   
