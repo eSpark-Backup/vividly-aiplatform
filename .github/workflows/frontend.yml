@@ -1,8 +1,8 @@
-name: VIVIDLY Frontend Staging CICD
+name: VIVIDLY Frontend Live CICD
 
 on:
   push:
-    branches: [ "fe-stg" ]
+    branches: [ "fe" ]
 
 
 concurrency: ci-${{ github.repository }}-docker-pipeline
