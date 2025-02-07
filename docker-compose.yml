@@ -1,0 +1,49 @@
+services:
+  vividly_api:
+    container_name: vividly-api
+    image: "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+    environment:
+      - ENV
+      - FRONTEND_BASEURL
+      - JWT_SECRET
+      - GOOGLE_CLIENT_ID
+      - GOOGLE_CLIENT_SECRET
+      - POSTGRES_HOST
+      - POSTGRES_DB
+      - POSTGRES_PORT
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - SMTP_HOST
+      - SMTP_PORT
+      - SMTP_SECURE
+      - SMTP_USER
+      - SMTP_PASSWORD
+      - SMTP_FROM_EMAIL
+      - APP_NAME
+    
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - ${DOCKER_EXPOSED_PORT_BE}:${DOCKER_APPLICATION_PORT_BE}
+  
+
+
+  vividly_db:
+    container_name: vividly-db
+    image: postgres:latest
+    ports:
+      - ${POSTGRES_PORT}:5432
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+    volumes:
+      - vividly-database:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "${POSTGRES_DB}"]
+      retries: 10
+
+volumes:
+  vividly-database:
