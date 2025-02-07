@@ -196,4 +196,4 @@ jobs:
         run: |
           docker compose -f docker-compose.yml -f docker-compose.stg.yml pull
           docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" down -v
-          docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "shwcase_stack_stg" up -d
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" up -d
