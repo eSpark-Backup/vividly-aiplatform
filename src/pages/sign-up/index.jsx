@@ -9,11 +9,17 @@ import { signupSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
+import { useCreateAccount } from "@/hooks/useAuth";
 
 function SignUp() {
 
     const { toast } = useToast();
     const navigate = useNavigate();
+    const { mutate: createAccount, isPending } = useCreateAccount();
+
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
 
     const {
         register,
@@ -24,14 +30,16 @@ function SignUp() {
     });
 
     const onSubmit = (data) => {
-        toast({
-            title: "Success",
-            description: "Code sent to your email address",
-            type: "success",
-        })
-
+        createAccount(data, {
+            onSuccess: (data) => {
+                showToast("Success", "You have successfully signed up", "success");
+                navigate(`/verify-code?create=${data.email}`);
+            },
+            onError: (data) => {
+                showToast("Error", "Failed to Sign up", "error")
+            }
+        });
         console.log("Form Data:", data);
-        navigate("/verify-code?create=" + data.email);
     };
 
     return (
@@ -51,12 +59,12 @@ function SignUp() {
 
                         <div className="grid sm:grid-cols-2 gap-4">
                             <div className="space-y-2">
-                                <Input icon={User} type="text" placeholder="First Name" {...register("firstName")} />
+                                <Input icon={User} type="text" placeholder="First Name" {...register("first_name")} />
                                 {errors.firstName && <p className="text-sm text-[#FF8682]">{errors.firstName.message}</p>}
                             </div>
 
                             <div className="space-y-2">
-                                <Input icon={User} type="text" placeholder="Last Name" {...register("lastName")} />
+                                <Input icon={User} type="text" placeholder="Last Name" {...register("last_name")} />
                                 {errors.lastName && <p className="text-sm text-[#FF8682]">{errors.lastName.message}</p>}
                             </div>
                         </div>
@@ -77,7 +85,11 @@ function SignUp() {
 
 
                         {/* Submit Button */}
-                        <Button size="lg" variant="gradient" type="submit">
+                        <Button
+                            isLoading={isPending}
+                            size="lg"
+                            variant="gradient"
+                            type="submit">
                             Continue
                         </Button>
 

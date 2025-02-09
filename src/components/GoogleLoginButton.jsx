@@ -3,11 +3,10 @@ import { useGetGoogleProfile } from "@/hooks/useAuth";
 import { googleIcon } from "@/assets"
 import { Button } from "./ui/button"
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from "react";
 
 const GoogleLoginButton = () => {
 
-    const { mutate, isSuccess, isError, data } = useGetGoogleProfile();
+    const { mutate } = useGetGoogleProfile();
     const { toast } = useToast();
 
 
@@ -17,17 +16,18 @@ const GoogleLoginButton = () => {
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
-            mutate(tokenResponse);
+            mutate(tokenResponse, {
+                onSuccess: (data) => {
+                    showToast("Success", "You have successfully logged in", "success");
+                },
+                onError: () => {
+                    showToast("Error", "Failed to login with Google", "error")
+                }
+            });
         },
         onError: () => showToast("Error", "Failed to login with Google", "error"),
         flow: "implicit",
     });
-
-    useEffect(() => {
-        if (isSuccess) showToast("Success", "You have successfully logged in", "success");
-        if (isError) showToast("Error", "Failed to login with Google", "error");
-    }, [isSuccess, isError, toast]);
-
 
     return (
         <Button

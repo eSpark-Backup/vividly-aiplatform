@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
     createAccount,
-    createAccountVerifyCode,
+    createAccountResendVerification,
     createPassword,
-    forgotPassword,
+    requestResetPassword,
     forgotPasswordVerifyCode,
     resetPassword,
     login,
@@ -21,10 +21,10 @@ const useCreateAccount = () => {
 
 
 // Create Account Verify Code | POST
-const useCreateAccountVerfiyCode = () => {
+const usecreateAccountResendVerification = () => {
     return useMutation({
-        mutationKey: ["createAccountVerfiyCode"],
-        mutationFn: createAccountVerifyCode,
+        mutationKey: ["createAccountResendVerification"],
+        mutationFn: createAccountResendVerification,
     });
 }
 
@@ -37,10 +37,10 @@ const useCreatePassword = () => {
 }
 
 // Forgot Password | POST
-const useForgotPassword = () => {
+const useRequestResetPassword = () => {
     return useMutation({
-        mutationKey: ["forgotPassword"],
-        mutationFn: forgotPassword,
+        mutationKey: ["requestResetPassword"],
+        mutationFn: requestResetPassword,
     });
 }
 
@@ -80,9 +80,9 @@ const useGetGoogleProfile = () => {
 
 export {
     useCreateAccount,
-    useCreateAccountVerfiyCode,
+    usecreateAccountResendVerification,
     useCreatePassword,
-    useForgotPassword,
+    useRequestResetPassword,
     useForgotPasswordVerifyCode,
     useResetPassword,
     useLogin,
