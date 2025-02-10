@@ -100,10 +100,8 @@ jobs:
           echo "DOCKER_EXPOSED_PORT_BE=${{ secrets.STG_DOCKER_EXPOSED_PORT_BE }}" >> .env
           echo "DOCKER_APPLICATION_PORT_BE=${{ secrets.DOCKER_APPLICATION_PORT_BE }}" >> .env
           echo "FRONTEND_BASEURL=${{ secrets.STG_FRONTEND_BASEURL }}" >> .env
-          echo "FRONTEND_URL=${{ secrets.STG_FRONTEND_URL }}" >> .env
+          echo "LOG_LEVEL=${{ secrets.STG_LOG_LEVEL }}" >> .env
           echo "JWT_SECRET=${{ secrets.STG_JWT_SECRET }}" >> .env
-          echo "GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}" >> .env
-          echo "GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}" >> .env
           echo "POSTGRES_HOST: ${{ secrets.STG_POSTGRES_HOST }}" >> .env
           echo "POSTGRES_DB: ${{ secrets.STG_POSTGRES_DB }}" >> .env
           echo "POSTGRES_PORT: ${{ secrets.STG_POSTGRES_PORT }}" >> .env
@@ -116,6 +114,10 @@ jobs:
           echo "SMTP_PASSWORD: ${{ secrets.STG_SMTP_PASSWORD }}" >> .env
           echo "SMTP_FROM_EMAIL: ${{ secrets.STG_SMTP_FROM_EMAIL }}" >> .env
           echo "APP_NAME: ${{ secrets.STG_APP_NAME }}" >> .env
+          echo "OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}" >> .env
+          echo "OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}" >> .env
+          echo "OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}" >> .env
+          echo "OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}" >> .env
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-publish
@@ -176,10 +178,8 @@ jobs:
           DOCKER_EXPOSED_PORT_BE: ${{ secrets.STG_DOCKER_EXPOSED_PORT_BE }}
           DOCKER_APPLICATION_PORT_BE: ${{ secrets.DOCKER_APPLICATION_PORT_BE }}
           FRONTEND_BASEURL: ${{ secrets.STG_FRONTEND_BASEURL }}
-          FRONTEND_URL: ${{ secrets.STG_FRONTEND_URL }}
+          LOG_LEVEL: ${{ secrets.STG_LOG_LEVEL }}
           JWT_SECRET: ${{ secrets.STG_JWT_SECRET }}
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
           POSTGRES_HOST: ${{ secrets.STG_POSTGRES_HOST }}
           POSTGRES_DB: ${{ secrets.STG_POSTGRES_DB }}
           POSTGRES_PORT: ${{ secrets.STG_POSTGRES_PORT }}
@@ -192,8 +192,12 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.STG_SMTP_PASSWORD }}
           SMTP_FROM_EMAIL: ${{ secrets.STG_SMTP_FROM_EMAIL }}
           APP_NAME: ${{ secrets.STG_APP_NAME }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
+          OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}
+          OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}
 
         run: |
           docker compose -f docker-compose.yml -f docker-compose.stg.yml pull
-          docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" down
+          docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" down -v
           docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" up -d
