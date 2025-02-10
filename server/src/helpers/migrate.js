@@ -12,11 +12,11 @@ const RETRY_DELAY = 2000; // 2 seconds
 
 async function createPool() {
     const pool = new pg.Pool({
-        user: process.env.DB_USER,
-        host: process.env.DB_HOST,
-        database: process.env.DB_NAME,
-        password: process.env.DB_PASSWORD,
-        port: process.env.DB_PORT,
+        user: process.env.POSTGRES_USER,
+        host: process.env.POSTGRES_HOST,
+        database: process.env.POSTGRES_DB,
+        password: process.env.POSTGRES_PASSWORD,
+        port: process.env.POSTGRES_PORT,
         connectionTimeoutMillis: 10000, // 10 seconds
         max: 1
     });
