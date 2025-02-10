@@ -8,6 +8,10 @@ import cors from 'cors';
 import './init/passport.js';
 import passport from 'passport';
 import authRoutes from './routes/auth.js';
+// import { ChatServer } from './init/chat.js';
+import { runMigrations } from './helpers/migrate.js';
+import { logger } from './helpers/logger.js'
+await runMigrations();
 
 const __filename = fileURLToPath(import.meta.url);
 const _dirname = dirname(__filename);
@@ -19,6 +23,7 @@ const swaggerDocument = YAML.load(join(_dirname, 'docs/swagger.yaml'));
 const app = express();
 
 if (process.env.ENV !== 'prod') {
+    logger.info(`API docs exposed at /api-docs`)
     app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 }
 
@@ -33,11 +38,12 @@ app.use('/auth', authRoutes);
 
 // Error handling
 app.use((err, req, res, next) => {
-    console.error(err.stack);
+    logger.debug(err.stack);
     res.status(500).json({message: 'Something broke!'});
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+const server = app.listen(PORT,'0.0.0.0', () => {
+    logger.info(`Server is running on port ${PORT}`);
 });
+// const chatServer = new ChatServer(server);

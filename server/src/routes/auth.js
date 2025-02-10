@@ -66,25 +66,6 @@ router.post('/logout', passport.authenticate('jwt', {session: false}), async (re
     }
 });
 
-// Google OAuth routes
-router.get(
-    '/google',
-    passport.authenticate('google', {
-        scope: ['profile', 'email'],
-    })
-);
-
-router.get(
-    '/google/callback',
-    passport.authenticate('google', {session: false}),
-    (req, res) => {
-        const token = generateToken(req.user);
-        res.redirect(
-            `${process.env.FRONTEND_URL}/auth/callback?token=${token}`
-        );
-    }
-);
-
 // Verify account and set password
 router.post('/verify', validate(verifyAccountSchema), verifyAccount);
 
