@@ -6,7 +6,9 @@ info:
 
 servers:
   - url: http://localhost:3000
-    description: Development server
+    description: Local development server
+  - url: https://vividly-stg.esparkconsultants.com/api
+    description: Hosted staging server
 
 components:
   securitySchemes:
@@ -320,16 +322,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
 
-  /auth/google:
-    get:
-      tags:
-        - Authentication
-      summary: Google OAuth login
-      description: Initiates Google OAuth flow
-      responses:
-        '302':
-          description: Redirects to Google login page
-
   /auth/request-password-reset:
     post:
       tags:
@@ -413,13 +405,3 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-
-  /auth/google/callback:
-    get:
-      tags:
-        - Authentication
-      summary: Google OAuth callback
-      description: Handles the Google OAuth callback
-      responses:
-        '302':
-          description: Redirects to frontend with token
