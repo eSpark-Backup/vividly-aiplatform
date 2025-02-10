@@ -7,7 +7,7 @@ info:
 servers:
   - url: http://localhost:3000
     description: Local development server
-  - url: https://vividly-stg.esparkconsultants.com/api
+  - url: https://vividly-stg-api.esparkconsultants.com/api
     description: Hosted staging server
 
 components:
