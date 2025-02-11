@@ -33,7 +33,7 @@ export const verifyCodeSchema = z.object({
 
 // Reset Password Schema
 export const resetPasswordSchema = z.object({
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters").regex(passwordRegex, passwordRegexMessage),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
@@ -42,7 +42,7 @@ export const resetPasswordSchema = z.object({
 
 //Create Password Schema
 export const createPasswordSchema = z.object({
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters").regex(passwordRegex, passwordRegexMessage),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
