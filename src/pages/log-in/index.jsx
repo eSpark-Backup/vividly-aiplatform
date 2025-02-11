@@ -11,17 +11,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
 import { useLogin } from "@/hooks/useAuth";
 import { handleApiError } from "@/lib/apiErrorHandler";
+import { useAuthStore } from "@/store/useAuthStore";
 
 function LogIn() {
 
   const { toast } = useToast();
   const navigate = useNavigate();
+  const {setAuth} = useAuthStore()
   const { mutate: login, isPending } = useLogin();
 
   const showToast = (title, description, type) => {
     toast({ title, description, type });
   };
-
 
   const {
     register,
@@ -33,9 +34,10 @@ function LogIn() {
 
   const onSubmit = (data) => {
     login(data, {
-      onSuccess: (adasda) => {
-        console.log(adasda, "successData");
+      onSuccess: (successData) => {
         showToast("Success", "You have successfully logged in", "success");
+        const { accessToken, refreshToken, expiresAt, user } = successData;
+        setAuth({ accessToken, refreshToken, expiresAt, user })
       },
       onError: (error) => {
         handleApiError(showToast, error);
