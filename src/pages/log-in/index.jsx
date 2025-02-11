@@ -10,15 +10,14 @@ import { useToast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
 import { useLogin } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
+import { handleLoginSuccess } from "@/lib/axios";
 
 function LogIn() {
 
   const { toast } = useToast();
   const navigate = useNavigate();
   const { mutate: login, isPending } = useLogin();
-
-
-  console.log(isPending)
 
   const showToast = (title, description, type) => {
     toast({ title, description, type });
@@ -35,7 +34,8 @@ function LogIn() {
 
   const onSubmit = (data) => {
     login(data, {
-      onSuccess: () => {
+      onSuccess: (adasda) => {
+        console.log(adasda, "successData");
         showToast("Success", "You have successfully logged in", "success");
       },
       onError: (error) => {

@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
-import { usecreateAccountResendVerification } from "@/hooks/useAuth";
+import { usecreateAccountResendVerification, useRequestResetPassword } from "@/hooks/useAuth";
 import { verifyCodeBgDark, verifyCodeBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
@@ -16,24 +16,40 @@ function VerifyEmailSent() {
     const [searchParams] = useSearchParams();
     const reset = searchParams.get("reset");
     const create = searchParams.get("create");
-    const { mutate: resendEmail, isPending } = usecreateAccountResendVerification();
+    const { mutate: resendEmail, isPending: isCreateAccountResedPending } = usecreateAccountResendVerification();
+    const { mutate: requestResetPassword, isPending: isResetPasswordPending } = useRequestResetPassword();
 
     const showToast = (title, description, type) => {
         toast({ title, description, type });
     };
 
     const handleResntEmail = () => {
-        const data = { email: create };
-        
-        resendEmail(data, {
-            onSuccess: () => {
-                showToast("Success", "Verification email resent successfully", "success");
-            },
-            onError: (error) => {
-                handleApiError(showToast, error);
-                
-            }
-        });
+        const createData = { email: create };
+        const resetData = { email: reset };
+
+        if (create) {
+            resendEmail(createData, {
+                onSuccess: () => {
+                    showToast("Success", "Verification email resent successfully", "success");
+                },
+                onError: (error) => {
+                    handleApiError(showToast, error);
+                }
+            });
+            return;
+        }
+
+        if (reset) {
+            requestResetPassword(resetData, {
+                onSuccess: () => {
+                    showToast("Success", "Reset password email resent successfully", "success");
+                },
+                onError: (error) => {
+                    handleApiError(showToast, error);
+                }
+            });
+            return;
+        }
     }
 
     useEffect(() => {
@@ -65,8 +81,12 @@ function VerifyEmailSent() {
                             </div>
                         </Link>
 
-                        <h1 className="sm:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">Verification Email Sent</h1>
-                        <p className="text-md dark:text-gray-300">We have sent a verification code to your email address.</p>
+                        <h1 className="sm:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">
+                            Verify Email
+                        </h1>
+                        <p className="text-md dark:text-gray-300">
+                            {reset ? "We have sent you an email to reset your password" : "We have sent you an email to verify your account"}
+                        </p>
                     </div>
 
                     <div className="grid gap-4">
@@ -74,7 +94,7 @@ function VerifyEmailSent() {
                         {/* Submit Button */}
                         <Button
                             onClick={handleResntEmail}
-                            isLoading={isPending}
+                            isLoading={isCreateAccountResedPending || isResetPasswordPending}
                             size="lg"
                             variant="gradient"
                             type="submit">

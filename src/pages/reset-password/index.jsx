@@ -39,7 +39,7 @@ function ResetPassword() {
             token,
             password: data.password
         }, {
-            onSuccess: (data) => {
+            onSuccess: () => {
                 showToast("Success", "Password has been reseted successfully", "success");
                 navigate("/log-in");
             },

@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User, ChevronLeft } from "lucide-react";
-import { forgotPasswordBgDark, forgotPasswordBgLight} from "@/assets";
+import { forgotPasswordBgDark, forgotPasswordBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,13 +30,15 @@ function ForgotPassword() {
     });
 
     const onSubmit = (data) => {
+        const { email } = data;
+
         requestResetPassword(data, {
-            onSuccess: (data) => {
-                showToast("Success", "If your email is registered and verified, you will receive a password reset link", "success");
-                // navigate("/verify-code?reset=" + data.email);
+            onSuccess: () => {
+                navigate(`/verify-email-sent?reset=${email}`);
+                showToast("Success", "We have sent you an email to reset your password", "success");
             },
             onError: (error) => {
-                 handleApiError(showToast, error);
+                handleApiError(showToast, error);
             }
         });
         console.log("Form Data:", data);
