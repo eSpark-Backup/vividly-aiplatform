@@ -6,21 +6,22 @@ import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPasswordSchema } from "@/schema";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ConfirmationDialog } from "@/components/ConfirmationDialog";
 import { useCreatePassword } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 
 function CreatePassword() {
 
     const { toast } = useToast();
     const navigate = useNavigate();
+    const { token } = useParams();
     const { mutate: createPassword, isPending } = useCreatePassword();
 
     const [showSuccessDialog, setShowSuccessDialog] = useState(false)
-
 
     const showToast = (title, description, type) => {
         toast({ title, description, type });
@@ -35,16 +36,14 @@ function CreatePassword() {
     });
 
     const onSubmit = (data) => {
-        createPassword({
-            password: data.password,
-        }, {
+
+        createPassword({token, password: data.password}, {
             onSuccess: () => {
                 showToast("Success", "Your account has been created successfully.", "success");
                 setShowSuccessDialog(true)
             },
             onError: (error) => {
-                showToast("Error", "Failed to create account", "error")
-                console.log(error)
+                handleApiError(showToast, error);
             }
         })
         console.log("Form Data:", data);

@@ -1,16 +1,17 @@
 import { Routes, Route } from "react-router-dom";
-import { CreatePassword, ForgotPassword, Home, LogIn, ResetPassword, SignUp, VerifyCode } from "./pages";
+import { CreatePassword, ForgotPassword, Home, LogIn, ResetPassword, SignUp, VerifyCode, VerifyEmailSent } from "./pages";
 
 const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/log-in" element={<LogIn />} />
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/log-in" element={<LogIn />} />
+      <Route path="/verify-email-sent" element={<VerifyEmailSent />} />
+      <Route path="/verify-email/:token" element={<CreatePassword />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
-      <Route path="/verify-code" element={<VerifyCode />} />
-      <Route path="/reset-password" element={<ResetPassword />} />
-      <Route path="/create-password" element={<CreatePassword />} />
+      <Route path="/reset-password/:token" element={<ResetPassword />} />
+      
     </Routes>
   );
 };

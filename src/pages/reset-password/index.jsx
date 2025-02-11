@@ -7,15 +7,19 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useResetPassword } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 
 function ResetPassword() {
 
     const { toast } = useToast();
     const navigate = useNavigate();
+    const { token } = useParams();
+
     const { mutate: resetPassword, isPending } = useResetPassword();
+
 
     const showToast = (title, description, type) => {
         toast({ title, description, type });
@@ -31,14 +35,16 @@ function ResetPassword() {
     });
 
     const onSubmit = (data) => {
-        resetPassword(data, {
+        resetPassword({
+            token,
+            password: data.password
+        }, {
             onSuccess: (data) => {
                 showToast("Success", "Password has been reseted successfully", "success");
                 navigate("/log-in");
             },
             onError: (error) => {
-                showToast("Error", "Failed to reset password", "error")
-                console.log(error)
+              handleApiError(showToast, error);
             }
         })
 

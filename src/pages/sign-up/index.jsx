@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
 import { useCreateAccount } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 function SignUp() {
 
@@ -31,15 +32,14 @@ function SignUp() {
 
     const onSubmit = (data) => {
         createAccount(data, {
-            onSuccess: (data) => {
+            onSuccess: () => {
                 showToast("Success", "You have successfully signed up", "success");
-                navigate(`/verify-code?create=${data.email}`);
+                navigate(`/verify-email-sent?create=${data.email}`);
             },
-            onError: (data) => {
-                showToast("Error", "Failed to Sign up", "error")
+            onError: (error) => {
+                handleApiError(showToast, error);
             }
         });
-        console.log("Form Data:", data);
     };
 
     return (

@@ -9,6 +9,7 @@ import { forgotPasswordSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useRequestResetPassword } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 function ForgotPassword() {
 
@@ -31,15 +32,13 @@ function ForgotPassword() {
     const onSubmit = (data) => {
         requestResetPassword(data, {
             onSuccess: (data) => {
-                showToast("Success", "Code sent to your email address", "success");
-                navigate("/verify-code?reset=" + data.email);
+                showToast("Success", "If your email is registered and verified, you will receive a password reset link", "success");
+                // navigate("/verify-code?reset=" + data.email);
             },
             onError: (error) => {
-                showToast("Error", "Failed to send code", "error");
-                console.log(error);
+                 handleApiError(showToast, error);
             }
         });
-        // navigate("/verify-code?reset=" + data.email);
         console.log("Form Data:", data);
     };
 

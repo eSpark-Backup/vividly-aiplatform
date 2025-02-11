@@ -17,6 +17,9 @@ function LogIn() {
   const navigate = useNavigate();
   const { mutate: login, isPending } = useLogin();
 
+
+  console.log(isPending)
+
   const showToast = (title, description, type) => {
     toast({ title, description, type });
   };
@@ -32,16 +35,13 @@ function LogIn() {
 
   const onSubmit = (data) => {
     login(data, {
-      onSuccess: (data) => {
-        showToast("Success", "Logged in successfully", "success");
-        navigate("/dashboard");
+      onSuccess: () => {
+        showToast("Success", "You have successfully logged in", "success");
       },
       onError: (error) => {
-        showToast("Error", "Failed to login", "error");
-        console.log(error);
+        handleApiError(showToast, error);
       }
     });
-    console.log("Form Data:", data);
   };
 
   return (
@@ -80,7 +80,8 @@ function LogIn() {
               isLoading={isPending}
               size="lg"
               variant="gradient"
-              type="submit">
+              type="submit"
+            >
               Login Now
             </Button>
 

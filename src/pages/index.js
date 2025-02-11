@@ -5,6 +5,7 @@ import ForgotPassword from "./forgot-password"
 import VerifyCode from "./verify-code"
 import ResetPassword from "./reset-password"
 import CreatePassword from "./create-password"
+import VerifyEmailSent from "./verify-email-sent"
 
 
 export {
@@ -14,5 +15,6 @@ export {
     ForgotPassword,
     VerifyCode,
     ResetPassword,
-    CreatePassword
+    CreatePassword,
+    VerifyEmailSent
 }
