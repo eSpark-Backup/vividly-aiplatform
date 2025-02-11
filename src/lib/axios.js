@@ -8,10 +8,10 @@ client.interceptors.request.use(async (config) => {
   const { accessToken, refreshToken, expiresAt } = useAuthStore.getState()
 
   if (accessToken && expiresAt) {
-    const isExpired = true
+    const isExpired = new Date(expiresAt) <= new Date()
     if (isExpired && refreshToken) {
       try {
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/refresh-token`, { refreshToken })
+        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/refresh-token`, { refreshToken })
         const { accessToken: newAccessToken, expiresAt: newExpiresAt } = response.data
         useAuthStore.getState().setAuth({ accessToken: newAccessToken, expiresAt: newExpiresAt })
         config.headers.Authorization = `Bearer ${newAccessToken}`

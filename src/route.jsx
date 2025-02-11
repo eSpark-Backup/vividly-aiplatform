@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { CreatePassword, ForgotPassword, Home, LogIn, ResetPassword, SignUp, VerifyCode, VerifyEmailSent } from "./pages";
+import { CreatePassword, ForgotPassword, Home, LogIn, ResetPassword, SignUp, VerifyEmailSent } from "./pages";
 
 const AppRouter = () => {
   return (
