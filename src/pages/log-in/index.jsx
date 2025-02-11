@@ -11,7 +11,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
 import { useLogin } from "@/hooks/useAuth";
 import { handleApiError } from "@/lib/apiErrorHandler";
-import { handleLoginSuccess } from "@/lib/axios";
 
 function LogIn() {
 
