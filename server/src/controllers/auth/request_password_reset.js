@@ -1,6 +1,7 @@
 import pool from "../../init/db_conn.js";
 import jwt from 'jsonwebtoken';
 import EmailService from '../../helpers/email.js';
+import {logger} from "../../helpers/logger.js";
 
 const requestPasswordReset = async (req, res) => {
     try {
@@ -48,9 +49,7 @@ const requestPasswordReset = async (req, res) => {
             message: 'If your email is registered and verified, you will receive a password reset link.'
         });
     } catch (error) {
-        if(process.env.ENV !== 'prod') {
-            console.error('Password reset request error:', error);
-        }
+        logger.error('Password reset request error:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 };

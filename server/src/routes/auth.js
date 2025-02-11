@@ -3,6 +3,7 @@ import passport from 'passport';
 import {refreshAccessToken, revokeRefreshToken} from '../helpers/auth.js';
 import {validate} from '../middlewares/validate.js';
 import {
+    googleAuthSchema,
     loginSchema,
     refreshTokenSchema,
     requestPasswordResetSchema,
@@ -12,6 +13,7 @@ import {
     verifyAccountSchema
 } from './auth.schema.js';
 import {
+    googleAuth,
     login,
     requestPasswordReset,
     resendVerification,
@@ -71,5 +73,11 @@ router.post('/verify', validate(verifyAccountSchema), verifyAccount);
 
 // Resend verification email
 router.post('/resend-verification', validate(resendVerificationSchema), resendVerification);
+
+router.post(
+    '/google',
+    validate(googleAuthSchema),
+    googleAuth
+);
 
 export default router;

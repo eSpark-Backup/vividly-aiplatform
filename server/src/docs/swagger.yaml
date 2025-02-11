@@ -405,3 +405,119 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /auth/google:
+    post:
+      tags:
+        - Authentication
+      summary: Authenticate with Google
+      description: |
+        Handles Google OAuth authentication. Can create new users or link Google accounts 
+        to existing email-based accounts. Returns JWT tokens upon successful authentication.
+      operationId: googleAuth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - first_name
+                - last_name
+                - google_id
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "john.doe@example.com"
+                  description: User's email from Google profile
+                first_name:
+                  type: string
+                  example: "John"
+                  description: User's first name from Google profile
+                last_name:
+                  type: string
+                  example: "Doe"
+                  description: User's last name from Google profile
+                google_id:
+                  type: string
+                  example: "118234667124946123456"
+                  description: Google's unique identifier for the user
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Google authentication successful"
+                  accessToken:
+                    type: string
+                    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    description: JWT access token
+                  refreshToken:
+                    type: string
+                    example: "7c4c1c50d8f58c9..."
+                    description: Token for obtaining new access tokens
+                  expiresAt:
+                    type: string
+                    format: date-time
+                    example: "2024-02-11T15:30:00.000Z"
+                    description: Access token expiration timestamp
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                        example: "123e4567-e89b-12d3-a456-426614174000"
+                      email:
+                        type: string
+                        format: email
+                        example: "john.doe@example.com"
+                      first_name:
+                        type: string
+                        example: "John"
+                      last_name:
+                        type: string
+                        example: "Doe"
+        '400':
+          description: Authentication failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Authentication failed"
+                  error:
+                    type: string
+                    example: "Account mismatch"
+                required:
+                  - message
+                  - error
+              examples:
+                accountMismatch:
+                  summary: Email mismatch with existing Google account
+                  value:
+                    message: "Authentication failed"
+                    error: "Account mismatch"
+                differentGoogleAccount:
+                  summary: Email already linked to different Google account
+                  value:
+                    message: "Authentication failed"
+                    error: "Account already linked to different Google account"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal server error"

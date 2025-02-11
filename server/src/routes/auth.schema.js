@@ -106,3 +106,27 @@ export const refreshTokenSchema = yup.object({
             .max(255, 'Invalid refresh token'),
     }),
 });
+
+export const googleAuthSchema = yup.object({
+    body: yup.object({
+        email: yup
+            .string()
+            .typeError('Email must be a string')
+            .required('Email is required')
+            .email('Invalid email format'),
+        first_name: yup
+            .string()
+            .typeError('Firstname must be a string')
+            .required('First name is required')
+            .min(2, 'First name must be at least 2 characters'),
+        last_name: yup
+            .string()
+            .typeError('Lastname must be a string')
+            .required('Last name is required')
+            .min(2, 'Last name must be at least 2 characters'),
+        google_id: yup
+            .string()
+            .typeError('Google ID must be a string')
+            .required('Google ID is required')
+    })
+});
