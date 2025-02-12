@@ -2,6 +2,9 @@
 
 import { z } from "zod";
 
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+const passwordRegexMessage = "Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special character"
+
 
 // Login Schema
 export const loginSchema = z.object({
@@ -13,8 +16,8 @@ export const loginSchema = z.object({
 // Signup Schema
 export const signupSchema = z
   .object({
-    firstName: z.string().min(2, "First name must be at least 2 characters"),
-    lastName: z.string().min(2, "Last name must be at least 2 characters"),
+    first_name: z.string().min(2, "First name must be at least 2 characters"),
+    last_name: z.string().min(2, "Last name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
   });
 
@@ -30,7 +33,7 @@ export const verifyCodeSchema = z.object({
 
 // Reset Password Schema
 export const resetPasswordSchema = z.object({
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters").regex(passwordRegex, passwordRegexMessage),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
@@ -39,7 +42,7 @@ export const resetPasswordSchema = z.object({
 
 //Create Password Schema
 export const createPasswordSchema = z.object({
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters").regex(passwordRegex, passwordRegexMessage),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",

@@ -1,13 +1,14 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
     createAccount,
-    createAccountVerifyCode,
+    createAccountResendVerification,
     createPassword,
-    forgotPassword,
+    requestResetPassword,
     forgotPasswordVerifyCode,
     resetPassword,
     login,
-    googleLogin
+    googleProfile,
+    loginWithGoogle
 }
     from "../services/auth";
 
@@ -21,10 +22,10 @@ const useCreateAccount = () => {
 
 
 // Create Account Verify Code | POST
-const useCreateAccountVerfiyCode = () => {
+const usecreateAccountResendVerification = () => {
     return useMutation({
-        mutationKey: ["createAccountVerfiyCode"],
-        mutationFn: createAccountVerifyCode,
+        mutationKey: ["createAccountResendVerification"],
+        mutationFn: createAccountResendVerification,
     });
 }
 
@@ -37,10 +38,10 @@ const useCreatePassword = () => {
 }
 
 // Forgot Password | POST
-const useForgotPassword = () => {
+const useRequestResetPassword = () => {
     return useMutation({
-        mutationKey: ["forgotPassword"],
-        mutationFn: forgotPassword,
+        mutationKey: ["requestResetPassword"],
+        mutationFn: requestResetPassword,
     });
 }
 
@@ -68,11 +69,19 @@ const useLogin = () => {
     });
 }
 
-// Goolge Login | GET
+// LoginWithGoogle | POST
+const useLoginWithGoogle = () => {
+    return useMutation({
+        mutationKey: ["loginWithGoogle"],
+        mutationFn: loginWithGoogle,
+    });
+}
+
+// Goolge Profile | GET
 const useGetGoogleProfile = () => {
     return useMutation({
         mutationKey: ["googleLogin"],
-        mutationFn: googleLogin,
+        mutationFn: googleProfile,
     });
 }
 
@@ -80,13 +89,14 @@ const useGetGoogleProfile = () => {
 
 export {
     useCreateAccount,
-    useCreateAccountVerfiyCode,
+    usecreateAccountResendVerification,
     useCreatePassword,
-    useForgotPassword,
+    useRequestResetPassword,
     useForgotPasswordVerifyCode,
     useResetPassword,
     useLogin,
-    useGetGoogleProfile
+    useGetGoogleProfile,
+    useLoginWithGoogle
 };
 
 

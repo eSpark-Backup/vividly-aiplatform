@@ -6,15 +6,26 @@ import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPasswordSchema } from "@/schema";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { ConfirmationDialog } from "@/components/ConfirmationDialog";
+import { useCreatePassword } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 
 function CreatePassword() {
+
+    const { toast } = useToast();
+    const navigate = useNavigate();
+    const { token } = useParams();
+    const { mutate: createPassword, isPending } = useCreatePassword();
+
     const [showSuccessDialog, setShowSuccessDialog] = useState(false)
 
-    const navigate = useNavigate();
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
 
     const {
         register,
@@ -25,7 +36,16 @@ function CreatePassword() {
     });
 
     const onSubmit = (data) => {
-        setShowSuccessDialog(true)
+
+        createPassword({token, password: data.password}, {
+            onSuccess: () => {
+                showToast("Success", "Your account has been created successfully.", "success");
+                setShowSuccessDialog(true)
+            },
+            onError: (error) => {
+                handleApiError(showToast, error);
+            }
+        })
         console.log("Form Data:", data);
     };
 
@@ -61,7 +81,11 @@ function CreatePassword() {
                         </div>
 
                         {/* Submit Button */}
-                        <Button size="lg" variant="gradient" type="submit">
+                        <Button
+                            isLoading={isPending}
+                            size="lg"
+                            variant="gradient"
+                            type="submit">
                             Set Password
                         </Button>
 
@@ -80,7 +104,6 @@ function CreatePassword() {
                     setShowSuccessDialog(false)
                     navigate("/log-in");
                 }}
-                onCancel={() => setShowSuccessDialog(false)}
             />
         </Authlayout>
     );

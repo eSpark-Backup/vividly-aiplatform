@@ -1,18 +1,25 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User, ChevronLeft } from "lucide-react";
-import { forgotPasswordBgDark, forgotPasswordBgLight, loginBgDark, loginBgLight } from "@/assets";
+import { forgotPasswordBgDark, forgotPasswordBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { forgotPasswordSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
 import { Link, useNavigate } from "react-router-dom";
+import { useRequestResetPassword } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 function ForgotPassword() {
 
     const { toast } = useToast();
     const navigate = useNavigate();
+    const { mutate: requestResetPassword, isPending } = useRequestResetPassword();
+
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
 
     const {
         register,
@@ -23,13 +30,17 @@ function ForgotPassword() {
     });
 
     const onSubmit = (data) => {
-        toast({
-            title: "Success",
-            description: "Code sent to your email address",
-            type: "success",
-        })
+        const { email } = data;
 
-        navigate("/verify-code?reset=" + data.email);
+        requestResetPassword(data, {
+            onSuccess: () => {
+                navigate(`/verify-email-sent?reset=${email}`);
+                showToast("Success", "We have sent you an email to reset your password", "success");
+            },
+            onError: (error) => {
+                handleApiError(showToast, error);
+            }
+        });
         console.log("Form Data:", data);
     };
 
@@ -67,7 +78,11 @@ function ForgotPassword() {
                         </div>
 
                         {/* Submit Button */}
-                        <Button size="lg" variant="gradient" type="submit">
+                        <Button
+                            isLoading={isPending}
+                            size="lg"
+                            variant="gradient"
+                            type="submit">
                             Submit
                         </Button>
 

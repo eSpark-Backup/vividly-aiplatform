@@ -7,13 +7,23 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
+import { useLogin } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
+import { useAuthStore } from "@/store/useAuthStore";
 
 function LogIn() {
-  
+
   const { toast } = useToast();
-  
+  const navigate = useNavigate();
+  const {setAuth} = useAuthStore()
+  const { mutate: login, isPending } = useLogin();
+
+  const showToast = (title, description, type) => {
+    toast({ title, description, type });
+  };
+
   const {
     register,
     handleSubmit,
@@ -23,13 +33,16 @@ function LogIn() {
   });
 
   const onSubmit = (data) => {
-    toast({
-      title: "Success",
-      description: "You have successfully logged in",
-      type: "success",
-    })
-
-    console.log("Form Data:", data);
+    login(data, {
+      onSuccess: (successData) => {
+        showToast("Success", "You have successfully logged in", "success");
+        const { accessToken, refreshToken, expiresAt, user } = successData;
+        setAuth({ accessToken, refreshToken, expiresAt, user })
+      },
+      onError: (error) => {
+        handleApiError(showToast, error);
+      }
+    });
   };
 
   return (
@@ -64,7 +77,12 @@ function LogIn() {
             </div>
 
             {/* Submit Button */}
-            <Button size="lg" variant="gradient" type="submit">
+            <Button
+              isLoading={isPending}
+              size="lg"
+              variant="gradient"
+              type="submit"
+            >
               Login Now
             </Button>
 
@@ -88,7 +106,7 @@ function LogIn() {
 
         {/* Google Login Button */}
         <GoogleLoginButton />
-        
+
       </div>
     </Authlayout>
   );

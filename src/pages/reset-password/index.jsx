@@ -1,17 +1,30 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock } from "lucide-react";
-import {  setPasswordBgDark, setPasswordBgLight } from "@/assets";
+import { setPasswordBgDark, setPasswordBgLight } from "@/assets";
 import { Authlayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordSchema } from "@/schema";
 import { useToast } from "@/hooks/use-toast";
+import { useNavigate, useParams } from "react-router-dom";
+import { useResetPassword } from "@/hooks/useAuth";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 
 function ResetPassword() {
 
     const { toast } = useToast();
+    const navigate = useNavigate();
+    const { token } = useParams();
+
+    const { mutate: resetPassword, isPending } = useResetPassword();
+
+
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
+
 
     const {
         register,
@@ -22,15 +35,22 @@ function ResetPassword() {
     });
 
     const onSubmit = (data) => {
-        toast({
-            title: "Success",
-            description: "You have successfully reset your password",
-            type: "success",
+        resetPassword({
+            token,
+            password: data.password
+        }, {
+            onSuccess: () => {
+                showToast("Success", "Password has been reseted successfully", "success");
+                navigate("/log-in");
+            },
+            onError: (error) => {
+              handleApiError(showToast, error);
+            }
         })
 
         console.log("Form Data:", data);
     };
-    
+
 
     return (
         <Authlayout
@@ -63,7 +83,11 @@ function ResetPassword() {
                         </div>
 
                         {/* Submit Button */}
-                        <Button size="lg" variant="gradient" type="submit">
+                        <Button
+                            isLoading={isPending}
+                            size="lg"
+                            variant="gradient"
+                            type="submit">
                             Set Password
                         </Button>
 
