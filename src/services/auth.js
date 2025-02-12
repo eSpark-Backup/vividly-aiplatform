@@ -80,8 +80,21 @@ export async function login(params) {
     return data
 }
 
-// Google Login | GET
-export async function googleLogin(tokenResponse) {
+// Google Login | POST
+export async function loginWithGoogle(params) {
+    const { data } = await request({
+        url: "/auth/google",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}
+
+
+
+// Google Profile Fetch | GET
+export async function googleProfile(tokenResponse) {
     const { data } = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo",
         {
             headers: {

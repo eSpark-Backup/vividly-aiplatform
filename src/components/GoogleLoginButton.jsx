@@ -1,12 +1,16 @@
 import { useGoogleLogin } from "@react-oauth/google";
-import { useGetGoogleProfile } from "@/hooks/useAuth";
+import { useGetGoogleProfile, useLoginWithGoogle } from "@/hooks/useAuth";
 import { googleIcon } from "@/assets"
 import { Button } from "./ui/button"
 import { useToast } from "@/hooks/use-toast";
+import { useAuthStore } from "@/store/useAuthStore";
+import { handleApiError } from "@/lib/apiErrorHandler";
 
 const GoogleLoginButton = () => {
 
-    const { mutate } = useGetGoogleProfile();
+    const { mutate: getGoogleProfile } = useGetGoogleProfile();
+    const { mutate: loginWithGoogle } = useLoginWithGoogle();
+    const { setAuth } = useAuthStore()
     const { toast } = useToast();
 
 
@@ -16,9 +20,29 @@ const GoogleLoginButton = () => {
 
     const login = useGoogleLogin({
         onSuccess: async (tokenResponse) => {
-            mutate(tokenResponse, {
+            getGoogleProfile(tokenResponse, {
                 onSuccess: (data) => {
-                    showToast("Success", "You have successfully logged in", "success");
+
+                    const { given_name, family_name, email, sub } = data;
+
+                    const googleProfileInfo = {
+                        google_id: sub,
+                        first_name: given_name,
+                        last_name: family_name,
+                        email,
+                    }
+
+                    loginWithGoogle(googleProfileInfo, {
+                        onSuccess: (successData) => {
+                            showToast("Success", "Login with Google successful", "success")
+                            const { accessToken, refreshToken, expiresAt, user } = successData;
+                            setAuth({ accessToken, refreshToken, expiresAt, user })
+                        },
+                        onError: (error) => {
+                            handleApiError(showToast, error);
+                        }
+                    });
+
                 },
                 onError: () => {
                     showToast("Error", "Failed to login with Google", "error")

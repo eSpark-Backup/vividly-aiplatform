@@ -7,7 +7,8 @@ import {
     forgotPasswordVerifyCode,
     resetPassword,
     login,
-    googleLogin
+    googleProfile,
+    loginWithGoogle
 }
     from "../services/auth";
 
@@ -68,11 +69,19 @@ const useLogin = () => {
     });
 }
 
-// Goolge Login | GET
+// LoginWithGoogle | POST
+const useLoginWithGoogle = () => {
+    return useMutation({
+        mutationKey: ["loginWithGoogle"],
+        mutationFn: loginWithGoogle,
+    });
+}
+
+// Goolge Profile | GET
 const useGetGoogleProfile = () => {
     return useMutation({
         mutationKey: ["googleLogin"],
-        mutationFn: googleLogin,
+        mutationFn: googleProfile,
     });
 }
 
@@ -86,7 +95,8 @@ export {
     useForgotPasswordVerifyCode,
     useResetPassword,
     useLogin,
-    useGetGoogleProfile
+    useGetGoogleProfile,
+    useLoginWithGoogle
 };
 
 
