@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { User, Lock } from "lucide-react";
 import { loginBgDark, loginBgLight } from "@/assets";
-import { Authlayout } from "@/layout";
+import { AuthLayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "@/schema";
@@ -46,7 +46,7 @@ function LogIn() {
   };
 
   return (
-    <Authlayout
+    <AuthLayout
       onLightPoster={loginBgLight}
       onDarkPoster={loginBgDark}
     >
@@ -108,7 +108,7 @@ function LogIn() {
         <GoogleLoginButton />
 
       </div>
-    </Authlayout>
+    </AuthLayout>
   );
 }
 

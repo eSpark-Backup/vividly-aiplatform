@@ -5,7 +5,7 @@ import { themes } from "@/constant"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 
-function Authlayout({ children, onLightPoster, onDarkPoster }) {
+function AuthLayout({ children, onLightPoster, onDarkPoster }) {
   const { theme } = useTheme()
   const location = useLocation()
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -77,4 +77,4 @@ function Authlayout({ children, onLightPoster, onDarkPoster }) {
   )
 }
 
-export default Authlayout
+export default AuthLayout

@@ -1,5 +1,11 @@
-import Authlayout from "./Authlayout";
+import AuthLayout from "./AuthLayout";
+import DashboardLayout from "./DashboardLayout";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
 
 export {
-    Authlayout
+    Sidebar,
+    DashboardLayout,
+    AuthLayout,
+    Header,
 }

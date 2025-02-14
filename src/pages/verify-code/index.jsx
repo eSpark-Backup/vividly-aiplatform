@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, BadgeCheck } from "lucide-react";
 import { verifyCodeBgDark, verifyCodeBgLight } from "@/assets";
-import { Authlayout } from "@/layout";
+import { AuthLayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { verifyCodeSchema } from "@/schema";
@@ -55,7 +55,7 @@ function VerifyCode() {
     }, []);
 
     return (
-        <Authlayout
+        <AuthLayout
             onLightPoster={verifyCodeBgLight}
             onDarkPoster={verifyCodeBgDark}
         >
@@ -98,7 +98,7 @@ function VerifyCode() {
                 </form>
 
             </div>
-        </Authlayout>
+        </AuthLayout>
     );
 }
 
