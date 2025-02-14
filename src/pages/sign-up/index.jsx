@@ -60,12 +60,12 @@ function SignUp() {
                         <div className="grid sm:grid-cols-2 gap-4">
                             <div className="space-y-2">
                                 <Input icon={User} type="text" placeholder="First Name" {...register("first_name")} />
-                                {errors.firstName && <p className="text-sm text-[#FF8682]">{errors.firstName.message}</p>}
+                                {errors.first_name && <p className="text-sm text-[#FF8682]">{errors.first_name.message}</p>}
                             </div>
 
                             <div className="space-y-2">
                                 <Input icon={User} type="text" placeholder="Last Name" {...register("last_name")} />
-                                {errors.lastName && <p className="text-sm text-[#FF8682]">{errors.lastName.message}</p>}
+                                {errors.last_name && <p className="text-sm text-[#FF8682]">{errors.last_name.message}</p>}
                             </div>
                         </div>
 

@@ -9,7 +9,7 @@ const passwordRegexMessage = "Password must contain at least 8 characters, one u
 // Login Schema
 export const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
-  password: z.string().min(6, "Password must be at least 6 characters"),
+  password: z.string().min(1, "Password must be required"),
 });
 
 
@@ -28,12 +28,12 @@ export const forgotPasswordSchema = z.object({
 
 //Verify Code Schema
 export const verifyCodeSchema = z.object({
-  code: z.string().min(6, "Code must be at least 6 characters"),
+  code: z.string().min(8, "Code must be at least 8 characters"),
 });
 
 // Reset Password Schema
 export const resetPasswordSchema = z.object({
-  password: z.string().min(6, "Password must be at least 6 characters").regex(passwordRegex, passwordRegexMessage),
+  password: z.string().min(8, "Password must be at least 8 characters").regex(passwordRegex, passwordRegexMessage),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
@@ -42,7 +42,7 @@ export const resetPasswordSchema = z.object({
 
 //Create Password Schema
 export const createPasswordSchema = z.object({
-  password: z.string().min(6, "Password must be at least 6 characters").regex(passwordRegex, passwordRegexMessage),
+  password: z.string().min(8, "Password must be at least 8 characters").regex(passwordRegex, passwordRegexMessage),
   confirmPassword: z.string(),
 }).refine((data) => data.password === data.confirmPassword, {
   message: "Passwords do not match",
