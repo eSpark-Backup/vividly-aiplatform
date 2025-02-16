@@ -13,6 +13,9 @@ import VerifyEmailSent from "./verify-email-sent"
 import Home from "./home"
 import Billing from "./billing"
 import PricingPlan from "./pricing-plan"
+import Explore from "./explore"
+import Chat from "./chat"
+import HowToUse from "./how-to-use"
 
 
 export {
@@ -26,5 +29,8 @@ export {
     VerifyEmailSent,
     Home,
     Billing,
-    PricingPlan
+    PricingPlan,
+    Explore,
+    Chat,
+    HowToUse
 }

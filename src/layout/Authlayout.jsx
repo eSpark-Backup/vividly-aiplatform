@@ -2,6 +2,7 @@ import { vividlyLogoLight, vividlyLogoDark } from "@/assets"
 import { useTheme } from "@/components"
 import ThemeToggle from "@/components/ThemeToggle"
 import { themes } from "@/constant"
+import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 
@@ -33,7 +34,7 @@ function AuthLayout({ children, onLightPoster, onDarkPoster }) {
   }
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row dark:bg-[#131619]">
+    <div className={"flex min-h-screen flex-col lg:flex-row"}>
 
       {/* Left Section */}
       <div className="relative flex-1 w-full lg:w-[45%] p-8 lg:px-10 lg:py-24">

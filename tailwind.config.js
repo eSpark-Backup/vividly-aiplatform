@@ -52,9 +52,6 @@ export default {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
 				},
-				"glass-dark": "rgba(215, 237, 237, 0.25)",
-				"glass-border": "#FFFFFF14", 
-
 			}
 		}
 	},

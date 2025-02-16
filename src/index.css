@@ -10,7 +10,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 180, 2%, 91%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -38,7 +38,7 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 210, 14%, 9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -75,13 +75,17 @@
   }
 }
 
+
+
 @layer components {
   .gradient-glass-effect {
-    @apply dark:bg-gradient-to-br dark:from-glass-dark dark:to-transparent 
-           dark:border-t dark:border-t-glass-border dark:shadow-sm 
-           dark:hover:bg-opacity-90 text-white bg-black;
+    @apply bg-black text-white cursor-pointer;
+    background: linear-gradient(117.58deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(59, 110, 110, 0) 100%);
+    border-top: 1.58px solid #FFFFFF14;
   }
 }
+
+
 
 input:-webkit-autofill {
   background-clip: text;
@@ -89,3 +93,4 @@ input:-webkit-autofill {
   -webkit-text-fill-color: inherit;
   transition: background-color 5000s ease-in-out 0s;
 }
+

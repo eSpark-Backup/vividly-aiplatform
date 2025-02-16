@@ -18,7 +18,7 @@ const FreeCounter = ({
   // }
   return (
     <div >
-      <Card className="dark:gradient-glass-effect bg-black">
+      <Card className="dark:gradient-glass-effect  bg-black">
         <CardContent className="py-2">
           <div className="text-center text-sm text-white  mb-4 space-y-2">
             <p>
