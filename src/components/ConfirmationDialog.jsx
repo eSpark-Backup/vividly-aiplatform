@@ -1,10 +1,10 @@
-import { X } from "lucide-react"
+import { Loader2, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { confirmationDialog, successDialog } from "@/assets"
 
 
-export function ConfirmationDialog({ open, onOpenChange, variant, desc, onConfirm, onCancel }) {
+export function ConfirmationDialog({ open, onOpenChange, variant, desc, buttonText, isLoading, onConfirm, onCancel }) {
     const isConfirmation = variant === "confirmation"
 
     return (
@@ -12,7 +12,7 @@ export function ConfirmationDialog({ open, onOpenChange, variant, desc, onConfir
             open={open}
 
             onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-[300px] sm:max-w-[500px] border-0 dark:bg-[#131619] py-12 shadow-[0px_0px_34px_20px_rgba(255,255,255,0.25)]">
+            <DialogContent className="max-w-[300px] sm:max-w-[500px] border-0 dark:bg-[#131619] py-12 shadow-[0px_0px_60px_20px_rgba(124,53,241,0.4)]">
 
                 {onCancel && (
                     <p
@@ -51,7 +51,7 @@ export function ConfirmationDialog({ open, onOpenChange, variant, desc, onConfir
                                     Cancel
                                 </Button>
                                 <Button onClick={onConfirm} variant="gradient" size="lg">
-                                    Sign out
+                                    {isLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : buttonText}
                                 </Button>
                             </>
                         ) : (

@@ -8,7 +8,6 @@ const Home = () => {
         navigate("/home?cat=explore")
     }, [])
 
-
     return (
         <div className="flex items-center justify-center ">
             <span className="ml-3 text-2xl font-semibold">HOME PAGE UNDER DEVELOPMENT</span>

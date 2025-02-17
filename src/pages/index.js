@@ -18,6 +18,10 @@ import Chat from "./chat"
 import HowToUse from "./how-to-use"
 
 
+//Not Found Page
+import NotFound from "./not-found"
+
+
 export {
     Landing,
     LogIn,
@@ -32,5 +36,6 @@ export {
     PricingPlan,
     Explore,
     Chat,
-    HowToUse
+    HowToUse,
+    NotFound
 }

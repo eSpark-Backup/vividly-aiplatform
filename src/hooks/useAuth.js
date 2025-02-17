@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import {
     createAccount,
     createAccountResendVerification,
@@ -7,6 +7,7 @@ import {
     forgotPasswordVerifyCode,
     resetPassword,
     login,
+    logout,
     googleProfile,
     loginWithGoogle
 }
@@ -77,6 +78,13 @@ const useLoginWithGoogle = () => {
     });
 }
 
+const useLogout = () => {
+    return useMutation({
+        mutationKey: ["logout"],
+        mutationFn: logout,
+    });
+}
+
 // Goolge Profile | GET
 const useGetGoogleProfile = () => {
     return useMutation({
@@ -95,8 +103,9 @@ export {
     useForgotPasswordVerifyCode,
     useResetPassword,
     useLogin,
+    useLogout,
+    useLoginWithGoogle,
     useGetGoogleProfile,
-    useLoginWithGoogle
 };
 
 

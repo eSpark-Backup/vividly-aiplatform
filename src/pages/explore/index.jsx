@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pen, Code, Layout, Lightbulb, ArrowRight, MessageCircle } from 'lucide-react'
+import { Pen, Code, Lightbulb, ArrowRight, MessageCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useTheme } from '@/components'
 import { themes } from '@/constant'
@@ -20,13 +20,13 @@ const FeatureCard = ({ icon: Icon, title, items, color, shadow }) => {
             </div>
             <div className="space-y-2 flex flex-col items-center">
                 {items.map((item, index) => (
-                    <button
+                    <div
                         key={index}
-                        className="dark:gradient-glass-effect bg-black  w-[220px] flex items-center justify-between rounded-lg text-wrap  p-3 text-sm text-white hover:text-white  transition-all"
+                        className="dark:gradient-glass-effect bg-black  w-[220px] flex items-center justify-between rounded-lg text-wrap  p-3 text-sm   transition-all"
                     >
-                        <span className='px-2 text-left'>{item}</span>
+                        <span className='px-2 text-left text-gray-300 hover:text-white'>{item}</span>
                         <ArrowRight className="w-4 h-4" />
-                    </button>
+                    </div>
                 ))}
             </div>
         </div>
@@ -86,7 +86,7 @@ const Explore = () => {
     ]
 
     return (
-        <div className="min-h-[calc(100vh-230px)]  flex items-center">
+        <div className="min-h-[calc(100vh-280px)] flex items-center">
             <div className="w-full px-4 sm:px-6 py-8">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center space-y-2 mb-12">

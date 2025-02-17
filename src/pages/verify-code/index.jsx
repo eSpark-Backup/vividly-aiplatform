@@ -90,7 +90,10 @@ function VerifyCode() {
                         </div>
 
                         {/* Submit Button */}
-                        <Button size="lg" variant="gradient" type="submit">
+                        <Button 
+                        size="lg" 
+                        variant="gradient" 
+                        type="submit">
                             Verify
                         </Button>
 

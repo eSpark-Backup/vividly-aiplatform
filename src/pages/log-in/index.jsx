@@ -38,6 +38,7 @@ function LogIn() {
         showToast("Success", "You have successfully logged in", "success");
         const { accessToken, refreshToken, expiresAt, user } = successData;
         setAuth({ accessToken, refreshToken, expiresAt, user })
+        navigate("/home");
       },
       onError: (error) => {
         handleApiError(showToast, error);

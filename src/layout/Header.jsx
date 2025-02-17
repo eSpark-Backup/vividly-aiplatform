@@ -2,8 +2,14 @@ import { MessageCircle, HelpCircle, Pyramid } from "lucide-react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
 import { useLocation, useNavigate } from "react-router-dom"
-import { useMemo, useCallback } from "react"
+import { useMemo, useCallback, useState } from "react"
 import { MobileSidebar } from "."
+import { useLogout } from "@/hooks/useAuth"
+import { useAuthStore } from "@/store/useAuthStore"
+import { useToast } from "@/hooks/use-toast"
+import { ConfirmationDialog } from "@/components/ConfirmationDialog"
+import { useDialogStore } from "@/store/useDialogStore"
+import { tabsCSS } from "@/constant"
 
 const tabs = [
   { value: "explore", label: "Explore Vividly", icon: Pyramid },
@@ -14,6 +20,29 @@ const tabs = [
 export default function Header() {
   const location = useLocation()
   const navigate = useNavigate()
+  const { mutate: logout, isPending } = useLogout();
+  const { clearAuth } = useAuthStore();
+  const { showSignOutDialog, setShowSignOutDialog } = useDialogStore();
+  const { toast } = useToast();
+  
+  const showToast = (title, description, type) => {
+    toast({ title, description, type });
+  };
+
+  const handleSignOut = () => {
+    logout("", {
+      onSuccess: () => {
+        showToast("Success", "You have been signed out successfully.", "success");
+        clearAuth();
+        navigate("/log-in");
+        setShowSignOutDialog(false);
+      },
+      onError: (error) => {
+        handleApiError(showToast, error);
+      },
+    });
+  }
+
 
   const activeTab = useMemo(() => {
     if (!location.pathname.startsWith("/home")) return null
@@ -27,52 +56,53 @@ export default function Header() {
   )
 
   return (
-    <div className="dark:bg-[#0D0F10] bg-white space-y-6 w-full h-[190px]">
-      <div className="flex items-center justify-between">
-        <div className="space-y-1 pt-6 px-6">
-          <h1 className="text-xl font-semibold">Your Personalised AI Assistant</h1>
-          <p className="text-sm dark:text-zinc-400 text-black">Vividly will boost your efficiency</p>
+    <>
+      <div className="dark:bg-[#0D0F10] bg-white space-y-6 w-full h-[212px] rounded-2xl my-3 mr-6">
+        <div className="flex items-center justify-between pt-6 px-6">
+          <div className="space-y-1 mr-2">
+            <h1 className="sm:text-xl text-sm font-semibold">Your Personalised AI Assistant</h1>
+            <p className="sm:text-sm text-xs dark:text-zinc-400 text-black">Vividly will boost your efficiency</p>
+          </div>
+
+          <div>
+            {/* Mobile Sidebar */}
+            <MobileSidebar handleSignOut={handleSignOut} isPro={false} apiLimitCount={2} />
+          </div>
         </div>
 
-        <div>
-          {/* Mobile Sidebar */}
-          <MobileSidebar isPro={false} apiLimitCount={2} />
-        </div>
-      </div>
+        <Separator />
 
-      <Separator />
-
-      <div className="px-6">
-        <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-          <TabsList className="h-auto p-0 bg-transparent">
-            {tabs.map(({ value, label, icon: Icon }) => (
-              <TabsTrigger
-                key={value}
-                value={value}
-                className={`
-                  py-8 relative h-7 px-4 flex gap-2 text-sm font-medium transition-all
-                  dark:hover:text-white hover:text-[#9181F4] dark:text-zinc-400 text-black 
-                  data-[state=active]:text-[#9181F4] dark:data-[state=active]:text-white
-                  data-[state=active]:after:absolute 
-                  data-[state=active]:after:left-0 
-                  data-[state=active]:after:bottom-0 
-                  data-[state=active]:after:h-[4.31px] 
-                  data-[state=active]:after:w-full 
-                  data-[state=active]:after:bg-[#9181F4]
-                  data-[state=active]:after:rounded-t-[6.31px]
-                  data-[state=active]:after:shadow-[0px_6.31px_9.47px_-6.31px_#B6F09C29,0px_15.78px_23.67px_-4.73px_#B6F09C29]
-                `}
-              >
-                <Icon
-                  className={`h-4 w-4 mr-2 
+        <div className="sm:px-6">
+          <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
+            <TabsList className="h-auto p-0 bg-transparent overflow-x-auto  max-w-full">
+              {tabs.map(({ value, label, icon: Icon }) => (
+                <TabsTrigger
+                  key={value}
+                  value={value}
+                  className={tabsCSS}
+                >
+                  <Icon
+                    className={`h-4 w-4 mr-2 
                     ${activeTab === value && 'text-[#9181F4]'}`}
-                />
-                <p>{label}</p>
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
+                  />
+                  <p>{label}</p>
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </div>
       </div>
-    </div>
+
+      <ConfirmationDialog
+        open={showSignOutDialog}
+        onOpenChange={setShowSignOutDialog}
+        variant="confirmation"
+        desc="are you sure you want to sign out?"
+        buttonText="Sign out"
+        isLoading={isPending}
+        onConfirm={handleSignOut}
+        onCancel={() => setShowSignOutDialog(false)}
+      />
+    </>
   )
 }
