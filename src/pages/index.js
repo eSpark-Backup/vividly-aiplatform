@@ -1,21 +1,21 @@
 import Landing from "./landing"
 
 //Auth Pages
-import LogIn from "./log-in"
-import SignUp from "./sign-up"
-import ForgotPassword from "./forgot-password"
-import VerifyCode from "./verify-code"
-import ResetPassword from "./reset-password"
-import CreatePassword from "./create-password"
-import VerifyEmailSent from "./verify-email-sent"
+import LogIn from "./auth/log-in"
+import SignUp from "./auth/sign-up"
+import ForgotPassword from "./auth/forgot-password"
+import VerifyCode from "./auth/verify-code"
+import ResetPassword from "./auth/reset-password"
+import CreatePassword from "./auth/create-password"
+import VerifyEmailSent from "./auth/verify-email-sent"
 
 //Home Pages
-import Home from "./home"
-import Billing from "./billing"
-import PricingPlan from "./pricing-plan"
-import Explore from "./explore"
-import Chat from "./chat"
-import HowToUse from "./how-to-use"
+import Home from "./dashboard/home"
+import Billing from "./dashboard/billing"
+import PricingPlan from "./dashboard/pricing-plan"
+import Explore from "./dashboard/explore"
+import Chat from "./dashboard/chat"
+import HowToUse from "./dashboard/how-to-use"
 
 
 //Not Found Page
