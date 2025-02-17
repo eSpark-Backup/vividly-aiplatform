@@ -1,6 +1,6 @@
 import React from 'react'
-import { Button } from './ui/button'
-import { useTheme } from './index'
+import { Button } from '../../components/ui/button'
+import { useTheme } from '../../components/index'
 import { moonIcon, sunIcon } from '@/assets'
 import { themes } from '@/constant'
 

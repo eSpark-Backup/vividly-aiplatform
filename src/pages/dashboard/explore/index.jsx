@@ -22,12 +22,15 @@ const FeatureCard = ({ icon: Icon, title, items, color, shadow }) => {
                 {items.map((item, index) => (
                     <div
                         key={index}
-                        className="dark:gradient-glass-effect bg-black  w-[220px] flex items-center justify-between rounded-lg text-wrap  p-3 text-sm   transition-all"
+                        className="group dark:gradient-glass-effect bg-black w-[220px] flex items-center justify-between rounded-lg text-wrap p-3 text-sm transition-all"
                     >
-                        <span className='px-2 text-left text-gray-300 hover:text-white'>{item}</span>
-                        <ArrowRight className="w-4 h-4" />
+                        <span className="px-2 text-left text-gray-300 group-hover:text-white">
+                            {item}
+                        </span>
+                        <ArrowRight className="w-4 h-4 text-gray-300 group-hover:text-white" />
                     </div>
                 ))}
+
             </div>
         </div>
     )

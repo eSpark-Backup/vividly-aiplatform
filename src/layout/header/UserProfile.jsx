@@ -5,8 +5,8 @@ import { CreditCard, Home, LogOut, Palette, Settings, WalletCards } from "lucide
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useDialogStore } from "@/store/useDialogStore";
-import { Switch } from "./ui/switch";
-import { useTheme } from ".";
+import { Switch } from "../../components/ui/switch";
+import { useTheme } from "../../components";
 import { themes } from "@/constant";
 import { memo } from "react";
 

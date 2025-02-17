@@ -14,7 +14,7 @@ const Input = React.forwardRef(
 
     const variantStyles = {
       default: "dark:bg-[#F0EDFFCC] bg-[#B2B0BDCC]",
-      basic: "dark:bg-[#0D0F10] bg-white border border-black dark:border-[#FFFFFF14] h-10 rounded-lg",
+      basic: "dark:bg-[#0D0F10] bg-white border border-black dark:border-[#FFFFFF14] rounded-lg",
     }
 
     return (
@@ -29,8 +29,7 @@ const Input = React.forwardRef(
           {Icon && (
             <Icon
               className={cn(
-                "absolute left-3 top-1/2 h-6 w-6 -translate-y-1/2",
-                variant === "default" ? "text-[#1C1C1C]" : "text-white dark:text-gray-400",
+                "absolute left-3 top-1/2 h-6 w-6 -translate-y-1/2 text-[#1C1C1C]",
                 iconClassName,
               )}
             />
@@ -41,7 +40,7 @@ const Input = React.forwardRef(
               "w-full bg-transparent focus:outline-none",
               variant === "default"
                 ? "text-[#1C1C1C] placeholder:text-[#1C1C1C]"
-                : "text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-gray-400",
+                : "text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-white",
               "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
               Icon && "pl-11 pr-6",
               type === "password" && "pr-10",

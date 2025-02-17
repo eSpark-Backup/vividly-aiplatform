@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import { ChatHistory, FreeCounter, useTheme } from "../components";
+import { useTheme } from "../../components";
 import { vividlyLogoDark, vividlyLogoLight } from "@/assets";
 import { themes } from "@/constant";
 import { useAuthStore } from "@/store/useAuthStore";
+import { ChatHistory, FreeCounter } from "..";
 
 const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
 

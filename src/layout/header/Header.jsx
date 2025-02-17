@@ -3,13 +3,13 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
 import { useLocation, useNavigate } from "react-router-dom"
 import { useMemo, useCallback, useState } from "react"
-import { MobileSidebar } from "."
 import { useLogout } from "@/hooks/useAuth"
 import { useAuthStore } from "@/store/useAuthStore"
 import { useToast } from "@/hooks/use-toast"
 import { ConfirmationDialog } from "@/components/ConfirmationDialog"
 import { useDialogStore } from "@/store/useDialogStore"
 import { tabsCSS } from "@/constant"
+import { MobileSidebar } from ".."
 
 const tabs = [
   { value: "explore", label: "Explore Vividly", icon: Pyramid },

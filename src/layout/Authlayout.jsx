@@ -1,10 +1,9 @@
 import { vividlyLogoLight, vividlyLogoDark } from "@/assets"
 import { useTheme } from "@/components"
-import ThemeToggle from "@/components/ThemeToggle"
 import { themes } from "@/constant"
-import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
+import { ThemeToggle } from "./index"
 
 function AuthLayout({ children, onLightPoster, onDarkPoster }) {
   const { theme } = useTheme()
@@ -15,12 +14,12 @@ function AuthLayout({ children, onLightPoster, onDarkPoster }) {
 
   useEffect(() => {
     const checkScreenSize = () => setIsSmallScreen(window.innerHeight < 840);
-  
+
     window.addEventListener("resize", checkScreenSize);
-    checkScreenSize(); 
-  
+    checkScreenSize();
+
     return () => window.removeEventListener("resize", checkScreenSize);
-  }, []); 
+  }, []);
 
   const isPageLengthy = location.pathname === "/sign-up";
   const isLoginPage = location.pathname === "/log-in";
@@ -29,7 +28,7 @@ function AuthLayout({ children, onLightPoster, onDarkPoster }) {
 
   if (isSmallScreen && isLoginPage) {
     ThemeToggleClass = "relative mt-8";
-  } else if (isSmallScreen && isPageLengthy )  {
+  } else if (isSmallScreen && isPageLengthy) {
     ThemeToggleClass = "mt-10 lg:mt-0 sm:absolute sm:bottom-10 sm:left-8";
   }
 
