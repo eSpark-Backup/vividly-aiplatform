@@ -20,7 +20,11 @@ services:
       - SMTP_PASSWORD
       - SMTP_FROM_EMAIL
       - APP_NAME
-    
+      - OPENAI_API_KEY
+      - OPENAI_MODEL
+      - OPENAI_MAX_TOKENS
+      - OPENAI_MODEL_TEMPERATURE 
+      
     build:
       context: .
       dockerfile: server/Dockerfile

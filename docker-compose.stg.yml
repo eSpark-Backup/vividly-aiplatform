@@ -6,8 +6,6 @@ services:
       - ENV
       - FRONTEND_BASEURL
       - JWT_SECRET
-      - GOOGLE_CLIENT_ID
-      - GOOGLE_CLIENT_SECRET
       - POSTGRES_HOST
       - POSTGRES_DB
       - POSTGRES_PORT
@@ -20,6 +18,10 @@ services:
       - SMTP_PASSWORD
       - SMTP_FROM_EMAIL
       - APP_NAME
+      - OPENAI_API_KEY
+      - OPENAI_MODEL
+      - OPENAI_MAX_TOKENS
+      - OPENAI_MODEL_TEMPERATURE 
     
     build:
       context: .
