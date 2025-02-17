@@ -8,7 +8,7 @@ import cors from 'cors';
 import './init/passport.js';
 import passport from 'passport';
 import authRoutes from './routes/auth.js';
-// import { ChatServer } from './init/chat.js';
+import { ChatServer } from './init/chat.js';
 import { runMigrations } from './helpers/migrate.js';
 import { logger } from './helpers/logger.js'
 await runMigrations();
@@ -46,4 +46,4 @@ const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT,'0.0.0.0', () => {
     logger.info(`Server is running on port ${PORT}`);
 });
-// const chatServer = new ChatServer(server);
+const chatServer = new ChatServer(server);
