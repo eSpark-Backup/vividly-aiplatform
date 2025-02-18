@@ -5,7 +5,7 @@ import { useSocketIO } from "@/hooks/use-socket"
 export default function Chat() {
     const [input, setInput] = useState("")
     const messagesEndRef = useRef(null)
-    const { messages, sendMessage, isConnected, error } = useSocketIO(import.meta.env.VITE_SOCKET_URL)
+    const { messages, sendMessage, isConnected, error } = useSocketIO("https://example-socket-connection.com")
 
     const [chatMessages, setChatMessages] = useState([
         { id: "1", role: "assistant", content: "Hello! How can I assist you today?", timestamp: "2023-06-10T10:00:00Z" },
