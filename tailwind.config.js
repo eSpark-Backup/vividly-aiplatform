@@ -52,7 +52,12 @@ export default {
 					'4': 'hsl(var(--chart-4))',
 					'5': 'hsl(var(--chart-5))'
 				},
-			}
+				scrollbar: {
+					thumb: '#9181F4',
+					track: '#2C2F33'
+				},
+			},
+
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

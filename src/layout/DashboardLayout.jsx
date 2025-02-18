@@ -27,7 +27,7 @@ const DashboardLayout = () => {
 
     return (
         <div className="max-h-screen relative">
-            <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-80 ">
+            <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-80">
                 <Sidebar isPro={false} apiLimitCount={2} />
             </div>
             <main className="md:pl-72 pb-10">

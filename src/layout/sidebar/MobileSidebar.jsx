@@ -1,7 +1,7 @@
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Sidebar, UserProfile } from "..";
 import { Menu } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
 
 const MobileSidebar = ({
   apiLimitCount = 0,
@@ -13,11 +13,7 @@ const MobileSidebar = ({
      
     <div className="flex items-end justify-between">
     <SheetTrigger>
-        <Button variant="ghost" size="icon" className="md:hidden">
-          <Menu
-          className="h-6 w-6" 
-          />
-        </Button>
+          <Menu className="h-4 w-4 md:hidden m-2"  />
       </SheetTrigger>
 
       <UserProfile />

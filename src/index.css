@@ -75,6 +75,24 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.scrollbar.track');
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.scrollbar.thumb');
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.purple.600');
+}
+
 
 @layer components {
   .gradient-glass-effect {

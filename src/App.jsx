@@ -20,7 +20,7 @@ function App() {
         <ThemeProvider defaultTheme="dark" >
           <AppRouter />
         </ThemeProvider>
-        <ReactQueryDevtools initialIsOpen={true} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </GoogleOAuthProvider>
   )

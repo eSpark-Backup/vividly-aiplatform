@@ -95,7 +95,6 @@ export default function UserProfile() {
             {routes.map((route) => {
               const { pathname } = useLocation();
               const isRouteMatched = pathname.split('?')[0] === route.href.split('?')[0];
-              console.log("pathname", pathname);
               
               return <SidebarLink key={route.href} route={route} isRouteMatched={isRouteMatched} />;
             })}
