@@ -80,6 +80,16 @@ export async function login(params) {
     return data
 }
 
+// Logout | POST
+export async function logout() {
+    const { data } = await request({
+        url: "/auth/logout",
+        method: "POST"
+    })
+
+    return data
+}
+
 // Google Login | POST
 export async function loginWithGoogle(params) {
     const { data } = await request({

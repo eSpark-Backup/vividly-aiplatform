@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock } from "lucide-react";
 import { setPasswordBgDark, setPasswordBgLight } from "@/assets";
-import { Authlayout } from "@/layout";
+import { AuthLayout } from "@/layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { resetPasswordSchema } from "@/schema";
@@ -53,7 +53,7 @@ function ResetPassword() {
 
 
     return (
-        <Authlayout
+        <AuthLayout
             onLightPoster={setPasswordBgLight}
             onDarkPoster={setPasswordBgDark}
         >
@@ -95,7 +95,7 @@ function ResetPassword() {
                 </form>
 
             </div>
-        </Authlayout>
+        </AuthLayout>
     );
 }
 

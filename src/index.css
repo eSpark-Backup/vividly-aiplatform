@@ -10,7 +10,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 180, 2%, 91%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
     --card-foreground: 0 0% 3.9%;
@@ -36,8 +36,9 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 210, 14%, 9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -68,11 +69,50 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
+@layer components {
+  .gradient-glass-effect {
+    @apply bg-black text-white cursor-pointer;
+    background: linear-gradient(117.58deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(59, 110, 110, 0) 100%);
+    border-top: 1.58px solid #FFFFFF14;
+  }
+}
+
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-scroll: none;
+    scrollbar-width: none;
+  }
+}
+
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: theme('colors.scrollbar.track');
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: theme('colors.scrollbar.thumb');
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.purple.600');
+}
 
 input:-webkit-autofill {
   background-clip: text;

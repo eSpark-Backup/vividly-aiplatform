@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-const Home = () => {
+const Landing = () => {
 
     const navigate = useNavigate()
 
@@ -10,10 +10,10 @@ const Home = () => {
     }, [])
 
     return (
-        <div className="h-screen flex items-center justify-center ">
-            <span className="ml-3 text-2xl font-semibold">HOME UNDER DEVELOPMENT</span>
+        <div className="flex items-center justify-center ">
+            <span className="ml-3 text-2xl font-semibold">LANDING PAGE UNDER DEVELOPMENT</span>
         </div>
     )
 }
 
-export default Home
+export default Landing

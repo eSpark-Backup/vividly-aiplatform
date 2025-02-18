@@ -1,11 +1,11 @@
 import { vividlyLogoLight, vividlyLogoDark } from "@/assets"
 import { useTheme } from "@/components"
-import ThemeToggle from "@/components/ThemeToggle"
 import { themes } from "@/constant"
 import { useEffect, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
+import { ThemeToggle } from "./index"
 
-function Authlayout({ children, onLightPoster, onDarkPoster }) {
+function AuthLayout({ children, onLightPoster, onDarkPoster }) {
   const { theme } = useTheme()
   const location = useLocation()
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -14,12 +14,12 @@ function Authlayout({ children, onLightPoster, onDarkPoster }) {
 
   useEffect(() => {
     const checkScreenSize = () => setIsSmallScreen(window.innerHeight < 840);
-  
+
     window.addEventListener("resize", checkScreenSize);
-    checkScreenSize(); 
-  
+    checkScreenSize();
+
     return () => window.removeEventListener("resize", checkScreenSize);
-  }, []); 
+  }, []);
 
   const isPageLengthy = location.pathname === "/sign-up";
   const isLoginPage = location.pathname === "/log-in";
@@ -28,12 +28,12 @@ function Authlayout({ children, onLightPoster, onDarkPoster }) {
 
   if (isSmallScreen && isLoginPage) {
     ThemeToggleClass = "relative mt-8";
-  } else if (isSmallScreen && isPageLengthy )  {
+  } else if (isSmallScreen && isPageLengthy) {
     ThemeToggleClass = "mt-10 lg:mt-0 sm:absolute sm:bottom-10 sm:left-8";
   }
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row dark:bg-[#131619]">
+    <div className={"flex min-h-screen flex-col lg:flex-row"}>
 
       {/* Left Section */}
       <div className="relative flex-1 w-full lg:w-[45%] p-8 lg:px-10 lg:py-24">
@@ -77,4 +77,4 @@ function Authlayout({ children, onLightPoster, onDarkPoster }) {
   )
 }
 
-export default Authlayout
+export default AuthLayout

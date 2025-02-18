@@ -15,16 +15,19 @@ const buttonVariants = cva(
         outline:
           "border-[1px] border-gray-300 dark:bg-[#131619] bg-white shadow-sm dark:hover:bg-[#1C1C1C] hover:bg-gray-100",
         secondary:
-          "dark:bg-gradient-to-br dark:from-[rgba(215,237,237,0.25)] dark:to-transparent dark:border-t dark:border-t-[#FFFFFF14] text-white dark:shadow-sm dark:hover:bg-opacity-90 bg-black",
+          "dark:gradient-glass-effect gradient-glass-effect-hover text-white  bg-black",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         gradient:
-          "bg-[linear-gradient(99.78deg,#9181F4_-5.85%,#5038ED_109.55%)]  text-white shadow-[0px_8px_21px_0px_rgba(0,0,0,0.16)] rounded-xl hover:opacity-90 ",
+          "bg-[linear-gradient(99.78deg,#9181F4_-5.85%,#5038ED_109.55%)] shadow-[0px_8px_21px_0px_rgba(0,0,0,0.16)]  text-white  rounded-xl hover:opacity-90 ",
+        premium:
+          "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0",
       },
+
       size: {
         default: "h-9 px-4 py-2",
         sm: "h-8 rounded-xl px-3 text-xs",
-        md: "h-10 px-3 rounded-lg",
+        md: "h-10 px-5 rounded-lg",
         lg: "h-[53px] w-[140px] rounded-xl",
         icon: "h-9 w-9",
       },
@@ -36,13 +39,13 @@ const buttonVariants = cva(
   }
 )
 
-const Button = React.forwardRef(({ className, variant, size, asChild = false,  isLoading = false, icon, ...props }, ref) => {
+const Button = React.forwardRef(({ className, variant, size, asChild = false, isLoading = false, icon, ...props }, ref) => {
   const Comp = asChild ? Slot : "button"
   return (
     (
       <Comp className={cn(buttonVariants({ variant, size, className }))} ref={ref} disabled={props.disabled || isLoading} {...props}>
         {isLoading ? <Loader2 className="h-12 w-12 animate-spin" /> : <>{icon}  {props.children}</>}
-        
+
       </Comp>
 
     )

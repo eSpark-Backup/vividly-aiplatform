@@ -1,20 +1,41 @@
-import Home from "./home"
-import LogIn from "./log-in"
-import SignUp from "./sign-up"
-import ForgotPassword from "./forgot-password"
-import VerifyCode from "./verify-code"
-import ResetPassword from "./reset-password"
-import CreatePassword from "./create-password"
-import VerifyEmailSent from "./verify-email-sent"
+import Landing from "./landing"
+
+//Auth Pages
+import LogIn from "./auth/log-in"
+import SignUp from "./auth/sign-up"
+import ForgotPassword from "./auth/forgot-password"
+import VerifyCode from "./auth/verify-code"
+import ResetPassword from "./auth/reset-password"
+import CreatePassword from "./auth/create-password"
+import VerifyEmailSent from "./auth/verify-email-sent"
+
+//Home Pages
+import Home from "./dashboard/home"
+import Billing from "./dashboard/billing"
+import PricingPlan from "./dashboard/pricing-plan"
+import Explore from "./dashboard/explore"
+import Chat from "./dashboard/chat"
+import HowToUse from "./dashboard/how-to-use"
+
+
+//Not Found Page
+import NotFound from "./not-found"
 
 
 export {
-    Home,
+    Landing,
     LogIn,
     SignUp,
     ForgotPassword,
     VerifyCode,
     ResetPassword,
     CreatePassword,
-    VerifyEmailSent
+    VerifyEmailSent,
+    Home,
+    Billing,
+    PricingPlan,
+    Explore,
+    Chat,
+    HowToUse,
+    NotFound
 }
