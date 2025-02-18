@@ -75,6 +75,27 @@
   }
 }
 
+@layer components {
+  .gradient-glass-effect {
+    @apply bg-black text-white cursor-pointer;
+    background: linear-gradient(117.58deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(59, 110, 110, 0) 100%);
+    border-top: 1.58px solid #FFFFFF14;
+  }
+}
+
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-scroll: none;
+    scrollbar-width: none;
+  }
+}
+
+
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -91,15 +112,6 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.purple.600');
-}
-
-
-@layer components {
-  .gradient-glass-effect {
-    @apply bg-black text-white cursor-pointer;
-    background: linear-gradient(117.58deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(59, 110, 110, 0) 100%);
-    border-top: 1.58px solid #FFFFFF14;
-  }
 }
 
 input:-webkit-autofill {

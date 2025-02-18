@@ -8,32 +8,9 @@ import { useDialogStore } from "@/store/useDialogStore";
 import { Switch } from "../../components/ui/switch";
 import { useTheme } from "../../components";
 import { themes } from "@/constant";
-import { memo } from "react";
+import { memo, useState } from "react";
+import { SidebarLink } from "./SidebarLinks";
 
-const SidebarLink = memo(({ route, isRouteMatched }) => (
-  <Link
-    to={route.href}
-    className={cn(
-      "text-sm group flex p-3 w-full justify-start font-medium cursor-pointer rounded-lg transition",
-      "dark:hover:text-white dark:hover:bg-white/5 hover:bg-gray-200",
-      isRouteMatched
-        ? "dark:text-white text-white dark:bg-white/5 bg-black hover:bg-black"
-        : "dark:text-zinc-400 text-white"
-    )}
-  >
-    <div className="flex items-center flex-1">
-      <route.icon
-        className={cn(
-          "h-5 w-5 mr-3",
-          isRouteMatched ? "text-white" : "dark:text-[#686B6E] text-black"
-        )}
-      />
-      <span className={cn(isRouteMatched ? "text-white" : "dark:text-white text-black")}>
-        {route.label}
-      </span>
-    </div>
-  </Link>
-));
 
 const ThemeSwitch = ({ isDarkTheme, setTheme }) => (
   <div className="text-sm group flex p-3 w-full justify-start font-medium cursor-pointer dark:hover:text-white dark:text-white text-black dark:hover:bg-white/5 hover:bg-gray-200 rounded-lg transition">
@@ -63,7 +40,10 @@ const SignOutButton = ({ onSignOut }) => (
 export default function UserProfile() {
   const { setShowSignOutDialog } = useDialogStore();
   const { theme, setTheme } = useTheme();
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
+
   const isDarkTheme = theme === themes[0];
+
 
   const routes = [
     { label: "Home", icon: Home, href: "/home?cat=explore" },
@@ -85,22 +65,30 @@ export default function UserProfile() {
         </div>
 
         {/* Settings Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <button className="absolute bottom-1 right-1 p-1 rounded-full shadow-md transition">
-              <Settings fill="black" className="w-5 h-5 text-white" />
+        <DropdownMenu open={showSettingsMenu} onOpenChange={setShowSettingsMenu}>
+          <DropdownMenuTrigger asChild >
+            <button
+              onClick={() => setShowSettingsMenu(true)}
+              className="absolute bottom-1 right-1 p-1 rounded-full shadow-md transition">
+              <Settings
+                fill="black"
+                className="w-5 h-5
+               text-white" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-64 mr-2 mt-2 dark:bg-zinc-900/95 border-zinc-800 text-white p-2">
             {routes.map((route) => {
               const { pathname } = useLocation();
               const isRouteMatched = pathname.split('?')[0] === route.href.split('?')[0];
-              
+
               return <SidebarLink key={route.href} route={route} isRouteMatched={isRouteMatched} />;
             })}
 
             <ThemeSwitch isDarkTheme={isDarkTheme} setTheme={setTheme} />
-            <SignOutButton onSignOut={() => setShowSignOutDialog(true)} />
+            <SignOutButton onSignOut={() => {
+              setShowSettingsMenu(false)
+              setShowSignOutDialog(true)
+            }} />
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

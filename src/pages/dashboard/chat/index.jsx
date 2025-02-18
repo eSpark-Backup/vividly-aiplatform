@@ -71,7 +71,7 @@ export default function Chat() {
                 {error && <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg">{error}</div>}
 
                 <div className="flex-1 w-full max-w-5xl mx-auto">
-                    <div className="space-y-6 pb-10 h-[500px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
+                    <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
                         <div className="text-center text-sm text-gray-500 my-4">Today</div>
 
                         {[...chatMessages, ...messages].map((message) => (
@@ -80,7 +80,7 @@ export default function Chat() {
                                     <div
                                         className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${message.role === "user"
                                             ? "dark:gradient-glass-effect bg-black text-gray-200"
-                                            : "bg-[#1A1A1A] text-gray-200"
+                                            : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
                                             }`}
                                     >
                                         {message.content}

@@ -74,7 +74,7 @@ export default function Header() {
 
         <div className="sm:px-6">
           <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full">
-            <TabsList className="h-auto p-0 bg-transparent overflow-x-auto  max-w-full">
+            <TabsList className="h-auto p-0 bg-transparent overflow-x-auto no-scrollbar max-w-full">
               {tabs.map(({ value, label, icon: Icon }) => (
                 <TabsTrigger
                   key={value}
