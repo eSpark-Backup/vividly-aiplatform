@@ -1,4 +1,4 @@
-import AuthLayout from "./AuthLayout";
+import AuthLayout from "./Authlayout";
 import DashboardLayout from "./DashboardLayout";
 import Sidebar from "./sidebar/Sidebar";
 import Header from "./header/Header";

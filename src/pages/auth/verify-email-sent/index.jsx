@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft } from "lucide-react";
 import { usecreateAccountResendVerification, useRequestResetPassword } from "@/hooks/useAuth";
 import { verifyCodeBgDark, verifyCodeBgLight } from "@/assets";
-import { AuthLayout } from "@/layout";
+import { AuthLayout } from "../../../layout";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { handleApiError } from "@/lib/apiErrorHandler";

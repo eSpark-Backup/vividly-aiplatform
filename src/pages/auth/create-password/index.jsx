@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Lock } from "lucide-react";
 import { signupBgDark, signupBgLight } from "@/assets";
-import { AuthLayout } from "@/layout";
+import { AuthLayout } from "../../../layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createPasswordSchema } from "@/schema";

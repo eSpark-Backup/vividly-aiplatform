@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, BadgeCheck } from "lucide-react";
 import { verifyCodeBgDark, verifyCodeBgLight } from "@/assets";
-import { AuthLayout } from "@/layout";
+import { AuthLayout } from "../../../layout";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { verifyCodeSchema } from "@/schema";
