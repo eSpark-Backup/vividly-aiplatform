@@ -40,7 +40,7 @@ export default async function signup(req, res) {
         );
 
         // Construct verification link
-        const verificationLink = `${process.env.FRONTEND_BASEURL}/verify-email/${verificationToken}`;
+        const verificationLink = `${process.env.FRONTEND_BASEURL}/create-password/${verificationToken}`;
 
         const emailService = new EmailService()
 
