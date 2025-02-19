@@ -1,7 +1,11 @@
+import { useChatStore } from "@/store/useChatStore";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 export function useWebSocket(url) {
     const socket = useRef(null);
+    const {setConversations } = useChatStore()
+
+
     const [isConnected, setIsConnected] = useState(false);
     const [messages, setMessages] = useState([]);
     const [partialMessage, setPartialMessage] = useState(null); // For streaming messages
@@ -39,6 +43,7 @@ export function useWebSocket(url) {
 
                 // Request message history on connection
                 socket.current.send(JSON.stringify({ type: "get_history" }));
+                socket.current.send(JSON.stringify({ type: "get_conversations" }));
             };
 
             // Connection closed
@@ -68,6 +73,8 @@ export function useWebSocket(url) {
 
                                 // If the stream is done, add the complete message to the messages array
                                 if (data.done) {
+                                    console.log(data, "newContent");
+                                    
                                     setMessages((prevMsgs) => [
                                         ...prevMsgs,
                                         {
@@ -91,8 +98,13 @@ export function useWebSocket(url) {
                             break;
 
                         case 'history':
-                            // Set message history from the server
+                            // Handle server-sent message history
                             setMessages(data.messages || []);
+                            break;
+
+                        case 'conversations':
+                            // Handle server-sent conversations
+                            setConversations(data.conversations || []);
                             break;
 
                         case 'error':
@@ -133,10 +145,13 @@ export function useWebSocket(url) {
                 const message = {
                     type: "chat",
                     content,
-                    id: generateId(),
-                    timestamp: new Date().toISOString(),
+                    // id: generateId(),
+                    // timestamp: new Date().toISOString(),
                 };
+
                 socket.current.send(JSON.stringify(message));
+                socket.current.send(JSON.stringify({ type: "get_conversations" }));
+
             } catch (err) {
                 console.error("Error sending message:", err);
                 setError("Failed to send message");
@@ -144,7 +159,7 @@ export function useWebSocket(url) {
         } else {
             setError("Not connected to server");
         }
-    }, [generateId]);
+    }, []);
 
     // Cleanup on unmount
     useEffect(() => {
@@ -164,5 +179,6 @@ export function useWebSocket(url) {
         partialMessage, 
         error,
         sendMessage,
+        socket,
     };
 }

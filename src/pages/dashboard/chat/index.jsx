@@ -20,13 +20,11 @@ export default function Chat() {
 
   useEffect(() => {
     scrollToBottom()
-  }, [messages, chatMessages, partialMessage])
+  }, [chatMessages, messages, partialMessage])
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!input.trim() || !isConnected) return
-
-    console.log("Sending message:", input)
 
     const newMessage = {
       id: String(Date.now()),
@@ -48,12 +46,6 @@ export default function Chat() {
     ...(partialMessage ? [{ ...partialMessage, timestamp: new Date().toISOString() }] : [])
   ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
 
-  useEffect(() => {
-    console.log("chatMessages", allMessages)
-    console.log("messages", allMessages)
-    console.log("partialMessage", partialMessage)
-  }
-  , [allMessages, partialMessage, messages])
 
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
