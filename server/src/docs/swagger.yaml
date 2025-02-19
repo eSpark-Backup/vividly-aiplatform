@@ -107,7 +107,27 @@ components:
         last_name:
           type: string
           example: Doe
-
+        UserProfile:
+          type: object
+          properties:
+            phone:
+              type: string
+              example: "+1234567890"
+            address:
+              type: string
+              example: "123 Main St"
+            city:
+              type: string
+              example: "New York"
+            birthdate:
+              type: string
+              format: date
+              example: "1990-01-01"
+            avatar:
+              type: string
+              format: binary
+              description: User profile picture (JPEG or PNG, max 5MB)
+        
     Error:
       type: object
       properties:
@@ -521,3 +541,133 @@ paths:
                   message:
                     type: string
                     example: "Internal server error"
+
+  /user/profile:
+    get:
+      tags:
+        - User
+      summary: Get user profile
+      description: Retrieve the authenticated user's profile information
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Profile retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  profile:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                        format: email
+                        example: "john.doe@example.com"
+                      firstName:
+                        type: string
+                        example: "John"
+                      lastName:
+                        type: string
+                        example: "Doe"
+                      phone:
+                        type: string
+                        nullable: true
+                        example: "+1234567890"
+                      address:
+                        type: string
+                        nullable: true
+                        example: "123 Main St"
+                      city:
+                        type: string
+                        nullable: true
+                        example: "New York"
+                      birthdate:
+                        type: string
+                        format: date
+                        nullable: true
+                        example: "1990-01-01"
+                      avatar:
+                        type: string
+                        nullable: true
+                        description: Base64 encoded image data
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Profile not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - User
+      summary: Update user profile
+      description: Update user profile information including avatar
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                avatar:
+                  type: string
+                  format: binary
+                  description: Profile picture (JPEG or PNG, max 5MB)
+                phone:
+                  type: string
+                  example: "+1234567890"
+                address:
+                  type: string
+                  example: "123 Main St"
+                city:
+                  type: string
+                  example: "New York"
+                birthdate:
+                  type: string
+                  format: date
+                  example: "1990-01-01"
+      responses:
+        '200':
+          description: Profile updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Profile updated successfully"
+        '400':
+          description: Validation error or invalid image
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    

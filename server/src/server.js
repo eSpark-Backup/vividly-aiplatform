@@ -8,6 +8,7 @@ import cors from 'cors';
 import './init/passport.js';
 import passport from 'passport';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/user.js';
 import { ChatServer } from './init/chat.js';
 import { runMigrations } from './helpers/migrate.js';
 import { logger } from './helpers/logger.js'
@@ -35,6 +36,7 @@ app.use(passport.initialize());
 
 // Routes
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 // Error handling
 app.use((err, req, res, next) => {
