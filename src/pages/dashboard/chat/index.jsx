@@ -35,18 +35,29 @@ export default function Chat() {
 
     setChatMessages((prevMessages) => [...prevMessages, newMessage])
 
-    sendMessage(input)
+    //if there are messages in the chat, send the message to the conversation id
+    if (messages?.length > 0) {
+      const conversationId = messages[0]?.conversation_id || null
+      sendMessage({ conversationId, content: input })
+
+    } else {
+      { sendMessage({ content: input }) }
+    }
     setInput("")
   }
 
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault()
-      
+
       if (isPartialMessageLoading) return
       handleSubmit(e)
     }
   }
+
+
+  // console.log(messages(), "messages");
+  
 
   // Combine all messages for display and ensure they're in chronological order
   const allMessages = [

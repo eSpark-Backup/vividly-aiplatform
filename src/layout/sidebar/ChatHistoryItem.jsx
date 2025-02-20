@@ -5,9 +5,8 @@ import { useState } from "react";
 import { Ellipsis, Pencil, Trash } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
-import { ConfirmationDialog } from "@/components/ConfirmationDialog";
 
-const ChatHistoryItem = ({ item, onRename, onDelete }) => {
+const ChatHistoryItem = ({ item, onRename, onDelete, onClick }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(item.title);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -21,7 +20,9 @@ const ChatHistoryItem = ({ item, onRename, onDelete }) => {
 
   return (
     <>
-      <div className="group flex items-center justify-between px-4 gap-4 py-2 rounded-lg dark:gradient-glass-effect gradient-glass-effect-hover text-white bg-black">
+      <div
+        onClick={() => onClick(item.id)}
+        className="group flex items-center justify-between px-4 gap-4 py-2 rounded-lg dark:gradient-glass-effect gradient-glass-effect-hover text-white bg-black">
         <div className="flex flex-col">
           {isEditing ? (
             <Input

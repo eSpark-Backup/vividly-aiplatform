@@ -5,17 +5,20 @@ import { set } from "react-hook-form";
 
 export function useWebSocket(url) {
     const socket = useRef(null);
-    const { setConversations } = useChatStore();
+    const { conversations, setConversations } = useChatStore();
     const { toast } = useToast();
+    const [messages, setMessages] = useState([]);
     const reconnectAttempts = useRef(0);
-    const maxReconnectAttempts = 3;
+
 
     const [isConnected, setIsConnected] = useState(false);
-    const [messages, setMessages] = useState([]);
     const [partialMessage, setPartialMessage] = useState(null); // For streaming messages
     const [error, setError] = useState(null);
     const [isConversationLoading, setIsConversationLoading] = useState(false);
     const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false);
+
+    // Maximum number of reconnection attempts
+    const maxReconnectAttempts = 3;
 
     // Show a toast notification
     const showToast = (title, description, type) => {
@@ -55,14 +58,13 @@ export function useWebSocket(url) {
                 setIsConnected(true);
                 setError(null);
                 reconnectAttempts.current = 0;
-                 
-                //loading conversations
-                setIsConversationLoading(true);
 
 
-                // Request message history on connection
-                socket.current?.send(JSON.stringify({ type: "get_history" }));
-                socket.current?.send(JSON.stringify({ type: "get_conversations" }));
+
+                if (conversations.length === 0) {
+                    setIsConversationLoading(true);
+                    socket.current?.send(JSON.stringify({ type: "get_conversations" }));
+                }
             };
 
             // Connection closed
@@ -212,10 +214,11 @@ export function useWebSocket(url) {
 
 
     // Send a message
-    const sendMessage = useCallback((content) => {
+    const sendMessage = useCallback((data) => {
         const message = {
             type: "chat",
-            content,
+            content: data.content,
+            ...(data.conversationId && { conversationId: data.conversationId }),
         };
 
         setIsPartialMessageLoading(true);
@@ -250,12 +253,26 @@ export function useWebSocket(url) {
     }, []);
 
 
+    //Get a specific chat history
+    const getChatHistory = useCallback((content) => {
+        const { conversationId } = content;
+
+        const message = {
+            type: "get_history",
+            conversationId,
+        };
+
+        sendSocketCommand(socket, message);
+    }, []);
+
+
     return {
         isConnected,
         partialMessage,
         messages,
         error,
         sendMessage,
+        getChatHistory,
         deleteConversation,
         renameConversation,
         isConversationLoading,

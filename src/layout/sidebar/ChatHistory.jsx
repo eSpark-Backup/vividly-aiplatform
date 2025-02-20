@@ -5,11 +5,12 @@ import { useWebSocketContext } from "@/services/WebSocketProvider";
 import { ConfirmationDialog } from "@/components/ConfirmationDialog";
 import { useMemo, useState } from "react";
 import { Loader } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const ChatHistory = ({ conversationSearch }) => {
     const { conversations } = useChatStore();
-    const { today, yesterday, last7Days } = useMemo(() => categorizeHistory(conversations), [conversations])
-    const { renameConversation, deleteConversation, isConversationLoading } = useWebSocketContext();
+    const navigate = useNavigate();
+    const { renameConversation, deleteConversation, isConversationLoading, getChatHistory } = useWebSocketContext();
 
     const [showDeleteDialog, setShowDeleteDialog] = useState(false);
     const [conversationToDelete, setConversationToDelete] = useState(null);
@@ -37,20 +38,31 @@ const ChatHistory = ({ conversationSearch }) => {
     };
 
     // Filter conversations based on the search input
-    const filteredConversations = useMemo(() => {
+    const categorizedConversations = useMemo(() => {
         const search = conversationSearch.toLowerCase();
+        const { today, yesterday, last7Days } = categorizeHistory(conversations);
 
         const filterData = (data) =>
-            data.filter((item) =>
-                item.title.toLowerCase().includes(search)
-            );
+            data.filter((item) => item.title.toLowerCase().includes(search));
 
         return {
             today: filterData(today),
             yesterday: filterData(yesterday),
             last7Days: filterData(last7Days),
         };
-    }, [today, yesterday, last7Days, conversationSearch]);
+    }, [conversations, conversationSearch]);
+
+    const conversationSections = [
+        { label: "Today", data: categorizedConversations.today },
+        { label: "Yesterday", data: categorizedConversations.yesterday },
+        { label: "Last 7 Days", data: categorizedConversations.last7Days }
+    ];
+
+    const handleChatClick = (conversationId) => {
+        navigate(`/home?cat=chat&cid=${conversationId}`);
+        getChatHistory({ conversationId });
+    };
+
 
     return (
         <>
@@ -62,7 +74,7 @@ const ChatHistory = ({ conversationSearch }) => {
                         </div>
                     ) :
 
-                        [{ label: "Today", data: filteredConversations.today }, { label: "Yesterday", data: filteredConversations.yesterday }, { label: "Last 7 Days", data: filteredConversations.last7Days }].map(
+                        conversationSections.map(
                             ({ label, data }) =>
                                 data.length > 0 && (
                                     <div key={label} className="space-y-3">
@@ -74,6 +86,7 @@ const ChatHistory = ({ conversationSearch }) => {
                                                     item={item}
                                                     onRename={renameItem}
                                                     onDelete={handleDeleteClick}
+                                                    onClick={handleChatClick}
                                                 />
                                             ))}
                                         </div>
