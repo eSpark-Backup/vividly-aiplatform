@@ -1,23 +1,38 @@
 import { useChatStore } from "@/store/useChatStore";
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useToast } from "./use-toast";
+import { set } from "react-hook-form";
 
 export function useWebSocket(url) {
     const socket = useRef(null);
-    const {setConversations } = useChatStore()
-
+    const { setConversations } = useChatStore();
+    const { toast } = useToast();
+    const reconnectAttempts = useRef(0);
+    const maxReconnectAttempts = 3;
 
     const [isConnected, setIsConnected] = useState(false);
     const [messages, setMessages] = useState([]);
     const [partialMessage, setPartialMessage] = useState(null); // For streaming messages
     const [error, setError] = useState(null);
-    const reconnectAttempts = useRef(0);
-    const maxReconnectAttempts = 3;
+    const [isConversationLoading, setIsConversationLoading] = useState(false);
+    const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false);
+
+    // Show a toast notification
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
 
     // Generate unique IDs for messages
     const generateId = useCallback(() => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, []);
 
     // Handle WebSocket connection
     const connect = useCallback(() => {
+        if (!url) {
+            setIsConnected(false);
+            setError(null);
+            return;
+        }
+
         try {
             // Validate URL format
             const wsUrl = new URL(url);
@@ -40,10 +55,14 @@ export function useWebSocket(url) {
                 setIsConnected(true);
                 setError(null);
                 reconnectAttempts.current = 0;
+                 
+                //loading conversations
+                setIsConversationLoading(true);
+
 
                 // Request message history on connection
-                socket.current.send(JSON.stringify({ type: "get_history" }));
-                socket.current.send(JSON.stringify({ type: "get_conversations" }));
+                socket.current?.send(JSON.stringify({ type: "get_history" }));
+                socket.current?.send(JSON.stringify({ type: "get_conversations" }));
             };
 
             // Connection closed
@@ -73,8 +92,6 @@ export function useWebSocket(url) {
 
                                 // If the stream is done, add the complete message to the messages array
                                 if (data.done) {
-                                    console.log(data, "newContent");
-                                    
                                     setMessages((prevMsgs) => [
                                         ...prevMsgs,
                                         {
@@ -84,6 +101,12 @@ export function useWebSocket(url) {
                                             timestamp: new Date().toISOString(),
                                         },
                                     ]);
+
+                                    setIsPartialMessageLoading(false);
+
+                                    // Optionally, request conversations after sending a message
+                                    sendSocketCommand(socket, { type: "get_conversations" });
+
                                     return null; // Reset partial message
                                 }
 
@@ -104,8 +127,26 @@ export function useWebSocket(url) {
 
                         case 'conversations':
                             // Handle server-sent conversations
+                            setIsConversationLoading(false);
                             setConversations(data.conversations || []);
                             break;
+
+                        case 'conversation_deleted':
+                            // Handle server-sent conversation deletion
+                            if (data.success) {
+                                showToast("Success", "Conversation deleted successfully", "success");
+                                sendSocketCommand(socket, { type: "get_conversations" });
+                            } else {
+                                showToast("Error", "Failed to delete conversation", "error");
+                            }
+
+                            break;
+
+                        case 'conversation_renamed':
+                            // showToast("Success", "Conversation renamed successfully", "success");
+                            sendSocketCommand(socket, { type: "get_conversations" });
+                            break;
+
 
                         case 'error':
                             // Handle server-sent errors
@@ -131,54 +172,94 @@ export function useWebSocket(url) {
             console.error("Failed to establish WebSocket connection:", err);
             setError(err instanceof Error ? err.message : "Failed to connect to chat server");
         }
-    }, [url, generateId]);
+    }, [url, generateId, setConversations]);
 
-    // Send a message through the WebSocket
-    const sendMessage = useCallback((content) => {
+
+    // Utility function to send messages through the WebSocket
+    const sendSocketCommand = (socket, message) => {
         if (!socket.current) {
-            setError("No connection established");
+            toast({ title: "Error", description: "Not connected to server", type: "error" });
             return;
         }
 
         if (socket.current.readyState === WebSocket.OPEN) {
             try {
-                const message = {
-                    type: "chat",
-                    content,
-                    // id: generateId(),
-                    // timestamp: new Date().toISOString(),
-                };
-
                 socket.current.send(JSON.stringify(message));
-                socket.current.send(JSON.stringify({ type: "get_conversations" }));
-
             } catch (err) {
                 console.error("Error sending message:", err);
-                setError("Failed to send message");
+                toast({ title: "Error", description: "Failed to send message", type: "error" });
             }
         } else {
-            setError("Not connected to server");
+            toast({ title: "Error", description: "Not connected to server", type: "error" });
         }
-    }, []);
+    };
 
     // Cleanup on unmount
     useEffect(() => {
-        connect();
+        if (url) {
+            connect();
+        } else if (socket.current) {
+            socket.current.close();
+        }
 
         return () => {
             if (socket.current) {
                 socket.current.close();
             }
         };
-    }, [connect]);
+    }, [connect, url]);
+
+
+
+    // Send a message
+    const sendMessage = useCallback((content) => {
+        const message = {
+            type: "chat",
+            content,
+        };
+
+        setIsPartialMessageLoading(true);
+        sendSocketCommand(socket, message);
+
+    }, []);
+
+    const renameConversation = useCallback((content) => {
+
+        const { conversationId, title } = content;
+
+        const message = {
+            type: "rename_conversation",
+            conversationId,
+            title,
+        };
+        sendSocketCommand(socket, message);
+
+    }, []);
+
+    // Delete a conversation
+    const deleteConversation = useCallback((content) => {
+
+        const { conversationId } = content;
+
+        const message = {
+            type: "delete_conversation",
+            conversationId,
+        };
+
+        sendSocketCommand(socket, message);
+    }, []);
+
 
     return {
         isConnected,
         partialMessage,
         messages,
-        partialMessage, 
         error,
         sendMessage,
+        deleteConversation,
+        renameConversation,
+        isConversationLoading,
+        isPartialMessageLoading,
         socket,
     };
 }

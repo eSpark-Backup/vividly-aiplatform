@@ -21,11 +21,11 @@ export const categorizeHistory = (history) => {
   const last7Days = [];
 
   const now = new Date();
-  const todayDate = now.toISOString().split("T")[0]; // Extract YYYY-MM-DD
+  const todayDate = now.toISOString()?.split("T")[0]; // Extract YYYY-MM-DD
   const yesterdayDate = new Date(now.setDate(now.getDate() - 1)).toISOString().split("T")[0];
 
-  history.forEach((chat) => {
-    const chatDate = chat.created_at.split("T")[0]; // Extract YYYY-MM-DD
+  history?.forEach((chat) => {
+    const chatDate = chat?.created_at?.split("T")[0]; // Extract YYYY-MM-DD
 
     if (chatDate === todayDate) {
       today.push(chat);

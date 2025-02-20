@@ -1,16 +1,16 @@
 import { useState, useRef, useEffect } from "react"
-import { Send } from "lucide-react"
-import { useWebSocket } from "@/hooks/use-socket"
+import { Send, Square } from 'lucide-react'
 import { useAuthStore } from "@/store/useAuthStore"
 import ReactMarkdown from "react-markdown";
+import { useWebSocketContext } from "@/services/WebSocketProvider";
+import { Textarea } from "@/components/ui/textarea"
 
 export default function Chat() {
   const [input, setInput] = useState("")
   const messagesEndRef = useRef(null)
-  const { refreshToken } = useAuthStore()
+  const textareaRef = useRef(null)
 
-  const wsUrl = `wss://vividly-stg-api.esparkconsultants.com/chat?token=${encodeURIComponent(refreshToken)}`
-  const { messages, partialMessage, sendMessage, isConnected, error } = useWebSocket(wsUrl)
+  const { messages, partialMessage, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
 
   const [chatMessages, setChatMessages] = useState([])
 
@@ -39,13 +39,21 @@ export default function Chat() {
     setInput("")
   }
 
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      
+      if (isPartialMessageLoading) return
+      handleSubmit(e)
+    }
+  }
+
   // Combine all messages for display and ensure they're in chronological order
   const allMessages = [
     ...chatMessages,
     ...messages,
     ...(partialMessage ? [{ ...partialMessage, timestamp: new Date().toISOString() }] : [])
   ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
-
 
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
@@ -61,8 +69,8 @@ export default function Chat() {
                 <div className={`flex-1 ${message.role === "user" ? "text-right" : ""}`}>
                   <div
                     className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${message.role === "user"
-                        ? "dark:gradient-glass-effect bg-black text-gray-200"
-                        : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
+                      ? "dark:gradient-glass-effect bg-black text-gray-200"
+                      : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
                       }`}
                   >
                     <ReactMarkdown
@@ -78,12 +86,10 @@ export default function Chat() {
                       }}
                       className="text-sm overflow-hidden leading-7"
                     >
-                      {message.content }
+                      {message.content}
                     </ReactMarkdown>
 
                     {message === partialMessage && <span className="inline-block animate-pulse">▋</span>}
-                    
-
                   </div>
                 </div>
               </div>
@@ -92,7 +98,7 @@ export default function Chat() {
           </div>
         </div>
 
-        <div className="fixed bottom-0 left-0 right-0 dark:bg-[#14171A] bg-[#E8E9E9]  p-4 md:left-72">
+        <div className="fixed bottom-0 left-0 right-0 dark:bg-[#14171A] bg-[#E8E9E9] p-4 md:left-72">
           <div className="max-w-5xl mx-auto">
             <form
               onSubmit={handleSubmit}
@@ -100,18 +106,21 @@ export default function Chat() {
             >
               <div className="absolute inset-0 border-1 rounded-2xl -z-10" />
 
-              <input
+              <Textarea
+                ref={textareaRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
                 placeholder="Send a message..."
-                className="flex-1 bg-transparent dark:text-gray-200 px-3 py-2 focus:outline-none placeholder:text-gray-600"
+                className="flex-1 bg-transparent dark:text-gray-200 px-3 py-2 focus:outline-none placeholder:text-gray-600 min-h-[40px] max-h-[200px] resize-none"
               />
               <button
                 type="submit"
-                disabled={!isConnected || !input.trim()}
+                disabled={!isConnected || !input.trim() || isPartialMessageLoading}
                 className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
               >
-                <Send className="h-5 w-5" />
+                {!isPartialMessageLoading ? <Send className="h-5 w-5" /> : <Square className="h-5 w-5 animate-spin" />}
+
               </button>
             </form>
           </div>
