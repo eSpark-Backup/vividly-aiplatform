@@ -86,19 +86,72 @@ export class ChatServer {
         });
     }
 
+    async verifyConversation(userId, conversationId) {
+        if (!conversationId) return null;
+
+        const result = await pool.query(
+            'SELECT id FROM conversations WHERE id = $1 AND user_id = $2',
+            [conversationId, userId]
+        );
+
+        return result.rows[0] || null;
+    }
+
+    async createNewConversation(client, userId, initialMessage) {
+        // Generate a title based on the user's first message
+        const titleResponse = await openai.chat.completions.create({
+            model: process.env.OPENAI_MODEL,
+            messages: [
+                {
+                    role: "system",
+                    content: "Generate a brief, contextual title (maximum 6 words) for a conversation that starts with this message. Return only the title, nothing else."
+                },
+                {
+                    role: "user",
+                    content: initialMessage
+                }
+            ],
+            temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
+            max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
+        });
+
+        const title = titleResponse.choices[0]?.message?.content?.trim() || "New Chat";
+
+        const result = await client.query(
+            'INSERT INTO conversations (user_id, title) VALUES ($1, $2) RETURNING *',
+            [userId, title]
+        );
+
+        return result.rows[0];
+    }
+
     async handleChatMessage(ws, message, user) {
         const client = await pool.connect();
         let aiResponse = '';
         let tokensUsed = 0;
+        let conversationId = message.conversationId;
 
         logger.startOperation('chat-message', {
             userId: user.id,
-            conversationId: message.conversationId
+            conversationId
         });
 
         try {
             await client.query('BEGIN');
-            const history = await this.getRecentMessages(user.id, message.conversationId);
+
+            // Verify existing conversation or create new one
+            let conversation;
+            if (conversationId) {
+                conversation = await this.verifyConversation(user.id, conversationId);
+                if (!conversation) {
+                    throw new Error('Invalid conversation ID');
+                }
+            } else {
+                conversation = await this.createNewConversation(client, user.id, message.content);
+                conversationId = conversation.id;
+            }
+
+            const history = await this.getRecentMessages(user.id, conversationId);
 
             logger.debug('Starting OpenAI stream', {
                 userId: user.id,
@@ -121,6 +174,13 @@ export class ChatServer {
                 stream: true
             });
 
+            // Send initial message to confirm conversation creation
+            ws.send(JSON.stringify({
+                type: 'conversation_created',
+                conversationId,
+                title: conversation.title
+            }));
+
             for await (const chunk of stream) {
                 const content = chunk.choices[0]?.delta?.content || '';
                 if (content) {
@@ -128,7 +188,7 @@ export class ChatServer {
                     tokensUsed += 1;
                     ws.send(JSON.stringify({
                         type: 'chat_stream',
-                        conversationId: message.conversationId,
+                        conversationId,
                         chunk: content,
                         done: false
                     }));
@@ -141,7 +201,7 @@ export class ChatServer {
                 responseLength: aiResponse.length
             });
 
-            await this.saveMessages(client, user.id, message.conversationId, [
+            await this.saveMessages(client, user.id, conversationId, [
                 { role: 'user', content: message.content, tokens_used: 0 },
                 { role: 'assistant', content: aiResponse, tokens_used: tokensUsed }
             ]);
@@ -150,14 +210,14 @@ export class ChatServer {
 
             ws.send(JSON.stringify({
                 type: 'chat_stream',
-                conversationId: message.conversationId,
+                conversationId,
                 chunk: '',
                 done: true
             }));
 
             logger.endOperation('chat-message', {
                 userId: user.id,
-                conversationId: message.conversationId,
+                conversationId,
                 tokensUsed
             });
 
@@ -165,8 +225,14 @@ export class ChatServer {
             await client.query('ROLLBACK');
             logger.failOperation('chat-message', error, {
                 userId: user.id,
-                conversationId: message.conversationId
+                conversationId
             });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: error.message,
+                conversationId
+            }));
         } finally {
             client.release();
         }
