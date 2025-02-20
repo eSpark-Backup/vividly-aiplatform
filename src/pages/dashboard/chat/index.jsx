@@ -1,72 +1,70 @@
-import { useState, useRef, useEffect } from "react"
-import { Send, Square } from 'lucide-react'
-import { useAuthStore } from "@/store/useAuthStore"
-import ReactMarkdown from "react-markdown";
-import { useWebSocketContext } from "@/services/WebSocketProvider";
+
+import { useState, useRef, useEffect, useCallback } from "react"
+import { Send, Square } from "lucide-react"
+import ReactMarkdown from "react-markdown"
+import { useWebSocketContext } from "@/services/WebSocketProvider"
 import { Textarea } from "@/components/ui/textarea"
+import { useSearchParams } from "react-router-dom"
 
 export default function Chat() {
+  const { messages, partialMessage, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
+  const [searchParams] = useSearchParams()
+  const conversationId = searchParams.get("cid")
+
   const [input, setInput] = useState("")
+  const [localMessages, setLocalMessages] = useState([])
   const messagesEndRef = useRef(null)
   const textareaRef = useRef(null)
 
-  const { messages, partialMessage, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
-
-  const [chatMessages, setChatMessages] = useState([])
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }
-
-  useEffect(() => {
-    scrollToBottom()
-  }, [chatMessages, messages, partialMessage])
+  // Combine messages, localMessages, and partialMessage to create allMessages
+  const allMessages = [...messages, ...localMessages, ...(partialMessage ? [partialMessage] : [])]
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!input.trim() || !isConnected) return
 
     const newMessage = {
-      id: String(Date.now()),
+      id: `local_${Date.now()}`,
       role: "user",
       content: input.trim(),
-      created_at: new Date().toISOString(),
+      createdAt: new Date().toISOString(),
     }
 
-    setChatMessages((prevMessages) => [...prevMessages, newMessage])
+    setLocalMessages((prev) => [...prev, newMessage])
 
-    //if there are messages in the chat, send the message to the conversation id
-    if (messages?.length > 0) {
-      const conversationId = messages[0]?.conversation_id || null
-      sendMessage({ conversationId, content: input })
-
+    if (!conversationId) {
+      sendMessage({ content: input.trim() })
     } else {
-      { sendMessage({ content: input }) }
+      sendMessage({ conversationId, content: input.trim() })
     }
+
     setInput("")
   }
 
-  const handleKeyDown = (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault()
+  const scrollToBottom = useCallback(() => {
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+    }, 100)
+  }, [])
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault()
       if (isPartialMessageLoading) return
       handleSubmit(e)
     }
   }
 
+  useEffect(() => {
+    scrollToBottom()
+  }, [scrollToBottom])
 
-  console.log(messages);
-  console.log(chatMessages);
-  
-  
-
-  // Combine all messages for display and ensure they're in chronological order
-  const allMessages = [
-    ...chatMessages,
-    ...messages,
-    ...(partialMessage ? [{ ...partialMessage, created_at: new Date().toISOString() }] : [])
-  ].sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+  useEffect(() => {
+    // Clear local messages when new messages are received from the server
+    if (messages.length > 0) {
+      setLocalMessages([])
+    }
+  }, [messages])
 
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
@@ -81,10 +79,11 @@ export default function Chat() {
               <div key={message.id || `partial-${index}`} className="flex items-start gap-3">
                 <div className={`flex-1 ${message.role === "user" ? "text-right" : ""}`}>
                   <div
-                    className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${message.role === "user"
-                      ? "dark:gradient-glass-effect bg-black text-gray-200"
-                      : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
-                      }`}
+                    className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${
+                      message.role === "user"
+                        ? "dark:gradient-glass-effect bg-black text-gray-200"
+                        : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
+                    }`}
                   >
                     <ReactMarkdown
                       components={{
@@ -93,9 +92,7 @@ export default function Chat() {
                             <pre {...props} />
                           </div>
                         ),
-                        code: ({ node, ...props }) => (
-                          <code className="bg-black/10 rounded-lg p-1" {...props} />
-                        ),
+                        code: ({ node, ...props }) => <code className="bg-black/10 rounded-lg p-1" {...props} />,
                       }}
                       className="text-sm overflow-hidden leading-7"
                     >
@@ -133,7 +130,6 @@ export default function Chat() {
                 className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
               >
                 {!isPartialMessageLoading ? <Send className="h-5 w-5" /> : <Square className="h-5 w-5 animate-spin" />}
-
               </button>
             </form>
           </div>
@@ -142,3 +138,4 @@ export default function Chat() {
     </div>
   )
 }
+

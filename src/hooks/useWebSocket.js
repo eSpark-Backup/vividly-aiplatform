@@ -3,11 +3,13 @@
 import { useChatStore } from "@/store/useChatStore"
 import { useEffect, useRef, useState, useCallback } from "react"
 import { useToast } from "./use-toast"
+import { useNavigate } from "react-router-dom"
 
 export function useWebSocket(url) {
   const socket = useRef(null)
   const { conversations, setConversations } = useChatStore()
   const { toast } = useToast()
+  const navigate = useNavigate()
   const [messages, setMessages] = useState([])
   const reconnectAttempts = useRef(0)
 
@@ -21,7 +23,7 @@ export function useWebSocket(url) {
 
   const showToast = useCallback(
     (title, description, type) => {
-      toast({ title, description, type })
+      toast({ title, description, type: type })
     },
     [toast],
   )
@@ -31,7 +33,7 @@ export function useWebSocket(url) {
   const sendSocketCommand = useCallback(
     (message) => {
       if (!socket.current) {
-        showToast("Error", "Not connected to server", "error")
+        showToast("Error", "Not connected to server", "destructive")
         return
       }
 
@@ -40,10 +42,10 @@ export function useWebSocket(url) {
           socket.current.send(JSON.stringify(message))
         } catch (err) {
           console.error("Error sending message:", err)
-          showToast("Error", "Failed to send message", "error")
+          showToast("Error", "Failed to send message", "destructive")
         }
       } else {
-        showToast("Error", "Not connected to server", "error")
+        showToast("Error", "Not connected to server", "destructive")
       }
     },
     [showToast],
@@ -103,6 +105,7 @@ export function useWebSocket(url) {
               break
             case "history":
               setMessages(data.messages || [])
+              navigate(`/home?cat=chat&cid=${data.conversationId}`);
               break
             case "conversations":
               handleConversations(data)
@@ -110,11 +113,14 @@ export function useWebSocket(url) {
             case "conversation_deleted":
               handleConversationDeleted(data)
               break
+            case "conversation_created":
+              navigate(`/home?cat=chat&cid=${data.conversation_id}`);
+              break
             case "conversation_renamed":
               handleConversationRenamed()
               break
             case "error":
-              setError(data.message || "An error occurred on the server")
+              showToast("Error", data.error, "error")
               break
             default:
               console.warn("Unknown message type:", data.type)
@@ -149,11 +155,13 @@ export function useWebSocket(url) {
               role: "assistant",
               content: newContent,
               created_at: new Date().toISOString(),
+              conversation_id: data.conversationId || null,
             },
           ])
 
           setIsPartialMessageLoading(false)
           sendSocketCommand({ type: "get_conversations" })
+          sendSocketCommand({ type: "get_history", conversationId: data.conversation_id })
           return null
         }
 
@@ -162,6 +170,7 @@ export function useWebSocket(url) {
           role: "assistant",
           content: newContent,
           timestamp: new Date().toISOString(),
+          conversation_id: data.conversationId || null,
         }
       })
     },
@@ -179,10 +188,10 @@ export function useWebSocket(url) {
   const handleConversationDeleted = useCallback(
     (data) => {
       if (data.success) {
-        showToast("Success", "Conversation deleted successfully", "success")
+        showToast("success", "Conversation deleted successfully", "success")
         sendSocketCommand({ type: "get_conversations" })
       } else {
-        showToast("Error", "Failed to delete conversation", "error")
+        showToast("Error", "Failed to delete conversation", "destructive")
       }
     },
     [showToast, sendSocketCommand],
@@ -206,10 +215,19 @@ export function useWebSocket(url) {
     }
   }, [connect, url])
 
-
-  //Application side code
   const sendMessage = useCallback(
     (data) => {
+      const newMessage = {
+        id: generateId(),
+        role: "user",
+        content: data.content,
+        created_at: new Date().toISOString(),
+        conversation_id: data.conversationId || data.conversation_id || null,
+      }
+
+      // Add user message to the messages state immediately
+      setMessages((prevMessages) => [...prevMessages, newMessage])
+
       const message = {
         type: "chat",
         content: data.content,
@@ -223,7 +241,7 @@ export function useWebSocket(url) {
         getChatHistory({ conversationId: data.conversationId })
       }
     },
-    [sendSocketCommand],
+    [sendSocketCommand, generateId],
   )
 
   const renameConversation = useCallback(
@@ -261,6 +279,7 @@ export function useWebSocket(url) {
     },
     [sendSocketCommand],
   )
+
 
   return {
     isConnected,
