@@ -1,282 +1,279 @@
-import { useChatStore } from "@/store/useChatStore";
-import { useEffect, useRef, useState, useCallback } from "react";
-import { useToast } from "./use-toast";
-import { set } from "react-hook-form";
+"use client"
+
+import { useChatStore } from "@/store/useChatStore"
+import { useEffect, useRef, useState, useCallback } from "react"
+import { useToast } from "./use-toast"
 
 export function useWebSocket(url) {
-    const socket = useRef(null);
-    const { conversations, setConversations } = useChatStore();
-    const { toast } = useToast();
-    const [messages, setMessages] = useState([]);
-    const reconnectAttempts = useRef(0);
+  const socket = useRef(null)
+  const { conversations, setConversations } = useChatStore()
+  const { toast } = useToast()
+  const [messages, setMessages] = useState([])
+  const reconnectAttempts = useRef(0)
 
+  const [isConnected, setIsConnected] = useState(false)
+  const [partialMessage, setPartialMessage] = useState(null)
+  const [error, setError] = useState(null)
+  const [isConversationLoading, setIsConversationLoading] = useState(false)
+  const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false)
 
-    const [isConnected, setIsConnected] = useState(false);
-    const [partialMessage, setPartialMessage] = useState(null); // For streaming messages
-    const [error, setError] = useState(null);
-    const [isConversationLoading, setIsConversationLoading] = useState(false);
-    const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false);
+  const maxReconnectAttempts = 3
 
-    // Maximum number of reconnection attempts
-    const maxReconnectAttempts = 3;
+  const showToast = useCallback(
+    (title, description, type) => {
+      toast({ title, description, type })
+    },
+    [toast],
+  )
 
-    // Show a toast notification
-    const showToast = (title, description, type) => {
-        toast({ title, description, type });
-    };
+  const generateId = useCallback(() => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, [])
 
-    // Generate unique IDs for messages
-    const generateId = useCallback(() => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, []);
+  const sendSocketCommand = useCallback(
+    (message) => {
+      if (!socket.current) {
+        showToast("Error", "Not connected to server", "error")
+        return
+      }
 
-    // Handle WebSocket connection
-    const connect = useCallback(() => {
-        if (!url) {
-            setIsConnected(false);
-            setError(null);
-            return;
-        }
-
+      if (socket.current.readyState === WebSocket.OPEN) {
         try {
-            // Validate URL format
-            const wsUrl = new URL(url);
-            if (!wsUrl.protocol.match(/^wss?:$/)) {
-                throw new Error("Invalid WebSocket protocol. Use ws:// or wss://");
-            }
-
-            // Skip if already connected
-            if (socket.current?.readyState === WebSocket.OPEN) {
-                console.log("WebSocket is already connected");
-                return;
-            }
-
-            // Create new WebSocket connection
-            socket.current = new WebSocket(url);
-
-            // Connection opened
-            socket.current.onopen = () => {
-                console.log("Connected to chat server");
-                setIsConnected(true);
-                setError(null);
-                reconnectAttempts.current = 0;
-
-
-
-                if (conversations.length === 0) {
-                    setIsConversationLoading(true);
-                    socket.current?.send(JSON.stringify({ type: "get_conversations" }));
-                }
-            };
-
-            // Connection closed
-            socket.current.onclose = (event) => {
-                console.log("Disconnected from chat server", event);
-                setIsConnected(false);
-
-                // Attempt reconnection if the closure was unexpected
-                if (!event.wasClean && reconnectAttempts.current < maxReconnectAttempts) {
-                    reconnectAttempts.current++;
-                    const delay = Math.min(1000 * Math.pow(2, reconnectAttempts.current), 10000);
-                    console.log(`Attempting to reconnect in ${delay}ms...`);
-                    setTimeout(connect, delay);
-                }
-            };
-
-            // Handle incoming messages
-            socket.current.onmessage = (event) => {
-                try {
-                    const data = JSON.parse(event.data);
-
-                    switch (data.type) {
-                        case 'chat_stream':
-                            // Handle streaming messages
-                            setPartialMessage((prev) => {
-                                const newContent = (prev?.content || '') + data.chunk;
-
-                                // If the stream is done, add the complete message to the messages array
-                                if (data.done) {
-                                    setMessages((prevMsgs) => [
-                                        ...prevMsgs,
-                                        {
-                                            id: data.id || generateId(),
-                                            role: "assistant",
-                                            content: newContent,
-                                            timestamp: new Date().toISOString(),
-                                        },
-                                    ]);
-
-                                    setIsPartialMessageLoading(false);
-
-                                    // Optionally, request conversations after sending a message
-                                    sendSocketCommand(socket, { type: "get_conversations" });
-
-                                    return null; // Reset partial message
-                                }
-
-                                // Otherwise, update the partial message
-                                return {
-                                    id: data.id || generateId(),
-                                    role: "assistant",
-                                    content: newContent,
-                                    timestamp: new Date().toISOString(),
-                                };
-                            });
-                            break;
-
-                        case 'history':
-                            // Handle server-sent message history
-                            setMessages(data.messages || []);
-                            break;
-
-                        case 'conversations':
-                            // Handle server-sent conversations
-                            setIsConversationLoading(false);
-                            setConversations(data.conversations || []);
-                            break;
-
-                        case 'conversation_deleted':
-                            // Handle server-sent conversation deletion
-                            if (data.success) {
-                                showToast("Success", "Conversation deleted successfully", "success");
-                                sendSocketCommand(socket, { type: "get_conversations" });
-                            } else {
-                                showToast("Error", "Failed to delete conversation", "error");
-                            }
-
-                            break;
-
-                        case 'conversation_renamed':
-                            // showToast("Success", "Conversation renamed successfully", "success");
-                            sendSocketCommand(socket, { type: "get_conversations" });
-                            break;
-
-
-                        case 'error':
-                            // Handle server-sent errors
-                            setError(data.message || "An error occurred on the server");
-                            break;
-
-                        default:
-                            console.warn("Unknown message type:", data.type);
-                            break;
-                    }
-                } catch (err) {
-                    console.error("Error parsing message:", err);
-                    setError("Failed to parse message from server");
-                }
-            };
-
-            // Handle WebSocket errors
-            socket.current.onerror = (event) => {
-                // console.error("WebSocket error:", event);
-                // setError("Connection error. Please check your internet connection and try again.");
-            };
+          socket.current.send(JSON.stringify(message))
         } catch (err) {
-            console.error("Failed to establish WebSocket connection:", err);
-            setError(err instanceof Error ? err.message : "Failed to connect to chat server");
+          console.error("Error sending message:", err)
+          showToast("Error", "Failed to send message", "error")
         }
-    }, [url, generateId, setConversations]);
+      } else {
+        showToast("Error", "Not connected to server", "error")
+      }
+    },
+    [showToast],
+  )
 
+  const connect = useCallback(() => {
+    if (!url) {
+      setIsConnected(false)
+      setError(null)
+      return
+    }
 
-    // Utility function to send messages through the WebSocket
-    const sendSocketCommand = (socket, message) => {
-        if (!socket.current) {
-            toast({ title: "Error", description: "Not connected to server", type: "error" });
-            return;
+    try {
+      const wsUrl = new URL(url)
+      if (!wsUrl.protocol.match(/^wss?:$/)) {
+        throw new Error("Invalid WebSocket protocol. Use ws:// or wss://")
+      }
+
+      if (socket.current?.readyState === WebSocket.OPEN) {
+        console.log("WebSocket is already connected")
+        return
+      }
+
+      socket.current = new WebSocket(url)
+
+      socket.current.onopen = () => {
+        console.log("Connected to chat server")
+        setIsConnected(true)
+        setError(null)
+        reconnectAttempts.current = 0
+
+        if (conversations.length === 0) {
+          setIsConversationLoading(true)
+          sendSocketCommand({ type: "get_conversations" })
+        }
+      }
+
+      socket.current.onclose = (event) => {
+        console.log("Disconnected from chat server", event)
+        setIsConnected(false)
+
+        if (!event.wasClean && reconnectAttempts.current < maxReconnectAttempts) {
+          reconnectAttempts.current++
+          const delay = Math.min(1000 * Math.pow(2, reconnectAttempts.current), 10000)
+          console.log(`Attempting to reconnect in ${delay}ms...`)
+          setTimeout(connect, delay)
+        }
+      }
+
+      socket.current.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data)
+
+          switch (data.type) {
+            case "chat_stream":
+              handleChatStream(data)
+              break
+            case "history":
+              setMessages(data.messages || [])
+              break
+            case "conversations":
+              handleConversations(data)
+              break
+            case "conversation_deleted":
+              handleConversationDeleted(data)
+              break
+            case "conversation_renamed":
+              handleConversationRenamed()
+              break
+            case "error":
+              setError(data.message || "An error occurred on the server")
+              break
+            default:
+              console.warn("Unknown message type:", data.type)
+              break
+          }
+        } catch (err) {
+          console.error("Error parsing message:", err)
+          setError("Failed to parse message from server")
+        }
+      }
+
+      socket.current.onerror = (event) => {
+        console.error("WebSocket error:", event)
+        setError("Connection error. Please check your internet connection and try again.")
+      }
+    } catch (err) {
+      console.error("Failed to establish WebSocket connection:", err)
+      setError(err instanceof Error ? err.message : "Failed to connect to chat server")
+    }
+  }, [url, conversations.length, sendSocketCommand])
+
+  const handleChatStream = useCallback(
+    (data) => {
+      setPartialMessage((prev) => {
+        const newContent = (prev?.content || "") + data.chunk
+
+        if (data.done) {
+          setMessages((prevMsgs) => [
+            ...prevMsgs,
+            {
+              id: data.id || generateId(),
+              role: "assistant",
+              content: newContent,
+              created_at: new Date().toISOString(),
+            },
+          ])
+
+          setIsPartialMessageLoading(false)
+          sendSocketCommand({ type: "get_conversations" })
+          return null
         }
 
-        if (socket.current.readyState === WebSocket.OPEN) {
-            try {
-                socket.current.send(JSON.stringify(message));
-            } catch (err) {
-                console.error("Error sending message:", err);
-                toast({ title: "Error", description: "Failed to send message", type: "error" });
-            }
-        } else {
-            toast({ title: "Error", description: "Not connected to server", type: "error" });
+        return {
+          id: data.id || generateId(),
+          role: "assistant",
+          content: newContent,
+          timestamp: new Date().toISOString(),
         }
-    };
+      })
+    },
+    [generateId, sendSocketCommand],
+  )
 
-    // Cleanup on unmount
-    useEffect(() => {
-        if (url) {
-            connect();
-        } else if (socket.current) {
-            socket.current.close();
-        }
+  const handleConversations = useCallback(
+    (data) => {
+      setIsConversationLoading(false)
+      setConversations(data.conversations || [])
+    },
+    [setConversations],
+  )
 
-        return () => {
-            if (socket.current) {
-                socket.current.close();
-            }
-        };
-    }, [connect, url]);
+  const handleConversationDeleted = useCallback(
+    (data) => {
+      if (data.success) {
+        showToast("Success", "Conversation deleted successfully", "success")
+        sendSocketCommand({ type: "get_conversations" })
+      } else {
+        showToast("Error", "Failed to delete conversation", "error")
+      }
+    },
+    [showToast, sendSocketCommand],
+  )
 
+  const handleConversationRenamed = useCallback(() => {
+    sendSocketCommand({ type: "get_conversations" })
+  }, [sendSocketCommand])
 
+  useEffect(() => {
+    if (url) {
+      connect()
+    } else if (socket.current) {
+      socket.current.close()
+    }
 
-    // Send a message
-    const sendMessage = useCallback((data) => {
-        const message = {
-            type: "chat",
-            content: data.content,
-            ...(data.conversationId && { conversationId: data.conversationId }),
-        };
-
-        setIsPartialMessageLoading(true);
-        sendSocketCommand(socket, message);
-
-    }, []);
-
-    const renameConversation = useCallback((content) => {
-
-        const { conversationId, title } = content;
-
-        const message = {
-            type: "rename_conversation",
-            conversationId,
-            title,
-        };
-        sendSocketCommand(socket, message);
-
-    }, []);
-
-    // Delete a conversation
-    const deleteConversation = useCallback((content) => {
-
-        const { conversationId } = content;
-
-        const message = {
-            type: "delete_conversation",
-            conversationId,
-        };
-
-        sendSocketCommand(socket, message);
-    }, []);
+    return () => {
+      if (socket.current) {
+        socket.current.close()
+      }
+    }
+  }, [connect, url])
 
 
-    //Get a specific chat history
-    const getChatHistory = useCallback((content) => {
-        const { conversationId } = content;
+  //Application side code
+  const sendMessage = useCallback(
+    (data) => {
+      const message = {
+        type: "chat",
+        content: data.content,
+        ...(data.conversationId && { conversationId: data.conversationId }),
+      }
 
-        const message = {
-            type: "get_history",
-            conversationId,
-        };
+      setIsPartialMessageLoading(true)
+      sendSocketCommand(message)
 
-        sendSocketCommand(socket, message);
-    }, []);
+      if (data.conversationId) {
+        getChatHistory({ conversationId: data.conversationId })
+      }
+    },
+    [sendSocketCommand],
+  )
 
+  const renameConversation = useCallback(
+    (content) => {
+      const { conversationId, title } = content
+      const message = {
+        type: "rename_conversation",
+        conversationId,
+        title,
+      }
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
 
-    return {
-        isConnected,
-        partialMessage,
-        messages,
-        error,
-        sendMessage,
-        getChatHistory,
-        deleteConversation,
-        renameConversation,
-        isConversationLoading,
-        isPartialMessageLoading,
-        socket,
-    };
+  const deleteConversation = useCallback(
+    (content) => {
+      const { conversationId } = content
+      const message = {
+        type: "delete_conversation",
+        conversationId,
+      }
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
+
+  const getChatHistory = useCallback(
+    (content) => {
+      const message = {
+        type: "get_history",
+        conversationId: content.conversationId,
+      }
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
+
+  return {
+    isConnected,
+    partialMessage,
+    messages,
+    error,
+    sendMessage,
+    getChatHistory,
+    deleteConversation,
+    renameConversation,
+    isConversationLoading,
+    isPartialMessageLoading,
+    socket,
+  }
 }
+

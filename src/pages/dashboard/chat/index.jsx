@@ -30,7 +30,7 @@ export default function Chat() {
       id: String(Date.now()),
       role: "user",
       content: input.trim(),
-      timestamp: new Date().toISOString(),
+      created_at: new Date().toISOString(),
     }
 
     setChatMessages((prevMessages) => [...prevMessages, newMessage])
@@ -56,15 +56,17 @@ export default function Chat() {
   }
 
 
-  // console.log(messages(), "messages");
+  console.log(messages);
+  console.log(chatMessages);
+  
   
 
   // Combine all messages for display and ensure they're in chronological order
   const allMessages = [
     ...chatMessages,
     ...messages,
-    ...(partialMessage ? [{ ...partialMessage, timestamp: new Date().toISOString() }] : [])
-  ].sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+    ...(partialMessage ? [{ ...partialMessage, created_at: new Date().toISOString() }] : [])
+  ].sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
 
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
