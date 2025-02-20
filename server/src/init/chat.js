@@ -177,7 +177,7 @@ export class ChatServer {
             // Send initial message to confirm conversation creation
             ws.send(JSON.stringify({
                 type: 'conversation_created',
-                conversationId,
+                conversation_id: conversationId,
                 title: conversation.title
             }));
 
@@ -188,7 +188,7 @@ export class ChatServer {
                     tokensUsed += 1;
                     ws.send(JSON.stringify({
                         type: 'chat_stream',
-                        conversationId,
+                        conversation_id: conversationId,
                         chunk: content,
                         done: false
                     }));
@@ -210,14 +210,14 @@ export class ChatServer {
 
             ws.send(JSON.stringify({
                 type: 'chat_stream',
-                conversationId,
+                conversation_id: conversationId,
                 chunk: '',
                 done: true
             }));
 
             logger.endOperation('chat-message', {
                 userId: user.id,
-                conversationId,
+                conversation_id: conversationId,
                 tokensUsed
             });
 
