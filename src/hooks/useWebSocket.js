@@ -226,7 +226,8 @@ export function useWebSocket(url) {
       }
 
       // Add user message to the messages state immediately
-      setMessages((prevMessages) => [...prevMessages, newMessage])
+      // setMessages((prevMessages) => [...prevMessages, newMessage])
+      setMessages(prevMessages => [...prevMessages, newMessage])
 
       const message = {
         type: "chat",
@@ -234,12 +235,12 @@ export function useWebSocket(url) {
         ...(data.conversationId && { conversationId: data.conversationId }),
       }
 
-      setIsPartialMessageLoading(true)
+      // setIsPartialMessageLoading(true)
       sendSocketCommand(message)
 
-      if (data.conversationId) {
-        getChatHistory({ conversationId: data.conversationId })
-      }
+      // if (data.conversationId) {
+      //   getChatHistory({ conversationId: data.conversationId })
+      // }
     },
     [sendSocketCommand, generateId],
   )

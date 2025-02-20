@@ -1,3 +1,4 @@
+"use client"
 
 import { useState, useRef, useEffect, useCallback } from "react"
 import { Send, Square } from "lucide-react"
@@ -7,37 +8,19 @@ import { Textarea } from "@/components/ui/textarea"
 import { useSearchParams } from "react-router-dom"
 
 export default function Chat() {
-  const { messages, partialMessage, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
+  const { messages, setMessages, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
 
   const [input, setInput] = useState("")
-  const [localMessages, setLocalMessages] = useState([])
   const messagesEndRef = useRef(null)
   const textareaRef = useRef(null)
-
-  // Combine messages, localMessages, and partialMessage to create allMessages
-  const allMessages = [...messages, ...localMessages, ...(partialMessage ? [partialMessage] : [])]
 
   const handleSubmit = (e) => {
     e.preventDefault()
     if (!input.trim() || !isConnected) return
 
-    const newMessage = {
-      id: `local_${Date.now()}`,
-      role: "user",
-      content: input.trim(),
-      createdAt: new Date().toISOString(),
-    }
-
-    setLocalMessages((prev) => [...prev, newMessage])
-
-    if (!conversationId) {
-      sendMessage({ content: input.trim() })
-    } else {
-      sendMessage({ conversationId, content: input.trim() })
-    }
-
+    sendMessage({ content: input.trim(), conversationId })
     setInput("")
   }
 
@@ -59,13 +42,6 @@ export default function Chat() {
     scrollToBottom()
   }, [scrollToBottom])
 
-  useEffect(() => {
-    // Clear local messages when new messages are received from the server
-    if (messages.length > 0) {
-      setLocalMessages([])
-    }
-  }, [messages])
-
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
       <div className="w-full px-4 sm:px-6 py-5 pt-0">
@@ -75,8 +51,8 @@ export default function Chat() {
           <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
             <div className="text-center text-sm text-gray-500 my-4">Today</div>
 
-            {allMessages.map((message, index) => (
-              <div key={message.id || `partial-${index}`} className="flex items-start gap-3">
+            {messages.map((message, index) => (
+              <div key={message.id || `message-${index}`} className="flex items-start gap-3">
                 <div className={`flex-1 ${message.role === "user" ? "text-right" : ""}`}>
                   <div
                     className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${
@@ -99,7 +75,7 @@ export default function Chat() {
                       {message.content}
                     </ReactMarkdown>
 
-                    {message === partialMessage && <span className="inline-block animate-pulse">▋</span>}
+                    {message.id.startsWith("local_") && <span className="inline-block animate-pulse ml-2">⋯</span>}
                   </div>
                 </div>
               </div>
