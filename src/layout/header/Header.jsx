@@ -10,6 +10,8 @@ import { ConfirmationDialog } from "@/components/ConfirmationDialog"
 import { useDialogStore } from "@/store/useDialogStore"
 import { tabsCSS } from "@/constant"
 import { MobileSidebar } from ".."
+import { useChatStore } from "@/store/useChatStore"
+import { useWebSocketContext } from "@/services/WebSocketProvider"
 
 const tabs = [
   { value: "explore", label: "Explore Vividly", icon: Pyramid },
@@ -20,7 +22,9 @@ const tabs = [
 export default function Header() {
   const location = useLocation()
   const navigate = useNavigate()
-  const { mutate: logout, isPending } = useLogout();
+  const { mutate: logout, isPending } = useLogout()
+  const { setConversations } = useChatStore();
+  const { clearMessages } = useWebSocketContext()
   const { clearAuth } = useAuthStore();
   const { showSignOutDialog, setShowSignOutDialog } = useDialogStore();
   const { toast } = useToast();
@@ -34,8 +38,10 @@ export default function Header() {
       onSuccess: () => {
         showToast("Success", "You have been signed out successfully.", "success");
         clearAuth();
-        navigate("/log-in");
         setShowSignOutDialog(false);
+        setConversations([]);
+        clearMessages();
+        navigate("/log-in");
       },
       onError: (error) => {
         handleApiError(showToast, error);
