@@ -1,59 +1,98 @@
-import { useState, useRef, useEffect, useCallback } from "react"
-import { Send, Square } from "lucide-react"
-import ReactMarkdown from "react-markdown"
-import { useWebSocketContext } from "@/services/WebSocketProvider"
-import { Textarea } from "@/components/ui/textarea"
-import { useSearchParams } from "react-router-dom"
+import { useState, useRef, useEffect, useCallback } from "react";
+import { Send, Square } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import { useWebSocketContext } from "@/services/WebSocketProvider";
+import { Textarea } from "@/components/ui/textarea";
+import { useSearchParams } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 export default function Chat() {
-  const { messages, partialMessage, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
-  const [searchParams] = useSearchParams()
-  const conversationId = searchParams.get("cid")
+  const {
+    messages,
+    partialMessage,
+    sendMessage,
+    isConnected,
+    error,
+    isPartialMessageLoading,
+    getChatHistory,
+  } = useWebSocketContext();
 
-  const [input, setInput] = useState("")
-  const messagesEndRef = useRef(null)
-  const textareaRef = useRef(null)
+  const { toast } = useToast();
+  const [searchParams] = useSearchParams();
+  const conversationId = searchParams.get("cid");
+
+  const [input, setInput] = useState("");
+  const messagesEndRef = useRef(null);
+  const textareaRef = useRef(null);
+
+  const showToast = (title, description, type) => {
+    toast({ title, description, type });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!input.trim() || !isConnected) return
+    e.preventDefault();
+    if (!input.trim() || !isConnected) return;
 
-    sendMessage({ content: input.trim(), conversationId })
-    setInput("")
-  }
+    sendMessage({ content: input.trim(), conversationId });
+    setInput("");
+  };
 
   const scrollToBottom = useCallback(() => {
     setTimeout(() => {
-      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-    }, 100)
-  }, [messages, partialMessage])
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  }, [messages, partialMessage]);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault()
-      if (isPartialMessageLoading) return
-      handleSubmit(e)
+      e.preventDefault();
+      if (isPartialMessageLoading) return;
+      handleSubmit(e);
     }
-  }
+  };
 
   useEffect(() => {
-    scrollToBottom()
-  }, [scrollToBottom])
+    scrollToBottom();
+  }, [scrollToBottom]);
 
-  const allMessages = [...messages, ...(partialMessage ? [partialMessage] : [])]
+  useEffect(() => {
+    if (conversationId && isConnected) {
+      const timeout = setTimeout(() => {
+        getChatHistory({ conversationId });
+      }, 1000);
+
+      return () => clearTimeout(timeout); // Cleanup if dependencies change
+    }
+  }, [isConnected]);
+
+  const allMessages = [
+    ...messages,
+    ...(partialMessage ? [partialMessage] : []),
+  ];
 
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
       <div className="w-full px-4 sm:px-6 py-5 pt-0">
-        {error && <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg">{error}</div>}
+        {error && (
+          <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg">
+            {error}
+          </div>
+        )}
 
         <div className="flex-1 w-full max-w-5xl mx-auto">
           <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
             <div className="text-center text-sm text-gray-500 my-4">Today</div>
 
             {allMessages.map((message, index) => (
-              <div key={message.id || `message-${index}`} className="flex items-start gap-3">
-                <div className={`flex-1 ${message.role === "user" ? "text-right" : ""}`}>
+              <div
+                key={message.id || `message-${index}`}
+                className="flex items-start gap-3"
+              >
+                <div
+                  className={`flex-1 ${
+                    message.role === "user" ? "text-right" : ""
+                  }`}
+                >
                   <div
                     className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${
                       message.role === "user"
@@ -68,14 +107,21 @@ export default function Chat() {
                             <pre {...props} />
                           </div>
                         ),
-                        code: ({ node, ...props }) => <code className="bg-black/10 rounded-lg p-1" {...props} />,
+                        code: ({ node, ...props }) => (
+                          <code
+                            className="bg-black/10 rounded-lg p-1"
+                            {...props}
+                          />
+                        ),
                       }}
                       className="text-sm overflow-hidden leading-7"
                     >
                       {message.content}
                     </ReactMarkdown>
 
-                    {message === partialMessage && <span className="inline-block animate-pulse ml-2">▋</span>}
+                    {message === partialMessage && (
+                      <span className="inline-block animate-pulse ml-2">▋</span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -102,16 +148,21 @@ export default function Chat() {
               />
               <button
                 type="submit"
-                disabled={!isConnected || !input.trim() || isPartialMessageLoading}
+                disabled={
+                  !isConnected || !input.trim() || isPartialMessageLoading
+                }
                 className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
               >
-                {!isPartialMessageLoading ? <Send className="h-5 w-5" /> : <Square className="h-5 w-5 animate-spin" />}
+                {!isPartialMessageLoading ? (
+                  <Send className="h-5 w-5" />
+                ) : (
+                  <Square className="h-5 w-5 animate-spin" />
+                )}
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-

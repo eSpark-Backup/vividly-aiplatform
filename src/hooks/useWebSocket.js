@@ -33,7 +33,7 @@ export function useWebSocket(url) {
   const sendSocketCommand = useCallback(
     (message) => {
       if (!socket.current) {
-        showToast("Error", "Not connected to server", "destructive")
+        showToast("Error", "Not connected to server", "error")
         return
       }
 
@@ -42,10 +42,10 @@ export function useWebSocket(url) {
           socket.current.send(JSON.stringify(message))
         } catch (err) {
           console.error("Error sending message:", err)
-          showToast("Error", "Failed to send message", "destructive")
+          showToast("Error", "Failed to send message", "error")
         }
       } else {
-        showToast("Error", "Not connected to server", "destructive")
+        showToast("Error", "Not connected to server", "error")
       }
     },
     [showToast],
