@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useRef, useEffect, useCallback } from "react"
 import { Send, Square } from "lucide-react"
 import ReactMarkdown from "react-markdown"
@@ -8,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useSearchParams } from "react-router-dom"
 
 export default function Chat() {
-  const { messages, setMessages, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
+  const { messages,  sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
 
@@ -28,7 +26,7 @@ export default function Chat() {
     setTimeout(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, 100)
-  }, [])
+  }, [messages])
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
