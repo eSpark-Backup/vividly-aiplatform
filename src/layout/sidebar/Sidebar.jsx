@@ -26,8 +26,6 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
   }
 
 
-  const { first_name, last_name, email } = user;
-
   return (
     <div className="flex flex-col h-full dark:bg-[#0D0F10] bg-white md:rounded-2xl md:m-3">
       {/* Header */}
@@ -39,8 +37,8 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
             </div>
           </Link>
           <div className="text-right">
-            <p className="uppercase text-md">{first_name} {last_name}</p>
-            <p className="text-xs text-[#B6F09C]">{email}</p>
+            <p className="uppercase text-md">{user?.first_name} {user?.last_name}</p>
+            <p className="text-xs text-[#B6F09C]">{user?.email}</p>
             <p className="text-xs text-[#B6F09C]">Premium</p>
           </div>
         </div>

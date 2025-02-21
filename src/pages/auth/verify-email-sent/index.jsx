@@ -70,7 +70,7 @@ function VerifyEmailSent() {
                     <div className="space-y-2">
 
                         {/* Back to login */}
-                        <Link to="/log-in">
+                        <Link to="/sign-up">
                             <div className="flex items-center gap-1 cursor-pointer text-sm dark:text-gray-300">
                                 <div>
                                     <ChevronLeft

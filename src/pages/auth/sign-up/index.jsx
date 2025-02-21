@@ -33,7 +33,7 @@ function SignUp() {
     const onSubmit = (data) => {
         createAccount(data, {
             onSuccess: () => {
-                showToast("Success", "You have successfully signed up", "success");
+                showToast("Success", "A verification email has been sent to your email address", "success");
                 navigate(`/verify-email-sent?create=${data.email}`);
             },
             onError: (error) => {
