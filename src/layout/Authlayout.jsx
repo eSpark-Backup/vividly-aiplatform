@@ -1,16 +1,15 @@
-import { vividlyLogoLight, vividlyLogoDark } from "@/assets"
-import { useTheme } from "@/components"
-import { themes } from "@/constant"
-import { useEffect, useState } from "react"
-import { Link, useLocation } from "react-router-dom"
-import { ThemeToggle } from "./index"
+import { vividlyLogoLight, vividlyLogoDark } from "@/assets";
+import { useTheme } from "@/components";
+import { themes } from "@/constant";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { ThemeToggle } from "./index";
 
 function AuthLayout({ children, onLightPoster, onDarkPoster }) {
-  const { theme } = useTheme()
-  const location = useLocation()
+  const { theme } = useTheme();
+  const location = useLocation();
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const isDarkTheme = theme === themes[0];
-
 
   useEffect(() => {
     const checkScreenSize = () => setIsSmallScreen(window.innerHeight < 840);
@@ -34,28 +33,27 @@ function AuthLayout({ children, onLightPoster, onDarkPoster }) {
 
   return (
     <div className={"flex min-h-screen flex-col lg:flex-row"}>
-
       {/* Left Section */}
       <div className="relative flex-1 w-full lg:w-[45%] p-8 lg:px-10 lg:py-24">
         {/* Logo */}
         <div className="mb-10 lg:mb-0 lg:absolute lg:top-1 lg:left-8">
           <div className="flex items-center gap-2">
-            <Link to="/">
+            {/* <Link to="/"> */}
+            <div>
               <img
                 src={isDarkTheme ? vividlyLogoDark : vividlyLogoLight}
-                className="w-32 h-32 "
+                className="w-32 h-32 cursor-pointer"
                 alt="Vividly AI Logo"
               />
-            </Link>
+            </div>
+            {/* </Link> */}
           </div>
         </div>
-
 
         {/* Auth Content */}
         <div className="mx-auto max-w-md h-full flex items-center">
           {children}
         </div>
-
 
         {/* Theme Toggle */}
         <div className={ThemeToggleClass}>
@@ -74,7 +72,7 @@ function AuthLayout({ children, onLightPoster, onDarkPoster }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default AuthLayout
+export default AuthLayout;
