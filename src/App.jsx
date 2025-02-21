@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { ThemeProvider } from "./components"
 import AppRouter from "./route"
 import { GoogleOAuthProvider } from '@react-oauth/google'
+import { WebSocketProvider } from './services/WebSocketProvider'
 
 function App() {
 
@@ -17,9 +18,11 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_GOOGLE_CLIENT_ID}>
       <QueryClientProvider client={queryClient}>
-        <ThemeProvider defaultTheme="dark" >
-          <AppRouter />
-        </ThemeProvider>
+        <WebSocketProvider>
+          <ThemeProvider defaultTheme="dark" >
+            <AppRouter />
+          </ThemeProvider>
+        </WebSocketProvider>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>
     </GoogleOAuthProvider>

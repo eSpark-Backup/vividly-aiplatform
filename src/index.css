@@ -81,6 +81,12 @@
     background: linear-gradient(117.58deg, rgba(215, 237, 237, 0.16) -47.79%, rgba(59, 110, 110, 0) 100%);
     border-top: 1.58px solid #FFFFFF14;
   }
+
+  .gradient-glass-effect-selected {
+    @apply bg-black text-white cursor-pointer;
+    background: linear-gradient(117.58deg, rgba(136, 66, 248, 0.3) -47.79%, rgba(0, 128, 128, 0.2) 100%);
+    border-bottom: 2px solid hsl(263, 87%, 68%);
+  }
 }
 
 

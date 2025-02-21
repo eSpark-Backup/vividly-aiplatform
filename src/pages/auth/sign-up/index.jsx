@@ -33,7 +33,7 @@ function SignUp() {
     const onSubmit = (data) => {
         createAccount(data, {
             onSuccess: () => {
-                showToast("Success", "You have successfully signed up", "success");
+                showToast("Success", "A verification email has been sent to your email address", "success");
                 navigate(`/verify-email-sent?create=${data.email}`);
             },
             onError: (error) => {
@@ -51,7 +51,7 @@ function SignUp() {
                 {/* Login Form */}
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     <div className="space-y-2">
-                        <h1 className="sm:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">Create an account</h1>
+                        <h1 className="sm:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase mt-10">Create an account</h1>
                         <p className="text-md dark:text-gray-300">How to i get started lorem ipsum dolor at?</p>
                     </div>
 

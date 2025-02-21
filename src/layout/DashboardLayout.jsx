@@ -24,6 +24,8 @@ const DashboardLayout = () => {
         return <Outlet />
     }
 
+    
+
 
     return (
         <div className="max-h-screen relative">

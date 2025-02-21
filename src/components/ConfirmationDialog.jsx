@@ -11,7 +11,8 @@ export function ConfirmationDialog({ open, onOpenChange, variant, desc, buttonTe
         <Dialog
             open={open}
 
-            onOpenChange={onOpenChange}>
+            onOpenChange={onOpenChange}
+        >
             <DialogContent className="max-w-[300px] sm:max-w-[500px] border-0 dark:bg-[#131619] py-12 shadow-[0px_0px_60px_20px_rgba(124,53,241,0.4)]">
 
                 {onCancel && (
@@ -47,15 +48,26 @@ export function ConfirmationDialog({ open, onOpenChange, variant, desc, buttonTe
                                     onClick={onCancel}
                                     variant="secondary"
                                     size="lg"
+                                    className="sm:w-[140px] w-[100px]"
                                 >
                                     Cancel
                                 </Button>
-                                <Button onClick={onConfirm} variant="gradient" size="lg">
+                                <Button
+                                    onClick={onConfirm}
+                                    variant="gradient"
+                                    size="lg"
+                                    className="sm:w-[140px] w-[100px]"
+                                >
                                     {isLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : buttonText}
                                 </Button>
                             </>
                         ) : (
-                            <Button onClick={onConfirm} variant="gradient" size="lg">
+                            <Button
+                                onClick={onConfirm}
+                                variant="gradient"
+                                size="lg"
+                                className="sm:w-[140px] w-[100px]"
+                            >
                                 Login
                             </Button>
                         )}

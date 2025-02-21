@@ -15,21 +15,26 @@ export const getLastMessage = (messages) => {
 };
 
 // Categorize chat history based on the date
-export const categorizeHistory = (chatHistory) => {
-  const today = new Date().toDateString();
-  const yesterday = new Date(new Date().setDate(new Date().getDate() - 1)).toDateString();
-  const last7Days = new Date(new Date().setDate(new Date().getDate() - 7));
+export const categorizeHistory = (history) => {
+  const today = [];
+  const yesterday = [];
+  const last7Days = [];
 
-  return {
-      today: chatHistory.filter(item =>
-          new Date(item.messages[item.messages.length - 1]?.created_at || "").toDateString() === today
-      ),
-      yesterday: chatHistory.filter(item =>
-          new Date(item.messages[item.messages.length - 1]?.created_at || "").toDateString() === yesterday
-      ),
-      last7Days: chatHistory.filter(item => {
-          const lastMsgDate = new Date(item.messages[item.messages.length - 1]?.created_at || "");
-          return lastMsgDate >= last7Days && lastMsgDate.toDateString() !== today && lastMsgDate.toDateString() !== yesterday;
-      })
-  };
+  const now = new Date();
+  const todayDate = now.toISOString()?.split("T")[0]; // Extract YYYY-MM-DD
+  const yesterdayDate = new Date(now.setDate(now.getDate() - 1)).toISOString().split("T")[0];
+
+  history?.forEach((chat) => {
+    const chatDate = chat?.created_at?.split("T")[0]; // Extract YYYY-MM-DD
+
+    if (chatDate === todayDate) {
+      today.push(chat);
+    } else if (chatDate === yesterdayDate) {
+      yesterday.push(chat);
+    } else {
+      last7Days.push(chat);
+    }
+  });
+
+  return { today, yesterday, last7Days };
 };
