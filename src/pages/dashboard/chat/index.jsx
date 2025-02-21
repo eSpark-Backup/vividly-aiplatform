@@ -26,7 +26,7 @@ export default function Chat() {
     setTimeout(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, 100)
-  }, [])
+  }, [messages, partialMessage])
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {

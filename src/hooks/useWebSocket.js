@@ -237,7 +237,7 @@ export function useWebSocket(url) {
         ...(data.conversationId && { conversationId: data.conversationId }),
       }
 
-      // setIsPartialMessageLoading(true)
+      setIsPartialMessageLoading(true)
       sendSocketCommand(message)
 
       // if (data.conversationId) {
