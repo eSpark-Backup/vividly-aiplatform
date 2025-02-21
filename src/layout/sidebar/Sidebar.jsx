@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../components";
 import { vividlyLogoDark, vividlyLogoLight } from "@/assets";
 import { themes } from "@/constant";
@@ -7,6 +7,8 @@ import { ChatHistory, FreeCounter } from "..";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { useWebSocketContext } from "@/services/WebSocketProvider";
 
 const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
   const { theme } = useTheme();
@@ -14,8 +16,16 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
 
   const isDarkTheme = theme === themes[0];
   const [conversationSearch, setConversationSearch] = useState("");
-  
-  
+  const { clearMessages } = useWebSocketContext()
+  const navigate = useNavigate();
+
+
+  const handleNewChat = () => {
+    clearMessages()
+    navigate("/home?cat=chat")
+  }
+
+
   const { first_name, last_name, email } = user;
 
   return (
@@ -46,7 +56,16 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
           onChange={(e) => setConversationSearch(e.target.value)}
         />
 
-        <br/>
+
+        <Button
+          onClick={handleNewChat}
+          className="mt-4 w-full"
+          variant="secondary"
+          size="md">
+          New Chat
+        </Button>
+
+        <br />
       </div>
 
       {/* Chat History should take up full space */}

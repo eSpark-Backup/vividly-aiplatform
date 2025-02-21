@@ -190,6 +190,8 @@ export function useWebSocket(url) {
       if (data.success) {
         showToast("success", "Conversation deleted successfully", "success")
         sendSocketCommand({ type: "get_conversations" })
+        clearMessages()
+        navigate("/home?cat=chat")
       } else {
         showToast("Error", "Failed to delete conversation", "destructive")
       }
@@ -281,6 +283,10 @@ export function useWebSocket(url) {
     [sendSocketCommand],
   )
 
+  const clearMessages = useCallback(() => {
+    setMessages([])
+  }, [])
+
 
   return {
     isConnected,
@@ -288,6 +294,7 @@ export function useWebSocket(url) {
     messages,
     error,
     sendMessage,
+    clearMessages,
     getChatHistory,
     deleteConversation,
     renameConversation,

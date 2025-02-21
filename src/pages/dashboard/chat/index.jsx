@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { useSearchParams } from "react-router-dom"
 
 export default function Chat() {
-  const { messages,  sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
+  const { messages, partialMessage, sendMessage, isConnected, error, isPartialMessageLoading } = useWebSocketContext()
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
 
@@ -26,7 +26,7 @@ export default function Chat() {
     setTimeout(() => {
       messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
     }, 100)
-  }, [messages])
+  }, [])
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -40,6 +40,8 @@ export default function Chat() {
     scrollToBottom()
   }, [scrollToBottom])
 
+  const allMessages = [...messages, ...(partialMessage ? [partialMessage] : [])]
+
   return (
     <div className="min-h-[calc(100vh-280px)] flex items-center">
       <div className="w-full px-4 sm:px-6 py-5 pt-0">
@@ -49,7 +51,7 @@ export default function Chat() {
           <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
             <div className="text-center text-sm text-gray-500 my-4">Today</div>
 
-            {messages.map((message, index) => (
+            {allMessages.map((message, index) => (
               <div key={message.id || `message-${index}`} className="flex items-start gap-3">
                 <div className={`flex-1 ${message.role === "user" ? "text-right" : ""}`}>
                   <div
@@ -73,7 +75,7 @@ export default function Chat() {
                       {message.content}
                     </ReactMarkdown>
 
-                    {message.id.startsWith("local_") && <span className="inline-block animate-pulse ml-2">⋯</span>}
+                    {message === partialMessage && <span className="inline-block animate-pulse ml-2">▋</span>}
                   </div>
                 </div>
               </div>
