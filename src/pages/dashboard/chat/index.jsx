@@ -64,7 +64,7 @@ export default function Chat() {
                     <ReactMarkdown
                       components={{
                         pre: ({ node, ...props }) => (
-                          <div className="overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg">
+                          <div className="overflow-auto w-full my-2 dark:bg-white/10 bg-black/45 p-2 rounded-lg">
                             <pre {...props} />
                           </div>
                         ),
