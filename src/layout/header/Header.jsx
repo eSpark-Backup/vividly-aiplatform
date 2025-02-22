@@ -1,7 +1,7 @@
 import { MessageCircle, HelpCircle, Pyramid } from "lucide-react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { useMemo, useCallback, useState } from "react"
 import { useLogout } from "@/hooks/useAuth"
 import { useAuthStore } from "@/store/useAuthStore"
@@ -22,13 +22,15 @@ const tabs = [
 export default function Header() {
   const location = useLocation()
   const navigate = useNavigate()
+  const [searchParams] = useSearchParams()
+  const conversationId = searchParams.get("cid")
   const { mutate: logout, isPending } = useLogout()
   const { setConversations } = useChatStore();
   const { clearMessages } = useWebSocketContext()
   const { clearAuth } = useAuthStore();
   const { showSignOutDialog, setShowSignOutDialog } = useDialogStore();
   const { toast } = useToast();
-  
+
   const showToast = (title, description, type) => {
     toast({ title, description, type });
   };
@@ -57,8 +59,15 @@ export default function Header() {
   }, [location.pathname, location.search])
 
   const handleTabChange = useCallback(
-    (value) => navigate(`/home?cat=${value}`),
-    [navigate]
+    (value) => {
+      if (conversationId && value === "chat") navigate(`/home?cat=${value}&cid=${conversationId}`)
+      else {
+        navigate(`/home?cat=${value}`)
+        clearMessages()
+      }
+
+    },
+    [navigate, conversationId]
   )
 
   return (

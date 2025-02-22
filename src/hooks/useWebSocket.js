@@ -1,5 +1,3 @@
-"use client"
-
 import { useChatStore } from "@/store/useChatStore"
 import { useEffect, useRef, useState, useCallback } from "react"
 import { useToast } from "./use-toast"
@@ -11,6 +9,7 @@ export function useWebSocket(url) {
   const { toast } = useToast()
   const navigate = useNavigate()
   const [messages, setMessages] = useState([])
+  const [suggestedQuestions, setSuggestedQuestions] = useState([])
   const reconnectAttempts = useRef(0)
 
   const [isConnected, setIsConnected] = useState(false)
@@ -28,7 +27,9 @@ export function useWebSocket(url) {
     [toast],
   )
 
+  // UTILS
   const generateId = useCallback(() => `${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, [])
+
 
   const sendSocketCommand = useCallback(
     (message) => {
@@ -50,7 +51,8 @@ export function useWebSocket(url) {
     },
     [showToast],
   )
-
+  
+  // CONNECTION
   const connect = useCallback(() => {
     if (!url) {
       setIsConnected(false)
@@ -104,8 +106,7 @@ export function useWebSocket(url) {
               handleChatStream(data)
               break
             case "history":
-              setMessages(data.messages || [])
-              navigate(`/home?cat=chat&cid=${data.conversationId}`);
+              handleHistory(data)
               break
             case "conversations":
               handleConversations(data)
@@ -142,23 +143,48 @@ export function useWebSocket(url) {
     }
   }, [url, conversations.length, sendSocketCommand])
 
+ 
+  // UTILS
+  const extractQuestionsAndCleanMessage = useCallback((content) => {
+    const questionRegex = /\n\*\*Q\d+:\*\*\s*(.+?)(?=\n\*\*Q\d+:\*\*|\n\n|$)/gs
+    const questions = []
+    let cleanedContent = content
+
+    let match
+    while ((match = questionRegex.exec(content)) !== null) {
+      questions.push(match[1].trim())
+    }
+
+    if (questions.length > 0) {
+      const questionsSection = content.match(/\n\*\*Q1:\*\*[\s\S]+$/)?.[0] || ""
+      cleanedContent = content.replace(questionsSection, "").trim()
+    }
+
+    return { questions, cleanedContent }
+  }, [])
+
+
+  // ALL SERVICE HANDLERS
   const handleChatStream = useCallback(
     (data) => {
       setPartialMessage((prev) => {
         const newContent = (prev?.content || "") + data.chunk
 
         if (data.done) {
+          const { questions, cleanedContent } = extractQuestionsAndCleanMessage(newContent)
+
           setMessages((prevMsgs) => [
             ...prevMsgs,
             {
               id: data.id || generateId(),
               role: "assistant",
-              content: newContent,
+              content: cleanedContent,
               created_at: new Date().toISOString(),
               conversation_id: data.conversationId || null,
             },
           ])
 
+          setSuggestedQuestions(questions)
           setIsPartialMessageLoading(false)
           sendSocketCommand({ type: "get_conversations" })
           sendSocketCommand({ type: "get_history", conversationId: data.conversation_id })
@@ -174,7 +200,29 @@ export function useWebSocket(url) {
         }
       })
     },
-    [generateId, sendSocketCommand],
+    [generateId, sendSocketCommand, extractQuestionsAndCleanMessage],
+  )
+
+  const handleHistory = useCallback(
+    (data) => {
+      const cleanedMessages = (data.messages || []).map((message) => {
+        if (message.role === "assistant") {
+          const { cleanedContent } = extractQuestionsAndCleanMessage(message.content)
+          return { ...message, content: cleanedContent }
+        }
+        return message
+      })
+      setMessages(cleanedMessages)
+      if (data.messages && data.messages.length > 0) {
+        const lastMessage = data.messages[data.messages.length - 1]
+        if (lastMessage.role === "assistant") {
+          const { questions } = extractQuestionsAndCleanMessage(lastMessage.content)
+          setSuggestedQuestions(questions)
+        }
+      }
+      navigate(`/home?cat=chat&cid=${data.conversationId}`);
+    },
+    [extractQuestionsAndCleanMessage],
   )
 
   const handleConversations = useCallback(
@@ -203,19 +251,7 @@ export function useWebSocket(url) {
     sendSocketCommand({ type: "get_conversations" })
   }, [sendSocketCommand])
 
-  useEffect(() => {
-    if (url) {
-      connect()
-    } else if (socket.current) {
-      socket.current.close()
-    }
-
-    return () => {
-      if (socket.current) {
-        socket.current.close()
-      }
-    }
-  }, [connect, url])
+  //COMMNADS FROM USER
 
   const sendMessage = useCallback(
     (data) => {
@@ -285,7 +321,24 @@ export function useWebSocket(url) {
 
   const clearMessages = useCallback(() => {
     setMessages([])
+    setSuggestedQuestions([])
   }, [])
+
+// STARTING CONNECTION
+  useEffect(() => {
+    if (url) {
+      connect()
+    } else if (socket.current) {
+      socket.current.close()
+    }
+
+    return () => {
+      if (socket.current) {
+        socket.current.close()
+      }
+    }
+  }, [connect, url])
+
 
 
   return {
@@ -300,6 +353,8 @@ export function useWebSocket(url) {
     renameConversation,
     isConversationLoading,
     isPartialMessageLoading,
+    suggestedQuestions,
+    setSuggestedQuestions,
     socket,
   }
 }
