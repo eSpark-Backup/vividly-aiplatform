@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils'
 import { useTheme } from '@/components'
 import { themes } from '@/constant'
 
-export const FeatureCard = ({ icon: Icon, title, items, color, shadow }) => {
+export const FeatureCard = ({ icon: Icon, title, items, color, shadow, onClick }) => {
     const { theme } = useTheme()
     const isDarkTheme = theme === themes[0];
 
@@ -20,6 +20,7 @@ export const FeatureCard = ({ icon: Icon, title, items, color, shadow }) => {
             <div className="space-y-2 flex flex-col items-center">
                 {items.map((item, index) => (
                     <div
+                        onClick={() => onClick(item)}
                         key={index}
                         className="group dark:gradient-glass-effect bg-black w-[220px] flex items-center justify-between rounded-lg text-wrap p-3 text-sm transition-all"
                     >
