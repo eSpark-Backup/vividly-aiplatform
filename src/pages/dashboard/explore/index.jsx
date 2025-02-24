@@ -1,8 +1,15 @@
 import { Pen, Code, Lightbulb, MessageCircle } from 'lucide-react'
 import { FeatureCard } from './FeatureCard'
+import { useWebSocketContext } from '@/services/WebSocketProvider'
+import { useNavigate } from 'react-router-dom'
 
 
 const Explore = () => {
+
+    const { sendMessage, setSuggestedQuestions } = useWebSocketContext()
+    const navigate = useNavigate()
+
+
     const features = [
         {
             icon: MessageCircle,
@@ -54,6 +61,12 @@ const Explore = () => {
         }
     ]
 
+    const handleSuggestedQuestionClick = (question) => {
+        navigate(`/home?cat=chat`)
+        sendMessage({ content: question })
+        setSuggestedQuestions([])
+    }
+
     return (
         <div className="min-h-[calc(100vh-280px)] flex items-center">
             <div className="w-full px-4 sm:px-6 py-8">
@@ -67,7 +80,7 @@ const Explore = () => {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 sm:gap-6">
                         {features.map((feature, index) => (
-                            <FeatureCard key={index} {...feature} />
+                            <FeatureCard onClick={handleSuggestedQuestionClick} key={index} {...feature} />
                         ))}
                     </div>
                 </div>

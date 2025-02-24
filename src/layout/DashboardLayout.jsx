@@ -1,12 +1,15 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header, Sidebar } from './index'
 import { Chat, Explore, HowToUse } from '@/pages'
+import { useGetUserProfile } from '@/hooks/useUser'
 
 
 const DashboardLayout = () => {
     const location = useLocation()
     const searchParams = new URLSearchParams(location.search)
     const cat = searchParams.get("cat")
+
+    const { data: User, isLoading } = useGetUserProfile()
 
     const renderContent = () => {
         if (location.pathname === "/home") {
@@ -24,7 +27,7 @@ const DashboardLayout = () => {
         return <Outlet />
     }
 
-    
+
 
 
     return (
