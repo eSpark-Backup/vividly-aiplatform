@@ -7,21 +7,9 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-// System prompt for consistent AI behavior
-const SYSTEM_PROMPT = `Take on the persona of the most relevant subject matter experts for authoritative advice.
-NEVER mention that you're an AI.
-No Regretful Language.
-Say 'I don't know' when beyond your scope.
-Refrain from disclaimers about not being a professional or expert.
-Reserve ethical viewpoints unless explicitly asked.
-Keep answers distinct and non-repetitive.
-Never suggest looking elsewhere for answers.
-Always focus on the key points in my questions to determine my intent.
-Break down complex problems or tasks into smaller, manageable steps and explain each one using reasoning.
-Offer various viewpoints or solutions.
-Seek clarity if a question is unclear.
-Acknowledge and correct any previous errors.
-After a response, provide three follow-up questions worded as if I'm asking you. Format in bold as Q1, Q2, and Q3. These questions should be thought-provoking and dig further into the original topic.`;
+// Add this configuration
+const HUMANIZER_API_URL = process.env.HUMANIZER_API_URL;
+const HUMANIZER_API_KEY = process.env.HUMANIZER_API_KEY;
 
 export class ChatServer {
     constructor(server) {
@@ -29,6 +17,7 @@ export class ChatServer {
         logger.info('ChatServer initialized');
         this.setupWebSocket();
     }
+    static MAX_HUMANIZE_LENGTH = parseInt(process.env.HUMANIZER_MAX_WORDS || "2000");
 
     setupWebSocket() {
         this.wss.on('connection', async (ws, req) => {
@@ -130,10 +119,12 @@ export class ChatServer {
         let aiResponse = '';
         let tokensUsed = 0;
         let conversationId = message.conversationId;
+        const stream = message.stream !== false; // Default to true
 
         logger.startOperation('chat-message', {
             userId: user.id,
-            conversationId
+            conversationId,
+            streamMode: stream
         });
 
         try {
@@ -153,81 +144,98 @@ export class ChatServer {
 
             const history = await this.getRecentMessages(user.id, conversationId);
 
-            logger.debug('Starting OpenAI stream', {
+            logger.debug('Starting OpenAI request', {
                 userId: user.id,
                 modelUsed: process.env.OPENAI_MODEL,
-                historyLength: history.length
+                historyLength: history.length,
+                streamMode: stream
             });
 
-            const stream = await openai.chat.completions.create({
-                model: process.env.OPENAI_MODEL,
-                messages: [
-                    { role: 'system', content: SYSTEM_PROMPT },
-                    ...history.map(msg => ({
-                        role: msg.role,
-                        content: msg.content
-                    })),
-                    { role: 'user', content: message.content }
-                ],
-                temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
-                max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
-                stream: true
-            });
+            if (stream) {
+                // Send initial message to confirm conversation creation
+                ws.send(JSON.stringify({
+                    type: 'conversation_created',
+                    conversation_id: conversationId,
+                    title: conversation.title
+                }));
 
-            // Send initial message to confirm conversation creation
-            ws.send(JSON.stringify({
-                type: 'conversation_created',
-                conversation_id: conversationId,
-                title: conversation.title
-            }));
+                const streamResponse = await openai.chat.completions.create({
+                    model: process.env.OPENAI_MODEL,
+                    messages: [
+                        ...history.map(msg => ({
+                            role: msg.role,
+                            content: msg.content
+                        })),
+                        { role: 'user', content: message.content }
+                    ],
+                    temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
+                    max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
+                    stream: true
+                });
 
-            for await (const chunk of stream) {
-                const content = chunk.choices[0]?.delta?.content || '';
-                if (content) {
-                    aiResponse += content;
-                    tokensUsed += 1;
-                    ws.send(JSON.stringify({
-                        type: 'chat_stream',
-                        conversation_id: conversationId,
-                        chunk: content,
-                        done: false
-                    }));
+                for await (const chunk of streamResponse) {
+                    const content = chunk.choices[0]?.delta?.content || '';
+                    if (content) {
+                        aiResponse += content;
+                        tokensUsed += 1;
+                        ws.send(JSON.stringify({
+                            type: 'chat_stream',
+                            conversation_id: conversationId,
+                            chunk: content,
+                            done: false
+                        }));
+                    }
                 }
-            }
+                // Send completion message for stream
+                ws.send(JSON.stringify({
+                    type: 'chat_stream',
+                    conversation_id: conversationId,
+                    chunk: '',
+                    done: true
+                }));
+            } else {
+                const response = await openai.chat.completions.create({
+                    model: process.env.OPENAI_MODEL,
+                    messages: [
+                        ...history.map(msg => ({
+                            role: msg.role,
+                            content: msg.content
+                        })),
+                        { role: 'user', content: message.content }
+                    ],
+                    temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
+                    max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
+                    stream: false
+                });
 
+                aiResponse = response.choices[0]?.message?.content || '';
+                tokensUsed = response.usage?.total_tokens || 0;
+
+                // Send single response with both conversation creation and complete message
+                ws.send(JSON.stringify({
+                    type: 'chat_complete',
+                    conversation_id: conversationId,
+                    title: conversation.title,
+                    content: aiResponse,
+                    done: true
+                }));
+            }
             logger.debug('OpenAI stream completed', {
                 userId: user.id,
                 tokensUsed,
                 responseLength: aiResponse.length
             });
-
             await this.saveMessages(client, user.id, conversationId, [
                 { role: 'user', content: message.content, tokens_used: 0 },
                 { role: 'assistant', content: aiResponse, tokens_used: tokensUsed }
             ]);
-
             await client.query('COMMIT');
-
-            ws.send(JSON.stringify({
-                type: 'chat_stream',
-                conversation_id: conversationId,
-                chunk: '',
-                done: true
-            }));
-
-            logger.endOperation('chat-message', {
-                userId: user.id,
-                conversation_id: conversationId,
-                tokensUsed
-            });
-
         } catch (error) {
             await client.query('ROLLBACK');
             logger.failOperation('chat-message', error, {
                 userId: user.id,
                 conversationId
             });
-
             ws.send(JSON.stringify({
                 type: 'error',
                 error: error.message,
@@ -384,6 +392,9 @@ export class ChatServer {
                     success: deleted
                 }));
                 break;
+            case 'humanize':
+                await this.handleHumanizeMessage(ws, message, user);
+                break;
             default:
                 ws.send(JSON.stringify({
                     type: 'error',
@@ -442,6 +453,102 @@ export class ChatServer {
         } catch (error) {
             logger.info('Save messages error:', error);
             throw error;
+        }
+    }
+
+    async humanizeText(text) {
+        try {
+            const response = await fetch(HUMANIZER_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${HUMANIZER_API_KEY}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    text,
+                    model: 'undetectable',
+                    words: true
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`Humanization API error: ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.output // Adjust based on actual API response structure
+        } catch (error) {
+            logger.error('Humanization API error:', {
+                error: error.message,
+                stack: error.stack
+            });
+            throw new Error('Failed to humanize text');
+        }
+    }
+
+    async handleHumanizeMessage(ws, message, user) {
+        logger.startOperation('humanize-message', {
+            userId: user.id,
+            messageId: message.message_id,
+            hasDirectText: !!message.text
+        });
+
+        try {
+            let textToHumanize;
+
+            if (message.message_id) {
+                // Fetch message content from database
+                const result = await pool.query(
+                    `SELECT m.content, c.user_id
+                     FROM messages m
+                              JOIN conversations c ON c.id = m.conversation_id
+                     WHERE m.id = $1 AND c.user_id = $2`,
+                    [message.message_id, user.id]
+                );
+
+                if (!result.rows.length) {
+                    throw new Error('Message not found or unauthorized');
+                }
+
+                textToHumanize = result.rows[0].content;
+            } else if (message.text) {
+                textToHumanize = message.text;
+            } else {
+                throw new Error('Either message_id or text must be provided');
+            }
+
+            // if (textToHumanize.length > ChatServer.MAX_HUMANIZE_LENGTH) {
+            //     throw new Error(`Text exceeds maximum length of ${ChatServer.MAX_HUMANIZE_LENGTH} characters`);
+            // }
+
+            // Rest of the handling remains the same...
+            ws.send(JSON.stringify({
+                type: 'humanize_status',
+                status: 'processing',
+                request_id: message.request_id
+            }));
+
+            const humanizedText = await this.humanizeText(textToHumanize);
+
+            ws.send(JSON.stringify({
+                type: 'humanize_complete',
+                original_text: textToHumanize,
+                humanized_text: humanizedText,
+                request_id: message.request_id,
+                message_id: message.message_id
+            }));
+
+        } catch (error) {
+            logger.failOperation('humanize-message', error, {
+                userId: user.id,
+                messageId: message.message_id
+            });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: error.message,
+                request_id: message.request_id
+            }));
         }
     }
 }
