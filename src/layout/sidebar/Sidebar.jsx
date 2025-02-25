@@ -39,7 +39,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
             </div>
           </Link>
           <div className="text-right">
-            <p className="uppercase text-md">{firstName} {lastName}</p>
+            {firstName || lastName ? `${firstName} ${lastName}` : "User"}
             <p className="text-xs text-[#B6F09C]">{user?.email}</p>
             <p className="text-xs text-[#B6F09C]">Premium</p>
           </div>
