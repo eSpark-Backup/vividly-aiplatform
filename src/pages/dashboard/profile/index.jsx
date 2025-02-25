@@ -3,14 +3,14 @@ import { DatePicker } from "@/components/ui/date-picker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { useUpdateUserProfile } from "@/hooks/useUser";
+import { useUpdateUserAvatar, useUpdateUserProfile } from "@/hooks/useUser";
 import { handleApiError } from "@/lib/apiErrorHandler";
 import { formatDate } from "@/lib/utils";
 import { profileSchema } from "@/schema";
 import { useUserStore } from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar"
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
 
 const Profile = () => {
@@ -24,6 +24,7 @@ const Profile = () => {
         birthdate,
     } = useUserStore()
     const { mutate: UpdateUserProfile, isPending } = useUpdateUserProfile()
+    const { mutate: UpdateUserAvatar, isPending: isPendingAvatar } = useUpdateUserAvatar()
     const { toast } = useToast();
 
     const fileInputRef = useRef(null)
@@ -44,8 +45,8 @@ const Profile = () => {
             first_name: firstName,
             last_name: lastName,
             phone: phone,
-            address: address,
-            city: city,
+            address: address || "",
+            city: city || "",
             birthdate: new Date(birthdate),
         },
     });
@@ -54,7 +55,7 @@ const Profile = () => {
 
         const formatedData = {
             ...data,
-            birthdate:  formatDate(data.birthdate),
+            birthdate: formatDate(data.birthdate),
         }
 
 
@@ -96,8 +97,8 @@ const Profile = () => {
                 const formData = new FormData()
                 formData.append("avatar", file)
 
-                
-                UpdateUserProfile(formData,
+
+                UpdateUserAvatar(formData,
                     {
                         onSuccess: () => {
                             showToast("Success", "Avatar updated successfully", "success")
@@ -123,15 +124,19 @@ const Profile = () => {
                 {/* {USER Avatar} */}
 
                 <div className="flex gap-8 items-center">
-                    <Avatar className="h-24 w-24">
-                        <AvatarImage className="rounded-full" src={avatar} alt={`Avatar`} />
-
-                        <div className="flex items-center justify-center">
-                            <AvatarFallback className="rounded-full bg-primary p-7 text-primary-foreground  text-2xl font-bold">
+                    <Avatar className="h-24 w-24 relative">
+                        {avatar ? (
+                            <AvatarImage
+                                className="h-full w-full rounded-full object-cover"
+                                src={avatar}
+                                alt="Avatar"
+                            />
+                        ) : (
+                            <AvatarFallback className="absolute inset-0 flex items-center justify-center rounded-full bg-primary text-primary-foreground text-2xl font-bold">
                                 {firstName?.[0]}
                                 {lastName?.[0]}
                             </AvatarFallback>
-                        </div>
+                        )}
                     </Avatar>
 
                     <div>
@@ -142,8 +147,8 @@ const Profile = () => {
                             accept="image/jpeg,image/png"
                             style={{ display: "none" }}
                         />
-                        <Button variant="default" className="w-[150px]" onClick={handleAvatarClick} disabled={isPending}>
-                            {isPending ? "Uploading..." : "Change Avatar"}
+                        <Button variant="default" className="w-[150px]" onClick={handleAvatarClick} disabled={isPendingAvatar}>
+                            {isPendingAvatar ? "Uploading..." : "Change Avatar"}
                         </Button>
                         <p className="text-sm text-gray-500 mt-2">JPEG or PNG, max 5MB</p>
                     </div>

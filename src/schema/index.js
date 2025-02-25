@@ -66,13 +66,6 @@ export const profileSchema = z.object({
       message: "Last name must be at least 2 characters long",
     }),
 
-  email: z
-    .string()
-    .optional()
-    .refine((val) => !val || z.string().email().safeParse(val).success, {
-      message: "Invalid email address",
-    }),
-
   phone: z
     .string()
     .optional()

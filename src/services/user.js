@@ -20,3 +20,14 @@ export async function updateUserProfile(params) {
 
     return data 
 }
+
+// PUT User Avatar | PUT
+export async function updateUserAvatar(params) {
+    const { data } = await request({
+        url: "/user/profile",
+        method: "PUT",
+        data: params
+    })
+
+    return data 
+}
