@@ -94,7 +94,7 @@ export const profileSchema = z.object({
       message: "City must be at least 2 characters long",
     }),
 
-  date_of_birth: z
+    birthdate: z
     .date()
     .optional()
     .refine((val) => !val || !isNaN(Date.parse(val)), {

@@ -38,11 +38,7 @@ export const categorizeHistory = (history) => {
 
   return { today, yesterday, last7Days };
 };
-
 export const formatDate = (date) => {
-  if (!(date instanceof Date)) {
-    date = new Date(date)
-  }
-  return date.toISOString().split("T")[0]
+  const d = date instanceof Date ? date : new Date(date)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
 }
-

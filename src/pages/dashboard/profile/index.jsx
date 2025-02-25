@@ -46,7 +46,7 @@ const Profile = () => {
             phone: phone,
             address: address,
             city: city,
-            date_of_birth: new Date(birthdate),
+            birthdate: new Date(birthdate),
         },
     });
 
@@ -54,7 +54,7 @@ const Profile = () => {
 
         const formatedData = {
             ...data,
-            date_of_birth: formatDate(data?.date_of_birth),
+            birthdate:  formatDate(data.birthdate),
         }
 
 
@@ -164,10 +164,8 @@ const Profile = () => {
                             </Label>
                             <div>
                                 <Input
-                                    disabled
                                     id="first_name"
                                     className="w-full px-4 py-3"
-                                    InputClassName="cursor-not-allowed"
                                     type="text"
                                     placeholder="First Name"
                                     {...register("first_name")}
@@ -187,10 +185,7 @@ const Profile = () => {
                             </Label>
                             <div>
                                 <Input
-                                    disabled
-                                    id="last_name"
                                     className="w-full px-4 py-3"
-                                    InputClassName="cursor-not-allowed"
                                     type="text"
                                     placeholder="Last Name"
                                     {...register("last_name")}
@@ -227,19 +222,19 @@ const Profile = () => {
 
                         {/* Date of Birth */}
                         <div className="grid grid-cols-1 sm:grid-cols-[8rem,1fr] gap-4 items-center">
-                            <Label htmlFor="date_of_birth" className="sm:text-left">
+                            <Label htmlFor="birthdate" className="sm:text-left">
                                 Date of Birth
                             </Label>
                             <div >
                                 <DatePicker
                                     noStartIcon
                                     placeholder="Pick a Birth Date"
-                                    value={watch("date_of_birth")}
-                                    onChange={(date) => setValue("date_of_birth", date)}
+                                    value={watch("birthdate")}
+                                    onChange={(date) => setValue("birthdate", date)}
                                 />
-                                {errors.date_of_birth && (
+                                {errors.birthdate && (
                                     <p className="mt-1 text-sm text-red-500">
-                                        {errors.date_of_birth.message}
+                                        {errors.birthdate.message}
                                     </p>
                                 )}
                             </div>
