@@ -5,7 +5,7 @@ import { logger } from '../../helpers/logger.js';
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.id;
-        const { phone, address, city, birthdate } = req.body;
+        const { first_name, last_name, phone, address, city, birthdate } = req.body;
         let avatar = null;
 
         if (req.file) {
@@ -30,6 +30,18 @@ export const updateProfile = async (req, res) => {
         const client = await pool.connect();
         try {
             await client.query('BEGIN');
+
+            // Update first_name and last_name in the users table if provided
+            if (first_name || last_name) {
+                await client.query(
+                    `UPDATE users 
+                     SET first_name = COALESCE($2, first_name),
+                         last_name = COALESCE($3, last_name),
+                         updated_at = CURRENT_TIMESTAMP
+                     WHERE id = $1`,
+                    [userId, first_name, last_name]
+                );
+            }
 
             const profileExists = await client.query(
                 'SELECT 1 FROM user_profiles WHERE user_id = $1',

@@ -628,6 +628,12 @@ paths:
                   type: string
                   format: binary
                   description: Profile picture (JPEG or PNG, max 5MB)
+                first_name:
+                  type: string
+                  example: "John"
+                last_name:
+                  type: string
+                  example: "Doe updated"
                 phone:
                   type: string
                   example: "+1234567890"
