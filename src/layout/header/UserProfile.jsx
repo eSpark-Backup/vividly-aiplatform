@@ -1,15 +1,15 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card } from "@/components/ui/card";
-import { CreditCard, Home, LogOut, Palette, Settings, WalletCards } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
-import { cn } from "@/lib/utils";
+import { CreditCard, Home, LogOut, Palette, Settings, User, WalletCards } from "lucide-react";
+import { useLocation } from "react-router-dom";
 import { useDialogStore } from "@/store/useDialogStore";
 import { Switch } from "../../components/ui/switch";
 import { useTheme } from "../../components";
 import { themes } from "@/constant";
-import { memo, useState } from "react";
+import { useState } from "react";
 import { SidebarLink } from "./SidebarLinks";
+import { useUserStore } from "@/store/useUserStore";
 
 
 const ThemeSwitch = ({ isDarkTheme, setTheme }) => (
@@ -40,16 +40,19 @@ const SignOutButton = ({ onSignOut }) => (
 export default function UserProfile() {
   const { setShowSignOutDialog } = useDialogStore();
   const { theme, setTheme } = useTheme();
-  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
-
+  const { avatar, firstName, lastName } = useUserStore()
   const isDarkTheme = theme === themes[0];
+
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false);
 
 
   const routes = [
     { label: "Home", icon: Home, href: "/home?cat=explore" },
+    { label: "Profile", icon: User, href: "/profile" },
     { label: "Billing", icon: WalletCards, href: "/billing" },
     { label: "Pricing Plan", icon: CreditCard, href: "/pricing-plan" },
   ];
+
 
   return (
     <Card className="dark:gradient-glass-effect bg-black rounded-lg w-full py-2 px-3 relative">
@@ -57,10 +60,10 @@ export default function UserProfile() {
         <div className="flex gap-2">
           <Avatar className="h-14 w-14">
             <AvatarImage
-              src="https://cdn2.futurepedia.io/2024-11-26T18-51-51.356Z-MtXWJEI4O08DkXhcFo8z7VXOEe00XPWLb.webp?w=1920"
+              src={avatar}
               alt="Adam Green"
             />
-            <AvatarFallback>AG</AvatarFallback>
+            <AvatarFallback> {firstName?.[0]} {lastName?.[0]} </AvatarFallback>
           </Avatar>
         </div>
 

@@ -3,9 +3,11 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Eye, EyeOff } from "lucide-react"
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 const Input = React.forwardRef(
-  ({ className, type, icon: Icon, iconClassName, variant = "default", ...props }, ref) => {
+  ({ className, type, icon: Icon, iconClassName, InputClassName, variant = "default", ...props }, ref) => {
     const [showPassword, setShowPassword] = React.useState(false)
 
     const togglePasswordVisibility = () => {
@@ -16,6 +18,9 @@ const Input = React.forwardRef(
       default: "dark:bg-[#F0EDFFCC] bg-[#B2B0BDCC]",
       basic: "dark:bg-[#0D0F10] bg-white border border-black dark:border-[#FFFFFF14] rounded-lg",
     }
+
+    const isPasswordField = type === "password";
+    const isPhoneField = type === "tel";
 
     return (
       <div className="relative">
@@ -34,21 +39,54 @@ const Input = React.forwardRef(
               )}
             />
           )}
-          <input
-            type={showPassword ? "text" : type}
-            className={cn(
-              "w-full bg-transparent focus:outline-none",
-              variant === "default"
-                ? "text-[#1C1C1C] placeholder:text-[#1C1C1C]"
-                : "text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-white",
-              "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
-              Icon && "pl-11 pr-6",
-              type === "password" && "pr-10",
-            )}
-            ref={ref}
-            {...props}
-          />
-          {type === "password" && (
+
+
+          {isPhoneField ? (
+            <PhoneInput
+              country={"tr"}
+              ref={ref}
+              {...props}
+              inputStyle={
+                {
+                  width: "100%",
+                  height: "100%",
+                  border: "none",
+                  outline: "none",
+                  backgroundColor: "transparent",
+                  color: "#1C1C1C",
+                  fontSize: "16px",
+                }
+              }
+              buttonStyle={{
+                background: "transparent",
+                border: "none",
+                padding: "0",
+                color: "#1C1C1C",
+              }}
+              
+            />
+          ) : (
+
+            <input
+              type={showPassword ? "text" : type}
+              className={cn(
+                "w-full bg-transparent focus:outline-none",
+                variant === "default"
+                  ? "text-[#1C1C1C] placeholder:text-[#1C1C1C]"
+                  : "text-gray-900 dark:text-white placeholder:text-gray-500 dark:placeholder:text-white",
+                "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
+                Icon && "pl-11 pr-6",
+                isPasswordField && "pr-10",
+                InputClassName,
+              )}
+              ref={ref}
+              {...props}
+            />
+          )}
+
+
+
+          {isPasswordField && (
             <button
               type="button"
               onClick={togglePasswordVisibility}

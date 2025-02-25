@@ -9,3 +9,14 @@ export async function getUserProfile(params) {
 
     return data
 }
+
+//PUT User Profile | PUT
+export async function updateUserProfile(params) {
+    const { data } = await request({
+        url: "/user/profile",
+        method: "PUT",
+        data: params
+    })
+
+    return data 
+}

@@ -1,5 +1,5 @@
-import { getUserProfile } from "@/services/user";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { getUserProfile, updateUserProfile } from "@/services/user";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const useGetUserProfile = () => {
     return useQuery({
@@ -8,6 +8,23 @@ const useGetUserProfile = () => {
     });
 }
 
+const useUpdateUserProfile = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationKey: ["updateUserProfile"],
+        mutationFn: updateUserProfile,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["userProfile"] })
+        }
+    });
+
+}
+
+
+
+
 export {
-    useGetUserProfile
+    useGetUserProfile,
+    useUpdateUserProfile,
 }
