@@ -118,7 +118,7 @@ const Profile = () => {
             <div className="max-w-[700px] m-auto px-4 sm:px-10 py-3 space-y-4">
                 {/* {USER NAME} */}
                 <div>
-                    <p className="uppercase font-bold text-xl">ADAM GREEN</p>
+                    <p className="uppercase font-bold text-xl">{firstName} {lastName} </p>
                 </div>
 
                 {/* {USER Avatar} */}
