@@ -48,3 +48,49 @@ export const createPasswordSchema = z.object({
   message: "Passwords do not match",
   path: ["confirmPassword"],
 });
+
+
+// Profile Schema
+export const profileSchema = z.object({
+  first_name: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.length >= 2, {
+      message: "First name must be at least 2 characters long",
+    }),
+
+  last_name: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.length >= 2, {
+      message: "Last name must be at least 2 characters long",
+    }),
+
+  phone: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.length >= 10, {
+      message: "Phone number must be at least 10 characters long",
+    }),
+
+  address: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.length >= 5, {
+      message: "Address must be at least 5 characters long",
+    }),
+
+  city: z
+    .string()
+    .optional()
+    .refine((val) => !val || val.length >= 2, {
+      message: "City must be at least 2 characters long",
+    }),
+
+    birthdate: z
+    .date()
+    .optional()
+    .refine((val) => !val || !isNaN(Date.parse(val)), {
+      message: "Invalid date format",
+    }),
+});

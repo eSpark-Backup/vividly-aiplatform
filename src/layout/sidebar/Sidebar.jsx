@@ -9,10 +9,12 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useWebSocketContext } from "@/services/WebSocketProvider";
+import { useUserStore } from "@/store/useUserStore";
 
 const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
   const { theme } = useTheme();
   const { user } = useAuthStore();
+  const { firstName, lastName } = useUserStore()
 
   const isDarkTheme = theme === themes[0];
   const [conversationSearch, setConversationSearch] = useState("");
@@ -37,7 +39,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
             </div>
           </Link>
           <div className="text-right">
-            <p className="uppercase text-md">{user?.first_name} {user?.last_name}</p>
+            {firstName || lastName ? `${firstName} ${lastName}` : "User"}
             <p className="text-xs text-[#B6F09C]">{user?.email}</p>
             <p className="text-xs text-[#B6F09C]">Premium</p>
           </div>

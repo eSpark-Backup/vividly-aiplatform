@@ -2,6 +2,8 @@ import { Outlet, useLocation } from 'react-router-dom'
 import { Header, Sidebar } from './index'
 import { Chat, Explore, HowToUse } from '@/pages'
 import { useGetUserProfile } from '@/hooks/useUser'
+import { useUserStore } from '@/store/useUserStore'
+import { useEffect } from 'react'
 
 
 const DashboardLayout = () => {
@@ -9,7 +11,17 @@ const DashboardLayout = () => {
     const searchParams = new URLSearchParams(location.search)
     const cat = searchParams.get("cat")
 
-    const { data: User, isLoading } = useGetUserProfile()
+    const { data: User, isSuccess, isError } = useGetUserProfile()
+    const { setUser } = useUserStore()
+
+    useEffect(() => {
+        if (isSuccess) {
+            setUser(User?.profile)
+        }
+        if (isError) {
+            shaowToast("Error", "Error While Fetching User", "error")
+        }
+    }, [isSuccess, isError, User])
 
     const renderContent = () => {
         if (location.pathname === "/home") {

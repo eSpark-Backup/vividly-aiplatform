@@ -12,6 +12,7 @@ import { tabsCSS } from "@/constant"
 import { MobileSidebar } from ".."
 import { useChatStore } from "@/store/useChatStore"
 import { useWebSocketContext } from "@/services/WebSocketProvider"
+import { useUserStore } from "@/store/useUserStore"
 
 const tabs = [
   { value: "explore", label: "Explore Vividly", icon: Pyramid },
@@ -29,6 +30,7 @@ export default function Header() {
   const { clearMessages } = useWebSocketContext()
   const { clearAuth } = useAuthStore();
   const { showSignOutDialog, setShowSignOutDialog } = useDialogStore();
+  const { clearUser } = useUserStore()
   const { toast } = useToast();
 
   const showToast = (title, description, type) => {
@@ -40,6 +42,7 @@ export default function Header() {
       onSuccess: () => {
         showToast("Success", "You have been signed out successfully.", "success");
         clearAuth();
+        clearUser();
         setShowSignOutDialog(false);
         setConversations([]);
         clearMessages();

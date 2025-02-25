@@ -4,14 +4,14 @@ import { persist } from "zustand/middleware"
 export const useUserStore = create()(
     persist(
         (set) => ({
-            email: null,
-            firstName: null,
-            lastName: null,
-            phone: null,
-            address: null,
-            city: null,
-            birthdate: null,
-            avatar: null,
+            email: "",
+            firstName: "",
+            lastName: "",
+            phone: "",
+            address: "",
+            city: "",
+            birthdate: "",
+            avatar: "",
             setUser: (user) => set({ ...user }),
             clearUser: () => set({ email: "", firstName: "", lastName: "", phone: "", address: "", city: "", birthdate: "", avatar: "" }),
         }),

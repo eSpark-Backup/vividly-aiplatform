@@ -128,4 +128,35 @@ input:-webkit-autofill {
 }
 
 
-/* .. */
+.react-tel-input .flag-dropdown.open .selected-flag,
+.react-tel-input .flag-dropdown.open .selected-flag:hover {
+  background-color: transparent;
+}
+
+.react-tel-input .flag .arrow {
+  display: none;
+}
+
+
+.react-tel-input .flag-dropdown .selected-flag {
+  background-color: transparent;
+  padding-left: 0;
+}
+
+.react-tel-input .form-control {
+  padding-left: 30px;
+  font-size: 16px !important;
+}
+
+
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

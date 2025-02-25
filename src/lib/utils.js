@@ -10,7 +10,7 @@ export function cn(...inputs) {
 export const getLastMessage = (messages) => {
   if (!messages || messages.length === 0) return "No messages";
   return messages.reduce((latest, message) =>
-      new Date(message.created_at) > new Date(latest.created_at) ? message : latest
+    new Date(message.created_at) > new Date(latest.created_at) ? message : latest
   ).content;
 };
 
@@ -38,3 +38,7 @@ export const categorizeHistory = (history) => {
 
   return { today, yesterday, last7Days };
 };
+export const formatDate = (date) => {
+  const d = date instanceof Date ? date : new Date(date)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
+}
