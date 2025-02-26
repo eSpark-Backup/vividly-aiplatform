@@ -11,7 +11,7 @@ export const WebSocketProvider = ({ children }) => {
   useEffect(() => {
     if (accessToken) {
       setUrl(`wss://vividly-stg-api.esparkconsultants.com/chat?token=${encodeURIComponent(refreshToken)}`)
-    } else {
+          } else {
       setUrl(null);
     }
   }, [accessToken]);

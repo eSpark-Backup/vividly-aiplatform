@@ -1,12 +1,9 @@
-"use client"
-
 import React, { useState, useRef, useEffect, useCallback } from "react"
-import { Send, Square } from "lucide-react"
-import ReactMarkdown from "react-markdown"
 import { useWebSocketContext } from "@/services/WebSocketProvider"
-import { Textarea } from "@/components/ui/textarea"
 import { useSearchParams } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+import MessageBubble from "./MessageBubble"
+import SuggestedQuestions from "./SuggestedQuestions"
+import ChatInput from "./ChatInput"
 
 export default function Chat() {
   const {
@@ -115,74 +112,11 @@ export default function Chat() {
   )
 }
 
-const MessageBubble = React.memo(({ message }) => (
-  <div className={`flex items-start gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
-    <div
-      className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${
-        message.role === "user"
-          ? "dark:gradient-glass-effect bg-black text-gray-200"
-          : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
-      }`}
-    >
-      <ReactMarkdown
-        components={{
-          pre: ({ node, ...props }) => (
-            <div className="overflow-auto w-full my-2 dark:bg-white/10 bg-black/45 p-2 rounded-lg">
-              <pre {...props} />
-            </div>
-          ),
-          code: ({ node, ...props }) => <code className="bg-black/10 rounded-lg p-1" {...props} />,
-        }}
-        className="text-sm overflow-hidden leading-7"
-      >
-        {message.content}
-      </ReactMarkdown>
-    </div>
-  </div>
-))
 
-const SuggestedQuestions = React.memo(({ questions, partialMessage, onQuestionClick }) => {
-  if (questions.length === 0 || partialMessage) return null
 
-  return (
-    <div className="flex flex-col items-start mt-4 space-y-2">
-      {questions.map((question, index) => (
-        <Button key={index} variant="outline" size="sm" onClick={() => onQuestionClick(question)} className="text-sm">
-          {question}
-        </Button>
-      ))}
-    </div>
-  )
-})
 
-const ChatInput = React.memo(
-  ({ input, setInput, handleSubmit, handleKeyDown, isConnected, isPartialMessageLoading, textareaRef }) => (
-    <div className="fixed bottom-0 left-0 right-0 dark:bg-[#14171A] bg-[#E8E9E9] p-4 md:left-72">
-      <div className="max-w-5xl mx-auto">
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-center relative dark:bg-black border border-[#9C67F4] rounded-2xl sm:p-6 p-4 sm:gap-[38px] shadow-[0px_12.62px_15.78px_-9.47px_#B6F09C0A,0px_39.44px_78.89px_-18.93px_#B6F09C1F,0px_0px_0px_4.89px_#B6F09C1F]"
-        >
-          <div className="absolute inset-0 border-1 rounded-2xl -z-10" />
 
-          <Textarea
-            ref={textareaRef}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
-            placeholder="Send a message..."
-            className="flex-1 bg-transparent dark:text-gray-200 px-3 py-2 focus:outline-none placeholder:text-gray-600 min-h-[40px] max-h-[200px] resize-none"
-          />
-          <button
-            type="submit"
-            disabled={!isConnected || !input.trim() || isPartialMessageLoading}
-            className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
-          >
-            {!isPartialMessageLoading ? <Send className="h-5 w-5" /> : <Square className="h-5 w-5 animate-spin" />}
-          </button>
-        </form>
-      </div>
-    </div>
-  ),
-)
+
+
+
 

@@ -8,13 +8,15 @@ export function useWebSocket(url) {
   const { conversations, setConversations } = useChatStore()
   const { toast } = useToast()
   const navigate = useNavigate()
-  const [messages, setMessages] = useState([])
-  const [suggestedQuestions, setSuggestedQuestions] = useState([])
   const reconnectAttempts = useRef(0)
 
+  const [messages, setMessages] = useState([])
+  const [humanizedContent, setHumanizedContent] = useState("")
+  const [suggestedQuestions, setSuggestedQuestions] = useState([])
   const [isConnected, setIsConnected] = useState(false)
   const [partialMessage, setPartialMessage] = useState(null)
   const [error, setError] = useState(null)
+  const [isHumanizeLoading, setIsHumanizeLoading] = useState(false)
   const [isConversationLoading, setIsConversationLoading] = useState(false)
   const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false)
 
@@ -51,7 +53,7 @@ export function useWebSocket(url) {
     },
     [showToast],
   )
-  
+
   // CONNECTION
   const connect = useCallback(() => {
     if (!url) {
@@ -120,6 +122,9 @@ export function useWebSocket(url) {
             case "conversation_renamed":
               handleConversationRenamed()
               break
+            case "humanize_complete":
+              handleHumanizeComplete(data)
+              break
             case "error":
               showToast("Error", data.error, "error")
               break
@@ -130,6 +135,7 @@ export function useWebSocket(url) {
         } catch (err) {
           console.error("Error parsing message:", err)
           setError("Failed to parse message from server")
+          
         }
       }
 
@@ -143,7 +149,7 @@ export function useWebSocket(url) {
     }
   }, [url, conversations.length, sendSocketCommand])
 
- 
+
   // UTILS
   const extractQuestionsAndCleanMessage = useCallback((content) => {
     const questionRegex = /\n\*\*Q\d+:\*\*\s*(.+?)(?=\n\*\*Q\d+:\*\*|\n\n|$)/gs
@@ -251,6 +257,12 @@ export function useWebSocket(url) {
     sendSocketCommand({ type: "get_conversations" })
   }, [sendSocketCommand])
 
+
+  const handleHumanizeComplete = useCallback((data) => {
+    setIsHumanizeLoading(false)
+    setHumanizedContent(data.humanized_text)
+  })
+
   //COMMNADS FROM USER
 
   const sendMessage = useCallback(
@@ -324,7 +336,36 @@ export function useWebSocket(url) {
     setSuggestedQuestions([])
   }, [])
 
-// STARTING CONNECTION
+
+  const sendHumanizeCommand = useCallback(
+    (content) => {
+      const message = {
+        type: "humanize",
+        message_id: content.message_id,
+      }
+
+      setIsHumanizeLoading(true)
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
+
+  const sendReHumenizeCommand = useCallback(
+    (content) => {
+      const message = {
+        type: "humanize",
+        message_id: content.message_id,
+        re_humanize: true
+      }
+
+      setIsHumanizeLoading(true)
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
+
+
+  // STARTING CONNECTION
   useEffect(() => {
     if (url) {
       connect()
@@ -355,6 +396,10 @@ export function useWebSocket(url) {
     isPartialMessageLoading,
     suggestedQuestions,
     setSuggestedQuestions,
+    sendHumanizeCommand,
+    sendReHumenizeCommand,
+    isHumanizeLoading,
+    humanizedContent,
     socket,
   }
 }
