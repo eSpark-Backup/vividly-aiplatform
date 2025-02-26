@@ -546,7 +546,7 @@ export class ChatServer {
                 error: error.message,
                 stack: error.stack
             });
-            throw new Error('Failed to humanize text');
+            throw new Error(`Failed to humanize text ${HUMANIZER_API_URL} ${HUMANIZER_API_KEY}`);
         }
     }
 
