@@ -118,6 +118,8 @@ jobs:
           echo "OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}" >> .env
           echo "OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}" >> .env
           echo "OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}" >> .env
+          echo "HUMANIZER_API_URL: ${{ secrets.HUMANIZER_API_URL }}" >> .env
+          echo "HUMANIZER_API_KEY: ${{ secrets.HUMANIZER_API_KEY }}" >> .env
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-publish

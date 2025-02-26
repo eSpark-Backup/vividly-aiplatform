@@ -23,7 +23,9 @@ services:
       - OPENAI_API_KEY
       - OPENAI_MODEL
       - OPENAI_MAX_TOKENS
-      - OPENAI_MODEL_TEMPERATURE 
+      - OPENAI_MODEL_TEMPERATURE
+      - HUMANIZER_API_URL
+      - HUMANIZER_API_KEY
       
     build:
       context: .
