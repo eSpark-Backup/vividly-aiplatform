@@ -369,16 +369,36 @@ export class ChatServer {
 
 // Delete conversation
     async deleteConversation(userId, conversationId) {
-        const result = await pool.query(`
-                    DELETE
-                    FROM conversations
-                    WHERE id = $1
-                      AND user_id = $2
-                    RETURNING id`,
-            [conversationId, userId]
-        );
+        const client = await pool.connect();
+        try {
+            await client.query('BEGIN');
 
-        return result.rows.length > 0;
+            // Verify the conversation belongs to the user
+            const conversationCheck = await client.query(
+                'SELECT id FROM conversations WHERE id = $1 AND user_id = $2',
+                [conversationId, userId]
+            );
+
+            if (conversationCheck.rows.length === 0) {
+                await client.query('ROLLBACK');
+                return false;
+            }
+
+            // Delete from conversations (should cascade to messages, which should cascade to humanized_messages)
+            const result = await client.query(
+                'DELETE FROM conversations WHERE id = $1 RETURNING id',
+                [conversationId]
+            );
+
+            await client.query('COMMIT');
+            return result.rows.length > 0;
+        } catch (error) {
+            await client.query('ROLLBACK');
+            console.error('Error deleting conversation:', error);
+            throw error;
+        } finally {
+            client.release();
+        }
     }
 
 // Handle these methods in WebSocket messages
