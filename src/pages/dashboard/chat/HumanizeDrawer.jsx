@@ -7,7 +7,7 @@ import { useWebSocketContext } from "@/services/WebSocketProvider"
 
 const HumanizeDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const { sendHumanizeCommand, sendReHumenizeCommand, isHumanizeLoading, humanizedContent } = useWebSocketContext()
+    const { sendHumanizeCommand, sendReHumanizeCommand, isHumanizeLoading, humanizedContent } = useWebSocketContext()
 
     useEffect(() => {
         if (isOpen && message) {
@@ -20,7 +20,7 @@ const HumanizeDrawer = ({ message }) => {
     }
 
     const handleReHumanize = () => {
-        sendReHumenizeCommand({ message_id: message.id })
+        sendReHumanizeCommand({ message_id: message.id })
     }
 
     return (
@@ -35,7 +35,7 @@ const HumanizeDrawer = ({ message }) => {
                     Humanize
                 </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="sm:max-w-[350px] w-[90vw] px-3 sm:py-4 py-4">
+            <SheetContent side="right" className="sm:max-w-[500px] w-[90vw] px-3 sm:py-4 py-4">
                 <SheetHeader>
                     <SheetTitle>Message</SheetTitle>
                 </SheetHeader>
@@ -54,7 +54,7 @@ const HumanizeDrawer = ({ message }) => {
                         <Textarea
                             value={humanizedContent}
                             readOnly
-                            className="w-full h-60 mb-4 bg-black text-white"
+                            className="w-full h-60 mb-4 dark:bg-white/10 bg-black/45 text-white"
                         />
                     )}
                     <Button onClick={handleReHumanize} disabled={isHumanizeLoading}>

@@ -13,12 +13,14 @@ export function useWebSocket(url) {
   const [messages, setMessages] = useState([])
   const [humanizedContent, setHumanizedContent] = useState("")
   const [suggestedQuestions, setSuggestedQuestions] = useState([])
+  const [specficMessageHumanizeHistory, setSpecificMessageHumanizeHistory] = useState([])
   const [isConnected, setIsConnected] = useState(false)
   const [partialMessage, setPartialMessage] = useState(null)
   const [error, setError] = useState(null)
   const [isHumanizeLoading, setIsHumanizeLoading] = useState(false)
   const [isConversationLoading, setIsConversationLoading] = useState(false)
   const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false)
+  const [isSpecificMessageHistoryLoading, setIsSpecificMessageHistoryLoading] = useState(false)
 
   const maxReconnectAttempts = 3
 
@@ -124,6 +126,9 @@ export function useWebSocket(url) {
               break
             case "humanize_complete":
               handleHumanizeComplete(data)
+              break
+            case "get_humanized_messages":
+              handleGetHumanizedMessages(data)
               break
             case "error":
               showToast("Error", data.error, "error")
@@ -263,6 +268,11 @@ export function useWebSocket(url) {
     setHumanizedContent(data.humanized_text)
   })
 
+  const handleGetHumanizedMessages = useCallback((data) => {
+    setIsSpecificMessageHistoryLoading(false)
+    setSpecificMessageHumanizeHistory(data.messages)
+  })
+
   //COMMNADS FROM USER
 
   const sendMessage = useCallback(
@@ -350,7 +360,7 @@ export function useWebSocket(url) {
     [sendSocketCommand],
   )
 
-  const sendReHumenizeCommand = useCallback(
+  const sendReHumanizeCommand = useCallback(
     (content) => {
       const message = {
         type: "humanize",
@@ -359,6 +369,19 @@ export function useWebSocket(url) {
       }
 
       setIsHumanizeLoading(true)
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
+
+  const getSpecificMessageHumanizeHistory = useCallback(
+    (content) => {
+      const message = {
+        type: "get_humanized_messages",
+        message_id: content.message_id,
+      }
+
+      setIsSpecificMessageHistoryLoading(true)
       sendSocketCommand(message)
     },
     [sendSocketCommand],
@@ -397,9 +420,12 @@ export function useWebSocket(url) {
     suggestedQuestions,
     setSuggestedQuestions,
     sendHumanizeCommand,
-    sendReHumenizeCommand,
+    sendReHumanizeCommand,
     isHumanizeLoading,
     humanizedContent,
+    isSpecificMessageHistoryLoading,
+    specficMessageHumanizeHistory,
+    getSpecificMessageHumanizeHistory,
     socket,
   }
 }

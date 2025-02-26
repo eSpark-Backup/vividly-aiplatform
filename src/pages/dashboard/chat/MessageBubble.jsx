@@ -1,13 +1,14 @@
-import React from "react" 
+import React from "react"
 import ReactMarkdown from "react-markdown"
 import HumanizeDrawer from "./HumanizeDrawer"
+import HumanizeHistoryDrawer from "./HumanizeHistoryDrawer"
 
 const MessageBubble = React.memo(({ message }) => (
   <div className={`flex items-start gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
     <div
       className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${message.role === "user"
-          ? "dark:gradient-glass-effect bg-black text-gray-200"
-          : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
+        ? "dark:gradient-glass-effect bg-black text-gray-200"
+        : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
         }`}
     >
       <ReactMarkdown
@@ -23,7 +24,12 @@ const MessageBubble = React.memo(({ message }) => (
       >
         {message.content}
       </ReactMarkdown>
-      {message.role === "assistant" && <HumanizeDrawer message={message} />}
+      {message.role === "assistant" && (
+        <div className="flex">
+          <HumanizeDrawer message={message} />
+          <HumanizeHistoryDrawer message={message} />
+        </div>
+      )}
     </div>
   </div>
 ))
