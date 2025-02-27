@@ -4,6 +4,7 @@ import { AItoHumanize, Chat, Explore, HowToUse } from '@/pages'
 import { useGetUserProfile } from '@/hooks/useUser'
 import { useUserStore } from '@/store/useUserStore'
 import { useEffect } from 'react'
+import { useToast } from '@/hooks/use-toast'
 
 
 const DashboardLayout = () => {
@@ -13,13 +14,18 @@ const DashboardLayout = () => {
 
     const { data: User, isSuccess, isError } = useGetUserProfile()
     const { setUser } = useUserStore()
+    const { toast } = useToast();
+
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
 
     useEffect(() => {
         if (isSuccess) {
             setUser(User?.profile)
         }
         if (isError) {
-            shaowToast("Error", "Error While Fetching User", "error")
+            showToast("Error", "Error While Fetching User", "error")
         }
     }, [isSuccess, isError, User])
 
