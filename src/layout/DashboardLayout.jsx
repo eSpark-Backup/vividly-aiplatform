@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { Header, Sidebar } from './index'
-import { Chat, Explore, HowToUse } from '@/pages'
+import { AItoHumanize, Chat, Explore, HowToUse } from '@/pages'
 import { useGetUserProfile } from '@/hooks/useUser'
 import { useUserStore } from '@/store/useUserStore'
 import { useEffect } from 'react'
@@ -36,6 +36,8 @@ const DashboardLayout = () => {
                     return <Explore />
                 case "chat":
                     return <Chat />
+                case "ai-to-humanize":
+                    return <AItoHumanize />
                 case "how-to-use":
                     return <HowToUse />
                 default:
