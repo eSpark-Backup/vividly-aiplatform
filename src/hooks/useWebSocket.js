@@ -140,7 +140,7 @@ export function useWebSocket(url) {
         } catch (err) {
           console.error("Error parsing message:", err)
           setError("Failed to parse message from server")
-          
+
         }
       }
 
@@ -387,6 +387,20 @@ export function useWebSocket(url) {
     [sendSocketCommand],
   )
 
+  const sendCustomHumanizeCommand = useCallback(
+    (content) => {
+      const message = {
+        type: "humanize",
+        text: content.text,
+        re_humanize: false
+      }
+
+      setIsHumanizeLoading(true)
+      sendSocketCommand(message)
+    },
+    [sendSocketCommand],
+  )
+
 
   // STARTING CONNECTION
   useEffect(() => {
@@ -426,6 +440,7 @@ export function useWebSocket(url) {
     isSpecificMessageHistoryLoading,
     specficMessageHumanizeHistory,
     getSpecificMessageHumanizeHistory,
+    sendCustomHumanizeCommand,
     socket,
   }
 }

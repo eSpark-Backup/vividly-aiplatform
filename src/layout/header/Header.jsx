@@ -1,4 +1,4 @@
-import { MessageCircle, HelpCircle, Pyramid } from "lucide-react"
+import { MessageCircle, HelpCircle, Pyramid, PersonStanding, Speech } from "lucide-react"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Separator } from "@/components/ui/separator"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
@@ -17,6 +17,7 @@ import { useUserStore } from "@/store/useUserStore"
 const tabs = [
   { value: "explore", label: "Explore Vividly", icon: Pyramid },
   { value: "chat", label: "Chat", icon: MessageCircle },
+  { value: "ai-to-humanize", label: "AI to Humanize", icon: Speech },
   { value: "how-to-use", label: "How to use", icon: HelpCircle },
 ]
 
