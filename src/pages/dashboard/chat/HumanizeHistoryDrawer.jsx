@@ -25,7 +25,7 @@ const HumanizeHistoryDrawer = ({ message }) => {
                 <Button
                     variant="ghost"
                     size="sm"
-                    className="mt-2 flex items-center ml-2"
+                    className="mt-2 flex items-center"
                 >
                     <History className="h-4 w-4 mr-1" />
                     History

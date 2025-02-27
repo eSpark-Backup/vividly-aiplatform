@@ -33,7 +33,7 @@ const AItoHumanize = () => {
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                     placeholder="Type your message here..."
-                    className="w-full h-[calc(50vh-140px)] md:h-full resize-none bg-black text-white p-4 pr-24"
+                    className="w-full h-[calc(50vh-140px)] md:h-full resize-none bg-black text-white p-4 pb-16"
                 />
                 <div className="absolute bottom-8 left-8 text-sm text-gray-400">
                     {wordCount}/{maxWords} Words
@@ -41,7 +41,7 @@ const AItoHumanize = () => {
                 <Button
                     onClick={handleHumanize}
                     disabled={!input.trim() || isHumanizeLoading || wordCount > maxWords}
-                    className="absolute bottom-8 right-8"
+                    className="absolute md:bottom-16 lg:bottom-8  bottom-8 right-8"
                     size="sm"
                 >
                     {isHumanizeLoading ? (
@@ -65,7 +65,7 @@ const AItoHumanize = () => {
                     readOnly
                     disabled={!humanizedContent}
                     placeholder="Humanized text will appear here..."
-                    className="w-full h-[calc(50vh-140px)] md:h-full resize-none bg-black/45 text-white p-4 disabled:placeholder-white"
+                    className="w-full h-[calc(50vh-140px)] md:h-full resize-none bg-black/45 text-white p-4 pb-16 disabled:placeholder-white"
                 />
 
                 {humanizedContent && (

@@ -7,7 +7,7 @@ import { useWebSocketContext } from "@/services/WebSocketProvider"
 
 const HumanizeDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const { sendHumanizeCommand, sendReHumanizeCommand, isHumanizeLoading, humanizedContent } = useWebSocketContext()
+    const { sendHumanizeCommand, sendReHumanizeCommand, isHumanizeLoading, humanizedContent, setHumanizedContent } = useWebSocketContext()
 
     useEffect(() => {
         if (isOpen && message) {
@@ -16,6 +16,7 @@ const HumanizeDrawer = ({ message }) => {
     }, [isOpen, message, sendHumanizeCommand])
 
     const handleOpenChange = (open) => {
+        setHumanizedContent("")
         setIsOpen(open)
     }
 
