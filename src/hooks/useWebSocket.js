@@ -437,6 +437,7 @@ export function useWebSocket(url) {
     sendReHumanizeCommand,
     isHumanizeLoading,
     humanizedContent,
+    setHumanizedContent,
     isSpecificMessageHistoryLoading,
     specficMessageHumanizeHistory,
     getSpecificMessageHumanizeHistory,

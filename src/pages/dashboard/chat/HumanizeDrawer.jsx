@@ -16,8 +16,11 @@ const HumanizeDrawer = ({ message }) => {
     }, [isOpen, message, sendHumanizeCommand])
 
     const handleOpenChange = (open) => {
-        setHumanizedContent("")
         setIsOpen(open)
+        
+        if (!open) {
+            setHumanizedContent("")
+        }
     }
 
     const handleReHumanize = () => {
