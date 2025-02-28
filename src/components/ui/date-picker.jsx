@@ -7,7 +7,7 @@ import { format } from "date-fns"
 import { Calendar1 } from "lucide-react"
 
 
-export function DatePicker({ endIcon, noStartIcon, value, placeholder, onChange }) {
+export function DatePicker({ endIcon, noStartIcon, value, placeholder, onChange, maxDate, fromYear = 1960, toYear = new Date().getFullYear() + 10 }) {
   const [date, setDate] = React.useState(value)
 
   return (
@@ -28,8 +28,11 @@ export function DatePicker({ endIcon, noStartIcon, value, placeholder, onChange 
           captionLayout="dropdown-buttons"
           selected={date}
           onSelect={(date) => { setDate(date); onChange(date) }}
-          fromYear={1960}
-          toYear={2030}
+          fromYear={fromYear}
+          toYear={toYear}
+          defaultMonth={date || new Date()}
+          max={maxDate}
+          disabled={maxDate ? (date) => date > maxDate : undefined}
         />
       </PopoverContent>
     </Popover>

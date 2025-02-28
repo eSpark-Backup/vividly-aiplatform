@@ -239,6 +239,8 @@ const Profile = () => {
                                     placeholder="Pick a Birth Date"
                                     value={watch("birthdate")}
                                     onChange={(date) => setValue("birthdate", date)}
+                                    maxDate={new Date()}
+                                   
                                 />
                                 {errors.birthdate && (
                                     <p className="mt-1 text-sm text-red-500">
