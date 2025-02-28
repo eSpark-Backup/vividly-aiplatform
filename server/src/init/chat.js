@@ -147,14 +147,20 @@ export class ChatServer {
 
             // Save user message first and get its ID
             const userMessageResult = await client.query(
-                'INSERT INTO messages (conversation_id, role, content, tokens_used) VALUES ($1, $2, $3, $4) RETURNING id',
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING id',
                 [conversationId, 'user', message.content, 0]
             );
             userMessageId = userMessageResult.rows[0].id;
 
-            // Now save a placeholder for the assistant message and get its ID
+            // Commit the user message immediately to ensure it's saved
+            await client.query('COMMIT');
+
+            // Begin a new transaction for the assistant message
+            await client.query('BEGIN');
+
+            // Now save a placeholder for the assistant message with a timestamp AFTER the user message
             const aiMessageResult = await client.query(
-                'INSERT INTO messages (conversation_id, role, content, tokens_used) VALUES ($1, $2, $3, $4) RETURNING id',
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW() + interval \'1 millisecond\') RETURNING id',
                 [conversationId, 'assistant', '', 0] // Empty content initially
             );
             aiMessageId = aiMessageResult.rows[0].id;
