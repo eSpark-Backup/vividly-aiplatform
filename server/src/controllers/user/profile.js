@@ -1,29 +1,29 @@
 import pool from "../../init/db_conn.js";
 import sharp from 'sharp';
-import { logger } from '../../helpers/logger.js';
+import {logger} from '../../helpers/logger.js';
 
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.id;
-        const { first_name, last_name, phone, address, city, birthdate } = req.body;
+        const {first_name, last_name, phone, address, city, birthdate} = req.body;
         let avatar = null;
 
         if (req.file) {
             try {
                 // Resize and optimize image
                 const optimizedBuffer = await sharp(req.file.buffer)
-                    .resize(200, 200, { 
+                    .resize(200, 200, {
                         fit: 'cover',
                         withoutEnlargement: true
                     })
-                    .jpeg({ quality: 80 }) 
+                    .jpeg({quality: 80})
                     .toBuffer();
 
                 // Convert to base64
                 avatar = `data:image/jpeg;base64,${optimizedBuffer.toString('base64')}`;
             } catch (error) {
                 logger.error('Image processing error:', error);
-                return res.status(400).json({ message: 'Invalid image file' });
+                return res.status(400).json({message: 'Invalid image file'});
             }
         }
 
@@ -32,16 +32,14 @@ export const updateProfile = async (req, res) => {
             await client.query('BEGIN');
 
             // Update first_name and last_name in the users table if provided
-            if (first_name || last_name) {
-                await client.query(
-                    `UPDATE users 
-                     SET first_name = COALESCE($2, first_name),
-                         last_name = COALESCE($3, last_name),
-                         updated_at = CURRENT_TIMESTAMP
-                     WHERE id = $1`,
-                    [userId, first_name, last_name]
-                );
-            }
+            await client.query(
+                `UPDATE users
+                 SET first_name = COALESCE($2, first_name),
+                     last_name  = COALESCE($3, last_name),
+                     updated_at = CURRENT_TIMESTAMP
+                 WHERE id = $1`,
+                [userId, first_name, last_name]
+            );
 
             const profileExists = await client.query(
                 'SELECT 1 FROM user_profiles WHERE user_id = $1',
@@ -56,12 +54,12 @@ export const updateProfile = async (req, res) => {
                 );
             } else {
                 await client.query(
-                    `UPDATE user_profiles 
-                     SET phone = COALESCE($2, phone),
-                         address = COALESCE($3, address),
-                         city = COALESCE($4, city),
-                         birthdate = COALESCE($5, birthdate),
-                         avatar = COALESCE($6, avatar),
+                    `UPDATE user_profiles
+                     SET phone      = COALESCE($2, phone),
+                         address    = COALESCE($3, address),
+                         city       = COALESCE($4, city),
+                         birthdate  = COALESCE($5, birthdate),
+                         avatar     = COALESCE($6, avatar),
                          updated_at = CURRENT_TIMESTAMP
                      WHERE user_id = $1`,
                     [userId, phone, address, city, birthdate, avatar]
@@ -81,7 +79,7 @@ export const updateProfile = async (req, res) => {
         }
     } catch (error) {
         logger.error('Profile update error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({message: 'Internal server error'});
     }
 };
 
@@ -90,23 +88,22 @@ export const getProfile = async (req, res) => {
         const userId = req.user.id;
 
         const result = await pool.query(
-            `SELECT 
-                u.email,
-                u.first_name,
-                u.last_name,
-                up.phone,
-                up.address,
-                up.city,
-                up.birthdate,
-                up.avatar
-            FROM users u
-            LEFT JOIN user_profiles up ON u.id = up.user_id
-            WHERE u.id = $1`,
+            `SELECT u.email,
+                    u.first_name,
+                    u.last_name,
+                    up.phone,
+                    up.address,
+                    up.city,
+                    up.birthdate,
+                    up.avatar
+             FROM users u
+                      LEFT JOIN user_profiles up ON u.id = up.user_id
+             WHERE u.id = $1`,
             [userId]
         );
 
         if (!result.rows.length) {
-            return res.status(404).json({ message: 'Profile not found' });
+            return res.status(404).json({message: 'Profile not found'});
         }
 
         const profile = result.rows[0];
@@ -125,6 +122,6 @@ export const getProfile = async (req, res) => {
         });
     } catch (error) {
         logger.error('Get profile error:', error);
-        res.status(500).json({ message: 'Internal server error' });
+        res.status(500).json({message: 'Internal server error'});
     }
 };
