@@ -54,23 +54,20 @@ export const createPasswordSchema = z.object({
 export const profileSchema = z.object({
   first_name: z
     .string()
-    .optional()
-    .refine((val) => !val || val.length >= 2, {
-      message: "First name must be at least 2 characters long",
-    }),
+    .min(2, "First name must be at least 2 characters long")
+    .nonempty("First name is required"),
 
   last_name: z
     .string()
-    .optional()
-    .refine((val) => !val || val.length >= 2, {
-      message: "Last name must be at least 2 characters long",
-    }),
+    .min(2, "Last name must be at least 2 characters long")
+    .nonempty("Last name is required"),
 
   phone: z
     .string()
+    .nullable()
     .optional()
-    .refine((val) => !val || val.length >= 10, {
-      message: "Phone number must be at least 10 characters long",
+    .refine((val) => !val || val.length >= 9, {
+      message: "Phone number must be at least 9 characters long",
     }),
 
   address: z
@@ -87,7 +84,7 @@ export const profileSchema = z.object({
       message: "City must be at least 2 characters long",
     }),
 
-    birthdate: z
+  birthdate: z
     .date()
     .optional()
     .refine((val) => !val || !isNaN(Date.parse(val)), {

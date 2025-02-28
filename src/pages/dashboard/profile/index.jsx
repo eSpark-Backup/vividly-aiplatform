@@ -44,7 +44,7 @@ const Profile = () => {
         defaultValues: {
             first_name: firstName,
             last_name: lastName,
-            phone: phone,
+            phone: phone || "",
             address: address || "",
             city: city || "",
             birthdate: new Date(birthdate),
@@ -58,6 +58,9 @@ const Profile = () => {
             birthdate: formatDate(data.birthdate),
         }
 
+        if (!formatedData.phone) {
+            delete formatedData.phone
+        }
 
         UpdateUserProfile(formatedData, {
             onSuccess: () => {
