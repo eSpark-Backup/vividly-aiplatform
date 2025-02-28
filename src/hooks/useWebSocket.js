@@ -12,6 +12,7 @@ export function useWebSocket(url) {
 
   const [messages, setMessages] = useState([])
   const [humanizedContent, setHumanizedContent] = useState("")
+  const [AItoHumanizeInput, setAItoHumanizeInput] = useState("")
   const [suggestedQuestions, setSuggestedQuestions] = useState([])
   const [specficMessageHumanizeHistory, setSpecificMessageHumanizeHistory] = useState([])
   const [isConnected, setIsConnected] = useState(false)
@@ -442,6 +443,8 @@ export function useWebSocket(url) {
     specficMessageHumanizeHistory,
     getSpecificMessageHumanizeHistory,
     sendCustomHumanizeCommand,
+    AItoHumanizeInput,
+    setAItoHumanizeInput,
     socket,
   }
 }

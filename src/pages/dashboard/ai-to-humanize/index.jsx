@@ -5,16 +5,15 @@ import { Sparkle, Loader2, ClipboardCopy, Check } from 'lucide-react'
 import { useWebSocketContext } from "@/services/WebSocketProvider"
 
 const AItoHumanize = () => {
-    const [input, setInput] = useState("")
     const [isCopied, setIsCopied] = useState(false)
-    const { sendCustomHumanizeCommand, isHumanizeLoading, humanizedContent } = useWebSocketContext()
+    const { sendCustomHumanizeCommand, isHumanizeLoading, humanizedContent, AItoHumanizeInput, setAItoHumanizeInput } = useWebSocketContext()
     const maxWords = 125
 
-    const wordCount = input.trim() ? input.trim().split(/\s+/).length : 0
+    const wordCount = AItoHumanizeInput.trim() ? AItoHumanizeInput.trim().split(/\s+/).length : 0
 
     const handleHumanize = () => {
-        if (!input.trim()) return
-        sendCustomHumanizeCommand({ text: input })
+        if (!AItoHumanizeInput.trim()) return
+        sendCustomHumanizeCommand({ text: AItoHumanizeInput })
     }
 
     const handleCopy = async () => {
@@ -30,8 +29,8 @@ const AItoHumanize = () => {
             {/* Input Section */}
             <div className="flex-1 relative p-4 md:p-6 mb-4 md:mb-0">
                 <Textarea
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    value={AItoHumanizeInput}
+                    onChange={(e) => setAItoHumanizeInput(e.target.value)}
                     placeholder="Type your message here..."
                     className="w-full h-[calc(50vh-140px)] md:h-full resize-none bg-black text-white p-4 pb-16"
                 />
@@ -40,7 +39,7 @@ const AItoHumanize = () => {
                 </div>
                 <Button
                     onClick={handleHumanize}
-                    disabled={!input.trim() || isHumanizeLoading || wordCount > maxWords}
+                    disabled={!AItoHumanizeInput.trim() || isHumanizeLoading || wordCount > maxWords}
                     className="absolute md:bottom-16 lg:bottom-8  bottom-8 right-8"
                     size="sm"
                 >
