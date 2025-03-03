@@ -1,3 +1,4 @@
+import { navigateTo } from "@/services/NavigationService"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
 
@@ -14,7 +15,10 @@ export const useAuthStore = create()(
             email: null,
         },
         setAuth: (auth) => set((state) => ({ ...state, ...auth })),
-        clearAuth: () => set({ accessToken: null, refreshToken: null, expiresAt: null, user: null }),
+        clearAuth: () => {
+          set({ accessToken: null, refreshToken: null, expiresAt: null, user: null })
+          navigateTo("/log-in")
+        }
       }),
       {
         name: "auth-storage",
