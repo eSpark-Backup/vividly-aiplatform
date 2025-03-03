@@ -1,17 +1,11 @@
-import React, { useState } from "react"
-import { Copy, Check } from "lucide-react"
+import React from "react"
 import ReactMarkdown from "react-markdown"
 import HumanizeDrawer from "./HumanizeDrawer"
 import HumanizeHistoryDrawer from "./HumanizeHistoryDrawer"
+import SpeechController from "./SpeechController"
+import CopyButton from "./CopyButton"
 
 const MessageBubble = React.memo(({ message }) => {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(message.content)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
 
   return (
     <div className={`flex items-start gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
@@ -37,22 +31,18 @@ const MessageBubble = React.memo(({ message }) => {
         <div className="flex flex-col">
 
           {message.role === "assistant" && (
-            <div className="flex">
-              <HumanizeDrawer message={message} />
-              <HumanizeHistoryDrawer message={message} />
-            </div>
+            <>
+              <div className="flex">
+                <HumanizeDrawer message={message} />
+                <HumanizeHistoryDrawer message={message} />
+              </div>
+
+              <div className="flex mt-2 gap-1">
+                <CopyButton text={message.content} />
+                <SpeechController text={message.content} />
+              </div>
+            </>
           )}
-
-          <div className="flex mt-2">
-            <button
-              onClick={handleCopy}
-              className="p-1 rounded-md hover:bg-gray-700/20 transition-colors"
-              aria-label={copied ? "Copied" : "Copy message"}
-            >
-              {copied ? <Check className="h-4 w-4 text-[#9181F4]" /> : <Copy className="h-4 w-4 text-gray-400" />}
-            </button>
-          </div>
-
         </div>
       </div>
     </div>

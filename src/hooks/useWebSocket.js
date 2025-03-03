@@ -51,7 +51,7 @@ export function useWebSocket(url) {
           showToast("Error", "Failed to send message", "error")
         }
       } else {
-        showToast("Error", "Not connected to server", "error")
+        // showToast("Error", "Not connected to server", "error")
       }
     },
     [showToast],
