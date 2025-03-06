@@ -1,21 +1,15 @@
-// services/speechService.js
 import ffmpeg from 'fluent-ffmpeg';
 import fs from 'fs';
 import sdk from 'microsoft-cognitiveservices-speech-sdk';
-import dotenv from 'dotenv';
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import {logger} from "./logger.js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-dotenv.config({ path: join(__dirname, '../../../.env') });
 
 // Azure credentials from `.env`
-const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY || "sFpCu4aKiYfO62cNhWypfdl1BG3F2psPYFCLUYE4GvF06FbslrtFJQQJ99BCACYeBjFXJ3w3AAAAACOG5KjX";
-const AZURE_REGION = process.env.AZURE_REGION || "eastus";
+const AZURE_SPEECH_KEY = process.env.AZURE_SPEECH_KEY;
+const AZURE_REGION = process.env.AZURE_SPEECH_REGION;
 
 if (!AZURE_SPEECH_KEY || !AZURE_REGION) {
-    console.error("Azure Speech credentials not set in .env file.");
+    logger.error("Azure Speech credentials not set in .env file.");
     process.exit(1);
 }
 

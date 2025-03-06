@@ -35,16 +35,22 @@ const upload = multer({
 
 const router = express.Router();
 
+// Determine if subscription check should be bypassed
+const isDevelopmentOrStaging = process.env.ENV === 'dev' || process.env.ENV === 'staging';
+
+// Middleware array for the route
+const middlewares = [
+    // Only include subscription verification if not in dev/staging
+    ...(isDevelopmentOrStaging ? [] : [verifyUserSubscription]),
+    upload.single('audio'),
+    handleTranscription
+];
+
 /**
  * @route POST /api/speech/transcribe
  * @desc Transcribe audio to text
- * @access Private (requires active subscription)
+ * @access Private (requires active subscription in production)
  */
-router.post(
-    '/transcribe',
-    verifyUserSubscription,
-    upload.single('audio'),
-    handleTranscription
-);
+router.post('/transcribe', ...middlewares);
 
 export default router;

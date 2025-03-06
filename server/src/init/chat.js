@@ -2,6 +2,13 @@ import {WebSocketServer} from 'ws';
 import OpenAI from 'openai';
 import pool from './db_conn.js';
 import {logger} from '../helpers/logger.js';
+import {fileURLToPath} from "url";
+import {dirname, join} from "path";
+import dotenv from "dotenv";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+dotenv.config({path: join(__dirname, '../../.env')})
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -288,7 +295,7 @@ export class ChatServer {
     async verifyUserSubscription(token) {
         logger.debug('Verifying user subscription', {token});
         try {
-            const result = await pool.query(`
+            const queryProd = `
                 SELECT u.id, u.email
                 FROM users u
                          JOIN subscriptions s ON u.id = s.user_id
@@ -298,7 +305,22 @@ export class ChatServer {
                               FROM refresh_tokens
                               WHERE token = $1
                                 AND revoked_at IS NULL
-                                AND expires_at > NOW())`, [token]);
+                                AND expires_at > NOW())
+            `
+            const queryStaging = `
+                SELECT u.id, u.email
+                FROM users u
+                         JOIN subscriptions s ON u.id = s.user_id
+                WHERE s.status = 'active'
+                  AND s.current_period_end > NOW()
+                  AND u.id = (SELECT user_id
+                              FROM refresh_tokens
+                              WHERE token = $1
+                                LIMIT 1
+                            )
+            `
+            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd
+            const result = await pool.query(queryToRun, [token]);
 
             const user = result.rows[0];
             if (user) {
