@@ -2,6 +2,8 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import {pool} from "../init/index.js";
 import * as crypto from "node:crypto";
+// middlewares/authMiddleware.js
+import { logger } from './logger.js';
 
 const ACCESS_TOKEN_EXPIRY = process.env.ACCESS_TOKEN_EXPIRY || '1d';
 const REFRESH_TOKEN_EXPIRY = process.env.REFRESH_TOKEN_EXPIRY || '72h';
@@ -128,4 +130,90 @@ export const revokeAllRefreshTokens = async (userId, reason = 'admin_action') =>
      WHERE user_id = $1`,
         [userId, reason]
     );
+};
+
+
+export const verifyUserSubscription = async (req, res, next) => {
+    try {
+        const token = req.headers.authorization?.split(' ')[1] || req.query.token;
+
+        if (!token) {
+            logger.warn('Authentication attempt without token');
+            return res.status(401).json({
+                success: false,
+                error: 'Authentication required'
+            });
+        }
+
+        logger.debug('Verifying user subscription', { token: token.substring(0, 8) + '...' });
+
+        const result = await pool.query(`
+            SELECT u.id, u.email
+            FROM users u
+                     JOIN subscriptions s ON u.id = s.user_id
+            WHERE s.status = 'active'
+              AND s.current_period_end > NOW()
+              AND u.id = (SELECT user_id
+                          FROM refresh_tokens
+                          WHERE token = $1
+                            AND revoked_at IS NULL
+                            AND expires_at > NOW())`, [token]);
+
+        const user = result.rows[0];
+        if (!user) {
+            logger.warn('Invalid or expired subscription', { token: token.substring(0, 8) + '...' });
+            return res.status(401).json({
+                success: false,
+                error: 'Invalid or expired subscription'
+            });
+        }
+
+        logger.debug('Authentication successful', { userId: user.id });
+        req.user = user;
+        next();
+    } catch (error) {
+        logger.error('Authentication error:', error);
+        res.status(500).json({
+            success: false,
+            error: 'Authentication failed'
+        });
+    }
+};
+
+/**
+ * Optional authentication middleware that doesn't require a subscription
+ * Useful for endpoints that work differently for authenticated vs anonymous users
+ */
+export const optionalAuth = async (req, res, next) => {
+    try {
+        const token = req.headers.authorization?.split(' ')[1] || req.query.token;
+
+        if (!token) {
+            logger.debug('Proceeding without authentication');
+            return next();
+        }
+
+        const result = await pool.query(`
+            SELECT u.id, u.email
+            FROM users u
+            WHERE u.id = (
+                SELECT user_id
+                FROM refresh_tokens
+                WHERE token = $1
+                AND revoked_at IS NULL
+                AND expires_at > NOW()
+            )`, [token]);
+
+        const user = result.rows[0];
+        if (user) {
+            req.user = user;
+            logger.debug('Optional auth successful', { userId: user.id });
+        }
+
+        next();
+    } catch (error) {
+        logger.error('Optional auth error:', error);
+        // Continue even if auth fails
+        next();
+    }
 };

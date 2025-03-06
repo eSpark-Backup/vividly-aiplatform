@@ -9,9 +9,11 @@ import './init/passport.js';
 import passport from 'passport';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
+import speechRoutes from './routes/speech.js';
 import { ChatServer } from './init/chat.js';
 import { runMigrations } from './helpers/migrate.js';
 import { logger } from './helpers/logger.js'
+import * as http from "node:http";
 await runMigrations();
 
 const __filename = fileURLToPath(import.meta.url);
@@ -22,6 +24,7 @@ dotenv.config({path: join(_dirname, '../.env')})
 const swaggerDocument = YAML.load(join(_dirname, 'docs/swagger.yaml'));
 
 const app = express();
+const server = http.createServer(app)
 
 if (process.env.ENV !== 'prod') {
     logger.info(`API docs exposed at /api-docs`)
@@ -37,6 +40,9 @@ app.use(passport.initialize());
 // Routes
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/speech', speechRoutes);
+
+new ChatServer(server);
 
 // Error handling
 app.use((err, req, res, next) => {
@@ -45,7 +51,8 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 3000;
-const server = app.listen(PORT,'0.0.0.0', () => {
-    logger.info(`Server is running on port ${PORT}`);
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+    console.log(`WebSocket endpoints available at:`);
+    console.log(`- Chat: ws://localhost:${PORT}/chat`);
 });
-const chatServer = new ChatServer(server);
