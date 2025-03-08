@@ -120,6 +120,8 @@ jobs:
           echo "OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}" >> .env
           echo "HUMANIZER_API_URL: ${{ secrets.HUMANIZER_API_URL }}" >> .env
           echo "HUMANIZER_API_KEY: ${{ secrets.HUMANIZER_API_KEY }}" >> .env
+          echo "AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}" >> .env
+          echo "AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}" >> .env
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-publish
@@ -198,6 +200,10 @@ jobs:
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
           OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}
           OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}
+          HUMANIZER_API_URL: ${{ secrets.HUMANIZER_API_URL }}
+          HUMANIZER_API_KEY: ${{ secrets.HUMANIZER_API_KEY }}
+          AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}          
 
         run: |
           docker compose -f docker-compose.yml -f docker-compose.stg.yml pull

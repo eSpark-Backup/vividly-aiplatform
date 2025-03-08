@@ -26,6 +26,8 @@ services:
       - OPENAI_MODEL_TEMPERATURE
       - HUMANIZER_API_URL
       - HUMANIZER_API_KEY
+      - AZURE_SPEECH_REGION
+      - AZURE_SPEECH_KEY
       
     build:
       context: .
