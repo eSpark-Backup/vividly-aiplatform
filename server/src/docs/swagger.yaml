@@ -127,7 +127,7 @@ components:
               type: string
               format: binary
               description: User profile picture (JPEG or PNG, max 5MB)
-        
+
     Error:
       type: object
       properties:
@@ -141,6 +141,26 @@ components:
           example:
             email: Email already registered
             password: Password is too weak
+
+    TranscriptionResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: true
+        transcription:
+          type: string
+          example: "This is the transcribed text from the audio file."
+        duration:
+          type: number
+          format: float
+          description: Duration of the audio in seconds
+          example: 45.6
+        confidence:
+          type: number
+          format: float
+          description: Confidence score of the transcription (0-1)
+          example: 0.92
 
 paths:
   /auth/signup:
@@ -425,6 +445,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
   /auth/google:
     post:
       tags:
@@ -676,4 +697,62 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-    
+  /speech/transcribe:
+    post:
+      tags:
+        - Speech
+      summary: Transcribe audio to text
+      description: |
+        Converts uploaded audio files to text. 
+        In development and staging environments, subscription verification is bypassed.
+        In production, an active subscription is required.
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - audio
+              properties:
+                audio:
+                  type: string
+                  format: binary
+                  description: Audio file to transcribe (max 50MB)
+      responses:
+        '200':
+          description: Audio transcribed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TranscriptionResponse'
+        '400':
+          description: Invalid request or audio file
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '402':
+          description: Subscription required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Active subscription required for this feature"
+        '500':
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
