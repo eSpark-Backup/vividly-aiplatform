@@ -7,6 +7,9 @@
     "start": "node server/src/server.js",
     "dev": "nodemon server/src/server.js"
   },
+  "resolutions": {
+    "microsoft-cognitiveservices-speech-sdk/**/asn1.js": "5.4.1"
+  },
   "type": "module",
   "keywords": [],
   "author": "",
