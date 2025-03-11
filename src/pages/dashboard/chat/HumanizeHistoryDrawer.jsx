@@ -9,16 +9,24 @@ import SpeechController from "./SpeechController"
 
 const HumanizeHistoryDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
-    const { getSpecificMessageHumanizeHistory, isSpecificMessageHistoryLoading, specficMessageHumanizeHistory } = useWebSocketContext()
+    const { sendHumanizeCommand, sendReHumanizeCommand, isHumanizeLoading, humanizedContent, getSpecificMessageHumanizeHistory, isSpecificMessageHistoryLoading, specficMessageHumanizeHistory } = useWebSocketContext()
 
     useEffect(() => {
         if (isOpen && message) {
             getSpecificMessageHumanizeHistory({ message_id: message.id })
         }
-    }, [isOpen, message, getSpecificMessageHumanizeHistory])
+    }, [isOpen, message, getSpecificMessageHumanizeHistory, humanizedContent])
 
     const handleOpenChange = (open) => {
         setIsOpen(open)
+    }
+
+    const handleReHumanize = () => {
+        sendReHumanizeCommand({ message_id: message.id })
+    }
+
+    const handleHumanize = () => {
+        sendHumanizeCommand({ message_id: message.id })
     }
 
     return (
@@ -52,6 +60,20 @@ const HumanizeHistoryDrawer = ({ message }) => {
                                 <SpeechController text={message.content} />
                             </div>
                         </div>
+
+                        {
+                            specficMessageHumanizeHistory &&
+                            (specficMessageHumanizeHistory.length === 0 ? (
+                                <Button onClick={handleHumanize} disabled={isHumanizeLoading}>
+                                    {isHumanizeLoading ? "Humanizing..." : "Humanize"}
+                                </Button>
+                            ) : (
+                                <Button onClick={handleReHumanize} disabled={isHumanizeLoading}>
+                                    {isHumanizeLoading ? "Humanizing..." : "Re-humanize"}
+                                </Button>
+                            ))
+                        }
+
                     </div>
 
                     <div className="flex flex-col flex-grow overflow-hidden">
@@ -61,7 +83,7 @@ const HumanizeHistoryDrawer = ({ message }) => {
 
                         {/* Scrollable content area */}
                         <div className="flex-grow overflow-y-auto p-4">
-                            {isSpecificMessageHistoryLoading ? (
+                            {isSpecificMessageHistoryLoading || isHumanizeLoading ? (
                                 <div className="h-full flex items-center justify-center">
                                     <Loader className="h-8 w-8 animate-spin" />
                                 </div>
