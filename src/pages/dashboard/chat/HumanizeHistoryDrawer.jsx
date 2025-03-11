@@ -38,7 +38,6 @@ const HumanizeHistoryDrawer = ({ message }) => {
                     <SheetHeader className="px-4 py-2 border-b">
                         <SheetTitle>Humanize History</SheetTitle>
                     </SheetHeader>
-                    {/* <div className="flex-1 overflow-y-auto p-4"> */}
                     <div className="p-4 border-b shrink-0">
                         <div className="relative">
                             <Textarea
@@ -54,43 +53,6 @@ const HumanizeHistoryDrawer = ({ message }) => {
                             </div>
                         </div>
                     </div>
-
-                    {/* {isSpecificMessageHistoryLoading ? (
-                            <div className="h-full flex items-center justify-center">
-                                <Loader className="h-8 w-8 animate-spin" />
-                            </div>
-                        ) : (
-                            <div>
-                                <p className="mb-2">Humanized Variants</p>
-                                {specficMessageHumanizeHistory && specficMessageHumanizeHistory.length > 0 ? (
-                                    specficMessageHumanizeHistory.map((item, index) => (
-                                        <div key={index} className="relative">
-                                            <Textarea
-                                                key={index}
-                                                value={item.humanized_text}
-                                                readOnly
-                                                className="w-full h-80 mb-4 dark:bg-white/10 bg-black/45 text-white  pr-10"
-                                                placeholder={`Humanized version ${index + 1}`}
-                                            />
-                                            <div className="absolute top-2 right-2 flex flex-col gap-2">
-                                                <CopyButton text={item.humanized_text} />
-                                                <SpeechController text={item.humanized_text} />
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="flex flex-col items-center justify-center space-y-4 py-8">
-                                        <History className="h-16 w-16 text-gray-400" />
-                                        <p className="text-lg font-medium text-gray-600 dark:text-gray-400 text-center">
-                                            No message history available
-                                        </p>
-                                        <p className="text-sm text-gray-500 dark:text-gray-500 text-center max-w-xs">
-                                            This message hasn't been humanized yet. Try humanizing it to see the history.
-                                        </p>
-                                    </div>
-                                )}
-                            </div>
-                        )} */}
 
                     <div className="flex flex-col flex-grow overflow-hidden">
                         <div className="px-4 py-2 border-b shrink-0">
@@ -138,7 +100,6 @@ const HumanizeHistoryDrawer = ({ message }) => {
                         </div>
                     </div>
                 </div>
-                {/* </div> */}
             </SheetContent>
         </Sheet>
     )
