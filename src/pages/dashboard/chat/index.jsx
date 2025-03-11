@@ -82,7 +82,6 @@ export default function Chat() {
 
         <div className="flex-1 w-full max-w-5xl mx-auto">
           <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
-            {/* <div className="text-center text-sm text-gray-500 my-4">Today</div> */}
 
             {allMessages.map((message, index) => (
               <MessageBubble key={message.id || `message-${index}`} message={message} />
@@ -102,7 +101,6 @@ export default function Chat() {
           input={input}
           setInput={setInput}
           handleSubmit={handleSubmit}
-          handleKeyDown={handleKeyDown}
           isConnected={isConnected}
           isPartialMessageLoading={isPartialMessageLoading}
           textareaRef={textareaRef}

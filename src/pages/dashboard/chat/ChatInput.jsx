@@ -5,17 +5,33 @@ import { Textarea } from "@/components/ui/textarea"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
 
 const ChatInput = React.memo(
-  ({ input, setInput, handleSubmit, handleKeyDown, isConnected, isPartialMessageLoading, textareaRef, disabled = false }) => {
+  ({ input, setInput, handleSubmit, isConnected, isPartialMessageLoading, textareaRef, disabled = false }) => {
 
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
 
     const toggleRecording = () => {
-      
+
       if (listening) {
         SpeechRecognition.stopListening()
       } else {
         resetTranscript()
         SpeechRecognition.startListening({ continuous: true })
+      }
+    }
+
+    const stopRecording = () => {
+      if (listening) {
+        SpeechRecognition.stopListening()
+      }
+    }
+
+    const onEnter = (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault()
+        if (!isPartialMessageLoading) {
+          stopRecording()
+          handleSubmit(e)
+        }
       }
     }
 
@@ -57,11 +73,11 @@ const ChatInput = React.memo(
               ref={textareaRef}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
+              onKeyDown={onEnter}
               placeholder="Send a message..."
               className="flex-1 bg-transparent dark:text-gray-200 px-3 py-2 focus:outline-none placeholder:text-gray-600 min-h-[40px] max-h-[200px] resize-none"
             />
-            
+
             <button
               type="submit"
               disabled={!isConnected || !input.trim() || isPartialMessageLoading || listening}
