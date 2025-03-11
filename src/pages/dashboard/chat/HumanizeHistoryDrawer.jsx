@@ -4,6 +4,8 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Textarea } from "@/components/ui/textarea"
 import { History, Loader } from 'lucide-react'
 import { useWebSocketContext } from "@/services/WebSocketProvider"
+import CopyButton from "./CopyButton"
+import SpeechController from "./SpeechController"
 
 const HumanizeHistoryDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -43,25 +45,38 @@ const HumanizeHistoryDrawer = ({ message }) => {
                             </div>
                         ) : (
                             <div className="space-y-4">
-                                <Textarea
-                                    value={message.content}
-                                    readOnly
-                                    className="w-full h-40 mb-4 bg-black text-white"
-                                    placeholder="Original message"
-                                />
+                                <div className="relative">
+                                    <Textarea
+                                        value={message.content}
+                                        readOnly
+                                        className="w-full h-40 mb-4 bg-black text-white pr-10"
+                                        placeholder="Original message"
+                                    />
+
+                                    <div className="absolute top-2 right-2 flex flex-col gap-2">
+                                        <CopyButton text={message.content} />
+                                        <SpeechController text={message.content} />
+                                    </div>
+                                </div>
 
                                 <p>Humanized Variants</p>
 
 
                                 {specficMessageHumanizeHistory && specficMessageHumanizeHistory.length > 0 ? (
                                     specficMessageHumanizeHistory.map((item, index) => (
-                                        <Textarea
-                                            key={index}
-                                            value={item.humanized_text}
-                                            readOnly
-                                            className="w-full h-80 mb-4 dark:bg-white/10 bg-black/45 text-white"
-                                            placeholder={`Humanized version ${index + 1}`}
-                                        />
+                                        <div key={index} className="relative">
+                                            <Textarea
+                                                key={index}
+                                                value={item.humanized_text}
+                                                readOnly
+                                                className="w-full h-80 mb-4 dark:bg-white/10 bg-black/45 text-white  pr-10"
+                                                placeholder={`Humanized version ${index + 1}`}
+                                            />
+                                            <div className="absolute top-2 right-2 flex flex-col gap-2">
+                                                <CopyButton text={item.humanized_text} />
+                                                <SpeechController text={item.humanized_text} />
+                                            </div>
+                                        </div>
                                     ))
                                 ) : (
                                     <div className="flex flex-col items-center justify-center space-y-4 py-8">
