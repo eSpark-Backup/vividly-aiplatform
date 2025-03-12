@@ -36,8 +36,8 @@ const openai = new OpenAI({
 });
 
 // Add this configuration
-const HUMANIZER_API_URL = process.env.HUMANIZER_API_URL || "https://v1-humanizer.rephrasy.ai/api";
-const HUMANIZER_API_KEY = process.env.HUMANIZER_API_KEY || "eimyGfmr6cxPFyZ";
+const HUMANIZER_API_URL = process.env.HUMANIZER_API_URL;
+const HUMANIZER_API_KEY = process.env.HUMANIZER_API_KEY;
 
 // Configure the S3 client using AWS SDK v2
 const s3 = new AWS.S3({
