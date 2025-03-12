@@ -23,6 +23,7 @@ const MessageBubble = React.memo(({ message }) => {
               </div>
             ),
             code: ({ node, ...props }) => <code className="bg-black/10 rounded-lg p-1" {...props} />,
+            p: ({ node, ...props }) => <p className="whitespace-pre-wrap mb-4" {...props} />,
           }}
           className="text-sm overflow-hidden leading-7"
         >

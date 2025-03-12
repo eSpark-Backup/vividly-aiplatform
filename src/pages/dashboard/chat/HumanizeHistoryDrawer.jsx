@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Textarea } from "@/components/ui/textarea"
 import { History, Loader } from 'lucide-react'
 import { useWebSocketContext } from "@/services/WebSocketProvider"
-import CopyButton from "./CopyButton"
-import SpeechController from "./SpeechController"
+import MarkdownDisplay from "./MarkdownDisplay"
 
 const HumanizeHistoryDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -48,17 +46,7 @@ const HumanizeHistoryDrawer = ({ message }) => {
                     </SheetHeader>
                     <div className="p-4 border-b shrink-0">
                         <div className="relative">
-                            <Textarea
-                                value={message.content}
-                                readOnly
-                                className="w-full h-40 mb-4 bg-black text-white pr-10"
-                                placeholder="Original message"
-                            />
-
-                            <div className="absolute top-2 right-2 flex flex-col gap-2">
-                                <CopyButton text={message.content} />
-                                <SpeechController text={message.content} />
-                            </div>
+                            <MarkdownDisplay content={message.content} />
                         </div>
 
                         {
@@ -93,16 +81,7 @@ const HumanizeHistoryDrawer = ({ message }) => {
                                         <div className="space-y-4">
                                             {specficMessageHumanizeHistory.map((item, index) => (
                                                 <div key={index} className="relative">
-                                                    <Textarea
-                                                        value={item.humanized_text}
-                                                        readOnly
-                                                        className="w-full h-80 mb-4 dark:bg-white/10 bg-black/45 text-white pr-10"
-                                                        placeholder={`Humanized version ${index + 1}`}
-                                                    />
-                                                    <div className="absolute top-2 right-2 flex flex-col gap-2">
-                                                        <CopyButton text={item.humanized_text} />
-                                                        <SpeechController text={item.humanized_text} />
-                                                    </div>
+                                                    <MarkdownDisplay key={index} content={item.humanized_text} index={index} />
                                                 </div>
                                             ))}
                                         </div>
