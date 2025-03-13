@@ -286,7 +286,8 @@ export function useWebSocket(url) {
   //COMMNADS FROM USER
 
   const sendMessage = useCallback(
-    (data) => {
+    (mode, data) => {
+      
       const newMessage = {
         id: generateId(),
         role: "user",
@@ -296,11 +297,10 @@ export function useWebSocket(url) {
       }
 
       // Add user message to the messages state immediately
-      // setMessages((prevMessages) => [...prevMessages, newMessage])
       setMessages(prevMessages => [...prevMessages, newMessage])
 
       const message = {
-        type: "chat",
+        type: mode,
         content: data.content,
         ...(data.conversationId && { conversationId: data.conversationId }),
       }
@@ -308,9 +308,6 @@ export function useWebSocket(url) {
       setIsPartialMessageLoading(true)
       sendSocketCommand(message)
 
-      // if (data.conversationId) {
-      //   getChatHistory({ conversationId: data.conversationId })
-      // }
     },
     [sendSocketCommand, generateId],
   )

@@ -1,13 +1,18 @@
 import "regenerator-runtime/runtime"
 import React, { useEffect } from "react"
-import { Mic, MicOff, Send, Square } from "lucide-react"
+import { Image, Mic, MicOff, Send, Square } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
+import { MODES } from "@/constant"
+import { cn } from "@/lib/utils"
+import { useChatStore } from "@/store/useChatStore"
 
 const ChatInput = React.memo(
   ({ input, setInput, handleSubmit, isConnected, isPartialMessageLoading, textareaRef, disabled = false }) => {
 
+    const { mode, setMode } = useChatStore()
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
+    const isImageMode = MODES.CHAT_WITH_IMAGE === mode
 
     const toggleRecording = () => {
 
@@ -33,6 +38,10 @@ const ChatInput = React.memo(
           handleSubmit(e)
         }
       }
+    }
+
+    const handleChatModes = () => {
+      isImageMode ? setMode(MODES.CHAT) : setMode(MODES.CHAT_WITH_IMAGE)
     }
 
     useEffect(() => {
@@ -61,11 +70,11 @@ const ChatInput = React.memo(
                 type="button"
                 onClick={toggleRecording}
                 disabled={disabled || !isConnected}
-                className={`p-2 rounded-full mr-2 transition-colors ${listening ? "bg-red-500 text-white animate-pulse" : "bg-[#1A1D21] text-gray-400 rounded-lg hover:text-gray-300"
+                className={`p-3 rounded-full mr-2 transition-colors ${listening ? "bg-red-500 text-white animate-pulse" : "bg-[#1A1D21] text-gray-400 rounded-lg hover:text-gray-300"
                   } disabled:opacity-50 disabled:cursor-not-allowed`}
                 aria-label={listening ? "Stop recording" : "Start voice recording"}
               >
-                {listening ? <MicOff className="h-5 w-5" /> : <Mic className="h-5 w-5" />}
+                {listening ? <MicOff className="h-4 w-4" /> : <Mic className="h-4 w-4" />}
               </button>
             )}
 
@@ -78,13 +87,26 @@ const ChatInput = React.memo(
               className="flex-1 bg-transparent dark:text-gray-200 px-3 py-2 focus:outline-none placeholder:text-gray-600 min-h-[40px] max-h-[200px] resize-none"
             />
 
-            <button
-              type="submit"
-              disabled={!isConnected || !input.trim() || isPartialMessageLoading || listening}
-              className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
-            >
-              {!isPartialMessageLoading ? <Send className="h-5 w-5" /> : <Square className="h-5 w-5 animate-spin" />}
-            </button>
+
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={handleChatModes}
+                disabled={!isConnected || isPartialMessageLoading || listening}
+                className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
+              >
+                <Image
+                  className={cn(`h-4 w-4`, isImageMode && "text-[#9C67F4]")} />
+              </button>
+
+              <button
+                type="submit"
+                disabled={!isConnected || !input.trim() || isPartialMessageLoading || listening}
+                className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
+              >
+                {!isPartialMessageLoading ? <Send className="h-4 w-4" /> : <Square className="h-5 w-5 animate-spin" />}
+              </button>
+            </div>
           </form>
         </div>
       </div>

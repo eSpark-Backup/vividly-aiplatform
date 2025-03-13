@@ -4,6 +4,7 @@ import { useSearchParams } from "react-router-dom"
 import MessageBubble from "./MessageBubble"
 import SuggestedQuestions from "./SuggestedQuestions"
 import ChatInput from "./ChatInput"
+import { useChatStore } from "@/store/useChatStore"
 
 export default function Chat() {
   const {
@@ -18,9 +19,9 @@ export default function Chat() {
     setSuggestedQuestions,
   } = useWebSocketContext()
 
+  const { mode } = useChatStore()
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
-
   const [input, setInput] = useState("")
   const messagesEndRef = useRef(null)
   const textareaRef = useRef(null)
@@ -29,8 +30,9 @@ export default function Chat() {
     (e) => {
       e?.preventDefault()
       if (!input.trim() || !isConnected) return
-
-      sendMessage({ content: input.trim(), conversationId })
+     
+      const data = { content: input.trim(), conversationId }
+      sendMessage(mode, data)
       setInput("")
       setSuggestedQuestions([])
     },
@@ -41,19 +43,11 @@ export default function Chat() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
   }, [])
 
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault()
-        if (!isPartialMessageLoading) handleSubmit()
-      }
-    },
-    [handleSubmit, isPartialMessageLoading],
-  )
 
   const handleSuggestedQuestionClick = useCallback(
     (question) => {
-      sendMessage({ content: question, conversationId })
+      const data = { content: question, conversationId }
+      sendMessage(mode, data)
       setSuggestedQuestions([])
     },
     [sendMessage, conversationId, setSuggestedQuestions],

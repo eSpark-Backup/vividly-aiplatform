@@ -2,11 +2,14 @@ import { Pen, Code, Lightbulb, MessageCircle } from 'lucide-react'
 import { FeatureCard } from './FeatureCard'
 import { useWebSocketContext } from '@/services/WebSocketProvider'
 import { useNavigate } from 'react-router-dom'
+import { useChatStore } from '@/store/useChatStore'
+import { MODES } from '@/constant'
 
 
 const Explore = () => {
 
     const { sendMessage, setSuggestedQuestions } = useWebSocketContext()
+    const { setMode } = useChatStore()
     const navigate = useNavigate()
 
 
@@ -63,7 +66,9 @@ const Explore = () => {
 
     const handleSuggestedQuestionClick = (question) => {
         navigate(`/home?cat=chat`)
-        sendMessage({ content: question })
+        setMode(MODES.CHAT)
+        const data = { content: question }
+        sendMessage(MODES.CHAT, data)
         setSuggestedQuestions([])
     }
 

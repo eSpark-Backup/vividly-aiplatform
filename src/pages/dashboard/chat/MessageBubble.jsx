@@ -4,6 +4,7 @@ import HumanizeDrawer from "./HumanizeDrawer"
 import HumanizeHistoryDrawer from "./HumanizeHistoryDrawer"
 import SpeechController from "./SpeechController"
 import CopyButton from "./CopyButton"
+import ImagePreview from "./ImagePreview"
 
 const MessageBubble = React.memo(({ message }) => {
 
@@ -29,6 +30,14 @@ const MessageBubble = React.memo(({ message }) => {
         >
           {message.content}
         </ReactMarkdown>
+
+        <div>
+          {message.images && message?.images[0]?.url
+            &&
+            <ImagePreview src={message.images[0].url || "/placeholder.svg"} alt={message.content} />
+          }
+        </div>
+
         <div className="flex flex-col">
 
           {message.role === "assistant" && (
