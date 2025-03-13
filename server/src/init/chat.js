@@ -3,12 +3,20 @@ import OpenAI from 'openai';
 import pool from './db_conn.js';
 import {logger} from '../helpers/logger.js';
 import {fileURLToPath} from "url";
-import {dirname, join} from "path";
+import path, {dirname, join} from "path";
 import dotenv from "dotenv";
+import AWS from 'aws-sdk';
+import crypto from 'crypto';
+import sharp from 'sharp';
+import fs from "fs/promises";
+import {v4 as uuidv4} from 'uuid'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 dotenv.config({path: join(__dirname, '../../.env')})
+
+// Setup paths
+const UPLOAD_DIR = path.join(__dirname, '../../uploads');
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -17,6 +25,50 @@ const openai = new OpenAI({
 // Add this configuration
 const HUMANIZER_API_URL = process.env.HUMANIZER_API_URL;
 const HUMANIZER_API_KEY = process.env.HUMANIZER_API_KEY;
+
+// Configure the S3 client using AWS SDK v2
+const s3 = new AWS.S3({
+    region: process.env.S3_REGION || 'us-east-1',
+    endpoint: process.env.S3_ENDPOINT,
+    accessKeyId: process.env.S3_ACCESS_KEY,
+    secretAccessKey: process.env.S3_SECRET_KEY,
+    signatureVersion: "v4",
+    s3ForcePathStyle: true
+});
+
+// Update your upload function to use the V2 SDK
+async function uploadToS3(key, body, contentType) {
+    const params = {
+        Bucket: S3_BUCKET,
+        Key: key,
+        Body: body,
+        ContentType: contentType
+    };
+
+    return s3.upload(params).promise();
+}
+
+// Update your get signed URL function
+async function getSignedUrl(key) {
+    const params = {
+        Bucket: S3_BUCKET,
+        Key: key,
+        Expires: IMAGE_EXPIRY
+    };
+
+    return s3.getSignedUrlPromise('getObject', params);
+}
+
+// Update your delete function
+async function deleteFromS3(key) {
+    const params = {
+        Bucket: S3_BUCKET,
+        Key: key
+    };
+}
+
+const S3_BUCKET = process.env.S3_BUCKET || 'user-uploads';
+const IMAGE_EXPIRY = 60 * 60 * 24 * 7; // URL expiry time in seconds (7 days)
 
 export class ChatServer {
     constructor(server) {
@@ -47,29 +99,56 @@ export class ChatServer {
 
                 ws.on('message', async (data) => {
                     try {
-                        const message = JSON.parse(data);
-                        logger.debug('Received message', {
-                            userId: user.id,
-                            messageType: message.type,
-                            conversationId: message.conversationId
-                        });
+                        let strData;
+                        let jsonData;
+                        let isJson = false;
 
-                        await this.handleMessage(ws, message, user);
+                        // Check if the received data is a Buffer (binary)
+                        if (Buffer.isBuffer(data)) {
+                            strData = data.toString('utf8'); // Convert it to a string
+                        } else if (typeof data === 'string') {
+                            strData = data; // Already a string
+                        } else {
+                            strData = String(data); // Fallback
+                        }
+
+                        // Check if it looks like JSON
+                        if (strData.trim().startsWith('{') || strData.trim().startsWith('[')) {
+                            try {
+                                jsonData = JSON.parse(strData);
+                                isJson = true;
+                            } catch (e) {
+                                isJson = false;
+                            }
+                        }
+
+                        if (isJson && jsonData) {
+                            logger.debug('Received JSON message', {
+                                userId: user.id,
+                                messageType: jsonData.type
+                            });
+
+                            await this.handleMessage(ws, jsonData, user);
+                        } else {
+                            logger.debug('Received binary data, handling as image', {
+                                userId: user.id,
+                                dataSize: data.length
+                            });
+
+                            await this.handleImageUpload(ws, data, user);
+                        }
                     } catch (error) {
                         logger.error('Message handling error', {
                             userId: user.id,
                             error: error.message,
                             stack: error.stack
                         });
+
                         ws.send(JSON.stringify({
                             type: 'error',
                             error: 'Failed to process message'
                         }));
                     }
-                });
-
-                ws.on('close', () => {
-                    logger.info('User disconnected', {userId: user.id});
                 });
 
             } catch (error) {
@@ -83,58 +162,84 @@ export class ChatServer {
         });
     }
 
-    async verifyConversation(userId, conversationId) {
-        if (!conversationId) return null;
+    // Generate thumbnail from image buffer or file path
+    // Generate a thumbnail for an image
+    async generateThumbnail(imageBuffer) {
+        try {
+            const thumbnail = await sharp(imageBuffer)
+                .resize(200, 200, { fit: 'inside' })
+                .toBuffer();
 
-        const result = await pool.query(
-            'SELECT id FROM conversations WHERE id = $1 AND user_id = $2',
-            [conversationId, userId]
-        );
-
-        return result.rows[0] || null;
+            return thumbnail.toString('base64');
+        } catch (error) {
+            logger.warn('Failed to generate thumbnail', { error: error.message });
+            return null;
+        }
     }
 
-    async createNewConversation(client, userId, initialMessage) {
-        // Generate a title based on the user's first message
-        const titleResponse = await openai.chat.completions.create({
-            model: process.env.OPENAI_MODEL,
-            messages: [
-                {
-                    role: "system",
-                    content: "Generate a brief, contextual title (maximum 6 words) for a conversation that starts with this message. Return only the title, nothing else."
-                },
-                {
-                    role: "user",
-                    content: initialMessage
-                }
-            ],
-            temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
-            max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
-        });
-
-        const title = titleResponse.choices[0]?.message?.content?.trim() || "New Chat";
-
-        const result = await client.query(
-            'INSERT INTO conversations (user_id, title) VALUES ($1, $2) RETURNING *',
-            [userId, title]
-        );
-
-        return result.rows[0];
+    // Record image access for bandwidth tracking
+    async recordImageAccess(imageId, userId, bytesTransferred = 0) {
+        try {
+            await pool.query(
+                'SELECT record_image_access($1, $2, $3)',
+                [imageId, userId, bytesTransferred]
+            );
+        } catch (error) {
+            logger.warn('Failed to record image access', {
+                imageId,
+                userId,
+                error: error.message
+            });
+        }
     }
 
+    // Get signed URL for an image
+    async getSignedImageUrl(userId, imageId) {
+        try {
+            // Get the stored filename
+            const result = await pool.query(
+                'SELECT stored_filename FROM user_images WHERE id = $1 AND user_id = $2',
+                [imageId, userId]
+            );
+
+            if (result.rows.length === 0) {
+                throw new Error('Image not found or unauthorized');
+            }
+
+            const storedFilename = result.rows[0].stored_filename;
+
+            // Use the function you defined
+            const signedUrl = await getSignedUrl(storedFilename);
+
+            // Record this access
+            await this.recordImageAccess(imageId, userId, 0);
+
+            return signedUrl;
+        } catch (error) {
+            logger.error('Failed to generate signed URL', {
+                userId,
+                imageId,
+                error: error.message
+            });
+            throw error;
+        }
+    }
+
+    // Modified handleChatMessage to handle image references
     async handleChatMessage(ws, message, user) {
         const client = await pool.connect();
         let aiResponse = '';
         let tokensUsed = 0;
         let conversationId = message.conversationId;
-        let userMessageId = null; // To store the ID of the user message
-        let aiMessageId = null;   // To store the ID of the assistant message
-        const stream = message.stream !== false; // Default to true
+        let userMessageId = null;
+        let aiMessageId = null;
+        const stream = message.stream !== false;
 
         logger.startOperation('chat-message', {
             userId: user.id,
             conversationId,
-            streamMode: stream
+            streamMode: stream,
+            hasAttachments: message.image_ids && message.image_ids.length > 0
         });
 
         try {
@@ -154,10 +259,41 @@ export class ChatServer {
 
             // Save user message first and get its ID
             const userMessageResult = await client.query(
-                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING id',
-                [conversationId, 'user', message.content, 0]
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at, has_attachments) VALUES ($1, $2, $3, $4, NOW(), $5) RETURNING id',
+                [conversationId, 'user', message.content, 0, message.image_ids && message.image_ids.length > 0]
             );
             userMessageId = userMessageResult.rows[0].id;
+
+            // Associate images with the message if they exist
+            if (message.image_ids && message.image_ids.length > 0) {
+                for (const imageId of message.image_ids) {
+                    // Verify the image belongs to the user
+                    const imageCheck = await client.query(
+                        'SELECT id FROM user_images WHERE id = $1 AND user_id = $2',
+                        [imageId, user.id]
+                    );
+
+                    if (imageCheck.rows.length > 0) {
+                        // Create reference in message_references table
+                        await client.query(
+                            'INSERT INTO message_references (message_id, reference_type, reference_id) VALUES ($1, $2, $3)',
+                            [userMessageId, 'image', imageId]
+                        );
+
+                        logger.debug('Image reference created', {
+                            userId: user.id,
+                            messageId: userMessageId,
+                            imageId
+                        });
+                    } else {
+                        logger.warn('Unauthorized image reference attempt', {
+                            userId: user.id,
+                            messageId: userMessageId,
+                            imageId
+                        });
+                    }
+                }
+            }
 
             // Commit the user message immediately to ensure it's saved
             await client.query('COMMIT');
@@ -167,7 +303,7 @@ export class ChatServer {
 
             // Now save a placeholder for the assistant message with a timestamp AFTER the user message
             const aiMessageResult = await client.query(
-                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW() + interval \'1 millisecond\') RETURNING id',
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at, has_attachments) VALUES ($1, $2, $3, $4, NOW() + interval \'1 millisecond\', FALSE) RETURNING id',
                 [conversationId, 'assistant', '', 0] // Empty content initially
             );
             aiMessageId = aiMessageResult.rows[0].id;
@@ -285,7 +421,7 @@ export class ChatServer {
                 type: 'error',
                 error: error.message,
                 conversationId,
-                message_id: userMessageId // Include message ID even in error responses
+                message_id: userMessageId
             }));
         } finally {
             client.release();
@@ -316,8 +452,7 @@ export class ChatServer {
                   AND u.id = (SELECT user_id
                               FROM refresh_tokens
                               WHERE token = $1
-                                LIMIT 1
-                            )
+                              LIMIT 1)
             `
             const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd
             const result = await pool.query(queryToRun, [token]);
@@ -339,10 +474,189 @@ export class ChatServer {
         }
     }
 
+    // Get image by ID (for direct serving via WebSocket)
+    async getImage(ws, message, user) {
+        try {
+            const {image_id: imageId} = message;
+
+            if (!imageId) {
+                throw new Error('Image ID is required');
+            }
+
+            const result = await pool.query(
+                `SELECT *
+                 FROM user_images
+                 WHERE id = $1
+                   AND user_id = $2`,
+                [imageId, user.id]
+            );
+
+            if (!result.rows.length) {
+                throw new Error('Image not found or unauthorized');
+            }
+
+            const imageData = result.rows[0];
+
+            // Record image access metrics
+            try {
+                // Check if a record already exists
+                const existingRecord = await pool.query(
+                    `SELECT id
+                     FROM image_usage_metrics
+                     WHERE image_id = $1
+                       AND user_id = $2
+                     LIMIT 1`,
+                    [imageId, user.id]
+                );
+
+                if (existingRecord.rows.length > 0) {
+                    // Update existing record
+                    await pool.query(
+                        `UPDATE image_usage_metrics
+                         SET bytes_transferred = bytes_transferred + $3,
+                             request_count     = request_count + 1,
+                             last_accessed     = CURRENT_TIMESTAMP
+                         WHERE image_id = $1
+                           AND user_id = $2`,
+                        [imageId, user.id, imageData.size]
+                    );
+                } else {
+                    // Insert new record
+                    await pool.query(
+                        `INSERT INTO image_usage_metrics
+                             (image_id, user_id, bytes_transferred, request_count, last_accessed)
+                         VALUES ($1, $2, $3, 1, CURRENT_TIMESTAMP)`,
+                        [imageId, user.id, imageData.size]
+                    );
+                }
+            } catch (metricError) {
+                // Log the error but continue with serving the image
+                logger.error('Error recording image access metrics:', {
+                    error: metricError.message,
+                    stack: metricError.stack,
+                    userId: user.id,
+                    imageId
+                });
+                // Don't throw the error so we can still serve the image
+            }
+
+            let imageUrl;
+
+            // Check if image is stored in S3 or local filesystem
+            if (imageData.stored_filename.includes('/')) {
+                // Generate pre-signed URL for S3
+                try {
+                    const params = {
+                        Bucket: S3_BUCKET,
+                        Key: imageData.stored_filename,
+                        Expires: IMAGE_EXPIRY // Use the configured expiry time
+                    };
+
+                    // Use the getSignedUrl function that's already defined
+                    imageUrl = await getSignedUrl(imageData.stored_filename);
+
+                    logger.debug('Generated pre-signed URL for S3 image', {
+                        userId: user.id,
+                        imageId,
+                        bucket: S3_BUCKET,
+                        key: imageData.stored_filename
+                    });
+                } catch (s3Error) {
+                    logger.error('Error generating pre-signed URL:', {
+                        error: s3Error.message,
+                        stack: s3Error.stack,
+                        userId: user.id,
+                        imageId,
+                        bucket: S3_BUCKET,
+                        key: imageData.stored_filename
+                    });
+                    throw new Error(`Failed to generate access URL: ${s3Error.message}`);
+                }
+            }
+
+            // Send image pre-signed URL
+            ws.send(JSON.stringify({
+                type: 'image_data',
+                id: imageId,
+                url: imageUrl,
+                filename: imageData.filename,
+                mime_type: imageData.type
+            }));
+        } catch (error) {
+            logger.error('Error getting image:', {
+                error: error.message,
+                stack: error.stack,
+                userId: user.id,
+                imageId: message.image_id
+            });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: `Error getting image: ${error.message}`
+            }));
+        }
+    }
+
+    async verifyConversation(userId, conversationId) {
+        if (!conversationId) return null;
+
+        const result = await pool.query(
+            'SELECT id FROM conversations WHERE id = $1 AND user_id = $2',
+            [conversationId, userId]
+        );
+
+        return result.rows[0] || null;
+    }
+
+    async createNewConversation(client, userId, initialMessage) {
+        // Generate a title based on the user's first message
+        const titleResponse = await openai.chat.completions.create({
+            model: process.env.OPENAI_MODEL,
+            messages: [
+                {
+                    role: "system",
+                    content: "Generate a brief, contextual title (maximum 6 words) for a conversation that starts with this message. Return only the title, nothing else."
+                },
+                {
+                    role: "user",
+                    content: initialMessage
+                }
+            ],
+            temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
+            max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
+        });
+
+        const title = titleResponse.choices[0]?.message?.content?.trim() || "New Chat";
+
+        const result = await client.query(
+            'INSERT INTO conversations (user_id, title) VALUES ($1, $2) RETURNING *',
+            [userId, title]
+        );
+
+        return result.rows[0];
+    }
+
     // Chat history with pagination
+    // Modified getConversationHistory to include humanization counts and images
     async getConversationHistory(userId, conversationId, limit = 20, offset = 0) {
         const result = await pool.query(`
-                    SELECT m.*, c.title as conversation_title
+                    SELECT m.*,
+                           c.title as conversation_title,
+                           (SELECT COUNT(*) FROM humanized_messages WHERE message_id = m.id) as humanized_count,
+                           (SELECT json_agg(
+                                           json_build_object(
+                                                   'id', ui.id,
+                                                   'filename', ui.filename,
+                                                   'type', ui.type,
+                                                   'size', ui.size,
+                                                   'source', ui.source,
+                                                   'created_at', ui.created_at
+                                           )
+                                   )
+                            FROM message_references mr
+                                     JOIN user_images ui ON mr.reference_id = ui.id
+                            WHERE mr.message_id = m.id AND mr.reference_type = 'image'
+                           ) as images
                     FROM messages m
                              JOIN conversations c ON c.id = m.conversation_id
                     WHERE c.id = $1
@@ -351,10 +665,26 @@ export class ChatServer {
                     LIMIT $3 OFFSET $4`,
             [conversationId, userId, limit, offset]
         );
-        return result.rows;
+
+        // Generate signed URLs for all images
+        const messages = result.rows;
+        for (const message of messages) {
+            if (message.images && message.images.length > 0) {
+                for (let i = 0; i < message.images.length; i++) {
+                    // Record image access for usage tracking
+                    await this.recordImageAccess(message.images[i].id, userId);
+
+                    // Generate signed URL
+                    const signedUrl = await this.getSignedImageUrl(userId, message.images[i].id);
+                    message.images[i].url = signedUrl;
+                }
+            }
+        }
+
+        return messages;
     }
 
-// Get all user conversations
+    // Get all user conversations
     async getUserConversations(userId) {
         const result = await pool.query(`
                     SELECT c.*,
@@ -367,14 +697,14 @@ export class ChatServer {
                     FROM conversations c
                              LEFT JOIN messages m ON c.id = m.conversation_id
                     WHERE c.user_id = $1
-                    GROUP BY c.id
+                    GROUP BY c.id, c.updated_at
                     ORDER BY c.updated_at DESC`,
             [userId]
         );
         return result.rows;
     }
 
-// Rename conversation
+    // Rename conversation
     async renameConversation(userId, conversationId, newTitle) {
         if (!newTitle) {
             throw new Error("Title is required for renaming conversation")
@@ -395,7 +725,7 @@ export class ChatServer {
         return result.rows[0];
     }
 
-// Delete conversation
+    // Delete conversation
     async deleteConversation(userId, conversationId) {
         const client = await pool.connect();
         try {
@@ -429,11 +759,661 @@ export class ChatServer {
         }
     }
 
-// Handle these methods in WebSocket messages
+    // Simple function to check if data is an image by looking at magic bytes
+    isImage(buffer) {
+        // Check for common image format signatures
+        const signatures = {
+            // JPEG
+            'ffd8ff': 'image/jpeg',
+            // PNG
+            '89504e47': 'image/png',
+            // GIF
+            '47494638': 'image/gif',
+            // WEBP
+            '52494646': 'image/webp'
+        };
+
+        // Get first 4 bytes as hex
+        const hex = buffer.slice(0, 4).toString('hex');
+
+        // Check against signatures
+        for (const [signature, mime] of Object.entries(signatures)) {
+            if (hex.startsWith(signature.substring(0, hex.length))) {
+                return {
+                    mime,
+                    ext: mime.split('/')[1]
+                };
+            }
+        }
+
+        return null;
+    }
+
+    // Updated handleImageUpload method with optional filename
+    // New method to handle image uploads
+    async handleImageUpload(ws, imageData, user) {
+        logger.startOperation('image-upload', {
+            userId: user.id,
+            dataSize: imageData.length
+        });
+
+        const client = await pool.connect();
+
+        try {
+            await client.query('BEGIN');
+
+            // Check file size
+            const maxSize = parseInt(process.env.MAX_IMAGE_SIZE || "10485760");
+            if (imageData.length > maxSize) {
+                throw new Error(`Image exceeds maximum size of ${maxSize / 1024 / 1024}MB`);
+            }
+
+            // Then in your upload handler:
+            // Validate that it's actually an image
+            const fileInfo = this.isImage(imageData);
+            if (!fileInfo) {
+                throw new Error('Invalid image format');
+            }
+
+            let fileExtension = fileInfo.ext;
+            let mimeType = fileInfo.mime;
+
+            // Generate thumbnail
+            const thumbnail = await this.generateThumbnail(imageData);
+
+            // Generate a unique filename
+            const uniqueId = crypto.randomUUID();
+            const storedFilename = `${user.id}/${uniqueId}.${fileExtension}`;
+            const originalFilename = `image_${Date.now()}.${fileExtension}`;
+
+            // Upload to S3 using the function you defined
+            await uploadToS3(storedFilename, imageData, mimeType);
+
+            // Store reference in database
+            const result = await client.query(
+                `INSERT INTO user_images (
+                    user_id, filename, stored_filename, type, size, source, thumbnail
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+                [
+                    user.id,
+                    originalFilename,
+                    storedFilename,
+                    mimeType,
+                    imageData.length,
+                    'upload',
+                    thumbnail
+                ]
+            );
+
+            const imageId = result.rows[0].id;
+
+            // Generate a signed URL using the function you defined
+            const signedUrl = await getSignedUrl(storedFilename);
+
+            // Initialize usage metrics
+            await client.query(
+                'SELECT record_image_access($1, $2, $3)',
+                [imageId, user.id, 0]
+            );
+
+            await client.query('COMMIT');
+
+            logger.debug('Image uploaded successfully', {
+                userId: user.id,
+                imageId,
+                storedFilename,
+                size: imageData.length
+            });
+
+            // Send success response
+            ws.send(JSON.stringify({
+                type: 'image_uploaded',
+                image_id: imageId,
+                url: signedUrl,
+                filename: originalFilename,
+                size: imageData.length,
+                mime_type: mimeType
+            }));
+
+        } catch (error) {
+            await client.query('ROLLBACK');
+
+            logger.failOperation('image-upload', error, {
+                userId: user.id
+            });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: `Image upload failed: ${error.message}`
+            }));
+        } finally {
+            client.release();
+        }
+    }
+
+    // Helper function to sanitize filenames
+    sanitizeFilename(filename) {
+        // Remove any path components (slashes, backslashes)
+        let sanitized = filename.replace(/[\/\\]/g, '');
+
+        // Remove special characters that might cause issues
+        sanitized = sanitized.replace(/[^a-zA-Z0-9_\-\.]/g, '_');
+
+        // Ensure filename doesn't start with dots (hidden files)
+        sanitized = sanitized.replace(/^\.+/, '');
+
+        // Limit length
+        if (sanitized.length > 100) {
+            const extension = path.extname(sanitized);
+            const basename = path.basename(sanitized, extension);
+            sanitized = basename.substring(0, 100 - extension.length) + extension;
+        }
+
+        // If sanitizing removed everything, provide a default
+        if (!sanitized) {
+            sanitized = 'unnamed_file';
+        }
+
+        return sanitized;
+    }
+
+    // Add a new handler for detailed image analysis that can work with any uploaded image
+    async handleImageAnalysis(ws, message, user) {
+        logger.startOperation('image-analysis', {
+            userId: user.id,
+            imageId: message.image_id
+        });
+
+        try {
+            const { imageId, prompt } = message;
+
+            if (!imageId) {
+                throw new Error('Image ID is required');
+            }
+
+            if (!prompt || !prompt.trim()) {
+                throw new Error('Analysis prompt is required');
+            }
+
+            // Fetch the image from database
+            const result = await pool.query(
+                `SELECT * FROM user_images WHERE id = $1 AND user_id = $2`,
+                [imageId, user.id]
+            );
+
+            if (!result.rows.length) {
+                throw new Error('Image not found or unauthorized');
+            }
+
+            const imageData = result.rows[0];
+
+            // Check if stored in S3 or local file system
+            let imageBuffer;
+            let base64Image;
+
+            if (imageData.stored_filename.includes('/')) {
+                // S3 storage
+                const getParams = {
+                    Bucket: S3_BUCKET,
+                    Key: imageData.stored_filename
+                };
+
+                try {
+                    // Use the s3.getObject() method from AWS SDK v2
+                    const s3Response = await s3.getObject(getParams).promise();
+                    imageBuffer = s3Response.Body;
+                    base64Image = imageBuffer.toString('base64');
+                } catch (s3Error) {
+                    logger.error('Error retrieving image from S3:', {
+                        error: s3Error.message,
+                        stack: s3Error.stack,
+                        userId: user.id,
+                        imageId,
+                        key: imageData.stored_filename
+                    });
+                    throw new Error('Failed to retrieve image from storage');
+                }
+            } else {
+                // Local file system
+                const filePath = path.join(UPLOAD_DIR, imageData.stored_filename);
+                try {
+                    imageBuffer = await fs.readFile(filePath);
+                    base64Image = imageBuffer.toString('base64');
+                } catch (fsError) {
+                    logger.error('Error reading image file:', {
+                        error: fsError.message,
+                        stack: fsError.stack,
+                        userId: user.id,
+                        imageId,
+                        path: filePath
+                    });
+                    throw new Error('Failed to read image file');
+                }
+            }
+
+            // Create a conversation context
+            const client = await pool.connect();
+            let conversationId = message.conversationId;
+            let messageId = null;
+
+            try {
+                await client.query('BEGIN');
+
+                let conversation;
+
+                if (conversationId) {
+                    conversation = await this.verifyConversation(user.id, conversationId);
+                    if (!conversation) {
+                        throw new Error('Invalid conversation ID');
+                    }
+                } else {
+                    conversation = await this.createNewConversation(client, user.id, prompt);
+                    conversationId = conversation.id;
+                }
+
+                // Save user message with prompt
+                const userMessageResult = await client.query(
+                    'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at, has_attachments) VALUES ($1, $2, $3, $4, NOW(), $5) RETURNING id',
+                    [conversationId, 'user', prompt, 0, true]
+                );
+                const userMessageId = userMessageResult.rows[0].id;
+
+                // Link image to user message using direct query instead of helper method
+                await client.query(
+                    'INSERT INTO message_references (message_id, reference_type, reference_id) VALUES ($1, $2, $3)',
+                    [userMessageId, 'image', imageId]
+                );
+
+                // Update message to indicate it has attachments
+                await client.query(
+                    'UPDATE messages SET has_attachments = TRUE WHERE id = $1',
+                    [userMessageId]
+                );
+
+                // Placeholder for assistant message
+                const aiMessageResult = await client.query(
+                    'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW() + interval \'1 millisecond\') RETURNING id',
+                    [conversationId, 'assistant', '', 0]
+                );
+                messageId = aiMessageResult.rows[0].id;
+
+                await client.query('COMMIT');
+
+                // Notify client that processing has started
+                ws.send(JSON.stringify({
+                    type: 'image_analysis_started',
+                    message_id: messageId,
+                    conversation_id: conversationId
+                }));
+
+                // Use base64 encoded image for OpenAI Vision
+                const base64ImageForAPI = `data:${imageData.type};base64,${base64Image}`;
+
+                // Use OpenAI Vision to analyze the image
+                const response = await openai.chat.completions.create({
+                    model: process.env.OPENAI_IMAGE_ANALYSIS_MODEL, // Use the appropriate model with vision capabilities
+                    messages: [
+                        {
+                            role: "user",
+                            content: [
+                                { type: "text", text: prompt },
+                                {
+                                    type: "image_url",
+                                    image_url: {
+                                        url: base64ImageForAPI,
+                                        detail: "high" // Use high detail for better analysis
+                                    }
+                                }
+                            ],
+                        },
+                    ],
+                    max_tokens: 800,
+                });
+
+                const aiResponse = response.choices[0]?.message?.content || '';
+                const tokensUsed = response.usage?.total_tokens || 0;
+
+                // Start a new transaction to update the AI message
+                await client.query('BEGIN');
+
+                // Update the AI message with response
+                await client.query(
+                    'UPDATE messages SET content = $1, tokens_used = $2 WHERE id = $3',
+                    [aiResponse, tokensUsed, messageId]
+                );
+
+                await client.query('COMMIT');
+
+                logger.debug('Image analysis completed', {
+                    userId: user.id,
+                    imageId,
+                    messageId,
+                    tokensUsed
+                });
+
+                // Send response to client
+                ws.send(JSON.stringify({
+                    type: 'image_analysis_complete',
+                    message_id: messageId,
+                    conversation_id: conversationId,
+                    content: aiResponse,
+                    image: {
+                        id: imageId,
+                        thumbnail: imageData.thumbnail
+                    }
+                }));
+
+            } catch (error) {
+                await client.query('ROLLBACK');
+                throw error;
+            } finally {
+                client.release();
+            }
+
+        } catch (error) {
+            logger.error('Error analyzing image:', {
+                error: error.message,
+                stack: error.stack,
+                userId: user.id,
+                imageId: message.imageId
+            });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: `Error analyzing image: ${error.message}`
+            }));
+        }
+    }
+
+    // Add this to your ChatServer class to handle image generation from chat
+
+    // Handle chat with image generation
+    async handleChatWithImage(ws, message, user) {
+        const client = await pool.connect();
+        let aiResponse = '';
+        let tokensUsed = 0;
+        let conversationId = message.conversationId;
+        let userMessageId = null;
+        let aiMessageId = null;
+        let generatedImage = null;
+        const stream = message.stream !== false; // Default to true
+
+        logger.startOperation('chat-with-image', {
+            userId: user.id,
+            conversationId,
+            streamMode: stream
+        });
+
+        try {
+            await client.query('BEGIN');
+
+            const imagePrompt = message.content.trim();
+
+            // Verify existing conversation or create new one
+            let conversation;
+            if (conversationId) {
+                conversation = await this.verifyConversation(user.id, conversationId);
+                if (!conversation) {
+                    throw new Error('Invalid conversation ID');
+                }
+            } else {
+                conversation = await this.createNewConversation(client, user.id, message.content);
+                conversationId = conversation.id;
+            }
+
+            // Save user message first and get its ID
+            const userMessageResult = await client.query(
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING id',
+                [conversationId, 'user', message.content, 0]
+            );
+            userMessageId = userMessageResult.rows[0].id;
+
+            // Now save a placeholder for the assistant message
+            const aiMessageResult = await client.query(
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at) VALUES ($1, $2, $3, $4, NOW() + interval \'1 millisecond\') RETURNING id',
+                [conversationId, 'assistant', '', 0]
+            );
+            aiMessageId = aiMessageResult.rows[0].id;
+
+            // Commit both messages to ensure they exist in the database
+            await client.query('COMMIT');
+
+            // Send initial message for image generation
+            if (stream) {
+                ws.send(JSON.stringify({
+                    type: 'conversation_created',
+                    conversation_id: conversationId,
+                    title: conversation.title,
+                    message_id: userMessageId
+                }));
+
+                ws.send(JSON.stringify({
+                    type: 'chat_stream',
+                    conversation_id: conversationId,
+                    message_id: aiMessageId,
+                    chunk: `I'll generate an image based on your prompt: "${imagePrompt}". Please wait a moment...`,
+                    done: false
+                }));
+            }
+
+            // Generate the image
+            try {
+                // Generate image with DALL-E
+                const response = await openai.images.generate({
+                    model: "dall-e-3",
+                    prompt: imagePrompt,
+                    size: "1024x1024",
+                    quality: "standard",
+                    style: "natural",
+                    n: 1,
+                });
+
+                const imageUrl = response.data[0]?.url;
+
+                if (!imageUrl) {
+                    throw new Error('Failed to generate image');
+                }
+
+                // Download the generated image
+                const imageResponse = await fetch(imageUrl);
+                const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+
+                // Generate a unique ID for the image
+                const imageId = uuidv4();
+                const dateNow = Date.now();
+
+                // Create a descriptive filename based on the prompt
+                let originalFilename = `${imagePrompt.substring(0, 50)}${imagePrompt.length > 50 ? '...' : ''}.png`;
+                originalFilename = this.sanitizeFilename(originalFilename);
+
+                // Use S3 for storage instead of local filesystem
+                const s3Key = `${user.id}/${dateNow}_${imageId}.png`;
+
+                // Generate thumbnail
+                const thumbnail = await this.generateThumbnail(imageBuffer);
+
+                // Upload image to S3
+                try {
+                    await uploadToS3(s3Key, imageBuffer, 'image/png');
+
+                    logger.debug('Uploaded generated image to S3', {
+                        userId: user.id,
+                        s3Key,
+                        size: imageBuffer.length
+                    });
+                } catch (s3Error) {
+                    logger.error('Failed to upload generated image to S3:', {
+                        error: s3Error.message,
+                        stack: s3Error.stack,
+                        userId: user.id
+                    });
+                    throw new Error(`Failed to store generated image: ${s3Error.message}`);
+                }
+
+                // Save metadata to database
+                const imageData = await pool.query(
+                    `INSERT INTO user_images (user_id, filename, stored_filename, type, size, source, thumbnail)
+                VALUES ($1, $2, $3, $4, $5, $6, $7)
+                RETURNING *`,
+                    [
+                        user.id,
+                        originalFilename,
+                        s3Key,
+                        'image/png',
+                        imageBuffer.length,
+                        'generated_from_text',
+                        thumbnail
+                    ]
+                );
+
+                generatedImage = imageData.rows[0];
+
+                // Start a new transaction to add the image reference
+                await client.query('BEGIN');
+
+                // Link the image to the message
+                await client.query(
+                    `INSERT INTO message_references (message_id, reference_type, reference_id)
+                     VALUES ($1, $2, $3)`,
+                    [aiMessageId, 'image', generatedImage.id]
+                );
+
+                // Update the message to indicate it has attachments
+                await client.query(
+                    `UPDATE messages SET has_attachments = TRUE WHERE id = $1`,
+                    [aiMessageId]
+                );
+
+                await client.query('COMMIT');
+
+                // Create response message with image info
+                aiResponse = `Here's the image I generated based on your prompt: "${imagePrompt}"`;
+
+                // Start another transaction to update the message content
+                await client.query('BEGIN');
+
+                // Update the assistant message with the final content
+                await client.query(
+                    'UPDATE messages SET content = $1, tokens_used = $2 WHERE id = $3',
+                    [aiResponse, tokensUsed, aiMessageId]
+                );
+
+                await client.query('COMMIT');
+
+                // Generate a signed URL for the image
+                const imageSignedUrl = await getSignedUrl(s3Key);
+
+                if (stream) {
+                    // Send completion message for stream
+                    ws.send(JSON.stringify({
+                        type: 'chat_stream',
+                        conversation_id: conversationId,
+                        message_id: aiMessageId,
+                        chunk: aiResponse,
+                        done: true,
+                        image: {
+                            id: generatedImage.id,
+                            thumbnail: generatedImage.thumbnail,
+                            filename: originalFilename,
+                            url: imageSignedUrl
+                        }
+                    }));
+                } else {
+                    // Send single response for non-streaming mode
+                    ws.send(JSON.stringify({
+                        type: 'chat_complete',
+                        conversation_id: conversationId,
+                        message_id: aiMessageId,
+                        user_message_id: userMessageId,
+                        title: conversation.title,
+                        content: aiResponse,
+                        done: true,
+                        image: {
+                            id: generatedImage.id,
+                            thumbnail: generatedImage.thumbnail,
+                            filename: originalFilename,
+                            url: imageUrl
+                        }
+                    }));
+                }
+            } catch (error) {
+                logger.error('Image generation failed:', {
+                    userId: user.id,
+                    error: error.message,
+                    stack: error.stack
+                });
+
+                // Fall back to regular text response
+                aiResponse = `I'm sorry, but I couldn't generate an image based on your prompt. ${error.message}`;
+
+                // Start another transaction to update the message content
+                await client.query('BEGIN');
+
+                // Update the assistant message with the error message
+                await client.query(
+                    'UPDATE messages SET content = $1, tokens_used = $2 WHERE id = $3',
+                    [aiResponse, tokensUsed, aiMessageId]
+                );
+
+                await client.query('COMMIT');
+
+                if (stream) {
+                    ws.send(JSON.stringify({
+                        type: 'chat_stream',
+                        conversation_id: conversationId,
+                        message_id: aiMessageId,
+                        chunk: aiResponse,
+                        done: true
+                    }));
+                } else {
+                    ws.send(JSON.stringify({
+                        type: 'chat_complete',
+                        conversation_id: conversationId,
+                        message_id: aiMessageId,
+                        user_message_id: userMessageId,
+                        title: conversation.title,
+                        content: aiResponse,
+                        done: true
+                    }));
+                }
+            }
+        } catch (error) {
+            // Make sure to rollback any active transaction
+            try {
+                await client.query('ROLLBACK');
+            } catch (rollbackError) {
+                logger.error('Rollback failed:', {
+                    error: rollbackError.message,
+                    originalError: error.message
+                });
+            }
+
+            logger.failOperation('chat-with-image', error, {
+                userId: user.id,
+                conversationId,
+                userMessageId,
+                aiMessageId
+            });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: error.message,
+                conversationId,
+                message_id: userMessageId
+            }));
+        } finally {
+            client.release();
+        }
+    }
+
+    // Update the handleMessage method to include the new chat_with_image type
     async handleMessage(ws, message, user) {
         switch (message.type) {
             case 'chat':
                 await this.handleChatMessage(ws, message, user);
+                break;
+            case 'chat_with_image':
+                await this.handleChatWithImage(ws, message, user);
                 break;
             case 'get_history':
                 const history = await this.getConversationHistory(
@@ -467,14 +1447,14 @@ export class ChatServer {
                 }));
                 break;
             case 'delete_conversation':
-                const deleted = await this.deleteConversation(
+                const deletedConversation = await this.deleteConversation(
                     user.id,
                     message.conversationId
                 );
                 ws.send(JSON.stringify({
                     type: 'conversation_deleted',
                     conversationId: message.conversationId,
-                    success: deleted
+                    success: deletedConversation
                 }));
                 break;
             case 'humanize':
@@ -487,6 +1467,34 @@ export class ChatServer {
                     messageId: message.message_id ?? null,
                     messages
                 }));
+                break;
+            case 'image_upload':
+                await this.handleImageUpload(ws, message, user);
+                break;
+            case 'get_image':
+                await this.getImage(ws, message, user);
+                break;
+            case 'get_user_images':
+                const images = await this.getUserImages(
+                    user.id,
+                    message.limit || 20,
+                    message.offset || 0
+                );
+                ws.send(JSON.stringify({
+                    type: 'user_images',
+                    images
+                }));
+                break;
+            case 'delete_image':
+                const deletedImage = await this.deleteUserImage(user.id, message.image_id);
+                ws.send(JSON.stringify({
+                    type: 'image_deleted',
+                    image_id: message.image_id,
+                    success: deletedImage
+                }));
+                break;
+            case 'image_analysis':
+                await this.handleImageAnalysis(ws, message, user);
                 break;
             default:
                 ws.send(JSON.stringify({
@@ -510,42 +1518,6 @@ export class ChatServer {
         );
 
         return result.rows.reverse();
-    }
-
-    async saveMessages(client, userId, conversationId, messages) {
-        try {
-            // Ensure conversation exists and belongs to user
-            let conversation;
-            if (!conversationId) {
-                const result = await client.query(
-                    'INSERT INTO conversations (user_id, title) VALUES ($1, $2) RETURNING id',
-                    [userId, 'New Chat']
-                );
-                conversation = result.rows[0];
-            } else {
-                const result = await client.query(
-                    'SELECT id FROM conversations WHERE id = $1 AND user_id = $2',
-                    [conversationId, userId]
-                );
-                if (!result.rows.length) {
-                    throw new Error('Invalid conversation ID');
-                }
-                conversation = result.rows[0];
-            }
-
-            // Save messages
-            for (const msg of messages) {
-                await client.query(
-                    'INSERT INTO messages (conversation_id, role, content, tokens_used) VALUES ($1, $2, $3, $4)',
-                    [conversation.id, msg.role, msg.content, msg.tokens_used]
-                );
-            }
-
-            return conversation.id;
-        } catch (error) {
-            logger.info('Save messages error:', error);
-            throw error;
-        }
     }
 
     async humanizeText(text) {
@@ -652,7 +1624,7 @@ export class ChatServer {
             )
 
             ws.send(JSON.stringify({
-                type: 'humanize_complete',
+                type: !message.message_id ? 'text_humanize_complete' : 'humanize_complete',
                 original_text: textToHumanize,
                 humanized_text: humanizedText,
                 request_id: message.request_id,
@@ -681,7 +1653,10 @@ export class ChatServer {
         let result
         if (!message_id) {
             result = await pool.query(`
-                SELECT id, humanized_text, created_at, case when re_humanized_id notnull then true else false end as re_humanized
+                SELECT id,
+                       humanized_text,
+                       created_at,
+                       case when re_humanized_id notnull then true else false end as re_humanized
                 FROM humanized_messages
                 WHERE user_id = $1
                 ORDER BY created_at
@@ -689,14 +1664,123 @@ export class ChatServer {
             `, [user.id, limit, offset])
         } else if (message_id && user.id) {
             result = await pool.query(`
-                SELECT id, humanized_text, created_at, case when re_humanized_id notnull then true else false end as re_humanized
+                SELECT id,
+                       humanized_text,
+                       created_at,
+                       case when re_humanized_id notnull then true else false end as re_humanized
                 FROM humanized_messages
-                WHERE user_id = $1 AND message_id = $2
+                WHERE user_id = $1
+                  AND message_id = $2
                 ORDER BY created_at
                 LIMIT $3 OFFSET $4
-            `, [user.id,  message_id, limit, offset])
+            `, [user.id, message_id, limit, offset])
         }
 
         return result.rows.reverse()
+    }
+
+    // New method to get user's uploaded images
+    async getUserImages(userId, limit = 20, offset = 0) {
+        const result = await pool.query(`
+        SELECT 
+            ui.id, 
+            ui.filename, 
+            ui.type, 
+            ui.size, 
+            ui.source, 
+            ui.source_id, 
+            ui.created_at,
+            ui.thumbnail,
+            (SELECT COUNT(*) FROM user_images WHERE source_id = ui.id) as derived_count
+        FROM user_images ui
+        WHERE ui.user_id = $1
+        ORDER BY ui.created_at DESC
+        LIMIT $2 OFFSET $3
+    `, [userId, limit, offset]);
+
+        const images = result.rows;
+
+        // Generate signed URLs for each image
+        for (let i = 0; i < images.length; i++) {
+            try {
+                images[i].url = await this.getSignedImageUrl(userId, images[i].id);
+            } catch (error) {
+                images[i].url = null;
+                logger.warn('Failed to get signed URL for image', {
+                    userId,
+                    imageId: images[i].id,
+                    error: error.message
+                });
+            }
+        }
+
+        return images;
+    }
+
+    // New method to delete a user image
+    async deleteUserImage(userId, imageId) {
+        const client = await pool.connect();
+
+        try {
+            await client.query('BEGIN');
+
+            // Check if the image exists and belongs to the user
+            const imageResult = await client.query(
+                'SELECT stored_filename FROM user_images WHERE id = $1 AND user_id = $2',
+                [imageId, userId]
+            );
+
+            if (imageResult.rows.length === 0) {
+                return false;
+            }
+
+            const storedFilename = imageResult.rows[0].stored_filename;
+
+            // Delete from S3
+            try {
+                const deleteParams = {
+                    Bucket: S3_BUCKET,
+                    Key: storedFilename
+                };
+
+                await s3Client.send(new DeleteObjectCommand(deleteParams));
+            } catch (s3Error) {
+                logger.warn('Failed to delete image from S3', {
+                    userId,
+                    imageId,
+                    storedFilename,
+                    error: s3Error.message
+                });
+                // Continue with DB deletion even if S3 deletion fails
+            }
+
+            // Delete image from database (cascades to message_references)
+            await client.query(
+                'DELETE FROM user_images WHERE id = $1 AND user_id = $2',
+                [imageId, userId]
+            );
+
+            await client.query('COMMIT');
+
+            logger.debug('Image deleted successfully', {
+                userId,
+                imageId,
+                storedFilename
+            });
+
+            return true;
+        } catch (error) {
+            await client.query('ROLLBACK');
+
+            logger.error('Failed to delete image', {
+                userId,
+                imageId,
+                error: error.message
+            });
+
+            return false;
+        } finally {
+            client.release();
+        }
     }
 }
