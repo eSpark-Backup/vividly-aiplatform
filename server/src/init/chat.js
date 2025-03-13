@@ -650,7 +650,8 @@ export class ChatServer {
                                                    'type', ui.type,
                                                    'size', ui.size,
                                                    'source', ui.source,
-                                                   'created_at', ui.created_at
+                                                   'created_at', ui.created_at,
+                                                   'thumbnail', ui.thumbnail
                                            )
                                    )
                             FROM message_references mr
