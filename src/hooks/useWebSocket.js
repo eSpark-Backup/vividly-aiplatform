@@ -12,6 +12,7 @@ export function useWebSocket(url) {
 
   const [messages, setMessages] = useState([])
   const [humanizedContent, setHumanizedContent] = useState("")
+  const [customHumanizeContent, setCustomHumanizeContent] = useState("")
   const [AItoHumanizeInput, setAItoHumanizeInput] = useState("")
   const [suggestedQuestions, setSuggestedQuestions] = useState([])
   const [specficMessageHumanizeHistory, setSpecificMessageHumanizeHistory] = useState([])
@@ -127,6 +128,9 @@ export function useWebSocket(url) {
               break
             case "humanize_complete":
               handleHumanizeComplete(data)
+              break
+            case "text_humanize_complete":
+              handleCustomHumanizeComplete(data)
               break
             case "get_humanized_messages":
               handleGetHumanizedMessages(data)
@@ -267,6 +271,11 @@ export function useWebSocket(url) {
   const handleHumanizeComplete = useCallback((data) => {
     setIsHumanizeLoading(false)
     setHumanizedContent(data.humanized_text)
+  })
+
+  const handleCustomHumanizeComplete = useCallback((data) => {
+    setIsHumanizeLoading(false)
+    setCustomHumanizeContent(data.humanized_text)
   })
 
   const handleGetHumanizedMessages = useCallback((data) => {
@@ -438,6 +447,7 @@ export function useWebSocket(url) {
     sendReHumanizeCommand,
     isHumanizeLoading,
     humanizedContent,
+    customHumanizeContent,
     setHumanizedContent,
     isSpecificMessageHistoryLoading,
     specficMessageHumanizeHistory,

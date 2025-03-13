@@ -6,7 +6,7 @@ import { useWebSocketContext } from "@/services/WebSocketProvider"
 
 const AItoHumanize = () => {
     const [isCopied, setIsCopied] = useState(false)
-    const { sendCustomHumanizeCommand, isHumanizeLoading, humanizedContent, AItoHumanizeInput, setAItoHumanizeInput } = useWebSocketContext()
+    const { sendCustomHumanizeCommand, isHumanizeLoading, customHumanizeContent, AItoHumanizeInput, setAItoHumanizeInput } = useWebSocketContext()
     const maxWords = 125
 
     const wordCount = AItoHumanizeInput.trim() ? AItoHumanizeInput.trim().split(/\s+/).length : 0
@@ -17,8 +17,8 @@ const AItoHumanize = () => {
     }
 
     const handleCopy = async () => {
-        if (humanizedContent) {
-            await navigator.clipboard.writeText(humanizedContent)
+        if (customHumanizeContent) {
+            await navigator.clipboard.writeText(customHumanizeContent)
             setIsCopied(true)
             setTimeout(() => setIsCopied(false), 2000)
         }
@@ -60,14 +60,14 @@ const AItoHumanize = () => {
             {/* Output Section */}
             <div className="flex-1 p-4 md:p-6 relative">
                 <Textarea
-                    value={humanizedContent || ""}
+                    value={customHumanizeContent || ""}
                     readOnly
-                    disabled={!humanizedContent}
+                    disabled={!customHumanizeContent}
                     placeholder="Humanized text will appear here..."
                     className="w-full h-[calc(50vh-140px)] md:h-full resize-none bg-black/45 text-white p-4 pb-16 disabled:placeholder-white"
                 />
 
-                {humanizedContent && (
+                {customHumanizeContent && (
                     <Button
                         onClick={handleCopy}
                         className="absolute bottom-8 right-8"
