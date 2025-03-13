@@ -118,10 +118,17 @@ jobs:
           echo "OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}" >> .env
           echo "OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}" >> .env
           echo "OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}" >> .env
+          echo "OPENAI_IMAGE_ANALYSIS_MODEL: ${{ secrets.OPENAI_IMAGE_ANALYSIS_MODEL }}" >> .env
+          echo "MAX_IMAGE_SIZE: ${{ secrets.MAX_IMAGE_SIZE }}" >> .env
           echo "HUMANIZER_API_URL: ${{ secrets.HUMANIZER_API_URL }}" >> .env
           echo "HUMANIZER_API_KEY: ${{ secrets.HUMANIZER_API_KEY }}" >> .env
           echo "AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}" >> .env
           echo "AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}" >> .env
+          echo "S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}" >> .env
+          echo "S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}" >> .env
+          echo "S3_BUCKET: ${{ secrets.S3_BUCKET }}" >> .env
+          echo "S3_REGION: ${{ secrets.S3_REGION }}" >> .env
+          echo "S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}" >> .env
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-publish
@@ -200,11 +207,18 @@ jobs:
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
           OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}
           OPENAI_MODEL_TEMPERATURE: ${{ secrets.OPENAI_MODEL_TEMPERATURE }}
+          OPENAI_IMAGE_ANALYSIS_MODEL: ${{ secrets.OPENAI_IMAGE_ANALYSIS_MODEL }}
+          MAX_IMAGE_SIZE: ${{ secrets.MAX_IMAGE_SIZE }}
           HUMANIZER_API_URL: ${{ secrets.HUMANIZER_API_URL }}
           HUMANIZER_API_KEY: ${{ secrets.HUMANIZER_API_KEY }}
           AZURE_SPEECH_REGION: ${{ secrets.AZURE_SPEECH_REGION }}
-          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}          
-
+          AZURE_SPEECH_KEY: ${{ secrets.AZURE_SPEECH_KEY }}
+          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+          S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          S3_REGION: ${{ secrets.S3_REGION }}
+          S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
+          
         run: |
           docker compose -f docker-compose.yml -f docker-compose.stg.yml pull
           docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" down
