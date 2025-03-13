@@ -6,14 +6,10 @@ import {fileURLToPath} from "url";
 import path, {dirname, join} from "path";
 import dotenv from "dotenv";
 import AWS from 'aws-sdk';
-// import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 import crypto from 'crypto';
 import sharp from 'sharp';
-import { Readable } from 'stream';
 import fs from "fs/promises";
 import {v4 as uuidv4} from 'uuid'
-// To this instead:
-import { fileTypeFromBuffer } from 'file-type';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -21,15 +17,6 @@ dotenv.config({path: join(__dirname, '../../.env')})
 
 // Setup paths
 const UPLOAD_DIR = path.join(__dirname, '../../uploads');
-
-// // Ensure upload directory exists
-// (async (path, callback) => {
-//     try {
-//         await fs.access(UPLOAD_DIR);
-//     } catch (error) {
-//         await fs.mkdir(UPLOAD_DIR, {recursive: true});
-//     }
-// })();
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
@@ -190,7 +177,7 @@ export class ChatServer {
         }
     }
 
-// Record image access for bandwidth tracking
+    // Record image access for bandwidth tracking
     async recordImageAccess(imageId, userId, bytesTransferred = 0) {
         try {
             await pool.query(
@@ -206,7 +193,7 @@ export class ChatServer {
         }
     }
 
-// Get signed URL for an image
+    // Get signed URL for an image
     async getSignedImageUrl(userId, imageId) {
         try {
             // Get the stored filename
@@ -238,118 +225,7 @@ export class ChatServer {
         }
     }
 
-    // Save image metadata to database
-    async saveImageMetadata(userId, originalFilename, storedFilename, fileType, fileSize, source = 'upload', sourceId = null, thumbnail = null) {
-        if (!thumbnail) {
-            thumbnail = await this.generateThumbnail(path.join(UPLOAD_DIR, storedFilename));
-        }
-
-        const result = await pool.query(
-            `INSERT INTO user_images (user_id, filename, stored_filename, type, size, source, source_id, thumbnail)
-             VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
-             RETURNING *`,
-            [userId, originalFilename, storedFilename, fileType, fileSize, source, sourceId, thumbnail]
-        );
-
-        return result.rows[0];
-    }
-
-    // Add image reference to a message
-    // async addMessageImageReference(messageId, imageId) {
-    //     try {
-    //         await pool.query(
-    //             `INSERT INTO message_references (message_id, reference_type, reference_id)
-    //              VALUES ($1, $2, $3)`,
-    //             [messageId, 'image', imageId]
-    //         );
-    //
-    //         // Set the message as having attachments
-    //         await pool.query(
-    //             `UPDATE messages
-    //              SET has_attachments = TRUE
-    //              WHERE id = $1`,
-    //             [messageId]
-    //         );
-    //
-    //         return true;
-    //     } catch (error) {
-    //         logger.error('Error adding image reference to message:', {
-    //             error: error.message,
-    //             stack: error.stack
-    //         });
-    //         return false;
-    //     }
-    // }
-
-    // Generate image from prompt
-    // Generate image from prompt
-    async generateImage(prompt, userId, size = '1024x768', style = 'natural') {
-        try {
-            // Generate image with DALL-E
-            const response = await openai.images.generate({
-                model: "dall-e-3",
-                prompt,
-                size,
-                quality: "standard",
-                style,
-                n: 1,
-            });
-
-            const imageUrl = response.data[0]?.url;
-
-            if (!imageUrl) {
-                throw new Error('Failed to generate image');
-            }
-
-            // Download the generated image
-            const imageResponse = await fetch(imageUrl);
-            const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
-            const imageFileName = `dalle-${Date.now()}-${uuidv4()}.png`;
-            const imagePath = path.join(UPLOAD_DIR, imageFileName);
-
-            // Use fs.promises for writeFile instead of callback version
-            await fs.writeFile(imagePath, imageBuffer);
-
-            // Generate thumbnail
-            const thumbnail = await this.generateThumbnail(imageBuffer);
-
-            // Save to database
-            const imageData = await this.saveImageMetadata(
-                userId,
-                `${prompt.substring(0, 50)}${prompt.length > 50 ? '...' : ''}.png`,
-                imageFileName,
-                'image/png',
-                imageBuffer.length,
-                'generated_from_text',
-                null,
-                thumbnail
-            );
-
-            return imageData;
-        } catch (error) {
-            logger.error('Error generating image:', {
-                error: error.message,
-                stack: error.stack,
-                userId
-            });
-            throw error;
-        }
-    }
-
-    getFileExtensionFromMimeType(mimeType) {
-        const mimeToExt = {
-            'image/jpeg': '.jpg',
-            'image/jpg': '.jpg',
-            'image/png': '.png',
-            'image/gif': '.gif',
-            'image/webp': '.webp',
-            'image/svg+xml': '.svg',
-        };
-
-        return mimeToExt[mimeType] || '.img';
-    }
-
-// Modified handleChatMessage to handle image references
+    // Modified handleChatMessage to handle image references
     async handleChatMessage(ws, message, user) {
         const client = await pool.connect();
         let aiResponse = '';
@@ -720,67 +596,6 @@ export class ChatServer {
             }));
         }
     }
-    // Delete image
-    async deleteImage(ws, message, user) {
-        const client = await pool.connect();
-        try {
-            await client.query('BEGIN');
-
-            const {imageId} = message;
-
-            if (!imageId) {
-                throw new Error('Image ID is required');
-            }
-
-            // Check if image exists and belongs to user
-            const result = await client.query(
-                `SELECT *
-                 FROM user_images
-                 WHERE id = $1
-                   AND user_id = $2`,
-                [imageId, user.id]
-            );
-
-            if (!result.rows.length) {
-                throw new Error('Image not found or unauthorized');
-            }
-
-            const imageData = result.rows[0];
-
-            // Delete from database
-            await client.query(
-                `DELETE
-                 FROM user_images
-                 WHERE id = $1`,
-                [imageId]
-            );
-
-            // Delete file from disk
-            const filePath = path.join(UPLOAD_DIR, imageData.stored_filename);
-            await fs.unlink(filePath);
-
-            await client.query('COMMIT');
-
-            ws.send(JSON.stringify({
-                type: 'image_deleted',
-                id: imageId
-            }));
-        } catch (error) {
-            await client.query('ROLLBACK');
-            logger.error('Error deleting image:', {
-                error: error.message,
-                stack: error.stack,
-                userId: user.id
-            });
-
-            ws.send(JSON.stringify({
-                type: 'error',
-                error: `Error deleting image: ${error.message}`
-            }));
-        } finally {
-            client.release();
-        }
-    }
 
     async verifyConversation(userId, conversationId) {
         if (!conversationId) return null;
@@ -819,74 +634,6 @@ export class ChatServer {
         );
 
         return result.rows[0];
-    }
-
-    // Handle image generation within chat
-    async handleImageGeneration(prompt, userId) {
-        try {
-            const fs = await import('fs/promises');
-            const path = await import('path');
-            const {fileURLToPath} = await import('url');
-            const {v4: uuidv4} = await import('uuid');
-            const __filename = fileURLToPath(import.meta.url);
-            const __dirname = path.dirname(__filename);
-            const UPLOAD_DIR = path.join(__dirname, '../../uploads');
-
-            // Generate image with DALL-E
-            const response = await openai.images.generate({
-                model: "dall-e-3",
-                prompt,
-                size: "1024x1024",
-                quality: "standard",
-                style: "natural",
-                n: 1,
-            });
-
-            const imageUrl = response.data[0]?.url;
-
-            if (!imageUrl) {
-                throw new Error('Failed to generate image');
-            }
-
-            // Download the generated image
-            const imageResponse = await fetch(imageUrl);
-            const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
-            const imageFileName = `dalle-${Date.now()}-${uuidv4()}.png`;
-            const imagePath = path.join(UPLOAD_DIR, imageFileName);
-
-            await fs.writeFile(imagePath, imageBuffer);
-
-            // Generate thumbnail
-            const thumbnailBuffer = await sharp(imageBuffer)
-                .resize(200, 200, {fit: 'inside'})
-                .toBuffer();
-            const thumbnail = `data:image/jpeg;base64,${thumbnailBuffer.toString('base64')}`;
-
-            // Save to database
-            const result = await pool.query(
-                `INSERT INTO user_images (user_id, filename, stored_filename, type, size, source, thumbnail)
-                 VALUES ($1, $2, $3, $4, $5, $6, $7)
-                 RETURNING *`,
-                [
-                    userId,
-                    `${prompt.substring(0, 50)}${prompt.length > 50 ? '...' : ''}.png`,
-                    imageFileName,
-                    'image/png',
-                    imageBuffer.length,
-                    'generated_from_text',
-                    thumbnail
-                ]
-            );
-
-            return result.rows[0];
-        } catch (error) {
-            logger.error('Error generating image:', {
-                error: error.message,
-                stack: error.stack,
-                userId
-            });
-            throw error;
-        }
     }
 
     // Chat history with pagination
@@ -937,7 +684,7 @@ export class ChatServer {
         return messages;
     }
 
-// Get all user conversations
+    // Get all user conversations
     async getUserConversations(userId) {
         const result = await pool.query(`
                     SELECT c.*,
@@ -957,7 +704,7 @@ export class ChatServer {
         return result.rows;
     }
 
-// Rename conversation
+    // Rename conversation
     async renameConversation(userId, conversationId, newTitle) {
         if (!newTitle) {
             throw new Error("Title is required for renaming conversation")
@@ -978,7 +725,7 @@ export class ChatServer {
         return result.rows[0];
     }
 
-// Delete conversation
+    // Delete conversation
     async deleteConversation(userId, conversationId) {
         const client = await pool.connect();
         try {
@@ -1144,7 +891,7 @@ export class ChatServer {
         }
     }
 
-// Helper function to sanitize filenames
+    // Helper function to sanitize filenames
     sanitizeFilename(filename) {
         // Remove any path components (slashes, backslashes)
         let sanitized = filename.replace(/[\/\\]/g, '');
@@ -1170,7 +917,6 @@ export class ChatServer {
         return sanitized;
     }
 
-// Add a new handler for detailed image analysis that can work with any uploaded image
     // Add a new handler for detailed image analysis that can work with any uploaded image
     async handleImageAnalysis(ws, message, user) {
         logger.startOperation('image-analysis', {
@@ -1381,7 +1127,7 @@ export class ChatServer {
 
     // Add this to your ChatServer class to handle image generation from chat
 
-// Handle chat with image generation
+    // Handle chat with image generation
     async handleChatWithImage(ws, message, user) {
         const client = await pool.connect();
         let aiResponse = '';
@@ -1660,194 +1406,7 @@ export class ChatServer {
         }
     }
 
-    async handleGenerateSimilarImage(ws, message, user) {
-        logger.startOperation('generate-similar-image', {
-            userId: user.id,
-            originalImageId: message.image_id
-        });
-
-        const client = await pool.connect();
-
-        try {
-            await client.query('BEGIN');
-
-            // Step 1: Verify the image belongs to the user
-            const imageResult = await client.query(
-                'SELECT stored_filename, type FROM user_images WHERE id = $1 AND user_id = $2',
-                [message.image_id, user.id]
-            );
-
-            if (imageResult.rows.length === 0) {
-                throw new Error('Image not found or unauthorized');
-            }
-
-            const storedFilename = imageResult.rows[0].stored_filename;
-            const mimeType = imageResult.rows[0].type;
-
-            // Notify client that processing has started
-            ws.send(JSON.stringify({
-                type: 'similar_image_processing',
-                original_image_id: message.image_id,
-                status: 'processing'
-            }));
-
-            // Step 2: Retrieve the original image (from S3 or local storage)
-            let imageBuffer;
-            if (storedFilename.includes('/')) {
-                try {
-                    const s3Response = await s3.getObject({
-                        Bucket: S3_BUCKET,
-                        Key: storedFilename
-                    }).promise();
-                    imageBuffer = s3Response.Body;
-                } catch (s3Error) {
-                    throw new Error(`Failed to retrieve image from S3: ${s3Error.message}`);
-                }
-            } else {
-                try {
-                    imageBuffer = await fs.readFile(path.join(UPLOAD_DIR, storedFilename));
-                } catch (fsError) {
-                    throw new Error(`Failed to read image file: ${fsError.message}`);
-                }
-            }
-
-            // Step 3: Generate a similar image using DALL-E
-            const prompt = message.prompt || "Create a visually similar image with some artistic variations.";
-
-            const openaiResponse = await openai.images.createVariation({
-                // model: "dall-e-3",
-                // prompt: prompt,
-                image: imageBuffer.toString('base64'),  // Use the original image as reference
-                size: "1024x1024",
-                // quality: "standard",
-                // style: "natural",
-                n: 1
-            });
-
-            if (!openaiResponse.data || !openaiResponse.data[0] || !openaiResponse.data[0].url) {
-                throw new Error('DALL-E failed to generate a similar image');
-            }
-
-            // Step 4: Download the generated image
-            const imageResponse = await fetch(openaiResponse.data[0].url);
-            const generatedImageBuffer = Buffer.from(await imageResponse.arrayBuffer());
-
-            // Step 5: Generate thumbnail
-            const thumbnail = await this.generateThumbnail(generatedImageBuffer);
-
-            // Step 6: Upload the generated image to S3
-            const uniqueId = crypto.randomUUID();
-            const newStoredFilename = `${user.id}/${uniqueId}.png`;
-            const newFilename = `similar_${Date.now()}.png`;
-
-            await uploadToS3(newStoredFilename, generatedImageBuffer, 'image/png');
-
-            // Step 7: Store reference in the database
-            const result = await client.query(
-                `INSERT INTO user_images (
-                    user_id, filename, stored_filename, type, size, source, source_id, thumbnail
-                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id`,
-                [
-                    user.id,
-                    newFilename,
-                    newStoredFilename,
-                    'image/png',
-                    generatedImageBuffer.length,
-                    'generated_similar',
-                    message.image_id,
-                    thumbnail
-                ]
-            );
-
-            const newImageId = result.rows[0].id;
-
-            // Step 8: Record image access
-            await client.query(
-                'SELECT record_image_access($1, $2, $3)',
-                [newImageId, user.id, 0]
-            );
-
-            // Step 9: Generate a signed URL for the client
-            const signedUrl = await getSignedUrl(newStoredFilename);
-
-            await client.query('COMMIT');
-
-            logger.info('Similar image generated successfully', {
-                userId: user.id,
-                originalImageId: message.image_id,
-                newImageId,
-                prompt: prompt
-            });
-
-            // Step 10: Send success response to client
-            ws.send(JSON.stringify({
-                type: 'similar_image_complete',
-                original_image_id: message.image_id,
-                new_image_id: newImageId,
-                url: signedUrl,
-                prompt: prompt,
-                filename: newFilename,
-                size: generatedImageBuffer.length,
-                mime_type: 'image/png'
-            }));
-
-        } catch (error) {
-            await client.query('ROLLBACK');
-
-            logger.error('Image generation failed', {
-                userId: user.id,
-                originalImageId: message.image_id,
-                error: error.message
-            });
-
-            ws.send(JSON.stringify({
-                type: 'error',
-                error: `Image generation failed: ${error.message}`,
-                original_image_id: message.image_id
-            }));
-        } finally {
-            client.release();
-        }
-    }
-
-
-// Replace the addMessageImageReference method with direct queries
-// This avoids using a helper method that might be causing issues
-    async addMessageImageReference(messageId, imageId) {
-        const client = await pool.connect();
-        try {
-            await client.query('BEGIN');
-
-            // Link the image to the message
-            await client.query(
-                `INSERT INTO message_references (message_id, reference_type, reference_id)
-             VALUES ($1, $2, $3)`,
-                [messageId, 'image', imageId]
-            );
-
-            // Set the message as having attachments
-            await client.query(
-                `UPDATE messages SET has_attachments = TRUE WHERE id = $1`,
-                [messageId]
-            );
-
-            await client.query('COMMIT');
-            return true;
-        } catch (error) {
-            await client.query('ROLLBACK');
-            logger.error('Error adding image reference to message:', {
-                error: error.message,
-                stack: error.stack,
-                messageId,
-                imageId
-            });
-            throw error;
-        } finally {
-            client.release();
-        }
-    }
-
-// Update the handleMessage method to include the new chat_with_image type
+    // Update the handleMessage method to include the new chat_with_image type
     async handleMessage(ws, message, user) {
         switch (message.type) {
             case 'chat':
@@ -1914,9 +1473,6 @@ export class ChatServer {
                 break;
             case 'get_image':
                 await this.getImage(ws, message, user);
-                break;
-            case 'generate_similar_image':
-                await this.handleGenerateSimilarImage(ws, message, user);
                 break;
             case 'get_user_images':
                 const images = await this.getUserImages(
@@ -2123,7 +1679,7 @@ export class ChatServer {
         return result.rows.reverse()
     }
 
-// New method to get user's uploaded images
+    // New method to get user's uploaded images
     async getUserImages(userId, limit = 20, offset = 0) {
         const result = await pool.query(`
         SELECT 
@@ -2161,7 +1717,7 @@ export class ChatServer {
         return images;
     }
 
-// New method to delete a user image
+    // New method to delete a user image
     async deleteUserImage(userId, imageId) {
         const client = await pool.connect();
 
