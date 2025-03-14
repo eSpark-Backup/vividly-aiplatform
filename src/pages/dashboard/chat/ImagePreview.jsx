@@ -1,14 +1,14 @@
 import { useState } from "react"
 import { X } from "lucide-react"
 
-export default function ImagePreview({ src, alt }) {
+export default function ImagePreview({ src, thumbnail, type, alt }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
       <div className="relative group cursor-pointer" onClick={() => setIsOpen(true)}>
         <img
-          src={src || "/placeholder.svg"}
+          src={`data:${type};base64,${thumbnail}`}
           alt={alt}
           className="max-w-full max-h-[300px] mt-2 rounded-lg object-contain transition-all duration-200 group-hover:brightness-90"
         />

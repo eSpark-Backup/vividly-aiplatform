@@ -34,7 +34,7 @@ const MessageBubble = React.memo(({ message }) => {
         <div>
           {message.images && message?.images[0]?.url
             &&
-            <ImagePreview src={message.images[0].url || "/placeholder.svg"} alt={message.content} />
+            <ImagePreview src={message.images[0].url || "/placeholder.svg"} thumbnail={message.images[0].thumbnail} type={message.images[0].type} alt={message.content} />
           }
         </div>
 
