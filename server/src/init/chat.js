@@ -873,7 +873,8 @@ export class ChatServer {
                 url: signedUrl,
                 filename: originalFilename,
                 size: imageData.length,
-                mime_type: mimeType
+                mime_type: mimeType,
+                thumbnail
             }));
 
         } catch (error) {
