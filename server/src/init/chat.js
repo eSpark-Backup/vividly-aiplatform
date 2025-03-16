@@ -927,7 +927,7 @@ export class ChatServer {
         });
 
         try {
-            const { imageId, prompt } = message;
+            const { imageId, content: prompt } = message;
 
             if (!imageId) {
                 throw new Error('Image ID is required');
