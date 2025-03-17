@@ -27,7 +27,7 @@ export default function Header() {
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
   const { mutate: logout, isPending } = useLogout()
-  const { setConversations } = useChatStore();
+  const { clearChat } = useChatStore();
   const { clearMessages } = useWebSocketContext()
   const { clearAuth } = useAuthStore();
   const { showSignOutDialog, setShowSignOutDialog } = useDialogStore();
@@ -42,11 +42,11 @@ export default function Header() {
     logout("", {
       onSuccess: () => {
         showToast("Success", "You have been signed out successfully.", "success");
-        clearAuth();
         clearUser();
         setShowSignOutDialog(false);
-        setConversations([]);
+        clearChat();
         clearMessages();
+        clearAuth();
         navigate("/log-in");
       },
       onError: (error) => {

@@ -11,7 +11,7 @@ const MessageBubble = React.memo(({ message }) => {
   return (
     <div className={`flex items-start gap-3 ${message.role === "user" ? "justify-end" : "justify-start"}`}>
       <div
-        className={`inline-block rounded-lg px-4 py-3 max-w-[85%] ${message.role === "user"
+        className={`inline-block rounded-lg px-4 py-3 sm:max-w-[85%] max-w-[100%] ${message.role === "user"
           ? "dark:gradient-glass-effect bg-black text-gray-200"
           : "dark:bg-[#1A1A1A] dark:text-gray-200 border border-[#1A1A1A] text-gray-800"
           }`}
@@ -24,7 +24,7 @@ const MessageBubble = React.memo(({ message }) => {
               </div>
             ),
             code: ({ node, ...props }) => <code className="bg-black/10 rounded-lg p-1" {...props} />,
-            p: ({ node, ...props }) => <p className="whitespace-pre-wrap mb-4" {...props} />,
+            p: ({ node, ...props }) => <p className="whitespace-pre-wrap" {...props} />,
           }}
           className="text-sm overflow-hidden leading-7"
         >

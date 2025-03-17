@@ -5,6 +5,7 @@ import MessageBubble from "./MessageBubble"
 import SuggestedQuestions from "./SuggestedQuestions"
 import ChatInput from "./ChatInput"
 import { useChatStore } from "@/store/useChatStore"
+import { MODES } from "@/constant"
 
 export default function Chat() {
   const {
@@ -19,7 +20,7 @@ export default function Chat() {
     setSuggestedQuestions,
   } = useWebSocketContext()
 
-  const { mode } = useChatStore()
+  const { userUploadedImage, setUserUploadedImage, setSelectedImage, mode, setMode } = useChatStore()
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
   const [input, setInput] = useState("")
@@ -30,19 +31,22 @@ export default function Chat() {
     (e) => {
       e?.preventDefault()
       if (!input.trim() || !isConnected) return
-     
-      const data = { content: input.trim(), conversationId }
+
+      const data = { content: input.trim(), conversationId, userUploadedImage }
       sendMessage(mode, data)
+      console.log("Form Data:", data, mode);
+      
       setInput("")
+      setSelectedImage(null)
+      setUserUploadedImage(null)
+      setMode(MODES.CHAT)
       setSuggestedQuestions([])
+
+
+      scrollToBottom()
     },
     [input, isConnected, sendMessage, conversationId, setSuggestedQuestions],
   )
-
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [])
-
 
   const handleSuggestedQuestionClick = useCallback(
     (question) => {
@@ -53,9 +57,18 @@ export default function Chat() {
     [sendMessage, conversationId, setSuggestedQuestions],
   )
 
+  const scrollToBottom = useCallback(() => {
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({ 
+        behavior: "smooth", 
+        block: "end" 
+      })
+    }, 100) 
+  }, [])
+
   useEffect(() => {
     scrollToBottom()
-  }, [scrollToBottom, messages, partialMessage])
+  }, [scrollToBottom, messages, partialMessage, isPartialMessageLoading])
 
   useEffect(() => {
     if (conversationId && isConnected) {
@@ -87,7 +100,7 @@ export default function Chat() {
               onQuestionClick={handleSuggestedQuestionClick}
             />
 
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} className="h-[20px]" />
           </div>
         </div>
 
