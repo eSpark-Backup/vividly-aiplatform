@@ -39,7 +39,7 @@ const HumanizeHistoryDrawer = ({ message }) => {
                         <History className="h-4 w-4" />
                     </div>
                     History
-                    <span className="ml-1 text-xs text-muted-foreground">({message.humanized_count})</span>
+                    <span className="ml-1 text-xs text-muted-foreground">({message.humanized_count || 0})</span>
                 </Button>
             </SheetTrigger>
             <SheetContent side="right" className="sm:max-w-[500px] w-[90vw] p-0 overflow-hidden">
