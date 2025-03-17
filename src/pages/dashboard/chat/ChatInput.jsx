@@ -8,8 +8,8 @@ import { MAX_FILE_SIZE, MODES } from "@/constant"
 import { useChatStore } from "@/store/useChatStore"
 import { useWebSocketContext } from "@/services/WebSocketProvider"
 import SelectedImagePreview from "./SelectedImagePreview"
-import { useDragAndDrop } from "@/hooks/UseDragAndDrop"
-import { useImageUpload } from "@/hooks/useImageUpload"
+import { useImageUpload } from "../../../hooks/useImageUpload"
+import { useDragAndDrop } from "../../../hooks/useDragAndDrop"
 
 
 
