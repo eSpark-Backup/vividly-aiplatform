@@ -12,6 +12,7 @@ export function useWebSocket(url) {
 
   const [messages, setMessages] = useState([])
   const [humanizedContent, setHumanizedContent] = useState("")
+  const [customHumanizeContent, setCustomHumanizeContent] = useState("")
   const [AItoHumanizeInput, setAItoHumanizeInput] = useState("")
   const [suggestedQuestions, setSuggestedQuestions] = useState([])
   const [specficMessageHumanizeHistory, setSpecificMessageHumanizeHistory] = useState([])
@@ -110,6 +111,9 @@ export function useWebSocket(url) {
             case "chat_stream":
               handleChatStream(data)
               break
+            case "image_analysis_complete":
+              handleImageAnalysisChat(data)
+              break
             case "history":
               handleHistory(data)
               break
@@ -127,6 +131,9 @@ export function useWebSocket(url) {
               break
             case "humanize_complete":
               handleHumanizeComplete(data)
+              break
+            case "text_humanize_complete":
+              handleCustomHumanizeComplete(data)
               break
             case "get_humanized_messages":
               handleGetHumanizedMessages(data)
@@ -215,6 +222,31 @@ export function useWebSocket(url) {
     [generateId, sendSocketCommand, extractQuestionsAndCleanMessage],
   )
 
+  const handleImageAnalysisChat = useCallback(
+    (data) => {
+     
+          const { questions, cleanedContent } = extractQuestionsAndCleanMessage(data.content)
+
+          setMessages((prevMsgs) => [
+            ...prevMsgs,
+            {
+              id: data.id || generateId(),
+              role: "assistant",
+              content: cleanedContent,
+              created_at: new Date().toISOString(),
+              conversation_id: data.conversationId || null,
+            },
+          ])
+
+          setSuggestedQuestions(questions)
+          setIsPartialMessageLoading(false)
+          sendSocketCommand({ type: "get_conversations" })
+          sendSocketCommand({ type: "get_history", conversationId: data.conversation_id })
+          return null
+    },
+    [generateId, sendSocketCommand, extractQuestionsAndCleanMessage],
+  )
+
   const handleHistory = useCallback(
     (data) => {
       const cleanedMessages = (data.messages || []).map((message) => {
@@ -269,6 +301,11 @@ export function useWebSocket(url) {
     setHumanizedContent(data.humanized_text)
   })
 
+  const handleCustomHumanizeComplete = useCallback((data) => {
+    setIsHumanizeLoading(false)
+    setCustomHumanizeContent(data.humanized_text)
+  })
+
   const handleGetHumanizedMessages = useCallback((data) => {
     setIsSpecificMessageHistoryLoading(false)
     setSpecificMessageHumanizeHistory(data.messages)
@@ -277,31 +314,30 @@ export function useWebSocket(url) {
   //COMMNADS FROM USER
 
   const sendMessage = useCallback(
-    (data) => {
+    (mode, data) => {
+      
       const newMessage = {
         id: generateId(),
         role: "user",
         content: data.content,
         created_at: new Date().toISOString(),
         conversation_id: data.conversationId || data.conversation_id || null,
+        ...(data.userUploadedImage && {images: [data.userUploadedImage]}),
       }
 
       // Add user message to the messages state immediately
-      // setMessages((prevMessages) => [...prevMessages, newMessage])
       setMessages(prevMessages => [...prevMessages, newMessage])
 
       const message = {
-        type: "chat",
+        type: mode,
         content: data.content,
         ...(data.conversationId && { conversationId: data.conversationId }),
+        ...(data.userUploadedImage && { imageId: data.userUploadedImage.image_id }),
       }
 
       setIsPartialMessageLoading(true)
       sendSocketCommand(message)
 
-      // if (data.conversationId) {
-      //   getChatHistory({ conversationId: data.conversationId })
-      // }
     },
     [sendSocketCommand, generateId],
   )
@@ -402,6 +438,56 @@ export function useWebSocket(url) {
     [sendSocketCommand],
   )
 
+  //Image Uploading
+  function uploadImage(file) {
+    return new Promise((resolve, reject) => {
+      const messageHandler = (event) => {
+        try {
+          const response = JSON.parse(event.data)
+          if (response.type === "error") {
+            socket.current.removeEventListener("message", messageHandler)
+            reject(new Error(response.error))
+            return
+          }
+          if (response.type === "image_uploaded") {
+            socket.current.removeEventListener("message", messageHandler)
+            resolve(response)
+            return
+          }
+        } catch (error) {
+          console.error("Error parsing response:", error)
+          socket.current.removeEventListener("message", messageHandler)
+          reject(new Error("Invalid server response format"))
+        }
+      }
+  
+      if (socket.current.readyState !== WebSocket.OPEN) {
+        return reject(new Error("WebSocket is not connected"))
+      }
+  
+      socket.current.addEventListener("message", messageHandler)
+  
+      // Read the file as ArrayBuffer
+      const reader = new FileReader()
+      reader.onload = (e) => {
+        try {
+          socket.current.send(e.target.result)
+        } catch (error) {
+          socket.current.removeEventListener("message", messageHandler)
+          reject(error)
+        }
+      }
+  
+      reader.onerror = (error) => {
+        socket.current.removeEventListener("message", messageHandler)
+        reject(error)
+      }
+  
+      // Read the file as binary data
+      reader.readAsArrayBuffer(file)
+    })
+  }
+
 
   // STARTING CONNECTION
   useEffect(() => {
@@ -438,6 +524,7 @@ export function useWebSocket(url) {
     sendReHumanizeCommand,
     isHumanizeLoading,
     humanizedContent,
+    customHumanizeContent,
     setHumanizedContent,
     isSpecificMessageHistoryLoading,
     specficMessageHumanizeHistory,
@@ -445,6 +532,7 @@ export function useWebSocket(url) {
     sendCustomHumanizeCommand,
     AItoHumanizeInput,
     setAItoHumanizeInput,
+    uploadImage,
     socket,
   }
 }

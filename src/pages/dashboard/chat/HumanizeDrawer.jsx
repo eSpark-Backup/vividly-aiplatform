@@ -4,6 +4,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { Textarea } from "@/components/ui/textarea"
 import { Sparkle, Square } from "lucide-react"
 import { useWebSocketContext } from "@/services/WebSocketProvider"
+import MarkdownDisplay from "./MarkdownDisplay"
 
 const HumanizeDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +18,7 @@ const HumanizeDrawer = ({ message }) => {
 
     const handleOpenChange = (open) => {
         setIsOpen(open)
-        
+
         if (!open) {
             setHumanizedContent("")
         }
@@ -44,22 +45,14 @@ const HumanizeDrawer = ({ message }) => {
                     <SheetTitle>Message</SheetTitle>
                 </SheetHeader>
                 <div className="mt-4">
-                    <Textarea
-                        value={message.content}
-                        readOnly
-                        className="w-full h-60 mb-4 bg-black text-white"
-                    />
+                    <MarkdownDisplay content={message.content} />
                     <div className="font-bold mb-2">Humanized Message:</div>
                     {isHumanizeLoading ? (
                         <div className="h-64 flex items-center justify-center">
                             <Square className="h-6 w-6 animate-spin" />
                         </div>
                     ) : (
-                        <Textarea
-                            value={humanizedContent}
-                            readOnly
-                            className="w-full h-60 mb-4 dark:bg-white/10 bg-black/45 text-white"
-                        />
+                        <MarkdownDisplay content={humanizedContent} />
                     )}
                     <Button onClick={handleReHumanize} disabled={isHumanizeLoading}>
                         {isHumanizeLoading ? "Humanizing..." : "Re-humanize"}

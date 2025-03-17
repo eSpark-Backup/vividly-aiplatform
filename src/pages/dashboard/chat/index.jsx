@@ -4,6 +4,8 @@ import { useSearchParams } from "react-router-dom"
 import MessageBubble from "./MessageBubble"
 import SuggestedQuestions from "./SuggestedQuestions"
 import ChatInput from "./ChatInput"
+import { useChatStore } from "@/store/useChatStore"
+import { MODES } from "@/constant"
 
 export default function Chat() {
   const {
@@ -18,9 +20,9 @@ export default function Chat() {
     setSuggestedQuestions,
   } = useWebSocketContext()
 
+  const { userUploadedImage, setUserUploadedImage, setSelectedImage, mode, setMode } = useChatStore()
   const [searchParams] = useSearchParams()
   const conversationId = searchParams.get("cid")
-
   const [input, setInput] = useState("")
   const messagesEndRef = useRef(null)
   const textareaRef = useRef(null)
@@ -30,38 +32,42 @@ export default function Chat() {
       e?.preventDefault()
       if (!input.trim() || !isConnected) return
 
-      sendMessage({ content: input.trim(), conversationId })
+      const data = { content: input.trim(), conversationId, userUploadedImage }
+      sendMessage(mode, data)
+
       setInput("")
+      setSelectedImage(null)
+      setUserUploadedImage(null)
+      setMode(MODES.CHAT)
       setSuggestedQuestions([])
-    },
-    [input, isConnected, sendMessage, conversationId, setSuggestedQuestions],
-  )
 
-  const scrollToBottom = useCallback(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
-  }, [])
 
-  const handleKeyDown = useCallback(
-    (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault()
-        if (!isPartialMessageLoading) handleSubmit()
-      }
+      scrollToBottom()
     },
-    [handleSubmit, isPartialMessageLoading],
+    [input, isConnected, sendMessage, conversationId, setSuggestedQuestions, mode, setMode, setSelectedImage, setUserUploadedImage, userUploadedImage],
   )
 
   const handleSuggestedQuestionClick = useCallback(
     (question) => {
-      sendMessage({ content: question, conversationId })
+      const data = { content: question, conversationId }
+      sendMessage(mode, data)
       setSuggestedQuestions([])
     },
     [sendMessage, conversationId, setSuggestedQuestions],
   )
 
+  const scrollToBottom = useCallback(() => {
+    setTimeout(() => {
+      messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end"
+      })
+    }, 100)
+  }, [])
+
   useEffect(() => {
     scrollToBottom()
-  }, [scrollToBottom, messages, partialMessage])
+  }, [scrollToBottom, messages, partialMessage, isPartialMessageLoading])
 
   useEffect(() => {
     if (conversationId && isConnected) {
@@ -83,7 +89,7 @@ export default function Chat() {
         <div className="flex-1 w-full max-w-5xl mx-auto">
           <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
 
-            {allMessages.map((message, index) => (
+            {allMessages.filter((message) => message.content.trim() !== "").map((message, index) => (
               <MessageBubble key={message.id || `message-${index}`} message={message} />
             ))}
 
@@ -93,7 +99,7 @@ export default function Chat() {
               onQuestionClick={handleSuggestedQuestionClick}
             />
 
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} className="h-[20px]" />
           </div>
         </div>
 
