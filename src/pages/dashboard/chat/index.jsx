@@ -34,8 +34,7 @@ export default function Chat() {
 
       const data = { content: input.trim(), conversationId, userUploadedImage }
       sendMessage(mode, data)
-      console.log("Form Data:", data, mode);
-      
+
       setInput("")
       setSelectedImage(null)
       setUserUploadedImage(null)
@@ -45,7 +44,7 @@ export default function Chat() {
 
       scrollToBottom()
     },
-    [input, isConnected, sendMessage, conversationId, setSuggestedQuestions],
+    [input, isConnected, sendMessage, conversationId, setSuggestedQuestions, mode, setMode, setSelectedImage, setUserUploadedImage, userUploadedImage],
   )
 
   const handleSuggestedQuestionClick = useCallback(
@@ -59,11 +58,11 @@ export default function Chat() {
 
   const scrollToBottom = useCallback(() => {
     setTimeout(() => {
-      messagesEndRef.current?.scrollIntoView({ 
-        behavior: "smooth", 
-        block: "end" 
+      messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "end"
       })
-    }, 100) 
+    }, 100)
   }, [])
 
   useEffect(() => {
