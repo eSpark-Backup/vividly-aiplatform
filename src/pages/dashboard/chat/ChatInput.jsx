@@ -1,6 +1,6 @@
 import "regenerator-runtime/runtime"
 import { cn } from "@/lib/utils"
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { Image, Mic, MicOff, Send, Square, Upload } from "lucide-react"
 import { Textarea } from "@/components/ui/textarea"
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition"
@@ -10,16 +10,16 @@ import { useWebSocketContext } from "@/services/WebSocketProvider"
 import SelectedImagePreview from "./SelectedImagePreview"
 import { useImageUpload } from "../../../hooks/useImageUpload"
 import { useDragAndDrop } from "../../../hooks/useDragAndDrop"
+import VoiceSelector from "./VoiceSelector"
 
 
 
 const ChatInput = React.memo(
   ({ input, setInput, handleSubmit, isConnected, isPartialMessageLoading, textareaRef, disabled = false }) => {
 
-    const { mode, setMode } = useChatStore()
+    const { mode, setMode, selectedVoice, setSelectedVoice } = useChatStore()
     const { transcript, listening, resetTranscript, browserSupportsSpeechRecognition } = useSpeechRecognition()
     const { uploadImage } = useWebSocketContext()
-
 
     const isImageMode = MODES.CHAT_WITH_IMAGE === mode
 
@@ -80,6 +80,16 @@ const ChatInput = React.memo(
       fileInputRef.current.click()
     }
 
+    const handleVoiceSelect = (voice) => {
+      setSelectedVoice({
+        default: voice.default,
+        name: voice.name,
+        lang: voice.lang,
+        localService: voice.localService,
+        voiceURI: voice.voiceURI
+      })
+    }
+
     const { isDragging, dragHandlers } = useDragAndDrop({
       onFileDrop: validateAndProcessFile,
     })
@@ -112,6 +122,12 @@ const ChatInput = React.memo(
 
             <div className="flex items-center w-full">
               <input type="file" ref={fileInputRef} onChange={handleFileSelect} accept="image/*" className="hidden" />
+
+              <VoiceSelector
+                onVoiceSelect={handleVoiceSelect}
+                selectedVoice={selectedVoice}
+                disabled={disabled || !isConnected}
+              />
 
               {browserSupportsSpeechRecognition && (
                 <button

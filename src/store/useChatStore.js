@@ -1,8 +1,9 @@
 import { MODES } from "@/constant"
 import { create } from "zustand"
+import { persist } from "zustand/middleware"
 
 export const useChatStore = create()(
-    (set) => ({
+    persist((set) => ({
         mode: MODES.CHAT,
         setMode: (value) => set({ mode: value }),
         userUploadedImage: null,
@@ -13,8 +14,15 @@ export const useChatStore = create()(
         setConversations: (value) => set({ conversations: value }),
         messages: [],
         setMessages: (value) => set({ messages: value }),
+        selectedVoice: null,
+        setSelectedVoice: (value) => set(() => ({ selectedVoice: value })),
         clearChat: () => set({ conversations: [], messages: [], selectedImage: null, userUploadedImage: null, mode: MODES.CHAT }),
     }),
+        {
+            name: "chat-store",
+            partialize: (state) => ({ selectedVoice: state.selectedVoice }),
+        }
+    )
 )
 
 
