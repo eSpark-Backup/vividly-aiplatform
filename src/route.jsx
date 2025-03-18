@@ -4,6 +4,7 @@ import { DashboardLayout } from "./layout";
 import AuthGuard from "./AuthGuard";
 import { setNavigate } from "./services/NavigationService";
 import { useEffect } from "react";
+import DasbboardGuard from "./DasbboardGuard";
 
 const AppRouter = () => {
 
@@ -23,7 +24,7 @@ const AppRouter = () => {
       <Routes >
         <Route path="/" element={<Landing />} />
 
-        {/* PROTECTED ROUTES IF LOG-IN */}
+        {/* AUTH PROTECTED ROUTES IF LOG-IN */}
         <Route element={<AuthGuard />}>
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/log-in" element={<LogIn />} />
@@ -33,16 +34,18 @@ const AppRouter = () => {
           <Route path="/reset-password/:token" element={<ResetPassword />} />
         </Route>
 
-        {/* DASHBOARD ROUTES */}
-        <Route element={<DashboardLayout element={<DashboardLayout />} />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/home?cat=expore" element={<Explore />} />
-          <Route path="/home?cat=chat" element={<Chat />} />
-          <Route path="/home?cat=ai-to-humanize" element={<AItoHumanize />} />
-          <Route path="/home?cat=how-to-use" element={<HowToUse />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/billing" element={<Billing />} />
-          <Route path="/pricing-plan" element={<PricingPlan />} />
+        {/* DASHBOARD PROTECTED ROUTES IF NOT LOG-IN  */}
+        <Route element={<DasbboardGuard />}>
+          <Route element={<DashboardLayout element={<DashboardLayout />} />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/home?cat=expore" element={<Explore />} />
+            <Route path="/home?cat=chat" element={<Chat />} />
+            <Route path="/home?cat=ai-to-humanize" element={<AItoHumanize />} />
+            <Route path="/home?cat=how-to-use" element={<HowToUse />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/billing" element={<Billing />} />
+            <Route path="/pricing-plan" element={<PricingPlan />} />
+          </Route>
         </Route>
 
         {/* 404 - Catch-All Route */}
