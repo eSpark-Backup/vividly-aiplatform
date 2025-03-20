@@ -4,6 +4,8 @@ import { persist } from "zustand/middleware"
 
 export const useChatStore = create()(
     persist((set) => ({
+        socketURL: null,
+        setSocketURL: (value) => set({ socketURL: value }),
         mode: MODES.CHAT,
         setMode: (value) => set({ mode: value }),
         userUploadedImage: null,
@@ -16,7 +18,7 @@ export const useChatStore = create()(
         setMessages: (value) => set({ messages: value }),
         selectedVoice: null,
         setSelectedVoice: (value) => set(() => ({ selectedVoice: value })),
-        clearChat: () => set({ conversations: [], messages: [], selectedImage: null, userUploadedImage: null, mode: MODES.CHAT }),
+        clearChat: () => set({socketURL:null, conversations: [], messages: [], selectedImage: null, userUploadedImage: null, mode: MODES.CHAT }),
     }),
         {
             name: "chat-store",

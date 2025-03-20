@@ -1,22 +1,23 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/useAuthStore';
 import { useWebSocket } from '@/hooks/useWebSocket';
+import { useChatStore } from '@/store/useChatStore';
 
 const WebSocketContext = createContext(null);
 
 export const WebSocketProvider = ({ children }) => {
   const { refreshToken, accessToken } = useAuthStore()
-  const [url, setUrl] = useState(null);
+  const { socketURL, setSocketURL } = useChatStore()
 
   useEffect(() => {
     if (accessToken) {
-      setUrl(`wss://vividly-stg-api.esparkconsultants.com/chat?token=${encodeURIComponent(refreshToken)}`)
-          } else {
-      setUrl(null);
+      setSocketURL(`wss://vividly-stg-api.esparkconsultants.com/chat?token=${encodeURIComponent(refreshToken)}`)
+    } else {
+      setSocketURL(null);
     }
   }, [accessToken]);
 
-  const websocket = useWebSocket(url);
+  const websocket = useWebSocket(socketURL);
 
   return (
     <WebSocketContext.Provider value={websocket}>
