@@ -82,12 +82,12 @@ export default function Chat() {
   const allMessages = [...messages, ...(partialMessage ? [partialMessage] : [])]
 
   return (
-    <div className="min-h-[calc(100vh-280px)] flex items-center">
+    <div className="min-h-[calc(100vh-400px)] flex items-center">
       <div className="w-full px-4 sm:px-6 py-5 pt-0">
         {error && <div className="fixed top-4 right-4 bg-red-500 text-white px-4 py-2 rounded-lg">{error}</div>}
 
         <div className="flex-1 w-full max-w-5xl mx-auto">
-          <div className="space-y-6 pb-10 h-[400px] sm:h-[550px] 2xl:h-[600px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
+          <div className="space-y-6 pb-10 h-[400px] sm:h-[480px] 2xl:h-[550px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 pr-10">
 
             {allMessages.filter((message) => message.content.trim() !== "").map((message, index) => (
               <MessageBubble key={message.id || `message-${index}`} message={message} />
