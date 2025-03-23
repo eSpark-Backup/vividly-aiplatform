@@ -1,14 +1,31 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { X } from "lucide-react"
 
 export default function ImagePreview({ src, thumbnail, type, alt }) {
   const [isOpen, setIsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      window.addEventListener("keydown", handleKeyDown)
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown)
+    }
+  }, [isOpen])
+
   return (
     <>
-      <div className="relative group cursor-pointer" onClick={() => setIsOpen(true)}>
+      <div className="relative group cursor-pointer" >
         <img
+          onClick={() => setIsOpen(true)}
           src={`data:${type};base64,${thumbnail}`}
           alt={alt}
           className="max-w-full max-h-[300px] mt-2 rounded-lg object-contain transition-all duration-200 group-hover:brightness-90"

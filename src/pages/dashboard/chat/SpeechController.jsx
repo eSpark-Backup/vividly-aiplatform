@@ -1,17 +1,30 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { CircleStop, Volume2 } from "lucide-react";
 import { useChatStore } from "@/store/useChatStore";
 
-const SpeechController = ({ text }) => {
-  const { selectedVoice } = useChatStore()
+const SpeechController = ({ text, messageId }) => {
+  const { selectedVoice, activeSpeechId, setActiveSpeechId  } = useChatStore()
   const [speechState, setSpeechState] = useState("stopped");
   const utteranceRef = useRef(null);
+
+  useEffect(() => {
+    if (activeSpeechId !== messageId && speechState !== "stopped") {
+      setSpeechState("stopped")
+    }
+  }, [activeSpeechId, messageId, speechState])
 
   const handleSpeak = useCallback(() => {
     if ("speechSynthesis" in window) {
       if (speechState === "stopped") {
+
+        window.speechSynthesis.cancel()
+        setActiveSpeechId(messageId)
+        
         utteranceRef.current = new SpeechSynthesisUtterance(text);
-        utteranceRef.current.onend = () => setSpeechState("stopped");
+        utteranceRef.current.onend = () => {
+          setSpeechState("stopped")
+          setActiveSpeechId(null)
+        };
         // utteranceRef.current.voice = window.speechSynthesis.getVoices()[6];
         if (selectedVoice) {
           const allVoices = window.speechSynthesis.getVoices();
@@ -32,14 +45,15 @@ const SpeechController = ({ text }) => {
     } else {
       console.error("Text-to-speech not supported in this browser.");
     }
-  }, [text, speechState, selectedVoice]);
+  }, [text, speechState, selectedVoice, messageId, setActiveSpeechId]);
 
   const stopSpeech = useCallback(() => {
     if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       setSpeechState("stopped");
+      setActiveSpeechId(null)
     }
-  }, []);
+  }, [setActiveSpeechId]);
 
   return (
     <button

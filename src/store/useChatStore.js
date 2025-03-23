@@ -18,6 +18,8 @@ export const useChatStore = create()(
         setMessages: (value) => set({ messages: value }),
         selectedVoice: null,
         setSelectedVoice: (value) => set(() => ({ selectedVoice: value })),
+        activeSpeechId: null,
+        setActiveSpeechId: (value) => set(() => ({ activeSpeechId: value })),
         clearChat: () => set({socketURL:null, conversations: [], messages: [], selectedImage: null, userUploadedImage: null, mode: MODES.CHAT }),
     }),
         {

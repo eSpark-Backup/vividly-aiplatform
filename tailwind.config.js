@@ -57,6 +57,9 @@ export default {
 					track: '#2C2F33'
 				},
 			},
+			screens: {
+				"3xl": "2000px",
+			}
 
 		}
 	},
