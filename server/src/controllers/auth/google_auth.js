@@ -124,7 +124,8 @@ export default async function googleAuth(req, res) {
                 id: user.id,
                 email: user.email,
                 first_name: user.first_name,
-                last_name: user.last_name
+                last_name: user.last_name,
+                is_student: user.is_student
             }
         });
     } catch (error) {
