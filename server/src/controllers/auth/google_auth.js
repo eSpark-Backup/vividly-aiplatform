@@ -2,10 +2,13 @@
 import pool from "../../init/db_conn.js";
 import { generateTokens } from "../../helpers/auth.js";
 import { logger } from "../../helpers/logger.js";
+import {isImage} from "../../helpers/misc.js";
+import {s3} from "../../helpers/s3.js";
+import EmailService from "../../helpers/email.js";
 
 export default async function googleAuth(req, res) {
     try {
-        const { email, first_name, last_name, google_id } = req.body;
+        const { email, first_name, last_name, google_id, is_student = false } = req.body;
 
         // Single query to check for existing user by either google_id or email
         const existingUserResult = await pool.query(
@@ -62,6 +65,52 @@ export default async function googleAuth(req, res) {
             logger.info(`Created new user via Google auth: ${user.id}`);
         }
 
+        let options = {Key: null}
+        if (is_student) {
+            if (!req.file){
+                return res.status(400).json({
+                    message: "`is_student` is true but no file is uploaded"
+                })
+            }
+
+            const fileInfo = isImage(req.file.buffer)
+
+            if (!fileInfo) {
+                return res.status(400).json({
+                    message: `Uploaded file is not of an image`
+                })
+            }
+
+            const fileExtension = fileInfo.ext
+            const mimeType = fileInfo.mime
+
+            const dateNow = Date.now()
+
+            options = {
+                Key: `student_ids/${user.id}_${dateNow}.${fileExtension}`,
+                Body: req.file.buffer,
+                ContentType: mimeType,
+                Bucket: process.env.S3_BUCKET
+            }
+
+            logger.info(options.Key, options.Bucket)
+
+            try {
+                await s3.upload(options).promise()
+            } catch (e) {
+                logger.error(`Error uploading student id: `, e)
+                return
+            }
+        }
+
+        if (is_student) {
+            const emailService = new EmailService()
+            await emailService.sendStudentIDToVividlyOwner(
+                {user_id: user.id, first_name: user.first_name, last_name: user.last_name},
+                req.file
+            )
+        }
+
         // Generate tokens
         const { accessToken, refreshToken, expiresAt } = await generateTokens(user);
         logger.info(`Successful Google authentication for user ${user.id}`);
@@ -75,7 +124,8 @@ export default async function googleAuth(req, res) {
                 id: user.id,
                 email: user.email,
                 first_name: user.first_name,
-                last_name: user.last_name
+                last_name: user.last_name,
+                is_student: user.is_student
             }
         });
     } catch (error) {

@@ -1,4 +1,5 @@
 import nodemailer from 'nodemailer';
+import {logger} from "./logger.js";
 
 class EmailService {
     constructor() {
@@ -51,14 +52,72 @@ class EmailService {
         try {
             const info = await this.transporter.sendMail(mailOptions);
             if (process.env.ENV !== 'prod') {
-                console.log('Verification email sent:', info.messageId);
+                logger.info('Verification email sent:', info.messageId);
             }
             return true;
         } catch (error) {
-            console.error('Error sending verification email:', error);
+            logger.error('Error sending verification email:', error);
             if (process.env.ENV !== 'prod') {
                 throw error;
             }
+        }
+    }
+
+    async sendStudentIDToVividlyOwner(userInfo, studentIDImage) {
+        try {
+            const { user_id, first_name, last_name } = userInfo;
+
+            // Create email content
+            const html = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>New Student Verification Request</h2>
+        <p>A new student has submitted their ID for verification:</p>
+        <div style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; margin: 20px 0;">
+          <p><strong>User ID:</strong> ${user_id}</p>
+          <p><strong>Name:</strong> ${first_name} ${last_name}</p>
+          <p><strong>Submission Time:</strong> ${new Date().toLocaleString()}</p>
+        </div>
+        <p>The student ID image is attached to this email for verification.</p>
+        <p>Please review and update their account status accordingly.</p>
+        <hr style="border: 1px solid #eee; margin: 20px 0;">
+        <p style="color: #666; font-size: 12px;">
+          This is an automated message from the ${process.env.APP_NAME} system.
+        </p>
+      </div>
+    `;
+
+            // Configure email options with image attachment
+            const mailOptions = {
+                from: `"${process.env.APP_NAME}" <${process.env.SMTP_FROM_EMAIL}>`,
+                to: process.env.VIVIDLY_OWNER_EMAIL,
+                subject: `Student Verification Request - ${first_name} ${last_name}`,
+                html: html,
+                attachments: [
+                    {
+                        filename: studentIDImage.originalname || `student_id_${user_id}.jpg`,
+                        content: studentIDImage.buffer,
+                        contentType: studentIDImage.mimetype
+                    }
+                ]
+            };
+
+            // Send email (using your existing email service)
+            const result = await this.transporter.sendMail(mailOptions);
+
+            // Log success
+            logger.info('Student verification email with ID image sent to owner', {
+                userId: user_id,
+                emailSent: process.env.VIVIDLY_OWNER_EMAIL,
+                imageType: studentIDImage.mimetype
+            });
+
+            return result;
+        } catch (error) {
+            logger.error('Failed to send student verification email with ID image', {
+                error: error.message,
+                stack: error.stack
+            });
+            throw new Error('Failed to send verification email to administrator');
         }
     }
 
@@ -100,12 +159,12 @@ class EmailService {
         try {
             const info = await this.transporter.sendMail(mailOptions);
             if (process.env.ENV !== 'prod') {
-                console.log('Password reset email sent:', info.messageId);
+                logger.info('Password reset email sent:', info.messageId);
             }
             return true;
         } catch (error) {
             if (process.env.ENV !== 'prod') {
-                console.error('Error sending password reset email:', error);
+                logger.error('Error sending password reset email:', error);
             }
         }
     }

@@ -1,5 +1,6 @@
 import pool from "../../init/db_conn.js";
 import {comparePassword, generateTokens, revokeRefreshToken} from "../../helpers/auth.js";
+import {logger} from "../../helpers/logger.js";
 
 export default async function login(req, res)  {
     try {
@@ -41,10 +42,11 @@ export default async function login(req, res)  {
                 email: user.email,
                 first_name: user.first_name,
                 last_name: user.last_name,
+                is_student: user.is_student
             },
         });
     } catch (error) {
-        console.error('Login error:', error);
+        logger.error('Login error:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 }

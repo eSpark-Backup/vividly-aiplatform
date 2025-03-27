@@ -1563,14 +1563,15 @@ export class ChatServer {
             let textToHumanize;
             let hasMessageId = false
             let reHumanize = message.re_humanize ?? false
-            let reHumanizeId
+            let reHumanizeId, conversationId
 
             if (message.message_id) {
                 hasMessageId = true
                 if (reHumanize) {
                     const result = await pool.query(`
-                        SELECT id, humanized_text
+                        SELECT humanized_messages.id, humanized_text, conversation_id
                         FROM humanized_messages
+                            JOIN public.messages m on m.id = humanized_messages.message_id
                         WHERE user_id = $1
                           AND message_id = $2
                         ORDER BY created_at DESC
@@ -1583,10 +1584,11 @@ export class ChatServer {
 
                     textToHumanize = result.rows[0].humanized_text
                     reHumanizeId = result.rows[0].id
+                    conversationId = result.rows[0].conversation_id
                 } else {
                     // Fetch message content from database
                     const result = await pool.query(
-                        `SELECT m.content, c.user_id
+                        `SELECT m.content, c.user_id, m.conversation_id
                          FROM messages m
                                   JOIN conversations c ON c.id = m.conversation_id
                          WHERE m.id = $1
@@ -1599,6 +1601,7 @@ export class ChatServer {
                     }
 
                     textToHumanize = result.rows[0].content;
+                    conversationId = result.rows[0].conversation_id
                 }
             } else if (message.text) {
                 textToHumanize = message.text;
@@ -1630,7 +1633,8 @@ export class ChatServer {
                 original_text: textToHumanize,
                 humanized_text: humanizedText,
                 request_id: message.request_id,
-                message_id: message.message_id
+                message_id: message.message_id,
+                conversation_id: conversationId
             }));
 
         } catch (error) {

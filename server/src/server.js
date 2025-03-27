@@ -36,6 +36,7 @@ if (process.env.ENV !== 'prod') {
 app.use(cors());
 app.use(express.json());
 app.use(passport.initialize());
+app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/auth', authRoutes);

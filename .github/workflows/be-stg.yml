@@ -114,6 +114,7 @@ jobs:
           echo "SMTP_PASSWORD: ${{ secrets.STG_SMTP_PASSWORD }}" >> .env
           echo "SMTP_FROM_EMAIL: ${{ secrets.STG_SMTP_FROM_EMAIL }}" >> .env
           echo "APP_NAME: ${{ secrets.STG_APP_NAME }}" >> .env
+          echo "VIVIDLY_OWNER_EMAIL: ${{ secrets.VIVIDLY_OWNER_EMAIL }}" >> .env
           echo "OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}" >> .env
           echo "OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}" >> .env
           echo "OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}" >> .env
@@ -203,6 +204,7 @@ jobs:
           SMTP_PASSWORD: ${{ secrets.STG_SMTP_PASSWORD }}
           SMTP_FROM_EMAIL: ${{ secrets.STG_SMTP_FROM_EMAIL }}
           APP_NAME: ${{ secrets.STG_APP_NAME }}
+          VIVIDLY_OWNER_EMAIL: ${{ secrets.VIVIDLY_OWNER_EMAIL }}
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}
           OPENAI_MAX_TOKENS: ${{ secrets.OPENAI_MAX_TOKENS }}
