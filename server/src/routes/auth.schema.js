@@ -1,37 +1,30 @@
 import * as yup from 'yup';
 
 export const signupSchema = yup.object({
-    first_name: yup
-        .string()
-        .typeError('First name must be a string')
-        .required('First name is required')
-        .min(2, 'First name must be at least 2 characters')
-        .max(50, 'First name must not exceed 50 characters')
-        .matches(/^[a-zA-Z\s]*$/, 'First name can only contain letters and spaces'),
+    body: yup.object({
+        first_name: yup
+            .string()
+            .typeError('First name must be a string')
+            .required('First name is required')
+            .min(2, 'First name must be at least 2 characters')
+            .max(50, 'First name must not exceed 50 characters')
+            .matches(/^[a-zA-Z\s]*$/, 'First name can only contain letters and spaces'),
 
-    last_name: yup
-        .string()
-        .typeError('Last name must be a string')
-        .required('Last name is required')
-        .min(2, 'Last name must be at least 2 characters')
-        .max(50, 'Last name must not exceed 50 characters')
-        .matches(/^[a-zA-Z\s]*$/, 'Last name can only contain letters and spaces'),
+        last_name: yup
+            .string()
+            .typeError('Last name must be a string')
+            .required('Last name is required')
+            .min(2, 'Last name must be at least 2 characters')
+            .max(50, 'Last name must not exceed 50 characters')
+            .matches(/^[a-zA-Z\s]*$/, 'Last name can only contain letters and spaces'),
 
-    email: yup
-        .string()
-        .typeError('Email must be a string')
-        .required('Email is required')
-        .email('Invalid email format')
-        .max(255, 'Email must not exceed 255 characters'),
-
-    is_student: yup
-        .boolean()
-        .default(false)
-        .transform((value) => {
-            if (value === 'true' || value === '1') return true;
-            if (value === 'false' || value === '0') return false;
-            return value;
-        })
+        email: yup
+            .string()
+            .typeError('Email must be a string')
+            .required('Email is required')
+            .email('Invalid email format')
+            .max(255, 'Email must not exceed 255 characters')
+    })
 });
 
 export const requestPasswordResetSchema = yup.object({
