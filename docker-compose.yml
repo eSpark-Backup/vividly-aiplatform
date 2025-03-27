@@ -20,6 +20,7 @@ services:
       - SMTP_PASSWORD
       - SMTP_FROM_EMAIL
       - APP_NAME
+      - VIVIDLY_OWNER_EMAIL
       - OPENAI_API_KEY
       - OPENAI_MODEL
       - OPENAI_MAX_TOKENS
