@@ -1,7 +1,6 @@
 import express from 'express';
 import passport from 'passport';
 import {refreshAccessToken, revokeRefreshToken} from '../helpers/auth.js';
-import {uploadImage} from "../helpers/multer.js";
 import {validate, validateFormData} from '../middlewares/validate.js';
 import {
     googleAuthSchema,
@@ -26,10 +25,12 @@ import {
 const router = express.Router();
 
 // Email signup with validation
-router.post('/signup', uploadImage.single('student_id'), validateFormData(signupSchema), signup);
+router.post('/signup', validate(signupSchema), signup);
 
 // Email login with validation
 router.post('/login', validate(loginSchema), login);
+
+
 
 // Reset password request
 router.post('/request-password-reset', validate(requestPasswordResetSchema), requestPasswordReset);
@@ -77,7 +78,6 @@ router.post('/resend-verification', validate(resendVerificationSchema), resendVe
 
 router.post(
     '/google',
-    uploadImage.single('student_id'),
     validateFormData(googleAuthSchema),
     googleAuth
 );

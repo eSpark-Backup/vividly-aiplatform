@@ -2,13 +2,10 @@
 import pool from "../../init/db_conn.js";
 import { generateTokens } from "../../helpers/auth.js";
 import { logger } from "../../helpers/logger.js";
-import {isImage} from "../../helpers/misc.js";
-import {s3} from "../../helpers/s3.js";
-import EmailService from "../../helpers/email.js";
 
 export default async function googleAuth(req, res) {
     try {
-        const { email, first_name, last_name, google_id, is_student = false } = req.body;
+        const { email, first_name, last_name, google_id } = req.body;
 
         // Single query to check for existing user by either google_id or email
         const existingUserResult = await pool.query(
@@ -40,8 +37,8 @@ export default async function googleAuth(req, res) {
             // Update google_id if user was found by email and doesn't have google_id
             if (!user.google_id) {
                 user = (await pool.query(
-                    `UPDATE users 
-                     SET google_id = $1, 
+                    `UPDATE users
+                     SET google_id = $1,
                          auth_type = 'google'
                      WHERE id = $2
                      RETURNING *`,
@@ -53,62 +50,16 @@ export default async function googleAuth(req, res) {
             // Case 3: New user
             user = (await pool.query(
                 `INSERT INTO users (
-                    first_name, 
-                    last_name, 
-                    email, 
-                    google_id, 
+                    first_name,
+                    last_name,
+                    email,
+                    google_id,
                     auth_type
-                ) VALUES ($1, $2, $3, $4, 'google') 
-                RETURNING *`,
+                ) VALUES ($1, $2, $3, $4, 'google')
+                 RETURNING *`,
                 [first_name, last_name, email, google_id]
             )).rows[0];
             logger.info(`Created new user via Google auth: ${user.id}`);
-        }
-
-        let options = {Key: null}
-        if (is_student) {
-            if (!req.file){
-                return res.status(400).json({
-                    message: "`is_student` is true but no file is uploaded"
-                })
-            }
-
-            const fileInfo = isImage(req.file.buffer)
-
-            if (!fileInfo) {
-                return res.status(400).json({
-                    message: `Uploaded file is not of an image`
-                })
-            }
-
-            const fileExtension = fileInfo.ext
-            const mimeType = fileInfo.mime
-
-            const dateNow = Date.now()
-
-            options = {
-                Key: `student_ids/${user.id}_${dateNow}.${fileExtension}`,
-                Body: req.file.buffer,
-                ContentType: mimeType,
-                Bucket: process.env.S3_BUCKET
-            }
-
-            logger.info(options.Key, options.Bucket)
-
-            try {
-                await s3.upload(options).promise()
-            } catch (e) {
-                logger.error(`Error uploading student id: `, e)
-                return
-            }
-        }
-
-        if (is_student) {
-            const emailService = new EmailService()
-            await emailService.sendStudentIDToVividlyOwner(
-                {user_id: user.id, first_name: user.first_name, last_name: user.last_name},
-                req.file
-            )
         }
 
         // Generate tokens
