@@ -17,7 +17,9 @@ import Explore from "./dashboard/explore"
 import Chat from "./dashboard/chat"
 import HowToUse from "./dashboard/how-to-use"
 import Profile from "./dashboard/profile"
+import StudentVerification from "./dashboard/student-verification"
 import AItoHumanize from "./dashboard/ai-to-humanize"
+import Settings from "./dashboard/settings"
 
 
 //Not Found Page
@@ -41,5 +43,7 @@ export {
     HowToUse,
     NotFound,
     Profile,
+    StudentVerification,
     AItoHumanize,
+    Settings,
 }

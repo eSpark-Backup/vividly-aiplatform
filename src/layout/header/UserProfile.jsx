@@ -1,7 +1,7 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Card } from "@/components/ui/card";
-import { CreditCard, Home, LogOut, Palette, Settings, User, WalletCards } from "lucide-react";
+import { CreditCard, Home, LogOut, Palette, Settings, Settings2, User, WalletCards } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useDialogStore } from "@/store/useDialogStore";
 import { Switch } from "../../components/ui/switch";
@@ -48,9 +48,9 @@ export default function UserProfile() {
 
   const routes = [
     { label: "Home", icon: Home, href: "/home?cat=explore" },
-    { label: "Profile", icon: User, href: "/profile" },
     { label: "Billing", icon: WalletCards, href: "/billing" },
     { label: "Pricing Plan", icon: CreditCard, href: "/pricing-plan" },
+    { label: "Settings", icon: Settings, href: "/settings?cat=profile" },
   ];
 
 

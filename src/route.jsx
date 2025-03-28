@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
-import { AItoHumanize, Billing, Chat, CreatePassword, Explore, ForgotPassword, Home, HowToUse, Landing, LogIn, NotFound, PricingPlan, Profile, ResetPassword, SignUp, VerifyEmailSent } from "./pages";
+import { AItoHumanize, Billing, Chat, CreatePassword, Explore, ForgotPassword, Home, HowToUse, Landing, LogIn, NotFound, PricingPlan, Profile, ResetPassword, Settings, SignUp, VerifyEmailSent } from "./pages";
 import { DashboardLayout } from "./layout";
 import AuthGuard from "./AuthGuard";
 import { setNavigate } from "./services/NavigationService";
@@ -42,7 +42,7 @@ const AppRouter = () => {
             <Route path="/home?cat=chat" element={<Chat />} />
             <Route path="/home?cat=ai-to-humanize" element={<AItoHumanize />} />
             <Route path="/home?cat=how-to-use" element={<HowToUse />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/settings" element={<Settings />} />
             <Route path="/billing" element={<Billing />} />
             <Route path="/pricing-plan" element={<PricingPlan />} />
           </Route>

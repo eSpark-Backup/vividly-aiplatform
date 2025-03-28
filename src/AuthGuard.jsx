@@ -5,11 +5,11 @@ const AuthGuard = () => {
     const { accessToken } = useAuthStore();
 
     if (accessToken) {
-        return <Navigate to="/home?cat=explore" replace />;
+        return <Navigate to="/home" replace />;
     }
 
     return <Outlet />;
-    
+
 };
 
 export default AuthGuard;

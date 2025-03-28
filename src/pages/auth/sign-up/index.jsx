@@ -11,12 +11,18 @@ import { Link, useNavigate } from "react-router-dom";
 import { GoogleLoginButton } from "@/components";
 import { useCreateAccount } from "@/hooks/useAuth";
 import { handleApiError } from "@/lib/apiErrorHandler";
+import { Checkbox } from "@/components/ui/checkbox";
+import { useState } from "react";
+import { useStudentStore } from "@/store/useStudentStore";
 
 function SignUp() {
 
     const { toast } = useToast();
     const navigate = useNavigate();
     const { mutate: createAccount, isPending } = useCreateAccount();
+    const { setIsStudent: setIsStudentStore } = useStudentStore()
+
+    const [isStudent, setIsStudent] = useState(false)
 
     const showToast = (title, description, type) => {
         toast({ title, description, type });
@@ -34,6 +40,7 @@ function SignUp() {
         createAccount(data, {
             onSuccess: () => {
                 showToast("Success", "A verification email has been sent to your email address", "success");
+                setIsStudentStore(isStudent)
                 navigate(`/verify-email-sent?create=${data.email}`);
             },
             onError: (error) => {
@@ -73,6 +80,17 @@ function SignUp() {
                         <div className="space-y-2">
                             <Input icon={Mail} type="email" placeholder="Email" {...register("email")} />
                             {errors.email && <p className="text-sm text-[#FF8682]">{errors.email.message}</p>}
+                        </div>
+
+                        {/* Student Checkbox - with state management but not included in form data */}
+                        <div className="flex items-center space-x-2">
+                            <Checkbox id="student" checked={isStudent} onCheckedChange={setIsStudent} />
+                            <label
+                                htmlFor="student"
+                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-gray-300 cursor-pointer"
+                            >
+                                I'm Student
+                            </label>
                         </div>
 
 
