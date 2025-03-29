@@ -2,6 +2,7 @@
 import pool from "../../init/db_conn.js";
 import { generateTokens } from "../../helpers/auth.js";
 import { logger } from "../../helpers/logger.js";
+import {getSignedUrl} from "../../helpers/s3.js";
 
 export default async function googleAuth(req, res) {
     try {
@@ -76,7 +77,8 @@ export default async function googleAuth(req, res) {
                 email: user.email,
                 first_name: user.first_name,
                 last_name: user.last_name,
-                is_student: user.is_student
+                is_student: user.is_student,
+                student_id: user.is_student ? await getSignedUrl(user.student_id_card) : null
             }
         });
     } catch (error) {

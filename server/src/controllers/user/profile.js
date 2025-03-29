@@ -1,6 +1,7 @@
 import pool from "../../init/db_conn.js";
 import sharp from 'sharp';
 import {logger} from '../../helpers/logger.js';
+import {getSignedUrl} from "../../helpers/s3.js";
 
 export const updateProfile = async (req, res) => {
     try {
@@ -91,6 +92,8 @@ export const getProfile = async (req, res) => {
             `SELECT u.email,
                     u.first_name,
                     u.last_name,
+                    u.is_student,
+                    u.student_id_card,
                     up.phone,
                     up.address,
                     up.city,
@@ -117,7 +120,9 @@ export const getProfile = async (req, res) => {
                 address: profile.address || null,
                 city: profile.city || null,
                 birthdate: profile.birthdate || null,
-                avatar: profile.avatar || null
+                avatar: profile.avatar || null,
+                isStudent: profile.is_student,
+                studentID: profile.is_student ? await getSignedUrl(profile.student_id_card) : null
             }
         });
     } catch (error) {
