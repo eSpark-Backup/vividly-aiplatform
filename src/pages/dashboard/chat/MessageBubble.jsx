@@ -25,6 +25,12 @@ const MessageBubble = React.memo(({ message }) => {
             ),
             code: ({ node, ...props }) => <code className="bg-black/10 rounded-lg p-1" {...props} />,
             p: ({ node, ...props }) => <p className="whitespace-pre-wrap" {...props} />,
+            h1: ({ node, ...props }) => <h1 className="text-2xl font-bold my-3" {...props} />,
+            h2: ({ node, ...props }) => <h2 className="text-xl font-bold my-2" {...props} />,
+            h3: ({ node, ...props }) => <h3 className="text-lg font-bold my-2" {...props} />,
+            h4: ({ node, ...props }) => <h4 className="text-base font-bold my-1" {...props} />,
+            h5: ({ node, ...props }) => <h5 className="text-sm font-bold my-1" {...props} />,
+            h6: ({ node, ...props }) => <h6 className="text-xs font-bold my-1" {...props} />,
           }}
           className="text-sm overflow-hidden leading-7"
         >
