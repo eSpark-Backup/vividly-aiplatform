@@ -8,13 +8,13 @@ import { handleApiError } from "@/lib/apiErrorHandler"
 import { useUpdateUserStudentId } from "@/hooks/useUser"
 
 const StudentVerification = () => {
-  const { user } = useUserStore()
+  const { studentID, isStudent } = useUserStore()
   const { toast } = useToast()
   const fileInputRef = useRef(null)
 
-  const [previewUrl, setPreviewUrl] = useState(user?.studentIdImage || null)
+  const [previewUrl, setPreviewUrl] = useState(studentID || null)
   const [verificationStatus, setVerificationStatus] = useState(
-    user?.isStudent ? "verified" : user?.studentIdImage ? "pending" : "unverified",
+    isStudent ? "verified" : "unverified",
   )
 
   const { mutate: updateUserStudentId, isPending: isUserStudentIdPending } = useUpdateUserStudentId()
