@@ -640,36 +640,41 @@ export class ChatServer {
     // Modified getConversationHistory to include humanization counts and images
     async getConversationHistory(userId, conversationId, limit = 20, offset = 0) {
         const result = await pool.query(`
-                    SELECT m.*,
-                           c.title as conversation_title,
-                           (SELECT COUNT(*) FROM humanized_messages WHERE message_id = m.id) as humanized_count,
-                           (SELECT json_agg(
-                                           json_build_object(
-                                                   'id', ui.id,
-                                                   'filename', ui.filename,
-                                                   'type', ui.type,
-                                                   'size', ui.size,
-                                                   'source', ui.source,
-                                                   'created_at', ui.created_at,
-                                                   'thumbnail', ui.thumbnail
-                                           )
-                                   )
-                            FROM message_references mr
-                                     JOIN user_images ui ON mr.reference_id = ui.id
-                            WHERE mr.message_id = m.id AND mr.reference_type = 'image'
-                           ) as images
-                    FROM messages m
-                             JOIN conversations c ON c.id = m.conversation_id
-                    WHERE c.id = $1
-                      AND c.user_id = $2
-                    ORDER BY m.created_at
-                    LIMIT $3 OFFSET $4`,
+                    SELECT * FROM (
+                SELECT m.*,
+                    c.title as conversation_title,
+                    (SELECT COUNT(*) FROM humanized_messages WHERE message_id = m.id) as humanized_count,
+                    (SELECT json_agg(
+                                    json_build_object(
+                                            'id', ui.id,
+                                            'filename', ui.filename,
+                                            'type', ui.type,
+                                            'size', ui.size,
+                                            'source', ui.source,
+                                            'created_at', ui.created_at,
+                                            'thumbnail', ui.thumbnail
+                                    )
+                            )
+                        FROM message_references mr
+                                JOIN user_images ui ON mr.reference_id = ui.id
+                        WHERE mr.message_id = m.id AND mr.reference_type = 'image'
+                    ) as images
+                FROM messages m
+                        JOIN conversations c ON c.id = m.conversation_id
+                WHERE c.id = $1
+                AND c.user_id = $2
+                ORDER BY m.created_at DESC
+                LIMIT $3 OFFSET $4
+            ) sub
+            ORDER BY sub.created_at ASC;
+`,
             [conversationId, userId, limit, offset]
         );
 
         // Generate signed URLs for all images
         const messages = result.rows;
         for (const message of messages) {
+            message.offset = offset
             if (message.images && message.images.length > 0) {
                 for (let i = 0; i < message.images.length; i++) {
                     // Record image access for usage tracking
