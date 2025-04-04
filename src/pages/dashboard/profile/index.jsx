@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -117,16 +118,17 @@ const Profile = () => {
 
 
     return (
-        <div className="min-h-[calc(100vh-280px)]">
-            <div className="max-w-[700px] m-auto px-4 sm:px-10 py-3 space-y-4">
+        <Card>
+            <div className="max-w-[720px] m-auto space-y-4 py-6 px-6">
                 {/* {USER NAME} */}
                 <div>
-                    <p className="uppercase font-bold text-xl">{firstName} {lastName} </p>
+                    <p className="font-semibold tracking-tight text-lg sm:text-xl">{firstName} {lastName} </p>
                 </div>
+          
 
                 {/* {USER Avatar} */}
 
-                <div className="flex gap-8 items-center">
+                <div className="flex gap-8 items-center sm:flex-row flex-col">
                     <Avatar className="h-24 w-24 relative">
                         {avatar ? (
                             <AvatarImage
@@ -240,7 +242,7 @@ const Profile = () => {
                                     value={watch("birthdate")}
                                     onChange={(date) => setValue("birthdate", date)}
                                     maxDate={new Date()}
-                                   
+
                                 />
                                 {errors.birthdate && (
                                     <p className="mt-1 text-sm text-red-500">
@@ -308,7 +310,7 @@ const Profile = () => {
                 </div>
 
             </div>
-        </div>
+        </Card>
     )
 
 }

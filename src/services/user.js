@@ -31,3 +31,14 @@ export async function updateUserAvatar(params) {
 
     return data 
 }
+
+// POST USER STUDENT ID | POST
+export async function updateStudentId(params) {
+    const { data } = await request({
+        url: "/user/upload-student-id",
+        method: "POST",
+        data: params
+    })
+
+    return data 
+}

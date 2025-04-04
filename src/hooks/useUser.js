@@ -1,4 +1,4 @@
-import { getUserProfile, updateUserAvatar, updateUserProfile } from "@/services/user";
+import { getUserProfile, updateStudentId, updateUserAvatar, updateUserProfile } from "@/services/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const useGetUserProfile = () => {
@@ -34,6 +34,19 @@ const useUpdateUserAvatar = () => {
 
 }
 
+const useUpdateUserStudentId = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationKey: ["updateUserStudentId"],
+        mutationFn: updateStudentId,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["userProfile"] })
+        }
+    });
+
+}
+
 
 
 
@@ -41,4 +54,5 @@ export {
     useGetUserProfile,
     useUpdateUserProfile,
     useUpdateUserAvatar,
+    useUpdateUserStudentId,
 }

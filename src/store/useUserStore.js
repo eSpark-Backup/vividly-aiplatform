@@ -12,8 +12,10 @@ export const useUserStore = create()(
             city: "",
             birthdate: "",
             avatar: "",
+            isStudent: false,
+            studentID: "",
             setUser: (user) => set({ ...user }),
-            clearUser: () => set({ email: "", firstName: "", lastName: "", phone: "", address: "", city: "", birthdate: "", avatar: "" }),
+            clearUser: () => set({ email: "", firstName: "", lastName: "", phone: "", address: "", city: "", birthdate: "", avatar: "", isStudent: false, studentID: "" }),
         }),
         {
             name: "user-storage",
