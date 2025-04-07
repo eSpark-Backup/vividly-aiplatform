@@ -1,6 +1,7 @@
 export const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 export const themes = ['dark', 'light']
 export const MAX_FREE_COUNTS = 5
+export const MESSAGES_PER_PAGE = 10
 export const MODES = {
   CHAT: "chat",
   CHAT_WITH_IMAGE: "chat_with_image",

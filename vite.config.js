@@ -10,6 +10,9 @@ export default () => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    optimizeDeps: {
+      exclude: ['object-inspect'],
+    },
     server: {
       allowedHosts: true,
       watch: {

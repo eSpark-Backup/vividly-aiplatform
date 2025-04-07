@@ -2,6 +2,7 @@ import { useChatStore } from "@/store/useChatStore"
 import { useEffect, useRef, useState, useCallback } from "react"
 import { useToast } from "./use-toast"
 import { useNavigate } from "react-router-dom"
+import { MESSAGES_PER_PAGE } from "@/constant"
 
 export function useWebSocket(url) {
   const socket = useRef(null)
@@ -11,6 +12,8 @@ export function useWebSocket(url) {
   const reconnectAttempts = useRef(0)
 
   const [messages, setMessages] = useState([])
+  const [hasMoreMessages, setHasMoreMessages] = useState(true)
+  const [initialLoadComplete, setInitialLoadComplete] = useState(false)
   const [humanizedContent, setHumanizedContent] = useState("")
   const [customHumanizeContent, setCustomHumanizeContent] = useState("")
   const [AItoHumanizeInput, setAItoHumanizeInput] = useState("")
@@ -224,25 +227,25 @@ export function useWebSocket(url) {
 
   const handleImageAnalysisChat = useCallback(
     (data) => {
-     
-          const { questions, cleanedContent } = extractQuestionsAndCleanMessage(data.content)
 
-          setMessages((prevMsgs) => [
-            ...prevMsgs,
-            {
-              id: data.id || generateId(),
-              role: "assistant",
-              content: cleanedContent,
-              created_at: new Date().toISOString(),
-              conversation_id: data.conversationId || null,
-            },
-          ])
+      const { questions, cleanedContent } = extractQuestionsAndCleanMessage(data.content)
 
-          setSuggestedQuestions(questions)
-          setIsPartialMessageLoading(false)
-          sendSocketCommand({ type: "get_conversations" })
-          sendSocketCommand({ type: "get_history", conversationId: data.conversation_id })
-          return null
+      setMessages((prevMsgs) => [
+        ...prevMsgs,
+        {
+          id: data.id || generateId(),
+          role: "assistant",
+          content: cleanedContent,
+          created_at: new Date().toISOString(),
+          conversation_id: data.conversationId || null,
+        },
+      ])
+
+      setSuggestedQuestions(questions)
+      setIsPartialMessageLoading(false)
+      sendSocketCommand({ type: "get_conversations" })
+      // sendSocketCommand({ type: "get_history", conversationId: data.conversation_id })
+      return null
     },
     [generateId, sendSocketCommand, extractQuestionsAndCleanMessage],
   )
@@ -256,7 +259,37 @@ export function useWebSocket(url) {
         }
         return message
       })
-      setMessages(cleanedMessages)
+
+      const receivedCount = cleanedMessages.length
+      const requestedLimit = MESSAGES_PER_PAGE
+      const noMoreMessages = receivedCount < requestedLimit
+
+      if (data.messages[0] && data.messages[0].offset > 0) {
+        setMessages((prevMessages) => {
+          const existingIds = new Set(prevMessages.map((msg) => msg.id))
+          const uniqueNewMessages = cleanedMessages.filter((msg) => !existingIds.has(msg.id))
+
+          if (uniqueNewMessages.length === 0 || noMoreMessages) {
+            setHasMoreMessages(false)
+          } else if (noMoreMessages) {
+            setHasMoreMessages(false)
+          }
+
+          // Prepend unique new messages to the existing messages
+          return [...uniqueNewMessages, ...prevMessages]
+        })
+      } else {
+        // Initial load, just set the messages
+        setMessages(cleanedMessages)
+
+        if (noMoreMessages) {
+          setHasMoreMessages(false)
+        }
+        setTimeout(() => {
+          setInitialLoadComplete(true)
+        }, 300)
+      }
+
       if (data.messages && data.messages.length > 0) {
         const lastMessage = data.messages[data.messages.length - 1]
         if (lastMessage.role === "assistant") {
@@ -264,9 +297,10 @@ export function useWebSocket(url) {
           setSuggestedQuestions(questions)
         }
       }
-      navigate(`/home?cat=chat&cid=${data.conversationId}`);
+
+      navigate(`/home?cat=chat&cid=${data.conversationId}`)
     },
-    [extractQuestionsAndCleanMessage],
+    [extractQuestionsAndCleanMessage, navigate, setSuggestedQuestions],
   )
 
   const handleConversations = useCallback(
@@ -315,7 +349,7 @@ export function useWebSocket(url) {
 
   const sendMessage = useCallback(
     (mode, data) => {
-      
+
       const newMessage = {
         id: generateId(),
         role: "user",
@@ -372,6 +406,8 @@ export function useWebSocket(url) {
       const message = {
         type: "get_history",
         conversationId: content.conversationId,
+        offset: content.offset || 0,
+        limit: content.limit || MESSAGES_PER_PAGE,
       }
       sendSocketCommand(message)
     },
@@ -460,13 +496,13 @@ export function useWebSocket(url) {
           reject(new Error("Invalid server response format"))
         }
       }
-  
+
       if (socket.current.readyState !== WebSocket.OPEN) {
         return reject(new Error("WebSocket is not connected"))
       }
-  
+
       socket.current.addEventListener("message", messageHandler)
-  
+
       // Read the file as ArrayBuffer
       const reader = new FileReader()
       reader.onload = (e) => {
@@ -477,12 +513,12 @@ export function useWebSocket(url) {
           reject(error)
         }
       }
-  
+
       reader.onerror = (error) => {
         socket.current.removeEventListener("message", messageHandler)
         reject(error)
       }
-  
+
       // Read the file as binary data
       reader.readAsArrayBuffer(file)
     })
@@ -534,6 +570,10 @@ export function useWebSocket(url) {
     setAItoHumanizeInput,
     uploadImage,
     socket,
+    hasMoreMessages,
+    setHasMoreMessages,
+    initialLoadComplete,
+    setInitialLoadComplete,
   }
 }
 
