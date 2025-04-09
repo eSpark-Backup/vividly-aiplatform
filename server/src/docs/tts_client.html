@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech Chat Client</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .connected {
+            background-color: #d5f5e3;
+            border: 1px solid #2ecc71;
+        }
+        .disconnected {
+            background-color: #fadbd8;
+            border: 1px solid #e74c3c;
+        }
+        .messages-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+        .message {
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        .user {
+            background-color: #d6eaf8;
+            border-left: 4px solid #3498db;
+            text-align: right;
+        }
+        .assistant {
+            background-color: #e8f8f5;
+            border-left: 4px solid #1abc9c;
+            position: relative;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .audio-toggle {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .audio-toggle.on {
+            background-color: #d5f5e3;
+        }
+        .audio-toggle.off {
+            background-color: #fadbd8;
+        }
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: #3498db;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .typing-indicator {
+            display: inline-block;
+            position: relative;
+            margin-left: 5px;
+        }
+        .typing-indicator span {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background-color: #3498db;
+            border-radius: 50%;
+            margin-right: 2px;
+            animation: bounce 1.3s linear infinite;
+        }
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.3s;
+            margin-right: 0;
+        }
+        @keyframes bounce {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Text-to-Speech Chat Client</h1>
+
+    <div class="form-group">
+        <label for="refreshToken">Refresh Token:</label>
+        <input type="text" id="refreshToken" placeholder="Enter your refresh token">
+    </div>
+
+    <div class="form-group">
+        <button id="connectBtn">Connect to WebSocket</button>
+        <button id="disconnectBtn" disabled>Disconnect</button>
+    </div>
+
+    <div id="statusMsg" class="status disconnected">
+        Not connected. Enter a refresh token and click Connect.
+    </div>
+
+    <div id="messagesContainer" class="messages-container" style="display: none;">
+        <!-- Messages will be added here dynamically -->
+    </div>
+
+    <div class="controls" style="display: none;" id="controlsContainer">
+        <div id="audioToggle" class="audio-toggle on">
+            🔊 Sound On
+        </div>
+    </div>
+
+    <div class="form-group" style="display: none;" id="messageForm">
+        <label for="messageInput">Message:</label>
+        <textarea id="messageInput" placeholder="Type your message here..."></textarea>
+        <button id="sendBtn" type="button">Send Message</button>
+    </div>
+</div>
+
+<script>
+    // DOM Elements
+    const refreshTokenInput = document.getElementById('refreshToken');
+    const connectBtn = document.getElementById('connectBtn');
+    const disconnectBtn = document.getElementById('disconnectBtn');
+    const statusMsg = document.getElementById('statusMsg');
+    const messagesContainer = document.getElementById('messagesContainer');
+    const messageInput = document.getElementById('messageInput');
+    const sendBtn = document.getElementById('sendBtn');
+    const audioToggle = document.getElementById('audioToggle');
+    const messageForm = document.getElementById('messageForm');
+    const controlsContainer = document.getElementById('controlsContainer');
+
+    // WebSocket connection
+    let websocket = null;
+    let conversationId = null;
+    let isListening = true;
+
+    // Audio playback state
+    const audioQueue = [];
+    let isPlaying = false;
+
+    // Connect to WebSocket
+    connectBtn.addEventListener('click', () => {
+        const token = refreshTokenInput.value.trim();
+        if (!token) {
+            alert('Please enter a refresh token');
+            return;
+        }
+
+        // You might need to change this URL based on your server setup
+        const wsUrl = `ws://localhost:3000/ws?token=${encodeURIComponent(token)}`;
+
+        try {
+            websocket = new WebSocket(wsUrl);
+
+            websocket.onopen = () => {
+                statusMsg.textContent = 'Connected to WebSocket server';
+                statusMsg.className = 'status connected';
+
+                // Enable/disable buttons
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+
+                // Show message input
+                messageForm.style.display = 'block';
+                messagesContainer.style.display = 'block';
+                controlsContainer.style.display = 'flex';
+            };
+
+            websocket.onclose = (event) => {
+                statusMsg.textContent = `Disconnected from server (Code: ${event.code})`;
+                statusMsg.className = 'status disconnected';
+
+                // Reset UI
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+                messageForm.style.display = 'none';
+                conversationId = null;
+            };
+
+            websocket.onerror = (error) => {
+                console.error('WebSocket error:', error);
+                statusMsg.textContent = 'Error connecting to server';
+                statusMsg.className = 'status disconnected';
+            };
+
+            websocket.onmessage = handleWebSocketMessage;
+
+        } catch (error) {
+            console.error('Connection error:', error);
+            statusMsg.textContent = `Connection error: ${error.message}`;
+            statusMsg.className = 'status disconnected';
+        }
+    });
+
+    // Disconnect from WebSocket
+    disconnectBtn.addEventListener('click', () => {
+        if (websocket) {
+            websocket.close();
+            websocket = null;
+        }
+    });
+
+    // Send message
+    sendBtn.addEventListener('click', sendMessage);
+    messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Toggle audio
+    audioToggle.addEventListener('click', () => {
+        isListening = !isListening;
+
+        if (isListening) {
+            audioToggle.textContent = '🔊 Sound On';
+            audioToggle.className = 'audio-toggle on';
+
+            // Start playing any queued audio
+            if (!isPlaying && audioQueue.length > 0) {
+                playNextAudio();
+            }
+        } else {
+            audioToggle.textContent = '🔇 Sound Off';
+            audioToggle.className = 'audio-toggle off';
+        }
+    });
+
+    // Handle WebSocket messages
+    function handleWebSocketMessage(event) {
+        const message = JSON.parse(event.data);
+
+        console.log('Received message:', message);
+
+        switch (message.type) {
+            case 'conversation_created':
+                conversationId = message.conversation_id;
+                // Add user message to UI
+                addMessage({
+                    id: message.message_id,
+                    role: 'user',
+                    content: messageInput.value,
+                    isComplete: true
+                });
+                break;
+
+            case 'chat_stream':
+                handleChatStream(message);
+                break;
+
+            case 'tts_audio_chunk':
+                handleAudioChunk(message);
+                break;
+
+            case 'tts_chunk_error':
+                console.error('TTS error:', message.error);
+                break;
+
+            case 'error':
+                console.error('WebSocket error:', message.error);
+                statusMsg.textContent = `Error: ${message.error}`;
+                break;
+
+            default:
+                // Handle other message types as needed
+                break;
+        }
+    }
+
+    // Handle chat stream messages
+    function handleChatStream(message) {
+        const messageElement = document.getElementById(`message-${message.message_id}`);
+
+        if (messageElement) {
+            // Update existing message
+            const contentElement = messageElement.querySelector('.content');
+            const typingIndicator = messageElement.querySelector('.typing-indicator');
+
+            if (!message.done) {
+                contentElement.textContent += message.chunk;
+            }
+
+            if (message.done && typingIndicator) {
+                messageElement.removeChild(typingIndicator);
+            }
+        } else {
+            // Add new message
+            addMessage({
+                id: message.message_id,
+                role: 'assistant',
+                content: message.chunk,
+                isComplete: message.done
+            });
+        }
+    }
+
+    // Handle audio chunks
+    function handleAudioChunk(message) {
+        if (!isListening) return;
+
+        // Add to queue
+        audioQueue.push({
+            audio_data: message.audio_data,
+            text: message.text,
+            message_id: message.message_id,
+            chunk_id: message.chunk_id
+        });
+
+        // Start playing if not already playing
+        if (!isPlaying) {
+            playNextAudio();
+        }
+    }
+
+    // Play next audio in queue
+    function playNextAudio() {
+        if (audioQueue.length === 0 || isPlaying || !isListening) {
+            return;
+        }
+
+        isPlaying = true;
+        const nextChunk = audioQueue.shift();
+
+        try {
+            // Convert base64 audio data to Blob
+            const audioData = atob(nextChunk.audio_data);
+            const arrayBuffer = new ArrayBuffer(audioData.length);
+            const view = new Uint8Array(arrayBuffer);
+
+            for (let i = 0; i < audioData.length; i++) {
+                view[i] = audioData.charCodeAt(i) & 0xff;
+            }
+
+            const blob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+            const audioUrl = URL.createObjectURL(blob);
+
+            // Create audio element and play
+            const audioElement = new Audio(audioUrl);
+
+            audioElement.onended = () => {
+                // Clean up object URL
+                URL.revokeObjectURL(audioUrl);
+                isPlaying = false;
+                playNextAudio();
+            };
+
+            audioElement.onerror = () => {
+                console.error('Error playing audio chunk');
+                URL.revokeObjectURL(audioUrl);
+                isPlaying = false;
+                playNextAudio();
+            };
+
+            audioElement.play()
+                .catch(error => {
+                    console.error('Failed to play audio:', error);
+                    URL.revokeObjectURL(audioUrl);
+                    isPlaying = false;
+                    playNextAudio();
+                });
+        } catch (error) {
+            console.error('Error processing audio chunk:', error);
+            isPlaying = false;
+            playNextAudio();
+        }
+    }
+
+    // Add message to UI
+    function addMessage(msg) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${msg.role}`;
+        messageDiv.id = `message-${msg.id}`;
+
+        const contentDiv = document.createElement('div');
+        contentDiv.className = 'content';
+        contentDiv.textContent = msg.content;
+        messageDiv.appendChild(contentDiv);
+
+        if (!msg.isComplete) {
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'typing-indicator';
+
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('span');
+                typingIndicator.appendChild(dot);
+            }
+
+            messageDiv.appendChild(typingIndicator);
+        }
+
+        messagesContainer.appendChild(messageDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    // Send message to server
+    function sendMessage() {
+        const text = messageInput.value.trim();
+        if (!text || !websocket || websocket.readyState !== WebSocket.OPEN) {
+            return;
+        }
+
+        // Clear audio queue when sending a new message
+        while (audioQueue.length > 0) {
+            audioQueue.shift();
+        }
+
+        // Send message to server
+        websocket.send(JSON.stringify({
+            type: 'chat_with_tts',
+            content: text,
+            conversationId: conversationId
+        }));
+
+        // Clear input
+        messageInput.value = '';
+    }
+</script>
+</body>
+</html>
