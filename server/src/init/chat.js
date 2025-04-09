@@ -1419,6 +1419,9 @@ export class ChatServer {
             case 'chat':
                 await this.handleChatMessage(ws, message, user);
                 break;
+            case 'chat_with_tts':
+                await this.handleTextToSpeech(ws, message, user);
+                break;
             case 'chat_with_image':
                 await this.handleChatWithImage(ws, message, user);
                 break;
@@ -1792,6 +1795,232 @@ export class ChatServer {
             return false;
         } finally {
             client.release();
+        }
+    }
+
+    async handleTextToSpeech(ws, message, user) {
+        logger.startOperation('text-to-speech', {
+            userId: user.id,
+            conversationId: message.conversationId
+        });
+
+        const client = await pool.connect();
+        let aiResponse = '';
+        let tokensUsed = 0;
+        let conversationId = message.conversationId;
+        let userMessageId = null;
+        let aiMessageId = null;
+
+        try {
+            await client.query('BEGIN');
+
+            // Verify existing conversation or create new one
+            let conversation;
+            if (conversationId) {
+                conversation = await this.verifyConversation(user.id, conversationId);
+                if (!conversation) {
+                    throw new Error('Invalid conversation ID');
+                }
+            } else {
+                conversation = await this.createNewConversation(client, user.id, message.content);
+                conversationId = conversation.id;
+            }
+
+            // Save user message first and get its ID
+            const userMessageResult = await client.query(
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at, has_attachments) VALUES ($1, $2, $3, $4, NOW(), $5) RETURNING id',
+                [conversationId, 'user', message.content, 0, false]
+            );
+            userMessageId = userMessageResult.rows[0].id;
+
+            // Now save a placeholder for the assistant message
+            const aiMessageResult = await client.query(
+                'INSERT INTO messages (conversation_id, role, content, tokens_used, created_at, has_attachments) VALUES ($1, $2, $3, $4, NOW() + interval \'1 millisecond\', $5) RETURNING id',
+                [conversationId, 'assistant', '', 0, false]
+            );
+            aiMessageId = aiMessageResult.rows[0].id;
+
+            await client.query('COMMIT');
+
+            // Send initial message to confirm conversation creation
+            ws.send(JSON.stringify({
+                type: 'conversation_created',
+                conversation_id: conversationId,
+                title: conversation.title,
+                message_id: userMessageId
+            }));
+
+            // Get recent messages for context
+            const history = await this.getRecentMessages(user.id, conversationId);
+
+            // Stream response from OpenAI
+            const streamResponse = await openai.chat.completions.create({
+                model: process.env.OPENAI_MODEL,
+                messages: [
+                    ...history.map(msg => ({
+                        role: msg.role,
+                        content: msg.content
+                    })),
+                    {role: 'user', content: message.content}
+                ],
+                temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
+                max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
+                stream: true
+            });
+
+            // Buffer to accumulate text chunks for TTS
+            let textBuffer = '';
+            // Minimum number of characters before generating speech
+            const MIN_CHUNK_SIZE = 50;
+
+            // Start audio session
+            ws.send(JSON.stringify({
+                type: 'tts_session_started',
+                conversation_id: conversationId,
+                message_id: aiMessageId
+            }));
+
+            for await (const chunk of streamResponse) {
+                const content = chunk.choices[0]?.delta?.content || '';
+                if (content) {
+                    aiResponse += content;
+                    tokensUsed += 1;
+                    textBuffer += content;
+
+                    // Send text chunk to client
+                    ws.send(JSON.stringify({
+                        type: 'chat_stream',
+                        conversation_id: conversationId,
+                        message_id: aiMessageId,
+                        chunk: content,
+                        done: false
+                    }));
+
+                    // If we've accumulated enough text, generate speech
+                    if (textBuffer.length >= MIN_CHUNK_SIZE && this.isCompleteSentence(textBuffer)) {
+                        await this.generateAndStreamSpeech(ws, textBuffer, aiMessageId);
+                        textBuffer = '';
+                    }
+                }
+            }
+
+            // Generate speech for any remaining text
+            if (textBuffer.length > 0) {
+                await this.generateAndStreamSpeech(ws, textBuffer, aiMessageId);
+            }
+
+            // Send completion messages
+            ws.send(JSON.stringify({
+                type: 'chat_stream',
+                conversation_id: conversationId,
+                message_id: aiMessageId,
+                chunk: '',
+                done: true
+            }));
+
+            ws.send(JSON.stringify({
+                type: 'tts_session_ended',
+                conversation_id: conversationId,
+                message_id: aiMessageId
+            }));
+
+            // Update the assistant message with the final content
+            await client.query(
+                'UPDATE messages SET content = $1, tokens_used = $2 WHERE id = $3',
+                [aiResponse, tokensUsed, aiMessageId]
+            );
+
+        } catch (error) {
+            try {
+                await client.query('ROLLBACK');
+            } catch (rollbackError) {
+                logger.error('Rollback error:', {
+                    error: rollbackError.message,
+                    originalError: error.message
+                });
+            }
+
+            logger.failOperation('text-to-speech', error, {
+                userId: user.id,
+                conversationId,
+                userMessageId,
+                aiMessageId
+            });
+
+            ws.send(JSON.stringify({
+                type: 'error',
+                error: error.message,
+                conversationId,
+                message_id: userMessageId
+            }));
+        } finally {
+            client.release();
+        }
+    }
+
+    // Helper to check if text ends with a complete sentence
+    isCompleteSentence(text) {
+        // Simple check for sentence-ending punctuation at the end
+        const trimmedText = text.trim();
+        return trimmedText.length > 0 &&
+            (trimmedText.endsWith('.') ||
+                trimmedText.endsWith('!') ||
+                trimmedText.endsWith('?') ||
+                trimmedText.endsWith(';') ||
+                trimmedText.endsWith(':'));
+    }
+
+    // Generate speech from text and stream audio chunks directly to the client
+    // without saving to database
+    async generateAndStreamSpeech(ws, text, messageId) {
+        try {
+            // Generate TTS audio using OpenAI
+            const mp3 = await openai.audio.speech.create({
+                model: process.env.OPENAI_TTS_MODEL || "tts-1",
+                voice: process.env.OPENAI_TTS_VOICE || "alloy",
+                input: text,
+                response_format: "mp3"
+            });
+
+            // Get the audio data as a buffer
+            const buffer = Buffer.from(await mp3.arrayBuffer());
+
+            // Create a unique ID for this audio chunk
+            const audioChunkId = crypto.randomUUID();
+
+            // Send the audio buffer directly to the client
+            // First, encode the buffer as base64
+            const base64Audio = buffer.toString('base64');
+
+            // Send the audio chunk to the client
+            ws.send(JSON.stringify({
+                type: 'tts_audio_chunk',
+                message_id: messageId,
+                text: text,
+                audio_data: base64Audio,
+                chunk_id: audioChunkId
+            }));
+
+            logger.debug('Audio chunk generated and sent', {
+                messageId: messageId,
+                chunkId: audioChunkId,
+                textLength: text.length
+            });
+        } catch (error) {
+            logger.error('Error generating speech', {
+                error: error.message,
+                stack: error.stack,
+                messageId: messageId,
+                textLength: text.length
+            });
+
+            // Notify client of the error but don't fail the whole process
+            ws.send(JSON.stringify({
+                type: 'tts_chunk_error',
+                message_id: messageId,
+                text: text,
+                error: "Failed to generate speech for this segment"
+            }));
         }
     }
 }
