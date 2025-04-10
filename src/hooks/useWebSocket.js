@@ -3,6 +3,7 @@ import { useEffect, useRef, useState, useCallback } from "react"
 import { useToast } from "./use-toast"
 import { useNavigate } from "react-router-dom"
 import { MESSAGES_PER_PAGE } from "@/constant"
+import { useQueueAudioPlayer } from "./useQueueAudioPlayer"
 
 export function useWebSocket(url) {
   const socket = useRef(null)
@@ -10,6 +11,7 @@ export function useWebSocket(url) {
   const { toast } = useToast()
   const navigate = useNavigate()
   const reconnectAttempts = useRef(0)
+  const { addToQueue: addAudioToQueue, isPlaying, clearQueue } = useQueueAudioPlayer()
 
   const [messages, setMessages] = useState([])
   const [hasMoreMessages, setHasMoreMessages] = useState(true)
@@ -141,6 +143,15 @@ export function useWebSocket(url) {
             case "get_humanized_messages":
               handleGetHumanizedMessages(data)
               break
+            case 'tts_audio_chunk':
+              handleAudioChunk(data);
+              break;
+            case 'tts_session_ended':
+              handleTTSAudioSessionEnded(data);
+              break;
+            case 'tts_chunk_error':
+              handleTTSChunkError(data);
+              break;
             case "error":
               showToast("Error", data.error, "error")
               break
@@ -345,6 +356,22 @@ export function useWebSocket(url) {
     setSpecificMessageHumanizeHistory(data.messages)
   })
 
+  const handleAudioChunk = useCallback(
+    (data) => {
+      // Simply pass the audio chunk to the audio player hook
+      addAudioToQueue(data)
+    },
+    [addAudioToQueue],
+  )
+
+  const handleTTSAudioSessionEnded = useCallback((data) => {
+    sendSocketCommand({ type: "get_history", conversationId: data.conversation_id })
+  }, [])
+
+  const handleTTSChunkError = useCallback((data) => {
+    console.error("TTS chunk error")
+  }, [])
+
   //COMMNADS FROM USER
 
   const sendMessage = useCallback(
@@ -356,7 +383,7 @@ export function useWebSocket(url) {
         content: data.content,
         created_at: new Date().toISOString(),
         conversation_id: data.conversationId || data.conversation_id || null,
-        ...(data.userUploadedImage && {images: [data.userUploadedImage]}),
+        ...(data.userUploadedImage && { images: [data.userUploadedImage] }),
       }
 
       // Add user message to the messages state immediately
@@ -413,6 +440,15 @@ export function useWebSocket(url) {
     },
     [sendSocketCommand],
   )
+
+  const sendSpeechMessage = useCallback((content) => {
+    const message = {
+      type: 'chat_with_tts',
+      conversationId: content.conversationId,
+      content: content.text,
+    }
+    sendSocketCommand(message)
+  }, [sendSocketCommand])
 
   const clearMessages = useCallback(() => {
     setMessages([])
@@ -544,10 +580,13 @@ export function useWebSocket(url) {
 
   return {
     isConnected,
+    isPlaying,
+    clearQueue,
     partialMessage,
     messages,
     error,
     sendMessage,
+    sendSpeechMessage,
     clearMessages,
     getChatHistory,
     deleteConversation,
