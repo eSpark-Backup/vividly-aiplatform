@@ -44,6 +44,7 @@ export default function Chat() {
   const [shouldScrollToBottom, setShouldScrollToBottom] = useState(true)
 
   const loadingOlderMessages = useRef(false)
+  const loadMoreTimeoutRef = useRef(null)
 
   const { ref: topRef, inView: isTopVisible } = useInView({
     threshold: 0.1,
@@ -180,7 +181,23 @@ export default function Chat() {
 
   useEffect(() => {
     if (isTopVisible && !isLoadingMore && hasMoreMessages && initialLoadComplete) {
-      loadMoreMessages()
+
+      // Clear any existing timeout to prevent multiple calls
+      if (loadMoreTimeoutRef.current) {
+        clearTimeout(loadMoreTimeoutRef.current)
+      }
+
+      // Set a new timeout to debounce the loadMoreMessages call
+      loadMoreTimeoutRef.current = setTimeout(() => {
+        loadMoreMessages()
+        loadMoreTimeoutRef.current = null
+      }, 300)
+    }
+
+    return () => {
+      if (loadMoreTimeoutRef.current) {
+        clearTimeout(loadMoreTimeoutRef.current)
+      }
     }
   }, [isTopVisible, isLoadingMore, hasMoreMessages, initialLoadComplete, loadMoreMessages])
 
