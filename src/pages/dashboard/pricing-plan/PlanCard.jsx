@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { PAYMENT_RECURRING_PERIOD } from "@/constant"
+import { Button } from "@/components/ui/button"
 
 
 export default function PlanCard({
@@ -87,20 +88,13 @@ export default function PlanCard({
         ))}
       </ul>
 
-      <button
+      <Button
         onClick={() => onSelectPlan(id)}
-        className={cn(
-          "mt-8 block w-full rounded-md py-2 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-offset-2",
-          {
-            "bg-white text-[#7C35F1] hover:bg-gray-50 focus:ring-white focus:ring-offset-[#7C35F1]": isPopular,
-            "bg-[#813af5] text-white hover:bg-[#7C35F1] focus:ring-purple-500": isSelected && !isPopular,
-            "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-[#7C35F1]":
-              !isSelected && !isPopular,
-          },
-        )}
+        variant={isPopular ? "popular" : isSelected ? "selected" : "defaultPlan"}
+        className="mt-8 block w-full py-2"
       >
         {isSelected ? "Selected" : "Select Plan"}
-      </button>
+      </Button>
     </div>
   )
 }
