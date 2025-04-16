@@ -20,14 +20,14 @@ export default function PlanCard({
   return (
     <div
       className={cn("rounded-lg p-8 py-10 shadow-sm flex flex-col h-full relative", {
-        "bg-white": !isPopular,
+        "dark:bg-white bg-black": !isPopular,
         "bg-[linear-gradient(to_bottom,#5038ED_0%,#9181F4_100%)] shadow-lg": isPopular,
         "ring-2 ring-[#7C35F1]": isSelected && !isPopular,
         "ring-2 ring-white": isSelected && isPopular,
       })}
     >
       {isPopular && (
-        <div className="absolute top-0 transform -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white px-2 py-1 rounded-full">
+        <div className="absolute top-0 transform -translate-y-1/2 left-1/2 -translate-x-1/2 dark:bg-white bg-black px-2 py-1 rounded-full">
           <p className="text-xs font-bold text-[#7C35F1]">MOST POPULAR</p>
         </div>
       )}
@@ -69,7 +69,7 @@ export default function PlanCard({
           <div
             className={cn(
               "flex items-center justify-center font-extrabold text-2xl lg:text-3xl mt-2",
-              isPopular ? "text-white" : "text-black",
+              isPopular ? "text-white" : "dark:text-black text-white",
             )}
           >
             <p className="tracking-tight">${price}/</p>
@@ -81,8 +81,8 @@ export default function PlanCard({
       <ul className="space-y-2 flex-grow">
         {features.map((feature, index) => (
           <li key={index} className="flex items-center">
-            <div className={cn("w-1.5 h-1.5 rounded-full mr-3", isPopular ? "bg-white" : "bg-black")} />
-            <p className={cn("text-sm", isPopular ? "text-white" : "text-black")}>{feature}</p>
+            <div className={cn("w-1.5 h-1.5 rounded-full mr-3", isPopular ? "bg-white" : "dark:bg-black bg-white")} />
+            <p className={cn("text-sm", isPopular ? "text-white" : "dark:text-black text-white")}>{feature}</p>
           </li>
         ))}
       </ul>
