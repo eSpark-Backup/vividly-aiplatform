@@ -8,6 +8,11 @@ export const MODES = {
   CHAT_WITH_IMAGE: "chat_with_image",
   CHAT_WITH_IMAGE_ANALYSIS: "image_analysis",
 }
+export const PAYMENT_RECURRING_PERIOD = {
+   DAILY: "DAILY",
+   MONTHLY: "MONTHLY",
+   ANNUALY: "ANNUALY"
+}
 
 
 
