@@ -47,19 +47,19 @@ export default function PlanCard({
             <div
               className={cn(
                 "flex items-center justify-center font-extrabold text-2xl lg:text-3xl",
-                isPopular ? "text-white" : "text-black",
+                isPopular ? "text-white" : "dark:text-black text-white",
               )}
             >
               <p className="tracking-tight">${promoPrice}/</p>
               <p className="ml-1 tracking-tight">MONTH</p>
             </div>
-            <p className={cn("text-xs mt-0.5", isPopular ? "text-white/80" : "text-gray-600")}>
+            <p className={cn("text-xs mt-0.5", isPopular ? "text-white/80" : "dark:text-gray-600 text-white")}>
               For first {promoPeriod} months
             </p>
             <div
               className={cn(
                 "flex items-center justify-center font-medium text-sm mt-0.5",
-                isPopular ? "text-white/90" : "text-gray-700",
+                isPopular ? "text-white/90" : "dark:text-gray-700 text-white",
               )}
             >
               <p>Then ${price}/MONTH</p>
