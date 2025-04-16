@@ -47,7 +47,7 @@ export default function PlanCard({
           <div className="flex flex-col items-center mt-2">
             <div
               className={cn(
-                "flex items-center justify-center font-extrabold text-2xl lg:text-3xl",
+                "flex items-center justify-center font-extrabold text-2xl 2xl:text-3xl",
                 isPopular ? "text-white" : "text-black dark:text-white",
               )}
             >
@@ -69,7 +69,7 @@ export default function PlanCard({
         ) : (
           <div
             className={cn(
-              "flex items-center justify-center font-extrabold text-2xl lg:text-3xl mt-2",
+              "flex items-center justify-center font-extrabold text-2xl 2xl:text-3xl mt-2",
               isPopular ? "text-white" : "text-black dark:text-white",
             )}
           >
