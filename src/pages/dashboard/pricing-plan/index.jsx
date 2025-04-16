@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PlanCard from "./PlanCard";
 import PlansToggle from "./PlansToggle";
-import { PAYMENT_RECURRING_PERIOD } from "@/constant";
+import { PAYMENT_RECURRING_PERIOD, PLANS_IDS } from "@/constant";
 
 const PricingPlan = () => {
   const [selectedPlan, setSelectedPlan] = useState(null);
@@ -10,6 +10,7 @@ const PricingPlan = () => {
   );
 
   const { MONTHLY, ANNUALY } = PAYMENT_RECURRING_PERIOD;
+  const { FREE, PLUS_MONTHLY, PLUS_ANNUALLY, PREMIUM_MONTHLY, PREMIUM_ANNUALLY, STUDENT_MONTHLY, STUDENT_ANNUALLY } = PLANS_IDS
   const isMonthly = recurringPeriod === MONTHLY;
 
   const handleSelectPlan = (planId) => {
@@ -20,18 +21,6 @@ const PricingPlan = () => {
   const toggleBillingPeriod = () => {
     const newPeriod = isMonthly ? ANNUALY : MONTHLY;
     setRecurringPeriod(newPeriod);
-
-    console.log(newPeriod);
-    
-
-    // // If a plan is selected, update it to the equivalent in the new billing period
-    // if (selectedPlan && selectedPlan !== "FREE") {
-    //   // Extract the base plan name (remove -monthly or -annually)
-    //   const basePlanName = selectedPlan.split("-")[0];
-    //   // Set the new selected plan with the new billing period
-    //   const newPeriodSuffix = newPeriod === MONTHLY ? "monthly" : "annually";
-    //   setSelectedPlan(`${basePlanName}-${newPeriodSuffix}`);
-    // }
   };
 
   return (
@@ -41,9 +30,10 @@ const PricingPlan = () => {
 
       <div className="w-full max-w-7xl mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+
           {/* Free Plan */}
           <PlanCard
-            id="FREE"
+            id={FREE}
             name="Vividly Free"
             price={0}
             features={[
@@ -60,7 +50,7 @@ const PricingPlan = () => {
 
           {/* Plus Plan */}
           <PlanCard
-            id={isMonthly ? "PLUS_MONTHLY" : "PLUS_ANNUALLY"}
+            id={isMonthly ? PLUS_MONTHLY : PLUS_ANNUALLY}
             name="Vividly Plus"
             price={isMonthly ? 9.99 : 109.99}
             features={[
@@ -73,14 +63,14 @@ const PricingPlan = () => {
             billingPeriod={recurringPeriod}
             isSelected={
               selectedPlan ===
-              (isMonthly ? "PLUS_MONTHLY" : "PLUS_ANNUALLY")
+              (isMonthly ? PLUS_MONTHLY : PLUS_ANNUALLY)
             }
             onSelectPlan={handleSelectPlan}
           />
 
           {/* Premium Plan */}
           <PlanCard
-            id={isMonthly ? "PREMIUM_MONTHLY" : "PREMIUM_ANNUALLY"}
+            id={isMonthly ? PREMIUM_MONTHLY : PREMIUM_ANNUALLY}
             name="Vividly Premium"
             price={isMonthly ? 15.99 : 169.99}
             features={[
@@ -93,14 +83,14 @@ const PricingPlan = () => {
             billingPeriod={recurringPeriod}
             isPopular={true}
             isSelected={
-              selectedPlan === (isMonthly ? "PREMIUM_MONTHLY" : "PREMIUM_ANNUALLY")
+              selectedPlan === (isMonthly ? PREMIUM_MONTHLY : PREMIUM_ANNUALLY)
             }
             onSelectPlan={handleSelectPlan}
           />
 
-        {/* Student Plan with special pricing */}
+          {/* Student Plan with special pricing */}
           <PlanCard
-            id={isMonthly ? "STUDENT_MONTHLY" : "STUDENT_ANNUALLY"}
+            id={isMonthly ? STUDENT_MONTHLY : STUDENT_ANNUALLY}
             name="Vividly Student"
             price={isMonthly ? 9.99 : 59.99}
             promoPrice={5.99}
@@ -115,7 +105,7 @@ const PricingPlan = () => {
             billingPeriod={recurringPeriod}
             isSelected={
               selectedPlan ===
-              (isMonthly ? "STUDENT_MONTHLY" : "STUDENT_ANNUALLY")
+              (isMonthly ? STUDENT_MONTHLY : STUDENT_ANNUALLY)
             }
             onSelectPlan={handleSelectPlan}
           />
