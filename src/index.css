@@ -102,6 +102,17 @@
 }
 
 
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+
 ::-webkit-scrollbar {
   width: 7px;
 }
@@ -149,14 +160,49 @@ input:-webkit-autofill {
 }
 
 
-
-
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+/* Square Payment Form Dark Mode Styling */
+.square-dark-mode .sq-label {
+  color: #e0e0e0 !important;
 }
+
+.square-dark-mode .sq-input {
+  background-color: #2a2a2a !important;
+  border-color: #444444 !important;
+  color: #ffffff !important;
+}
+
+.square-dark-mode .sq-input::placeholder {
+  color: #d81616 !important;
+}
+
+.square-dark-mode .sq-input:focus {
+  border-color: #666666 !important;
+}
+
+.square-dark-mode .sq-card-message {
+  color: #e0e0e0 !important;
+}
+
+.sq-card-wrapper .sq-card-message-error::after {
+  background-color: #705f5f !important;
+}
+
+/* Ensure the iframe container has proper styling */
+.square-dark-mode iframe {
+  background-color: #ffffff !important;
+}
+
+/* Target the Square payment form button */
+.square-dark-mode .sq-payment-form .sq-button {
+  background: linear-gradient(to right, #7c35f1, #5900ff) !important;
+  color: #ffffff !important;
+}
+
+.square-dark-mode .sq-payment-form .sq-button:hover {
+  background: linear-gradient(to right, #6a2bd8, #4800d6) !important;
+}
+
+/* Style the disabled/processing state button */
+
+
+

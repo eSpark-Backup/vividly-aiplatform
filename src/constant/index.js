@@ -38,3 +38,26 @@ data-[state=active]:after:w-full
 data-[state=active]:after:bg-[#9181F4]
 data-[state=active]:after:rounded-t-[6.31px]
 data-[state=active]:after:shadow-[0px_6.31px_9.47px_-6.31px_#B6F09C29,0px_15.78px_23.67px_-4.73px_#B6F09C29]`
+
+
+//SQAURE PAYMENT BUTTON CSS 
+export const paymentButtonCSS = (isDarkTheme) => ({
+  css: {
+      background: "linear-gradient(99.78deg, #9181F4 -5.85%, #5038ED 109.55%)",
+      boxShadow: "0px 8px 21px 0px rgba(0,0,0,0.16)",
+      fontSize: "14px",
+      borderRadius: "10px",
+      color: "#fff",
+      "&:hover": {
+          background: "linear-gradient(99.78deg, #8070e8 -5.85%, #4029d8 109.55%)",
+      },
+      "&:disabled": {
+          background: isDarkTheme
+              ? "linear-gradient(99.78deg, #5d52a3 -5.85%, #372a8a 109.55%)"
+              : "linear-gradient(99.78deg, #c5bdff -5.85%, #9f8ff8 109.55%)",
+          opacity: "0.7",
+          color: isDarkTheme ? "#e0e0e0" : "#ffffff",
+          boxShadow: "none",
+      },
+  },
+})

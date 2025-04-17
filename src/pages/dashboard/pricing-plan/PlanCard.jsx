@@ -89,7 +89,7 @@ export default function PlanCard({
       </ul>
 
       <Button
-        onClick={() => onSelectPlan(id)}
+        onClick={() => onSelectPlan( id, name, price, billingPeriod )}
         variant={isPopular ? "popular" : isSelected ? "selected" : "defaultPlan"}
         className="mt-8 block w-full py-2"
       >
