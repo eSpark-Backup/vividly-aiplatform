@@ -8,7 +8,7 @@ import { PaymentDialog } from "./payment-dialog";
 
 const PricingPlan = () => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
-  const {customerInfo, selectedPlan, setSelectedPlan} = usePaymentStore()
+  const { customerInfo, selectedPlan, setSelectedPlan, clearPayment } = usePaymentStore()
   const [recurringPeriod, setRecurringPeriod] = useState(
     PAYMENT_RECURRING_PERIOD.MONTHLY
   );
@@ -25,6 +25,11 @@ const PricingPlan = () => {
   const toggleBillingPeriod = () => {
     const newPeriod = isMonthly ? ANNUALY : MONTHLY;
     setRecurringPeriod(newPeriod);
+  };
+
+  const handleCancelPaymentDialog = () => {
+    clearPayment();
+    setShowPaymentDialog(false);
   };
 
   return (
@@ -122,7 +127,7 @@ const PricingPlan = () => {
         open={showPaymentDialog}
         onOpenChange={setShowPaymentDialog}
         isLoading={false}
-        onCancel={() => setShowPaymentDialog(false)}
+        onCancel={handleCancelPaymentDialog}
 
       />
     </>

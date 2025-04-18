@@ -19,35 +19,38 @@ export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
                 <div className={`w-full dark:dark-payment-form light-payment-form`}>
                     <div className="payment-form-container">
                         <PaymentForm
-                            applicationId="sandbox-sq0idb-GcWTKjZ57p4iva8s2BikBA"
+                            applicationId={import.meta.env.VITE_SQUARE_APPLICATION_ID}
+                            locationId={import.meta.env.VITE_SQUARE_LOCATION_ID}
                             cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
-                                try {
-                                    const response = await fetch("/api/create-subscription", {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-type": "application/json",
-                                        },
-                                        body: JSON.stringify({
-                                            sourceId: token.token,
-                                            planId: selectedPlan.id,
-                                            customer: customerInfo,
-                                        }),
-                                    })
+                                console.log(token);
 
-                                    const result = await response.json()
+                                // try {
+                                //     const response = await fetch("/api/create-subscription", {
+                                //         method: "POST",
+                                //         headers: {
+                                //             "Content-type": "application/json",
+                                //         },
+                                //         body: JSON.stringify({
+                                //             sourceId: token.token,
+                                //             planId: selectedPlan.id,
+                                //             customer: customerInfo,
+                                //         }),
+                                //     })
 
-                                    if (result.success) {
-                                        onPaymentComplete()
-                                        // Redirect to success page with plan name
-                                        const planName = selectedPlan.name
-                                        window.location.href = `/subscription-success?plan=${encodeURIComponent(planName)}`
-                                    } else {
-                                        alert("Error creating subscription: " + result.error)
-                                    }
-                                } catch (error) {
-                                    console.error("Payment error:", error)
-                                    alert("An error occurred during payment processing")
-                                }
+                                //     const result = await response.json()
+
+                                //     if (result.success) {
+                                //         onPaymentComplete()
+                                //         // Redirect to success page with plan name
+                                //         const planName = selectedPlan.name
+                                //         window.location.href = `/subscription-success?plan=${encodeURIComponent(planName)}`
+                                //     } else {
+                                //         alert("Error creating subscription: " + result.error)
+                                //     }
+                                // } catch (error) {
+                                //     console.error("Payment error:", error)
+                                //     alert("An error occurred during payment processing")
+                                // }
                             }}
                             createPaymentRequest={() => ({
                                 countryCode: "US",
@@ -57,10 +60,10 @@ export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
                                     label: `${selectedPlan.name} Plan`,
                                 },
                             })}
-                            locationId="REPLACE-WITH-YOUR-LOCATION-ID"
+
                         >
                             <div className="grid gap-4">
-                                <CreditCard 
+                                <CreditCard
                                     className="w-full dark:bg-muted/50 p-4 rounded-lg"
                                     buttonProps={paymentButtonCSS(isDarkTheme)}
                                 />
