@@ -7,3 +7,10 @@ export const handleApiError = (showToast, error) => {
   }
 }
 
+export const handleSubscriptionApiError = (showToast, error) => {
+  if (error.response?.data?.message) {
+    showToast("Error", error.response.data.message, "error")
+  } else {
+    showToast("Error", "An unexpected error occurred", "error")
+  }
+}

@@ -5,12 +5,21 @@ import { ArrowLeft } from "lucide-react"
 import { useTheme } from "@/components"
 import { paymentButtonCSS, themes } from "@/constant"
 import { useBodyClassToggle } from "@/hooks/useBodyClassToggle"
+import { useCreateSubscription } from "@/hooks/useSubsciption"
+import { handleSubscriptionApiError } from "@/lib/apiErrorHandler"
+import { useToast } from "@/hooks/use-toast"
 
 export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
     const { selectedPlan, customerInfo } = usePaymentStore()
+    const { toast } = useToast();
     const { theme } = useTheme();
+    const { mutate: CreateSubscription, isPending } = useCreateSubscription()
     const isDarkTheme = theme === themes[0];
     useBodyClassToggle("square-dark-mode", isDarkTheme);
+
+    const showToast = (title, description, type) => {
+        toast({ title, description, type });
+    };
 
     return (
         <div className="w-full space-y-6">
@@ -24,33 +33,22 @@ export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
                             cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
                                 console.log(token);
 
-                                // try {
-                                //     const response = await fetch("/api/create-subscription", {
-                                //         method: "POST",
-                                //         headers: {
-                                //             "Content-type": "application/json",
-                                //         },
-                                //         body: JSON.stringify({
-                                //             sourceId: token.token,
-                                //             planId: selectedPlan.id,
-                                //             customer: customerInfo,
-                                //         }),
-                                //     })
+                                const SubscriptionData = {
+                                    sourceId: token.token,
+                                    planId: selectedPlan.id,
+                                    customer: customerInfo,
+                                }
 
-                                //     const result = await response.json()
-
-                                //     if (result.success) {
-                                //         onPaymentComplete()
-                                //         // Redirect to success page with plan name
-                                //         const planName = selectedPlan.name
-                                //         window.location.href = `/subscription-success?plan=${encodeURIComponent(planName)}`
-                                //     } else {
-                                //         alert("Error creating subscription: " + result.error)
-                                //     }
-                                // } catch (error) {
-                                //     console.error("Payment error:", error)
-                                //     alert("An error occurred during payment processing")
-                                // }
+                                CreateSubscription(SubscriptionData, {
+                                    onSuccess: (data) => {
+                                        if (data.success) {
+                                            onPaymentComplete(data)
+                                        }
+                                    },
+                                    onError: (error) => {
+                                        handleSubscriptionApiError(showToast, error);
+                                    }
+                                });
                             }}
                             createPaymentRequest={() => ({
                                 countryCode: "US",
@@ -65,7 +63,10 @@ export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
                             <div className="grid gap-4">
                                 <CreditCard
                                     className="w-full dark:bg-muted/50 p-4 rounded-lg"
-                                    buttonProps={paymentButtonCSS(isDarkTheme)}
+                                    buttonProps={{
+                                        ...paymentButtonCSS(isDarkTheme),
+                                        isLoading: isPending
+                                    }}
                                 />
                             </div>
                         </PaymentForm>
