@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils"
 import { PAYMENT_RECURRING_PERIOD } from "@/constant"
 import { Button } from "@/components/ui/button"
-
+import { Check } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export default function PlanCard({
   id,
@@ -13,18 +14,32 @@ export default function PlanCard({
   billingPeriod,
   isPopular = false,
   isSelected = false,
+  isCurrentPlan = false,
+  isFree = false,
+  isUserSubscribed = false,
   onSelectPlan,
 }) {
+
+  const navigate = useNavigate()
+
   const { MONTHLY, ANNUALY } = PAYMENT_RECURRING_PERIOD
   const hasPromo = promoPeriod && promoPrice && billingPeriod === MONTHLY
+
+  const handlePlanSelection = () => {
+    if (isFree) {
+      navigate("/billing")
+    } else {
+      !isCurrentPlan && onSelectPlan(id, name, price, billingPeriod)
+    }
+  }
 
   return (
     <div
       className={cn("rounded-lg p-8 py-10 shadow-sm flex flex-col h-full relative", {
         "bg-white dark:bg-black": !isPopular,
         "bg-[linear-gradient(to_bottom,#5038ED_0%,#9181F4_100%)] shadow-lg": isPopular,
-        "ring-2 ring-[#7C35F1]": isSelected && !isPopular,
-        "ring-2 ring-white": isSelected && isPopular,
+        "ring-2 ring-[#7C35F1]": (isSelected || isCurrentPlan) && !isPopular,
+        "ring-2 ring-white": (isSelected || isCurrentPlan) && isPopular,
       })}
     >
       {isPopular && (
@@ -32,6 +47,15 @@ export default function PlanCard({
           <p className="text-xs font-bold text-[#7C35F1]">MOST POPULAR</p>
         </div>
       )}
+
+      {isCurrentPlan && (
+        <div className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
+          <div className="bg-purple-500 rounded-full p-1.5">
+            <Check className="h-4 w-4 text-white" />
+          </div>
+        </div>
+      )}
+
 
       <div className="mb-6 h-[120px] flex flex-col justify-center">
         <h3
@@ -42,6 +66,14 @@ export default function PlanCard({
         >
           {name}
         </h3>
+
+        {isCurrentPlan && (
+          <div className="mt-1 mb-1">
+            <p className={cn("text-xs text-center font-medium", isPopular ? "text-white" : "text-green-500")}>
+              CURRENT PLAN
+            </p>
+          </div>
+        )}
 
         {hasPromo ? (
           <div className="flex flex-col items-center mt-2">
@@ -89,11 +121,14 @@ export default function PlanCard({
       </ul>
 
       <Button
-        onClick={() => onSelectPlan( id, name, price, billingPeriod )}
+        onClick={handlePlanSelection}
         variant={isPopular ? "popular" : isSelected ? "selected" : "defaultPlan"}
-        className="mt-8 block w-full py-2"
+        className={cn("mt-8 block w-full py-2", {
+          "opacity-80 cursor-default": isCurrentPlan,
+        })}
+        disabled={isCurrentPlan}
       >
-        {isSelected ? "Selected" : "Select Plan"}
+        {isCurrentPlan ? "Current Plan" : isSelected ? "Selected" : isFree ? "Downgrade" : isUserSubscribed ? "Upgrade" : "Select"}
       </Button>
     </div>
   )

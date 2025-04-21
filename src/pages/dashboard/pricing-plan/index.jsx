@@ -4,13 +4,18 @@ import PlansToggle from "./PlansToggle";
 import { PAYMENT_RECURRING_PERIOD, PLANS_IDS } from "@/constant";
 import { usePaymentStore } from "@/store/usePaymentStore";
 import { PaymentDialog } from "./payment-dialog";
+import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
+import { ComponentLoader } from "@/components";
+import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
 
 
 const PricingPlan = () => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
-  const { customerInfo, selectedPlan, setSelectedPlan, clearPayment } = usePaymentStore()
+  const { planId, recurring } = useUserSubscriptionStore();
+  const { selectedPlan, setSelectedPlan, clearPayment } = usePaymentStore()
+  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo()
   const [recurringPeriod, setRecurringPeriod] = useState(
-    PAYMENT_RECURRING_PERIOD.MONTHLY
+    recurring || PAYMENT_RECURRING_PERIOD.MONTHLY
   );
 
   const { MONTHLY, ANNUALY } = PAYMENT_RECURRING_PERIOD;
@@ -31,6 +36,10 @@ const PricingPlan = () => {
     clearPayment();
     setShowPaymentDialog(false);
   };
+
+  if (isSubscriptionInfoLoading) {
+    return <ComponentLoader description={"Loading subscription Plans information..."} />
+  }
 
   return (
     <>
@@ -55,7 +64,10 @@ const PricingPlan = () => {
               ]}
               billingPeriod={MONTHLY}
               isSelected={selectedPlan.id === FREE}
-              onSelectPlan={handleSelectPlan}
+              isCurrentPlan={!planId}
+              isFree={true}
+              isUserSubscribed={planId}
+            // onSelectPlan={handleSelectPlan}
             />
 
             {/* Plus Plan */}
@@ -75,7 +87,10 @@ const PricingPlan = () => {
                 selectedPlan.id ===
                 (isMonthly ? PLUS_MONTHLY : PLUS_ANNUALLY)
               }
+              isCurrentPlan={planId === (isMonthly ? PLUS_MONTHLY : PLUS_ANNUALLY)}
+              isUserSubscribed={planId}
               onSelectPlan={handleSelectPlan}
+
             />
 
             {/* Premium Plan */}
@@ -95,6 +110,8 @@ const PricingPlan = () => {
               isSelected={
                 selectedPlan.id === (isMonthly ? PREMIUM_MONTHLY : PREMIUM_ANNUALLY)
               }
+              isCurrentPlan={planId === (isMonthly ? PREMIUM_MONTHLY : PREMIUM_ANNUALLY)}
+              isUserSubscribed={planId}
               onSelectPlan={handleSelectPlan}
             />
 
@@ -117,6 +134,8 @@ const PricingPlan = () => {
                 selectedPlan.id ===
                 (isMonthly ? STUDENT_MONTHLY : STUDENT_ANNUALLY)
               }
+              isCurrentPlan={planId === (isMonthly ? STUDENT_MONTHLY : STUDENT_ANNUALLY)}
+              isUserSubscribed={planId}
               onSelectPlan={handleSelectPlan}
             />
           </div>

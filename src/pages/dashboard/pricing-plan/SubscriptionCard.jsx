@@ -2,12 +2,15 @@
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { capitalize } from "@/lib/utils"
 
 export default function SubscriptionCard({
   plan,
   status,
   startDate,
   nextBillingDate,
+  cancelationDate,
+  recurring,
   onCancelSubscription,
 }) {
   return (
@@ -39,15 +42,22 @@ export default function SubscriptionCard({
               <p className="text-base text-black dark:text-white">{nextBillingDate}</p>
             </div>
           </div>
+
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-gray-500 mb-1">Recurring</p>
+              <p className="text-base text-black dark:text-white">{capitalize(recurring)}</p>
+            </div>
+          </div>
         </div>
 
         <div className="mt-6">
           <Button
             variant="default"
-            // className="bg-[#FF6B6B] hover:bg-[#FF5252] text-white"
+            disabled={cancelationDate}
             onClick={onCancelSubscription}
           >
-            Cancel Subscription
+            {cancelationDate ? `Cancellation Processing (Ends on ${nextBillingDate})` : "Cancel Subscription"}
           </Button>
         </div>
       </CardContent>

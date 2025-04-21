@@ -38,7 +38,13 @@ export const categorizeHistory = (history) => {
 
   return { today, yesterday, last7Days };
 };
+
 export const formatDate = (date) => {
   const d = date instanceof Date ? date : new Date(date)
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
 }
+
+export const capitalize = (str) => {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};

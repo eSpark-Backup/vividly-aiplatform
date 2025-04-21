@@ -13,6 +13,8 @@ import { MobileSidebar } from ".."
 import { useChatStore } from "@/store/useChatStore"
 import { useWebSocketContext } from "@/services/WebSocketProvider"
 import { useUserStore } from "@/store/useUserStore"
+import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore"
+import { useQueryClient } from "@tanstack/react-query";
 
 const tabs = [
   { value: "explore", label: "Explore Vividly", icon: Pyramid },
@@ -32,7 +34,10 @@ export default function Header() {
   const { clearAuth } = useAuthStore();
   const { showSignOutDialog, setShowSignOutDialog } = useDialogStore();
   const { clearUser } = useUserStore()
+  const { clearUserSubscription } = useUserSubscriptionStore()
   const { toast } = useToast();
+  const queryClient = useQueryClient()
+
 
   const showToast = (title, description, type) => {
     toast({ title, description, type });
@@ -42,10 +47,12 @@ export default function Header() {
     logout("", {
       onSuccess: () => {
         showToast("Success", "You have been signed out successfully.", "success");
+        queryClient.clear() 
         clearUser();
         setShowSignOutDialog(false);
         clearChat();
         clearMessages();
+        clearUserSubscription();
         clearAuth();
         navigate("/log-in");
       },
