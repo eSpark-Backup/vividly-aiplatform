@@ -7,10 +7,12 @@ import { PaymentDialog } from "./payment-dialog";
 import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 import { ComponentLoader } from "@/components";
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
+import { UpgradePlanDialog } from "./payment-dialog/UpgradePlanDialog";
 
 
 const PricingPlan = () => {
   const [showPaymentDialog, setShowPaymentDialog] = useState(false);
+  const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const { planId, recurring } = useUserSubscriptionStore();
   const { selectedPlan, setSelectedPlan, clearPayment } = usePaymentStore()
   const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo()
@@ -24,7 +26,12 @@ const PricingPlan = () => {
 
   const handleSelectPlan = (id, name, price, billingPeriod) => {
     setSelectedPlan({ id, name, price, billingPeriod });
-    setShowPaymentDialog(true);
+    if (!planId) {
+      setShowPaymentDialog(true);
+    }
+    else {
+      setShowUpgradeDialog(true);
+    }
   };
 
   const toggleBillingPeriod = () => {
@@ -35,6 +42,11 @@ const PricingPlan = () => {
   const handleCancelPaymentDialog = () => {
     clearPayment();
     setShowPaymentDialog(false);
+  };
+
+  const handleCancelUpgradeDialog = () => {
+    clearPayment();
+    setShowUpgradeDialog(false);
   };
 
   if (isSubscriptionInfoLoading) {
@@ -67,7 +79,6 @@ const PricingPlan = () => {
               isCurrentPlan={!planId}
               isFree={true}
               isUserSubscribed={planId}
-            // onSelectPlan={handleSelectPlan}
             />
 
             {/* Plus Plan */}
@@ -145,9 +156,13 @@ const PricingPlan = () => {
       <PaymentDialog
         open={showPaymentDialog}
         onOpenChange={setShowPaymentDialog}
-        isLoading={false}
         onCancel={handleCancelPaymentDialog}
+      />
 
+      <UpgradePlanDialog
+        open={showUpgradeDialog}
+        onOpenChange={setShowUpgradeDialog}
+        onCancel={handleCancelUpgradeDialog}
       />
     </>
   );

@@ -9,7 +9,7 @@ import { useCreateSubscription } from "@/hooks/useSubsciption"
 import { handleSubscriptionApiError } from "@/lib/apiErrorHandler"
 import { useToast } from "@/hooks/use-toast"
 
-export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
+export function PaymentStep({ onBack, onPaymentComplete }) {
     const { selectedPlan, customerInfo } = usePaymentStore()
     const { toast } = useToast();
     const { theme } = useTheme();
@@ -31,7 +31,6 @@ export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
                             applicationId={import.meta.env.VITE_SQUARE_APPLICATION_ID}
                             locationId={import.meta.env.VITE_SQUARE_LOCATION_ID}
                             cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
-                                console.log(token);
 
                                 const SubscriptionData = {
                                     sourceId: token.token,
@@ -81,7 +80,6 @@ export function PaymentStep({ onBack, onPaymentComplete, isLoading }) {
                 variant="outline"
                 size="sm"
                 className="flex items-center gap-2"
-                disabled={isLoading}
             >
                 <ArrowLeft size={16} />
                 Back to Customer Info
