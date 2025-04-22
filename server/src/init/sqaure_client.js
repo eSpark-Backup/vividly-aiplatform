@@ -29,16 +29,6 @@ export function getSquareClient() {
   return squareClient
 }
 
-// Map plan IDs to Square catalog item IDs
-const planCatalogMap = {
-  PLUS_MONTHLY: process.env.VIVIDLY_PLUS_PLAN_MONTHLY_ID,
-  PREMIUM_MONTHLY: process.env.VIVIDLY_PREMIUM_PLAN_MONTHLY_ID,
-  STUDENT_MONTHLY: process.env.VIVIDLY_STUDENT_PLAN_MONTHLY_ID,
-  PLUS_ANNUALLY: process.env.VIVIDLY_PLUS_PLAN_ANNUALLY_ID,
-  PREMIUM_ANNUALLY: process.env.VIVIDLY_PREMIUM_PLAN_ANNUALLY_ID,
-  STUDENT_ANNUALLY: process.env.VIVIDLY_STUDENT_PLAN_ANNUALLY_ID,
-}
-
 // create a customer
 export async function createCustomer(customerInfo) {
   const { customersApi } = getSquareClient()
