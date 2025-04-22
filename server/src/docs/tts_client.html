@@ -376,7 +376,7 @@
 
     // Handle audio chunks
     function handleAudioChunk(message) {
-        if (!isListening) return;
+        // if (!isListening) return;
 
         // Add to queue
         audioQueue.push({
@@ -394,7 +394,7 @@
 
     // Play next audio in queue
     function playNextAudio() {
-        if (audioQueue.length === 0 || isPlaying || !isListening) {
+        if (audioQueue.length === 0 || isPlaying) {
             return;
         }
 

@@ -1,0 +1,81 @@
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-04-09T14:36:01.471Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-04-09T14:36:03.126Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-04-09T14:36:03.127Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-04-09T14:36:03.330Z"}
+{"count":6,"level":"info","message":"Found migration files","timestamp":"2025-04-09T14:36:03.331Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-04-09T14:36:03.520Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-04-09T14:36:03.522Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-04-09T14:36:03.525Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-04-09T14:36:03.526Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-04-09T14:36:03.534Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-04-09T14:36:03.535Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-04-09T14:36:03.541Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-04-09T14:36:03.545Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-04-09T14:36:03.588Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-04-09T14:36:03.592Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-04-09T14:36:23.682Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-04-09T14:36:23.684Z","token":"a77a549d8382a3d1823c3f1a86131514a21553d7bd15a2dfc5a251e912d3cadd44a98f16b704e109"}
+{"email":"somelil469@nike4s.com","level":"debug","message":"Subscription verified","timestamp":"2025-04-09T14:36:24.623Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"email":"somelil469@nike4s.com","level":"info","message":"User connected","timestamp":"2025-04-09T14:36:24.624Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T14:36:48.062Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":null,"level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T14:36:48.063Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"chunkId":"6a739e3d-21b6-4750-b4ca-fb48d902a690","level":"debug","message":"Audio chunk generated and sent","messageId":"98afe8e3-49a6-4d93-93e1-b0e294a0ace2","textLength":140,"timestamp":"2025-04-09T14:36:59.137Z"}
+{"chunkId":"2fa8e056-4d01-4570-a5fa-3c987e659fee","level":"debug","message":"Audio chunk generated and sent","messageId":"98afe8e3-49a6-4d93-93e1-b0e294a0ace2","textLength":98,"timestamp":"2025-04-09T14:37:02.291Z"}
+{"chunkId":"2a0de8d5-f34d-425f-80f0-f56e67159be1","level":"debug","message":"Audio chunk generated and sent","messageId":"98afe8e3-49a6-4d93-93e1-b0e294a0ace2","textLength":119,"timestamp":"2025-04-09T14:37:04.622Z"}
+{"chunkId":"0a4a78f8-9cd1-43fc-b285-70a67506f950","level":"debug","message":"Audio chunk generated and sent","messageId":"98afe8e3-49a6-4d93-93e1-b0e294a0ace2","textLength":89,"timestamp":"2025-04-09T14:37:07.606Z"}
+{"chunkId":"36fa892b-da14-4365-86e4-f35c1049f526","level":"debug","message":"Audio chunk generated and sent","messageId":"98afe8e3-49a6-4d93-93e1-b0e294a0ace2","textLength":154,"timestamp":"2025-04-09T14:37:13.736Z"}
+{"chunkId":"a95b2596-6f0b-4c2a-87c2-33158f03ba54","level":"debug","message":"Audio chunk generated and sent","messageId":"98afe8e3-49a6-4d93-93e1-b0e294a0ace2","textLength":93,"timestamp":"2025-04-09T14:37:16.532Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-04-09T14:37:41.638Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-04-09T14:37:41.639Z","token":"a77a549d8382a3d1823c3f1a86131514a21553d7bd15a2dfc5a251e912d3cadd44a98f16b704e109"}
+{"email":"somelil469@nike4s.com","level":"debug","message":"Subscription verified","timestamp":"2025-04-09T14:37:42.639Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"email":"somelil469@nike4s.com","level":"info","message":"User connected","timestamp":"2025-04-09T14:37:42.640Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-04-09T14:47:29.165Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-04-09T14:47:29.165Z","token":"25812323692980515471527ca51154a6dffd3f843d55d4518d23d5ac4920f8f06e6bec3d8a06256c"}
+{"email":"somelil469@nike4s.com","level":"debug","message":"Subscription verified","timestamp":"2025-04-09T14:47:30.233Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"email":"somelil469@nike4s.com","level":"info","message":"User connected","timestamp":"2025-04-09T14:47:30.234Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T14:47:37.515Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":null,"level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T14:47:37.516Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"chunkId":"9ba21d14-40cd-408f-b2f2-96dcf4fe1ae4","level":"debug","message":"Audio chunk generated and sent","messageId":"ee606cbc-3c28-4f83-9208-0246279fae1e","textLength":135,"timestamp":"2025-04-09T14:47:45.237Z"}
+{"chunkId":"f5bee4ab-4894-4b9d-b5b9-8de1f4879da5","level":"debug","message":"Audio chunk generated and sent","messageId":"ee606cbc-3c28-4f83-9208-0246279fae1e","textLength":28,"timestamp":"2025-04-09T14:47:47.529Z"}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T14:48:04.522Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":"603f2511-a2ae-4518-86c1-d21b247c14f4","level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T14:48:04.524Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"chunkId":"193fc8a6-7ceb-4c87-a514-bc80e320177b","level":"debug","message":"Audio chunk generated and sent","messageId":"cc6a9cbb-ed75-493c-94ff-10d4b9d4293d","textLength":123,"timestamp":"2025-04-09T14:48:11.787Z"}
+{"chunkId":"b7cdc542-c71a-44a4-834e-1715c4866a42","level":"debug","message":"Audio chunk generated and sent","messageId":"cc6a9cbb-ed75-493c-94ff-10d4b9d4293d","textLength":92,"timestamp":"2025-04-09T14:48:13.786Z"}
+{"chunkId":"57ab4e3a-12d6-4271-b613-18ed2a42794e","level":"debug","message":"Audio chunk generated and sent","messageId":"cc6a9cbb-ed75-493c-94ff-10d4b9d4293d","textLength":92,"timestamp":"2025-04-09T14:48:16.409Z"}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T16:15:42.719Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":"603f2511-a2ae-4518-86c1-d21b247c14f4","level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T16:15:42.721Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"aiMessageId":null,"conversationId":"603f2511-a2ae-4518-86c1-d21b247c14f4","error":"Invalid conversation ID","level":"error","message":"Failed text-to-speech","operation":"text-to-speech","stack":"Error: Invalid conversation ID\n    at ChatServer.handleTextToSpeech (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/chat.js:1822:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async ChatServer.handleMessage (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/chat.js:1423:17)\n    at async WebSocket.<anonymous> (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/chat.js:131:29)","status":"error","timestamp":"2025-04-09T16:15:44.844Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01","userMessageId":null}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T16:16:02.856Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":"603f2511-a2ae-4518-86c1-d21b247c14f4","level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T16:16:02.856Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"aiMessageId":null,"conversationId":"603f2511-a2ae-4518-86c1-d21b247c14f4","error":"Invalid conversation ID","level":"error","message":"Failed text-to-speech","operation":"text-to-speech","stack":"Error: Invalid conversation ID\n    at ChatServer.handleTextToSpeech (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/chat.js:1822:27)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async ChatServer.handleMessage (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/chat.js:1423:17)\n    at async WebSocket.<anonymous> (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/chat.js:131:29)","status":"error","timestamp":"2025-04-09T16:16:05.102Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01","userMessageId":null}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-04-09T16:16:24.796Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-04-09T16:16:24.797Z","token":"25812323692980515471527ca51154a6dffd3f843d55d4518d23d5ac4920f8f06e6bec3d8a06256c"}
+{"email":"somelil469@nike4s.com","level":"debug","message":"Subscription verified","timestamp":"2025-04-09T16:16:25.751Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"email":"somelil469@nike4s.com","level":"info","message":"User connected","timestamp":"2025-04-09T16:16:25.752Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T16:16:27.294Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":null,"level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T16:16:27.295Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"chunkId":"28a2e4a4-b1c2-4d0e-8c67-54ae31991080","level":"debug","message":"Audio chunk generated and sent","messageId":"77aa6ac5-7ae7-46f6-b6ca-de45259cf333","textLength":83,"timestamp":"2025-04-09T16:16:33.231Z"}
+{"chunkId":"49bb33e0-bb2f-49c1-b1d2-7038a5d51c05","level":"debug","message":"Audio chunk generated and sent","messageId":"77aa6ac5-7ae7-46f6-b6ca-de45259cf333","textLength":120,"timestamp":"2025-04-09T16:16:47.227Z"}
+{"chunkId":"16408bd6-acb2-4428-9c80-389bfcbec185","level":"debug","message":"Audio chunk generated and sent","messageId":"77aa6ac5-7ae7-46f6-b6ca-de45259cf333","textLength":96,"timestamp":"2025-04-09T16:16:52.587Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-04-09T16:36:17.313Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-04-09T16:36:17.317Z","token":"|| !isListening"}
+{"level":"warn","message":"Invalid or expired subscription","timestamp":"2025-04-09T16:36:18.355Z","token":"|| !isListening"}
+{"clientIp":"::1","level":"warn","message":"Unauthorized connection attempt","timestamp":"2025-04-09T16:36:18.356Z","token":"|| !isListening"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-04-09T16:36:22.867Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-04-09T16:36:22.867Z","token":"25812323692980515471527ca51154a6dffd3f843d55d4518d23d5ac4920f8f06e6bec3d8a06256c"}
+{"email":"somelil469@nike4s.com","level":"debug","message":"Subscription verified","timestamp":"2025-04-09T16:36:23.072Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"email":"somelil469@nike4s.com","level":"info","message":"User connected","timestamp":"2025-04-09T16:36:23.072Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"level":"debug","message":"Received JSON message","messageType":"chat_with_tts","timestamp":"2025-04-09T16:36:30.737Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"conversationId":null,"level":"info","message":"Starting text-to-speech","operation":"text-to-speech","status":"start","timestamp":"2025-04-09T16:36:30.737Z","userId":"17a2dba4-ca64-49ba-b378-e69193107f01"}
+{"chunkId":"91318dd8-3e0d-4e32-b501-c4dc4f0d37b9","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":78,"timestamp":"2025-04-09T16:36:36.074Z"}
+{"chunkId":"df4ddff9-e6a7-4a84-a164-76e23b9f3138","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":52,"timestamp":"2025-04-09T16:36:37.704Z"}
+{"chunkId":"44046a38-e35f-49c8-a22b-ef869fb9b056","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":122,"timestamp":"2025-04-09T16:36:40.348Z"}
+{"chunkId":"12603ec0-d61d-4cae-9470-9993cf029ac8","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":98,"timestamp":"2025-04-09T16:36:41.990Z"}
+{"chunkId":"2b505f9a-6423-44b6-af89-ba495dc1366d","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":74,"timestamp":"2025-04-09T16:36:43.466Z"}
+{"chunkId":"7f64d16e-0cde-4094-932f-dfb097c72419","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":108,"timestamp":"2025-04-09T16:36:45.240Z"}
+{"chunkId":"d974f5fa-b7d3-413e-9813-bbfc26e5348b","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":68,"timestamp":"2025-04-09T16:36:47.076Z"}
+{"chunkId":"432e7999-aae2-4a1e-a88e-d06b531cd895","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":77,"timestamp":"2025-04-09T16:36:49.488Z"}
+{"chunkId":"37175db8-c5cc-4881-b9ef-66aac56df729","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":111,"timestamp":"2025-04-09T16:36:52.629Z"}
+{"chunkId":"67d63d65-5535-4b8d-9b68-3323da16f3f8","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":75,"timestamp":"2025-04-09T16:36:58.542Z"}
+{"chunkId":"d5b3d2eb-a399-464f-abd3-06d3d393ecaa","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":104,"timestamp":"2025-04-09T16:37:02.311Z"}
+{"chunkId":"52bf725a-604a-4795-894c-9d5fafae4fa8","level":"debug","message":"Audio chunk generated and sent","messageId":"a1c23b88-07b5-4e76-975f-6f55099919a9","textLength":105,"timestamp":"2025-04-09T16:37:06.405Z"}
