@@ -9,17 +9,16 @@ import { useUpgradeSubscription } from "@/hooks/useSubsciption"
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore"
 import { handleSubscriptionApiError } from "@/lib/apiErrorHandler"
 import { calculateNextBillingDate } from "@/lib/utils"
+import { useToast } from "@/hooks/use-toast"
 
 export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
 
   const navigate = useNavigate()
+  const { toast } = useToast()
   const { selectedPlan, clearPayment } = usePaymentStore()
   const { id: subscriptionId } = useUserSubscriptionStore();
   const { mutate: upgradeSubscription, isPending } = useUpgradeSubscription()
   const [currentStep, setCurrentStep] = useState(1)
-
-  // Calculate next billing date (21st of each month)
-
 
   const showToast = (title, description, type) => {
     toast({ title, description, type });
@@ -35,9 +34,7 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
     onOpenChange(open)
   }
 
-  const handlePaymentSuccess = () => {
-    console.log(selectedPlan);
-    
+  const handlePaymentSuccess = () => {    
     const upgradeSubscriptionData = { subscriptionId, planId: selectedPlan?.id }
     upgradeSubscription(upgradeSubscriptionData, {
       onSuccess: (data) => {
@@ -80,6 +77,7 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
               isMonthly={isMonthly}
               onCancel={onCancel}
               onConfirm={handlePaymentSuccess}
+              isLoading={isPending}
             />
           ) : (
             <SuccessStep planName={selectedPlan?.name} onGoToBilling={handleGoToBilling} />

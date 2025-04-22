@@ -68,3 +68,8 @@ export const calculateNextBillingDate = (selectedPlan) => {
     isMonthly,
   }
 }
+
+export const normalizeRecurring = (period) => {
+  if (period === "ANNUAL") return "ANNUALLY";
+  return period;
+};

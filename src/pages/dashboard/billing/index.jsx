@@ -1,26 +1,41 @@
 import { useState } from "react"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import SubscriptionCard from "../pricing-plan/SubscriptionCard"
 import { ConfirmationDialog } from "@/components/ConfirmationDialog"
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore"
-import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption"
-import { Loader } from "lucide-react"
+import { useCancelSubscription } from "@/hooks/useSubsciption"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom"
 import { ComponentLoader } from "@/components"
+import { useToast } from "@/hooks/use-toast"
 
 function Billing() {
   const [showCancelSubscriptionModal, setShowCancelSubscriptionModal] = useState(false)
-  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo()
-  const { planName, status, startDate, nextBillingDate, cancelationDate, recurring } = useUserSubscriptionStore()
+  const { id: subscriptionId, planName, status, startDate, nextBillingDate, cancelationDate, recurring, isSubscriptionInfoLoading } = useUserSubscriptionStore()
+  const { mutate: cancelSubscription, isPending } = useCancelSubscription()
   const navigate = useNavigate()
+  const { toast } = useToast()
 
   const handleCancelSubscription = () => {
     setShowCancelSubscriptionModal(true)
   }
 
+  const showToast = (title, description, type) => {
+    toast({ title, description, type });
+  };
+
+
   const handleOnConfirm = () => {
-    setShowCancelSubscriptionModal(false)
+    cancelSubscription({subscriptionId}, {
+      onSuccess: () => {
+        showToast("Success", "Subscription cancelled successfully", "success");
+        setShowCancelSubscriptionModal(false)
+      }
+      , onError: (error) => {
+        handleApiError(showToast, error);
+      }
+    })
+  
   }
 
   const handleGoToPricing = () => {
@@ -90,6 +105,7 @@ function Billing() {
         variant="confirmation"
         desc="Are you sure you want to cancel your subscription?"
         buttonText="Confirm"
+        isLoading={isPending}
         onConfirm={handleOnConfirm}
         onCancel={() => setShowCancelSubscriptionModal(false)}
       />

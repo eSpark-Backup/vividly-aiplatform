@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlanCard from "./PlanCard";
 import PlansToggle from "./PlansToggle";
 import { PAYMENT_RECURRING_PERIOD, PLANS_IDS } from "@/constant";
@@ -8,6 +8,7 @@ import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 import { ComponentLoader } from "@/components";
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
 import { UpgradePlanDialog } from "./payment-dialog/UpgradePlanDialog";
+import { normalizeRecurring } from "@/lib/utils";
 
 
 const PricingPlan = () => {
@@ -15,9 +16,11 @@ const PricingPlan = () => {
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const { planId, recurring } = useUserSubscriptionStore();
   const { selectedPlan, setSelectedPlan, clearPayment } = usePaymentStore()
-  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo()
+  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo({
+    enabled: false,
+  })
   const [recurringPeriod, setRecurringPeriod] = useState(
-    recurring || PAYMENT_RECURRING_PERIOD.MONTHLY
+    PAYMENT_RECURRING_PERIOD.MONTHLY
   );
 
   const { MONTHLY, ANNUALY } = PAYMENT_RECURRING_PERIOD;
@@ -48,6 +51,12 @@ const PricingPlan = () => {
     clearPayment();
     setShowUpgradeDialog(false);
   };
+
+  useEffect(() => {
+    if(recurring) {
+      setRecurringPeriod(normalizeRecurring(recurring))
+    }
+  }, [recurring])
 
   if (isSubscriptionInfoLoading) {
     return <ComponentLoader description={"Loading subscription Plans information..."} />

@@ -3,10 +3,11 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
 // User Subscription Info | GET
-const useGetUserSubscriptionInfo = () => {
+const useGetUserSubscriptionInfo = (options) => {
     return useQuery({
         queryKey: ["getUserSubscriptionInfo"],
         queryFn: getUserSubscriptionInfo,
+        ...options
     });
 }
 

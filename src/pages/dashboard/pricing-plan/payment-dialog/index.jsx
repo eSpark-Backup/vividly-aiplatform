@@ -9,7 +9,7 @@ import { SuccessStep } from "./SuccessStep"
 import { SelectedPlan } from "./SelectedPlan"
 import { useNavigate } from "react-router-dom"
 
-export function PaymentDialog({ open, onOpenChange, isLoading, onCancel }) {
+export function PaymentDialog({ open, onOpenChange, onCancel }) {
     const navigate = useNavigate();
     const { selectedPlan, customerInfo, clearPayment } = usePaymentStore()
     const { firstName, lastName, email, phone } = useUserStore()
