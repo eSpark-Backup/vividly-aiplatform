@@ -17,6 +17,7 @@ const PricingPlan = () => {
   const [showUpgradeDialog, setShowUpgradeDialog] = useState(false);
   const { planId, recurring } = useUserSubscriptionStore();
   const { selectedPlan, setSelectedPlan, clearPayment } = usePaymentStore()
+  const {email} = useUserStore()
   const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo({
     enabled: false,
   })
@@ -65,7 +66,7 @@ const PricingPlan = () => {
 
   }, [recurringPeriod]);
 
-  if (isSubscriptionInfoLoading) {
+  if (isSubscriptionInfoLoading || !email) {
     return <ComponentLoader description={"Loading subscription Plans information..."} />
   }
 
