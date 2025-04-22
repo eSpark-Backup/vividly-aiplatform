@@ -9,6 +9,7 @@ import { ComponentLoader } from "@/components";
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
 import { UpgradePlanDialog } from "./payment-dialog/UpgradePlanDialog";
 import { normalizeRecurring } from "@/lib/utils";
+import { useUserStore } from "@/store/useUserStore";
 
 
 const PricingPlan = () => {
@@ -23,8 +24,9 @@ const PricingPlan = () => {
     PAYMENT_RECURRING_PERIOD.MONTHLY
   );
 
-  const { MONTHLY, ANNUALY } = PAYMENT_RECURRING_PERIOD;
+  const { MONTHLY, ANNUALLY } = PAYMENT_RECURRING_PERIOD;
   const { FREE, PLUS_MONTHLY, PLUS_ANNUALLY, PREMIUM_MONTHLY, PREMIUM_ANNUALLY, STUDENT_MONTHLY, STUDENT_ANNUALLY } = PLANS_IDS
+
   const isMonthly = recurringPeriod === MONTHLY;
 
   const handleSelectPlan = (id, name, price, billingPeriod) => {
@@ -38,7 +40,7 @@ const PricingPlan = () => {
   };
 
   const toggleBillingPeriod = () => {
-    const newPeriod = isMonthly ? ANNUALY : MONTHLY;
+    const newPeriod = isMonthly ? ANNUALLY : MONTHLY;
     setRecurringPeriod(newPeriod);
   };
 
@@ -53,10 +55,15 @@ const PricingPlan = () => {
   };
 
   useEffect(() => {
-    if(recurring) {
-      setRecurringPeriod(normalizeRecurring(recurring))
+    if (recurring) {
+      setRecurringPeriod(normalizeRecurring(recurring));
     }
   }, [recurring])
+
+  useEffect(() => {
+    console.log(recurringPeriod);
+
+  }, [recurringPeriod]);
 
   if (isSubscriptionInfoLoading) {
     return <ComponentLoader description={"Loading subscription Plans information..."} />
@@ -157,6 +164,7 @@ const PricingPlan = () => {
               isCurrentPlan={planId === (isMonthly ? STUDENT_MONTHLY : STUDENT_ANNUALLY)}
               isUserSubscribed={planId}
               onSelectPlan={handleSelectPlan}
+              studentPlan={true}
             />
           </div>
         </div>

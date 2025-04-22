@@ -11,7 +11,7 @@ export const MODES = {
 export const PAYMENT_RECURRING_PERIOD = {
    DAILY: "DAILY",
    MONTHLY: "MONTHLY",
-   ANNUALY: "ANNUALY"
+   ANNUALLY: "ANNUALLY"
 }
 export const PLANS_IDS = {
   FREE: "FREE",

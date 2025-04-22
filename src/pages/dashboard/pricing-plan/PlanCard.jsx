@@ -1,8 +1,11 @@
+"use client"
+
 import { cn } from "@/lib/utils"
 import { PAYMENT_RECURRING_PERIOD } from "@/constant"
 import { Button } from "@/components/ui/button"
-import { Check } from "lucide-react"
+import { Check, GraduationCap } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import { useUserStore } from "@/store/useUserStore"
 
 export default function PlanCard({
   id,
@@ -18,19 +21,37 @@ export default function PlanCard({
   isFree = false,
   isUserSubscribed = false,
   onSelectPlan,
+  studentPlan = false,
 }) {
-
   const navigate = useNavigate()
+  const { isStudent } = useUserStore()
 
-  const { MONTHLY, ANNUALY } = PAYMENT_RECURRING_PERIOD
+  const { MONTHLY, ANNUALLY } = PAYMENT_RECURRING_PERIOD
   const hasPromo = promoPeriod && promoPrice && billingPeriod === MONTHLY
 
   const handlePlanSelection = () => {
-    if (isFree) {
+    if (studentPlan && !isStudent) {
+      // Navigate to student verification page
+      navigate("/settings?cat=studentverification")
+    } else if (isFree) {
       navigate("/billing")
     } else {
       !isCurrentPlan && onSelectPlan(id, name, price, billingPeriod)
     }
+  }
+
+  // Determine button text based on plan type and user status
+  const getButtonText = () => {
+    if (isCurrentPlan) return "Current Plan"
+    if (isSelected) return "Selected"
+
+    if (studentPlan) {
+      return isStudent && isUserSubscribed ? "Upgrade" : isStudent ? "Select" : "Verify Student"
+    }
+
+    if (isFree) return "Downgrade"
+    if (isUserSubscribed) return "Upgrade"
+    return "Select"
   }
 
   return (
@@ -48,6 +69,15 @@ export default function PlanCard({
         </div>
       )}
 
+      {studentPlan && (
+        <div className="absolute top-0 transform -translate-y-1/2 left-1/2 -translate-x-1/2 bg-white dark:bg-black px-2 py-1 rounded-full">
+          <p className="text-xs font-bold text-[#7C35F1] flex items-center">
+            <GraduationCap className="h-3 w-3 mr-1" />
+            STUDENT PLAN
+          </p>
+        </div>
+      )}
+
       {isCurrentPlan && (
         <div className="absolute top-0 right-0 transform translate-x-1/3 -translate-y-1/3">
           <div className="bg-purple-500 rounded-full p-1.5">
@@ -55,7 +85,6 @@ export default function PlanCard({
           </div>
         </div>
       )}
-
 
       <div className="mb-6 h-[120px] flex flex-col justify-center">
         <h3
@@ -71,6 +100,14 @@ export default function PlanCard({
           <div className="mt-1 mb-1">
             <p className={cn("text-xs text-center font-medium", isPopular ? "text-white" : "text-green-500")}>
               CURRENT PLAN
+            </p>
+          </div>
+        )}
+
+        {studentPlan && !isStudent && (
+          <div className="mt-1 mb-1">
+            <p className={cn("text-xs text-center font-medium", isPopular ? "text-white" : "text-amber-500")}>
+              VERIFICATION REQUIRED
             </p>
           </div>
         )}
@@ -106,7 +143,7 @@ export default function PlanCard({
             )}
           >
             <p className="tracking-tight">${price}/</p>
-            <p className="ml-1 tracking-tight">{billingPeriod === ANNUALY ? "YEAR" : "MONTH"}</p>
+            <p className="ml-1 tracking-tight">{billingPeriod === ANNUALLY ? "YEAR" : "MONTH"}</p>
           </div>
         )}
       </div>
@@ -122,13 +159,23 @@ export default function PlanCard({
 
       <Button
         onClick={handlePlanSelection}
-        variant={isPopular ? "popular" : isSelected ? "selected" : "defaultPlan"}
+        variant={
+          studentPlan && !isStudent ? "outline" : isPopular ? "popular" : isSelected ? "selected" : "defaultPlan"
+        }
         className={cn("mt-8 block w-full py-2", {
           "opacity-80 cursor-default": isCurrentPlan,
+          "border-amber-500 text-amber-500 hover:bg-amber-500/10": studentPlan && !isStudent,
         })}
         disabled={isCurrentPlan}
       >
-        {isCurrentPlan ? "Current Plan" : isSelected ? "Selected" : isFree ? "Downgrade" : isUserSubscribed ? "Upgrade" : "Select"}
+        {studentPlan && !isStudent ? (
+          <div className="flex items-center justify-center">
+            <GraduationCap className="h-4 w-4 mr-2" />
+            Verify Student
+          </div>
+        ) : (
+          getButtonText()
+        )}
       </Button>
     </div>
   )

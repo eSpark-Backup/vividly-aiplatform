@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/card"
 import SubscriptionCard from "../pricing-plan/SubscriptionCard"
 import { ConfirmationDialog } from "@/components/ConfirmationDialog"
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore"
-import { useCancelSubscription } from "@/hooks/useSubsciption"
+import { useCancelSubscription, useGetUserSubscriptionInfo } from "@/hooks/useSubsciption"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom"
 import { ComponentLoader } from "@/components"
@@ -11,7 +11,10 @@ import { useToast } from "@/hooks/use-toast"
 
 function Billing() {
   const [showCancelSubscriptionModal, setShowCancelSubscriptionModal] = useState(false)
-  const { id: subscriptionId, planName, status, startDate, nextBillingDate, cancelationDate, recurring, isSubscriptionInfoLoading } = useUserSubscriptionStore()
+  const { id: subscriptionId, planName, status, startDate, nextBillingDate, cancelationDate, recurring } = useUserSubscriptionStore()
+  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo({
+    enabled: false,
+  })
   const { mutate: cancelSubscription, isPending } = useCancelSubscription()
   const navigate = useNavigate()
   const { toast } = useToast()
@@ -26,7 +29,7 @@ function Billing() {
 
 
   const handleOnConfirm = () => {
-    cancelSubscription({subscriptionId}, {
+    cancelSubscription({ subscriptionId }, {
       onSuccess: () => {
         showToast("Success", "Subscription cancelled successfully", "success");
         setShowCancelSubscriptionModal(false)
@@ -35,7 +38,7 @@ function Billing() {
         handleApiError(showToast, error);
       }
     })
-  
+
   }
 
   const handleGoToPricing = () => {
