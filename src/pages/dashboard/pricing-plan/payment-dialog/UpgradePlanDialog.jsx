@@ -3,34 +3,29 @@ import { Dialog, DialogContent } from "@/components/ui/dialog"
 import { usePaymentStore } from "@/store/usePaymentStore"
 import { useNavigate } from "react-router-dom"
 import { PaymentDialogHeader } from "./PaymentDialogHeader"
-import {  addMonths, addYears, formatDate } from "date-fns"
 import { ConfirmationStep } from "./ConfirmationStep"
 import { SuccessStep } from "./SuccessStep"
-import { PAYMENT_RECURRING_PERIOD } from "@/constant"
+import { useUpgradeSubscription } from "@/hooks/useSubsciption"
+import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore"
+import { handleSubscriptionApiError } from "@/lib/apiErrorHandler"
+import { calculateNextBillingDate } from "@/lib/utils"
 
 export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
-    
-    const navigate = useNavigate()
-    const { selectedPlan, clearPayment } = usePaymentStore()
 
-    const [currentStep, setCurrentStep] = useState(1)
-    const { MONTHLY } = PAYMENT_RECURRING_PERIOD
-
+  const navigate = useNavigate()
+  const { selectedPlan, clearPayment } = usePaymentStore()
+  const { id: subscriptionId } = useUserSubscriptionStore();
+  const { mutate: upgradeSubscription, isPending } = useUpgradeSubscription()
+  const [currentStep, setCurrentStep] = useState(1)
 
   // Calculate next billing date (21st of each month)
-  const calculateNextBillingDate = () => {
-    const today = new Date()
-    const isMonthly = selectedPlan?.billingPeriod === MONTHLY
 
-    const nextDate = isMonthly ? addMonths(today, 1) : addYears(today, 1)
 
-    return {
-      date: formatDate(nextDate, "do 'of' MMMM, yyyy"),
-      isMonthly,
-    }
-  }
+  const showToast = (title, description, type) => {
+    toast({ title, description, type });
+};
 
-  const { date: nextBillingDate, isMonthly } = calculateNextBillingDate()
+  const { date: nextBillingDate, isMonthly } = calculateNextBillingDate(selectedPlan)
 
   const handleOpenChange = (open) => {
     if (!open) {
@@ -41,7 +36,19 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
   }
 
   const handlePaymentSuccess = () => {
-    setCurrentStep(2)
+    console.log(selectedPlan);
+    
+    const upgradeSubscriptionData = { subscriptionId, planId: selectedPlan?.id }
+    upgradeSubscription(upgradeSubscriptionData, {
+      onSuccess: (data) => {
+        if (data.success) {
+          setCurrentStep(2)
+        }
+      },
+      onError: (error) => {
+        handleSubscriptionApiError(showToast, error);
+      }
+    })
   }
 
   const handleGoToBilling = () => {

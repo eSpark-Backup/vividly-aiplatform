@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { CreditCard, Info } from "lucide-react"
 
-export function ConfirmationStep({ planName, price, nextBillingDate, isMonthly, onCancel, onConfirm }) {
+export function ConfirmationStep({ planName, price, nextBillingDate, isMonthly, onCancel, onConfirm, isLoading }) {
 
     return (
         <div className="w-full space-y-6">
@@ -58,7 +58,7 @@ export function ConfirmationStep({ planName, price, nextBillingDate, isMonthly, 
                 <Button type="button" onClick={onCancel} variant="secondary" size="lg" className="w-full">
                     Cancel
                 </Button>
-                <Button type="button" onClick={onConfirm} variant="gradient" size="lg" className="w-full">
+                <Button isLoading={isLoading} type="button" onClick={onConfirm} variant="gradient" size="lg" className="w-full">
                     Confirm to pay
                 </Button>
             </div>
