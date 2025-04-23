@@ -26,14 +26,6 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
 
   const { date: nextBillingDate, isMonthly } = calculateNextBillingDate(selectedPlan)
 
-  const handleOpenChange = (open) => {
-    if (!open) {
-      setCurrentStep(1)
-      clearPayment()
-    }
-    onOpenChange(open)
-  }
-
   const handlePaymentSuccess = () => {    
     const upgradeSubscriptionData = { subscriptionId, planId: selectedPlan?.id }
     upgradeSubscription(upgradeSubscriptionData, {
@@ -55,7 +47,7 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
   }
 
   return (
-    <Dialog open={open} onOpenChange={handleOpenChange}>
+    <Dialog open={open}>
       <DialogContent className="max-w-[350px] sm:max-w-[500px] border-0 dark:bg-[#131619] py-8 shadow-[0px_0px_60px_20px_rgba(124,53,241,0.4)]">
         <div className="flex flex-col items-center gap-5 sm:p-6 p-0">
           {/* Dialog Header */}
