@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../components";
 import { vividlyLogoDark, vividlyLogoLight } from "@/assets";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { themes } from "@/constant";
 import { useAuthStore } from "@/store/useAuthStore";
 import { ChatHistory, FreeCounter } from "..";
@@ -50,7 +51,16 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
           ) : (
             <div className="text-right">
               {`${firstName} ${lastName}`}
-              <p className="text-xs text-[#B6F09C]">{user?.email}</p>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-xs text-[#B6F09C] max-w-[150px] truncate">{user?.email}</p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{user?.email}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
               <p className="text-xs text-[#B6F09C]">{planName?.toLowerCase() || "Vividly Free"}</p>
             </div>
           )}
