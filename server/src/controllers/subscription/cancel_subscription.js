@@ -12,7 +12,7 @@ export const cancelSubscription = async (req, res) => {
         })
       } catch (error) {
         logger.error('Subscription cancellation error:', error);
-        res.status(error.statusCode || 500).json({ success: false, error: error.message, message: "Internal server error" });
+        res.status(error.statusCode || 500).json({ success: false, error: error.message, message: "We're having trouble processing your request. Please try again later." });
       }
 }
 

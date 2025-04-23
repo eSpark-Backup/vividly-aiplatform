@@ -34,6 +34,6 @@ export const UserSubscription = async (req, res) => {
 
     } catch (error) {
         logger.error('Error getting user subscriptions:', error);
-        res.status(500).json({ success: false, error: error.message, message: "Internal server error" });
+        res.status(500).json({ success: false, error: error.message, message: "We're having trouble processing your request. Please try again later." });
     }
 }   

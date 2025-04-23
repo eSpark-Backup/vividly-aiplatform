@@ -7,7 +7,7 @@ export const upgradeSubscription = async (req, res) => {
         const { subscriptionId, planId } = req.body;
 
         if (!square_customer_id) {
-            return res.status(400).json({ success: false, error: "No Subscription Found", message: "Internal server error" });
+            return res.status(400).json({ success: false, error: "No Subscription Found", message: "We're having trouble processing your request. Please try again later." });
         }
 
         const updatedSubscription = await upgradeSquareSubscription(square_customer_id, subscriptionId, planId);
@@ -16,7 +16,7 @@ export const upgradeSubscription = async (req, res) => {
         
     } catch (error) {
         logger.error('Error upgrading subscription:', error);
-        res.status(error.statusCode || 500).json({ success: false, error: error.message, message: "Internal server error" });
+        res.status(error.statusCode || 500).json({ success: false, error: error.message, message: "We're having trouble processing your request. Please try again later." });
     }
 }
 

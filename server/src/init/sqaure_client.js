@@ -78,7 +78,59 @@ export async function createCard(sourceId, customerId, customerInfo) {
     return cardId
   } catch (error) {
     logger.error("Error creating card:", error)
-    throw new Error("Failed to create payment card")
+    
+    // Extract Square API error details
+    if (error.errors && Array.isArray(error.errors) && error.errors.length > 0) {
+      const squareError = error.errors[0]
+
+      // Handle specific error categories
+      switch (squareError.category) {
+        
+        case 'AUTHENTICATION_ERROR':
+          throw new Error("Payment service authentication error. Please try again later.")
+        
+        case 'INVALID_REQUEST_ERROR':
+          // Handle card validation errors
+          if (squareError.code === 'VERIFY_CVV_FAILURE') {
+            throw new Error("Card verification failed. Please check your CVV and try again.")
+          } else if (squareError.code === 'VERIFY_AVS_FAILURE') {
+            throw new Error("Address verification failed. Please check your billing address.")
+          } else if (squareError.code === 'CARD_DECLINED') {
+            throw new Error("Your card was declined. Please try another payment method.")
+          } else if (squareError.code === 'CARD_EXPIRED') {
+            throw new Error("Your card has expired. Please use a different card.")
+          } else if (squareError.code === 'INVALID_EXPIRATION') {
+            throw new Error("Invalid expiration date. Please check and try again.")
+          } else if (squareError.code === 'INVALID_CARD') {
+            throw new Error("Invalid card information. Please check your card details.")
+          } else if (squareError.code === 'INVALID_CARD_DATA') {
+            throw new Error("Invalid card data. Please check and try again.")
+          } else {
+            throw new Error(`Card validation error: ${squareError.detail || 'Please check your card information.'}`)
+          }
+        
+        case 'RATE_LIMIT_ERROR':
+          throw new Error("Too many payment requests. Please try again in a few moments.")
+        
+        case 'PAYMENT_METHOD_ERROR':
+          throw new Error("Payment method error: " + (squareError.detail || "Please try another payment method."))
+        
+        case 'RESOURCE_NOT_FOUND':
+          throw new Error("Customer profile not found. Please contact support.")
+          
+        case 'BANK_ACCOUNT_ERROR':
+          throw new Error("There was an issue with your bank account. Please try another payment method.")
+          
+        default:
+          // If we have a detail message from Square, use it
+          if (squareError.detail) {
+            throw new Error(`Payment error: ${squareError.detail}`)
+          }
+          break
+      }
+    }
+    
+    throw new Error("We couldn't process your payment. Please try again or use a different payment method.")
   }
 }
 

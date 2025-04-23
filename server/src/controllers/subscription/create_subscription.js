@@ -13,11 +13,18 @@ export const createSubscription = async (req, res) => {
         let customerId = square_customer_id;
 
         if (!customerId) {
-          customerId = await createCustomer(customer);
+            customerId = await createCustomer(customer);
         }
-        
+
         // Create card
-        const cardId = await createCard(sourceId, customerId, customer)
+        let cardId;
+        try {
+            const createdCardId = await createCard(sourceId, customerId, customer)
+            cardId = createdCardId
+        } catch (error) {
+            logger.error('Subscription creation error:', error);
+            return res.status(error.statusCode || 500).json({ success: false, error: error.message, message: error.message || "Internal server error" });
+        }
 
         // Create subscription
         const subscription = await createSquareSubscription(customerId, cardId, planId)
@@ -50,7 +57,7 @@ export const createSubscription = async (req, res) => {
 
     } catch (error) {
         logger.error('Subscription creation error:', error);
-        res.status(error.statusCode || 500).json({ success: false, error: error.message, message: "Internal server error" });
+        res.status(error.statusCode || 500).json({ success: false, error: error.message, message: "We're having trouble processing your request. Please try again later." });
     }
 };
 
