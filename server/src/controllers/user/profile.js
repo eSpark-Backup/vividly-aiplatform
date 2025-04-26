@@ -1,12 +1,12 @@
 import pool from "../../init/db_conn.js";
 import sharp from 'sharp';
-import {logger} from '../../helpers/logger.js';
-import {getSignedUrl} from "../../helpers/s3.js";
+import { logger } from '../../helpers/logger.js';
+import { getSignedUrl } from "../../helpers/s3.js";
 
 export const updateProfile = async (req, res) => {
     try {
         const userId = req.user.id;
-        const {first_name, last_name, phone, address, city, birthdate} = req.body;
+        const { first_name, last_name, phone, address, city, birthdate } = req.body;
         let avatar = null;
 
         if (req.file) {
@@ -17,14 +17,14 @@ export const updateProfile = async (req, res) => {
                         fit: 'cover',
                         withoutEnlargement: true
                     })
-                    .jpeg({quality: 80})
+                    .jpeg({ quality: 80 })
                     .toBuffer();
 
                 // Convert to base64
                 avatar = `data:image/jpeg;base64,${optimizedBuffer.toString('base64')}`;
             } catch (error) {
                 logger.error('Image processing error:', error);
-                return res.status(400).json({message: 'Invalid image file'});
+                return res.status(400).json({ message: 'Invalid image file' });
             }
         }
 
@@ -80,7 +80,7 @@ export const updateProfile = async (req, res) => {
         }
     } catch (error) {
         logger.error('Profile update error:', error);
-        res.status(500).json({message: 'Internal server error'});
+        res.status(500).json({ message: 'Internal server error' });
     }
 };
 
@@ -106,7 +106,7 @@ export const getProfile = async (req, res) => {
         );
 
         if (!result.rows.length) {
-            return res.status(404).json({message: 'Profile not found'});
+            return res.status(404).json({ message: 'Profile not found' });
         }
 
         const profile = result.rows[0];
@@ -127,6 +127,11 @@ export const getProfile = async (req, res) => {
         });
     } catch (error) {
         logger.error('Get profile error:', error);
-        res.status(500).json({message: 'Internal server error'});
+        res.status(500).json({ message: 'Internal server error' });
     }
 };
+
+
+
+
+
