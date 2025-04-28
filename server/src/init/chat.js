@@ -1027,8 +1027,8 @@ export class ChatServer {
 
                 const isActive = user.subscription?.status === ACTIVE;
                 const planId = isActive ? user.subscription?.planId : FREE;
-                const hasFeatureAccess = subscriptionFeatureAccess[planId];                
-                
+                const hasFeatureAccess = subscriptionFeatureAccess[planId];
+
                 // Check if the user has reached the maximum number of image generations for the month
                 if (userImageAnalysisCount.rows[0].count >= hasFeatureAccess.maxPictureAnalysis) {
                     throw new Error("You have reached the maximum number of image analysis for the month. Please upgrade to a paid plan to continue.");
@@ -1116,7 +1116,7 @@ export class ChatServer {
                     'UPDATE messages SET content = $1, tokens_used = $2 WHERE id = $3',
                     [aiResponse, tokensUsed, messageId]
                 );
-                 
+
                 // create user usage record if the user has not reached the maximum number of image analysis for the month
                 if (userImageAnalysisCount.rows[0].count < hasFeatureAccess.maxPictureAnalysis) {
                     await client.query(
@@ -1145,6 +1145,11 @@ export class ChatServer {
                         id: imageId,
                         thumbnail: imageData.thumbnail
                     }
+                }));
+
+                ws.send(JSON.stringify({
+                    type: 'user_usage',
+                    user_usage: await this.getUserUsage(user.id)
                 }));
 
             } catch (error) {
@@ -1203,7 +1208,7 @@ export class ChatServer {
             const isActive = user.subscription?.status === ACTIVE;
             const planId = isActive ? user.subscription?.planId : FREE;
             const hasFeatureAccess = subscriptionFeatureAccess[planId];
-           
+
             // Check if the user has reached the maximum number of image generations for the month
             if (userImageGenerationCount.rows[0].count >= hasFeatureAccess.maxPictureGeneration) {
                 throw new Error("You have reached the maximum number of image generations for the month. Please upgrade to a paid plan to continue.");
@@ -1391,6 +1396,9 @@ export class ChatServer {
                             url: imageSignedUrl
                         }
                     }));
+
+
+
                 } else {
                     // Send single response for non-streaming mode
                     ws.send(JSON.stringify({
@@ -1503,6 +1511,10 @@ export class ChatServer {
                     conversationId: message.conversationId,
                     messages: history
                 }));
+                ws.send(JSON.stringify({
+                    type: 'user_usage',
+                    user_usage: await this.getUserUsage(user.id)
+                }));
                 break;
             case 'get_conversations':
                 const conversations = await this.getUserConversations(user.id);
@@ -1571,6 +1583,12 @@ export class ChatServer {
                 break;
             case 'image_analysis':
                 await this.handleImageAnalysis(ws, message, user);
+                break;
+            case 'get_user_usage':
+                ws.send(JSON.stringify({
+                    type: 'user_usage',
+                    user_usage: await this.getUserUsage(user.id)
+                }));
                 break;
             default:
                 ws.send(JSON.stringify({
@@ -1691,7 +1709,7 @@ export class ChatServer {
             const isActive = user.subscription?.status === ACTIVE;
             const planId = isActive ? user.subscription?.planId : FREE;
             const hasFeatureAccess = subscriptionFeatureAccess[planId];
-           
+
             // Check if the user has humanize support
             if (!hasFeatureAccess.humanizeSupport) {
                 throw new Error("You don't have access to humanize feature. Please upgrade to a paid plan to continue.");
@@ -1894,12 +1912,12 @@ export class ChatServer {
             const isActive = user.subscription?.status === ACTIVE;
             const planId = isActive ? user.subscription?.planId : FREE;
             const hasFeatureAccess = subscriptionFeatureAccess[planId];
-           
+
             // Check if the user has voice assistance support
             if (!hasFeatureAccess.voiceAssistanceSupport) {
                 throw new Error("You don't have access to voice assistance feature. Please upgrade to a paid plan to continue.");
             }
-            
+
 
             // Verify existing conversation or create new one
             let conversation;
@@ -2109,5 +2127,24 @@ export class ChatServer {
                 error: "Failed to generate speech for this segment"
             }));
         }
+    }
+
+    async getUserUsage(userId) {
+        const client = await pool.connect();
+        const result = await client.query(
+            `
+            SELECT 
+                COUNT(*) FILTER (WHERE type = 'image_generation') AS image_generation_count,
+                COUNT(*) FILTER (WHERE type = 'image_analysis') AS image_analysis_count
+            FROM user_usage_metric
+            WHERE user_id = $1
+              AND created_at >= NOW() - INTERVAL '1 month'
+            `,
+            [userId]
+        );
+
+        const { image_generation_count, image_analysis_count } = result.rows[0];
+
+        return { image_generation_count, image_analysis_count };
     }
 }
