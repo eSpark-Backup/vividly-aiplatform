@@ -1,43 +1,55 @@
-import { Zap } from "lucide-react";
+import { Loader, Zap } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { Card, CardContent } from "../../components/ui/card";
-import { Progress } from "../../components/ui/progress";
-// import { useProModal } from "@/hooks/use-pro-modal";
-import { MAX_FREE_COUNTS } from "@/constant";
+import { useWebSocketContext } from "@/services/WebSocketProvider";
+import { useFeatureAccess } from "@/hooks/useFeatureAccess";
+import { ProgressBar } from "@/components";
+import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 
+const FreeCounter = ({}) => {
+  const {
+    userImageGenerationCount,
+    userImageAnalysisCount,
+    isUserUsageLoading,
+  } = useWebSocketContext();
+  const { currentPlan } = useFeatureAccess()
+  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo();
 
-const FreeCounter = ({
-  apiLimitCount = 0,
-  isPro = false,
-}) => {
-  // const proModal = useProModal();
-  const proModal = true
+  if (currentPlan?.maxPictureGeneration === Infinity) {
+    return null;
+  }
 
-  // if (isPro) {
-  //   return null;
-  // }
   return (
-    <div >
-      <Card className="dark:gradient-glass-effect  bg-black">
-        <CardContent className="py-2">
-          <div className="text-center text-sm text-white  mb-4 space-y-2">
-            <p>
-              {apiLimitCount} / {MAX_FREE_COUNTS} Free Generations
-            </p>
-            <Progress
-              className="h-1 dark:bg-white/10 bg-white"
-              value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
-            />
+    <div className="flex flex-col gap-2">
+      <Card className="dark:gradient-glass-effect min-h-[120px] flex flex-col justify-center bg-black">
+        {isUserUsageLoading || isSubscriptionInfoLoading ? (
+          <div className="flex items-center justify-center h-full">
+            <Loader className="h-6 w-6 animate-spin" />
           </div>
-          <Button
-            // onClick={proModal.onOpen}
-            variant="premium"
-            className="w-full"
-          >
-            Upgrade
-            <Zap className="w-4 h-4 ml-2 fill-white" />
-          </Button>
-        </CardContent>
+        ) : (
+          <CardContent className="py-2">
+         
+            <ProgressBar
+              title="Image Generations"
+              userCount={userImageGenerationCount}
+              maxCount={currentPlan?.maxPictureGeneration}
+            />
+            <ProgressBar
+              title="Image Analysis"
+              userCount={userImageAnalysisCount}
+              maxCount={currentPlan?.maxPictureAnalysis}
+            />
+
+            <Button
+              // onClick={proModal.onOpen}
+              variant="premium"
+              className="w-full"
+            >
+              Upgrade
+              <Zap className="w-4 h-4 ml-2 fill-white" />
+            </Button>
+          </CardContent>
+        )}
       </Card>
     </div>
   );

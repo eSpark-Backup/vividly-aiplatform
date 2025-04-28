@@ -14,7 +14,7 @@ import { useUserStore } from "@/store/useUserStore";
 import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
 import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 
-const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
+const Sidebar = () => {
   const { theme } = useTheme();
   const { user } = useAuthStore();
   const { planName } = useUserSubscriptionStore();
@@ -98,7 +98,7 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
 
       {/* Footer (API Limit Counter) */}
       <div className="px-3 py-5">
-        <FreeCounter isPro={isPro} apiLimitCount={apiLimitCount} />
+        <FreeCounter />
       </div>
     </div>
   );

@@ -61,11 +61,6 @@ const PricingPlan = () => {
     }
   }, [recurring])
 
-  useEffect(() => {
-    console.log(recurringPeriod);
-
-  }, [recurringPeriod]);
-
   if (isSubscriptionInfoLoading || !email) {
     return <ComponentLoader description={"Loading subscription Plans information..."} />
   }
