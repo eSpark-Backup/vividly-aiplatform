@@ -456,9 +456,8 @@ export class ChatServer {
                               
 
             `
-            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd
+            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd 
             const result = await pool.query(queryToRun, [token]);
-
 
             let subscription = null;
             if (result.rows[0]?.square_customer_id !== null) {
@@ -471,9 +470,6 @@ export class ChatServer {
                 ...result.rows[0],
                 subscription
             }
-
-            logger.debug('User subscription', { user });
-
 
             if (user) {
                 logger.debug('Subscription verified', { userId: user.id, email: user.email });
@@ -1155,7 +1151,7 @@ export class ChatServer {
 
                 ws.send(JSON.stringify({
                     type: 'user_usage',
-                    user_usage: await this.getUserUsage(user.id)
+                    user_usage: await this.getUserUsage(user)
                 }));
 
             } catch (error) {
@@ -1519,7 +1515,7 @@ export class ChatServer {
                 }));
                 ws.send(JSON.stringify({
                     type: 'user_usage',
-                    user_usage: await this.getUserUsage(user.id)
+                    user_usage: await this.getUserUsage(user)
                 }));
                 break;
             case 'get_conversations':
@@ -1593,7 +1589,7 @@ export class ChatServer {
             case 'get_user_usage':
                 ws.send(JSON.stringify({
                     type: 'user_usage',
-                    user_usage: await this.getUserUsage(user.id)
+                    user_usage: await this.getUserUsage(user)
                 }));
                 break;
             default:
@@ -2135,22 +2131,68 @@ export class ChatServer {
         }
     }
 
-    async getUserUsage(userId) {
-        const client = await pool.connect();
-        const result = await client.query(
-            `
+    async getUserUsage(user) {
+        const client = await pool.connect()
+
+        try {
+            // Determine start date (from subscription or user creation)
+            let startDateStr 
+            if (user.subscription?.status === ACTIVE && user.subscription?.startDate) {
+                startDateStr = user.subscription.startDate
+            } else {
+                const userResult = await client.query("SELECT created_at FROM users WHERE id = $1", [user.id])
+                startDateStr = userResult.rows[0]?.created_at
+            }
+
+            // Extract the day from the start date
+            const startDate = new Date(startDateStr)
+
+            // Get current date info
+            const now = new Date()
+            const currentYear = now.getFullYear()
+            const currentMonth = now.getMonth()
+
+            // Calculate subscription period using the same day in current month
+            const subscriptionDay = startDate.getUTCDate()
+
+            // Create current month date with same day (handle month length differences)
+            const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+            const actualDay = Math.min(subscriptionDay, daysInCurrentMonth)
+            const subscriptionStartDate = new Date(currentYear, currentMonth, actualDay)
+
+            // Calculate end date (same day next month)
+            const daysInNextMonth = new Date(currentYear, currentMonth + 2, 0).getDate()
+            const nextMonthDay = Math.min(subscriptionDay, daysInNextMonth)
+            const subscriptionEndDate = new Date(currentYear, currentMonth + 1, nextMonthDay)
+
+            // Format dates for SQL
+            const formattedStartDate = this.formatDateToYYYYMMDD(subscriptionStartDate)
+            const formattedEndDate = this.formatDateToYYYYMMDD(subscriptionEndDate)
+
+            // Query usage metrics using calculated date range
+            const result = await client.query(
+                `
             SELECT 
-                COUNT(*) FILTER (WHERE type = 'image_generation') AS image_generation_count,
-                COUNT(*) FILTER (WHERE type = 'image_analysis') AS image_analysis_count
+              COUNT(*) FILTER (WHERE type = 'image_generation') AS image_generation_count,
+              COUNT(*) FILTER (WHERE type = 'image_analysis') AS image_analysis_count
             FROM user_usage_metric
             WHERE user_id = $1
-              AND created_at >= NOW() - INTERVAL '1 month'
+              AND created_at >= $2
+              AND created_at < $3
             `,
-            [userId]
-        );
+                [user.id, formattedStartDate, formattedEndDate],
+            )
 
-        const { image_generation_count, image_analysis_count } = result.rows[0];
-
-        return { image_generation_count, image_analysis_count };
+            return result.rows[0]
+        } finally {
+            client.release()
+        }
     }
+
+    formatDateToYYYYMMDD(date) {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, "0")
+        const day = String(date.getDate()).padStart(2, "0")
+        return `${year}-${month}-${day}`
+      }
 }
