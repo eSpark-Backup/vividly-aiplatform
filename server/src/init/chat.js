@@ -453,6 +453,8 @@ export class ChatServer {
                               FROM refresh_tokens
                               WHERE token = $1
                               LIMIT 1)
+                              
+
             `
             const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd
             const result = await pool.query(queryToRun, [token]);
@@ -460,6 +462,7 @@ export class ChatServer {
 
             let subscription = null;
             if (result.rows[0]?.square_customer_id !== null) {
+                logger.debug('Getting user subscriptions', { userId: result.rows[0].id });
                 const subscriptions = await getUserSubscriptions(result.rows[0].square_customer_id);
                 subscription = subscriptions[subscriptions.length - 1] || null;
             }
@@ -468,6 +471,9 @@ export class ChatServer {
                 ...result.rows[0],
                 subscription
             }
+
+            logger.debug('User subscription', { user });
+
 
             if (user) {
                 logger.debug('Subscription verified', { userId: user.id, email: user.email });
