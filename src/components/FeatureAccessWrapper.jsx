@@ -3,6 +3,8 @@ import { useFeatureAccess } from "@/hooks/useFeatureAccess"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { Crown } from "lucide-react"
 import { PLAN_FEATURE_ENUMS } from "@/constant"
+import { useDialogStore } from "@/store/useDialogStore"
+import { useMobile } from "@/hooks/useMobile"
 
 function FeatureAccessWrapper({
   children,
@@ -13,6 +15,8 @@ function FeatureAccessWrapper({
 }) {
   const featureAccess = useFeatureAccess()
   const { PICTURE_ANALYSIS, PICTURE_GENERATION, HUMANIZE, VOICE_ASSISTANCE } = PLAN_FEATURE_ENUMS
+  const { setShowUpgradeDialog } = useDialogStore()
+  const isMobile = useMobile()
 
   // Check if the user has access to the requested feature
   const hasAccess = (() => {
@@ -30,19 +34,41 @@ function FeatureAccessWrapper({
     }
   })()
 
-  // If the user has access, render the children normally
   if (hasAccess) {
     return children
   }
 
-  // If the user doesn't have access, wrap in tooltip and disable
+  // Handle click for mobile devices
+  const handleClick = (e) => {
+    if (isMobile) {
+      e.preventDefault()
+      e.stopPropagation()
+      setShowUpgradeDialog(true)
+    }
+  }
+
+  // If on mobile, make the disabled button clickable to open the dialog
+  if (isMobile) {
+    return (
+      <div className="inline-block" onClick={handleClick} aria-label={`Upgrade to access ${feature}`}>
+        {React.cloneElement(children, {
+          className: `${children.props.className || ""} opacity-60 cursor-pointer`,
+          "aria-disabled": true,
+          onClick: (e) => {
+            e.stopPropagation()
+            setShowUpgradeDialog(true)
+          },
+        })}
+      </div>
+    )
+  }
+
+  // For desktop, keep the tooltip behavior
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <div
-            className="relative inline-block cursor-not-allowed"
-          >
+          <div className="relative inline-block cursor-not-allowed">
             {/* Clone the child element and add disabled prop */}
             {React.cloneElement(children, {
               disabled: true,
@@ -52,7 +78,7 @@ function FeatureAccessWrapper({
           </div>
         </TooltipTrigger>
         <TooltipContent side={tooltipSide} align={tooltipAlign} className="flex items-center gap-1 z-50" sideOffset={5}>
-          <Crown className="h-4 w-4 text-amber-400" />
+          <Crown className="h-4 w-4 text-[#7C35F1]" />
           <span>{tooltipMessage}</span>
         </TooltipContent>
       </Tooltip>

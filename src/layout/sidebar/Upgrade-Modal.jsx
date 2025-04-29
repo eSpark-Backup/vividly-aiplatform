@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 
 export function UpgradeModal({ open, onOpenChange }) {
   const navigate = useNavigate();
-
+  
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden max-h-[90vh] overflow-y-auto">

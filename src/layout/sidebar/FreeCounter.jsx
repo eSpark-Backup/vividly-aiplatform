@@ -7,9 +7,9 @@ import { ProgressBar } from "@/components";
 import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 import { UpgradeModal } from "./Upgrade-Modal";
 import { useState } from "react";
+import { useDialogStore } from "@/store/useDialogStore";
 
-const FreeCounter = ({}) => {
-  const [open, setOpen] = useState(false);
+const FreeCounter = () => {
   const {
     userImageGenerationCount,
     userImageAnalysisCount,
@@ -17,6 +17,7 @@ const FreeCounter = ({}) => {
   } = useWebSocketContext();
   const { currentPlan } = useFeatureAccess();
   const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo();
+  const { showUpgradeDialog, setShowUpgradeDialog } = useDialogStore();
 
   if (currentPlan?.maxPictureGeneration === Infinity) {
     return null;
@@ -45,7 +46,7 @@ const FreeCounter = ({}) => {
             <Button
               variant="premium"
               className="w-full"
-              onClick={() => setOpen(true)}
+              onClick={() => setShowUpgradeDialog(true)}
             >
               Upgrade
               <Zap className="w-4 h-4 ml-2 fill-white" />
@@ -54,7 +55,7 @@ const FreeCounter = ({}) => {
         )}
       </Card>
 
-      <UpgradeModal open={open} onOpenChange={setOpen} />
+      <UpgradeModal open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog} />
     </div>
   );
 };
