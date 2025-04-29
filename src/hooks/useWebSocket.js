@@ -86,18 +86,21 @@ export function useWebSocket(url) {
       }
 
       socket.current = new WebSocket(url)
- 
+
       socket.current.onopen = () => {
         console.log("Connected to chat server")
         setIsConnected(true)
         setError(null)
         reconnectAttempts.current = 0
-        
+
         if (conversations.length === 0) {
           setIsConversationLoading(true)
           sendSocketCommand({ type: "get_conversations" })
         }
-}
+
+        sendSocketCommand({ type: "get_user_usage" })
+
+      }
 
       socket.current.onclose = (event) => {
         console.log("Disconnected from chat server", event)

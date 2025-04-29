@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Textarea } from "@/components/ui/textarea"
 import { Sparkle, Square } from "lucide-react"
 import { useWebSocketContext } from "@/services/WebSocketProvider"
 import MarkdownDisplay from "./MarkdownDisplay"
+import FeatureAccessWrapper from "@/components/FeatureAccessWrapper"
+import { PLAN_FEATURE_ENUMS } from "@/constant"
 
 const HumanizeDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
     const { sendHumanizeCommand, sendReHumanizeCommand, isHumanizeLoading, humanizedContent, setHumanizedContent } = useWebSocketContext()
+    const { HUMANIZE } = PLAN_FEATURE_ENUMS
 
     useEffect(() => {
         if (isOpen && message) {
@@ -31,6 +33,7 @@ const HumanizeDrawer = ({ message }) => {
     return (
         <Sheet open={isOpen} onOpenChange={handleOpenChange}>
             <SheetTrigger asChild>
+                <FeatureAccessWrapper feature={HUMANIZE} tooltipPosition="right">
                 <Button
                     variant="ghost flex"
                     size="sm"
@@ -39,6 +42,7 @@ const HumanizeDrawer = ({ message }) => {
                     <Sparkle className="h-4 w-4 mr-1" />
                     Humanize
                 </Button>
+                </FeatureAccessWrapper>
             </SheetTrigger>
             <SheetContent side="right" className="sm:max-w-[500px] w-[90vw] px-3 sm:py-4 py-4">
                 <SheetHeader>
