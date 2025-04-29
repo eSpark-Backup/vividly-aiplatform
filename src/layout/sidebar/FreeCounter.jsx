@@ -5,14 +5,17 @@ import { useWebSocketContext } from "@/services/WebSocketProvider";
 import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { ProgressBar } from "@/components";
 import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
+import { UpgradeModal } from "./Upgrade-Modal";
+import { useState } from "react";
 
 const FreeCounter = ({}) => {
+  const [open, setOpen] = useState(false);
   const {
     userImageGenerationCount,
     userImageAnalysisCount,
     isUserUsageLoading,
   } = useWebSocketContext();
-  const { currentPlan } = useFeatureAccess()
+  const { currentPlan } = useFeatureAccess();
   const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo();
 
   if (currentPlan?.maxPictureGeneration === Infinity) {
@@ -28,7 +31,6 @@ const FreeCounter = ({}) => {
           </div>
         ) : (
           <CardContent className="py-2">
-         
             <ProgressBar
               title="Image Generations"
               userCount={userImageGenerationCount}
@@ -41,9 +43,9 @@ const FreeCounter = ({}) => {
             />
 
             <Button
-              // onClick={proModal.onOpen}
               variant="premium"
               className="w-full"
+              onClick={() => setOpen(true)}
             >
               Upgrade
               <Zap className="w-4 h-4 ml-2 fill-white" />
@@ -51,6 +53,8 @@ const FreeCounter = ({}) => {
           </CardContent>
         )}
       </Card>
+
+      <UpgradeModal open={open} onOpenChange={setOpen} />
     </div>
   );
 };
