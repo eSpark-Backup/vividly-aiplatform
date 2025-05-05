@@ -25,6 +25,7 @@ export function getSquareClient() {
       accessToken: process.env.SQUARE_ACCESS_TOKEN,
       environment: process.env.ENV === "prod" ? Environment.Production : Environment.Sandbox,
     })
+    
   }
   return squareClient
 }
@@ -245,5 +246,18 @@ export async function getPlansCatalogDetails(planId) {
   const { catalogApi } = getSquareClient()
   const { result } = await catalogApi.retrieveCatalogObject(planId)
   return result.object
+}
+
+// Get user cards
+export async function getUserCards(customerId) {
+  try {
+    const { customersApi } = getSquareClient()
+    const { result } = await customersApi.retrieveCustomer(customerId)
+
+    return result.customer?.cards || []
+  } catch (error) {
+    logger.error("Error getting user cards:", error)
+    throw new Error("Failed to get user cards")
+  }
 }
 

@@ -1,0 +1,1107 @@
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T09:56:57.795Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T09:56:58.657Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T09:56:58.658Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T09:56:58.868Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T09:56:58.869Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T09:56:59.078Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T09:56:59.080Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T09:56:59.080Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T09:56:59.081Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T09:56:59.082Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T09:56:59.082Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T09:56:59.083Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T09:56:59.084Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T09:56:59.084Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T09:56:59.085Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T09:56:59.121Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T09:56:59.126Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T09:57:13.879Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T09:57:13.880Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T09:57:14.887Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T09:57:16.997Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T09:57:16.998Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T09:57:19.331Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T09:57:19.335Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T09:57:19.568Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T09:57:19.569Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T09:57:19.764Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T09:57:21.804Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T09:57:21.805Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T09:57:25.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T09:57:25.311Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T09:58:22.961Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T09:58:23.826Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T09:58:23.827Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T09:58:24.020Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T09:58:24.022Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T09:58:24.215Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T09:58:24.216Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T09:58:24.217Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T09:58:24.218Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T09:58:24.220Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T09:58:24.221Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T09:58:24.222Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T09:58:24.224Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T09:58:24.225Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T09:58:24.226Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T09:58:24.278Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T09:58:24.286Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T09:58:24.388Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T09:58:24.390Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T09:58:25.444Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T09:58:27.718Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T09:58:27.720Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T09:58:29.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T09:58:29.312Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:00:03.335Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:00:04.169Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:00:04.170Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:00:04.369Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:00:04.371Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:00:04.568Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:00:04.570Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:00:04.571Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:00:04.572Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:00:04.573Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:00:04.574Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:00:04.576Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:00:04.577Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:00:04.578Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:00:04.580Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:00:04.603Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:00:04.609Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T10:00:04.619Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T10:00:04.620Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T10:00:05.632Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T10:00:08.053Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T10:00:08.054Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T10:00:10.306Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T10:00:10.308Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:00:35.184Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:00:35.995Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:00:35.997Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:00:36.191Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:00:36.192Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:00:36.385Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:00:36.387Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:00:36.387Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:00:36.388Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:00:36.389Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:00:36.389Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:00:36.390Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:00:36.390Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:00:36.391Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:00:36.392Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:00:36.414Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:00:36.418Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T10:00:36.711Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T10:00:36.713Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T10:00:37.715Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T10:00:40.191Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T10:00:40.193Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T10:00:42.306Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T10:00:42.308Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:01:23.096Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:01:23.932Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:01:23.934Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:01:24.126Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:01:24.128Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:01:24.318Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:01:24.319Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:01:24.319Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:01:24.320Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:01:24.321Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:01:24.321Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:01:24.322Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:01:24.323Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:01:24.323Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:01:24.324Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:01:24.349Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:01:24.355Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T10:01:24.629Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T10:01:24.630Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T10:01:25.626Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T10:01:28.085Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T10:01:28.087Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T10:01:30.317Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T10:01:30.319Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:02:35.221Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:02:36.047Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:02:36.048Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:02:36.247Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:02:36.248Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:02:36.445Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:02:36.446Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:02:36.446Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:02:36.447Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:02:36.447Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:02:36.448Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:02:36.448Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:02:36.449Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:02:36.449Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:02:36.450Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:02:36.472Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:02:36.475Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T10:02:36.647Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T10:02:36.648Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T10:02:37.639Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T10:02:40.795Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T10:02:40.799Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T10:02:41.317Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T10:02:41.319Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:02:47.424Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:02:48.223Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:02:48.224Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:02:48.415Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:02:48.417Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:02:48.608Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:02:48.610Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:02:48.611Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:02:48.612Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:02:48.614Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:02:48.615Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:02:48.616Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:02:48.617Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:02:48.619Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:02:48.621Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:02:48.652Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:02:48.658Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T10:02:48.835Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T10:02:48.837Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T10:02:49.769Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T10:02:52.117Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T10:02:52.117Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T10:02:54.376Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T10:02:54.378Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:03:54.051Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:03:54.896Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:03:54.898Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:03:55.102Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:03:55.103Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:03:55.336Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:03:55.336Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:03:55.337Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:03:55.338Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:03:55.339Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:03:55.339Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:03:55.340Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:03:55.341Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:03:55.341Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:03:55.342Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:03:55.367Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:03:55.371Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T10:03:55.626Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T10:03:55.628Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T10:03:56.650Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T10:03:59.228Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T10:03:59.229Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:04:21.678Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:04:23.186Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:04:23.187Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:04:23.381Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:04:23.383Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:04:23.577Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:04:23.579Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:04:23.580Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:04:23.581Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:04:23.582Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:04:23.583Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:04:23.584Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:04:23.586Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:04:23.587Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:04:23.588Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:04:23.632Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:04:23.637Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:06:46.793Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:06:50.234Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:06:51.086Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:06:51.087Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:06:51.289Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:06:51.290Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:06:51.493Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:06:51.493Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:06:51.494Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:06:51.494Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:06:51.495Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:06:51.496Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:06:51.496Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:06:51.497Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:06:51.498Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:06:51.498Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:06:51.522Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:06:51.525Z"}
+{"body":"{\"errors\":[{\"category\":\"INVALID_REQUEST_ERROR\",\"code\":\"INVALID_CURSOR\",\"detail\":\"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.\",\"field\":\"cursor\"}]}","errors":[{"category":"INVALID_REQUEST_ERROR","code":"INVALID_CURSOR","detail":"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.","field":"cursor"}],"headers":{"cf-cache-status":"DYNAMIC","cf-ray":"93af738f98ee9083-KHI","connection":"keep-alive","content-type":"application/json","date":"Mon, 05 May 2025 10:11:02 GMT","server":"cloudflare","set-cookie":["__cf_bm=yRkzfgTPWAAhsfj3tBwu7mUdbPcGszuMfkkpgqHMqk4-1746439862-1.0.1.1-HrS6rf.8LVK4Qe8NaeWBfgBgRnAYEKuHOnwJsTF4vF2HHGz6CbA7KcXTx.6BgfpDzu5JXvIvlp0LfdNg.Io2g0a2GthKlviEr9bJvJWAg.s; path=/; expires=Mon, 05-May-25 10:41:02 GMT; domain=.squareupsandbox.com; HttpOnly; Secure; SameSite=None"],"square-version":"2022-09-21","strict-transport-security":"max-age=631152000; includeSubDomains; preload","transfer-encoding":"chunked","vary":"Origin, Accept-Encoding","x-content-type-options":"nosniff","x-download-options":"noopen","x-envoy-decorator-operation":"/v2/cards/**","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-speleo-traceid":"CDN-d0dea7c5-2b02-48e0-b040-3b3da4606b95","x-sq-dc":"aws","x-sq-istio-migration-ingress-proxy":"sq-envoy","x-sq-istio-migration-ingress-region":"us-west-2","x-sq-region":"us-west-2","x-xss-protection":"1; mode=block"},"level":"error","message":"Error getting user cards: Response status code was not ok: 400.","request":{"headers":{"Square-Version":"2022-09-21","authorization":"Bearer EAAAl61UE892_J1VLWZZJiHwdklwSAIthBlJ4cCSPJNaRtJDyA7GtVe9vuqp1JSY","user-agent":"Square-TypeScript-SDK/22.0.0 (2022-09-21) node/20.14.0 (win32) "},"method":"GET","url":"https://connect.squareupsandbox.com/v2/cards?cursor=ZNWYK722DE2CB793CJ0PN4TAW8"},"result":{"errors":[{"category":"INVALID_REQUEST_ERROR","code":"INVALID_CURSOR","detail":"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.","field":"cursor"}]},"stack":"Error: Response status code was not ok: 400.\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\requestBuilder.js:367:23\n    at DefaultRequestBuilder.<anonymous> (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\requestBuilder.js:179:50)\n    at step (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:196:27)\n    at Object.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:177:57)\n    at fulfilled (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:167:62)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":400,"timestamp":"2025-05-05T10:11:02.952Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:258:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:11:02.956Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:12:49.303Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:12:50.083Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:12:50.084Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:12:50.270Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:12:50.271Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:12:50.456Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:12:50.457Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:12:50.458Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:12:50.459Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:12:50.459Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:12:50.460Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:12:50.461Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:12:50.462Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:12:50.463Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:12:50.463Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:12:50.488Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:12:50.491Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:13:10.544Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:13:11.395Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:13:15.629Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:13:16.452Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:13:16.454Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:13:16.648Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:13:16.650Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:13:16.842Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:13:16.843Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:13:16.844Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:13:16.846Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:13:16.848Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:13:16.849Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:13:16.850Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:13:16.851Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:13:16.852Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:13:16.854Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:13:16.881Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:13:16.885Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:14:33.110Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:14:33.899Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:14:33.900Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:14:34.090Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:14:34.092Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:14:34.281Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:14:34.282Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:14:34.283Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:14:34.284Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:14:34.285Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:14:34.287Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:14:34.289Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:14:34.290Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:14:34.292Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:14:34.293Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:14:34.338Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:14:34.343Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:14:46.600Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:14:47.504Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:14:47.505Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:14:47.718Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:14:47.720Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:14:47.933Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:14:47.934Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:14:47.934Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:14:47.935Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:14:47.936Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:14:47.936Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:14:47.937Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:14:47.938Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:14:47.938Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:14:47.939Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:14:47.962Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:14:47.965Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:14:53.779Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:14:54.588Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:14:54.589Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:14:54.782Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:14:54.783Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:14:54.974Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:14:54.975Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:14:54.975Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:14:54.976Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:14:54.977Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:14:54.977Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:14:54.978Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:14:54.979Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:14:54.980Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:14:54.980Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:14:55.004Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:14:55.008Z"}
+{"body":"{\"errors\":[{\"category\":\"INVALID_REQUEST_ERROR\",\"code\":\"INVALID_CURSOR\",\"detail\":\"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.\",\"field\":\"cursor\"}]}","errors":[{"category":"INVALID_REQUEST_ERROR","code":"INVALID_CURSOR","detail":"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.","field":"cursor"}],"headers":{"cf-cache-status":"DYNAMIC","cf-ray":"93af7953e80c90a5-KHI","connection":"keep-alive","content-type":"application/json","date":"Mon, 05 May 2025 10:14:58 GMT","server":"cloudflare","set-cookie":["__cf_bm=EGh2b7u4ftq2rI3rVCR7SMkvQORXRzHEKAusXlK_tbw-1746440098-1.0.1.1-KY_yQSreNI3.g6qREF7aSVi7H_PTaWJb_7UNSjVWsbYTTqJ_jBTUc7bnBXe4rpQZ2eKN7Zp2uCC2I9D4BI3h801hN4MpmJWKv9BpZH6E8MU; path=/; expires=Mon, 05-May-25 10:44:58 GMT; domain=.squareupsandbox.com; HttpOnly; Secure; SameSite=None"],"square-version":"2022-09-21","strict-transport-security":"max-age=631152000; includeSubDomains; preload","transfer-encoding":"chunked","vary":"Origin, Accept-Encoding","x-content-type-options":"nosniff","x-download-options":"noopen","x-envoy-decorator-operation":"/v2/cards/**","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-speleo-traceid":"CDN-d1c06a93-0b1b-49b1-9270-d960129afe52","x-sq-dc":"aws","x-sq-istio-migration-ingress-proxy":"sq-envoy","x-sq-istio-migration-ingress-region":"us-west-2","x-sq-region":"us-west-2","x-xss-protection":"1; mode=block"},"level":"error","message":"Error getting user cards: Response status code was not ok: 400.","request":{"headers":{"Square-Version":"2022-09-21","authorization":"Bearer EAAAl61UE892_J1VLWZZJiHwdklwSAIthBlJ4cCSPJNaRtJDyA7GtVe9vuqp1JSY","user-agent":"Square-TypeScript-SDK/22.0.0 (2022-09-21) node/20.14.0 (win32) "},"method":"GET","url":"https://connect.squareupsandbox.com/v2/cards?cursor=ZNWYK722DE2CB793CJ0PN4TAW8"},"result":{"errors":[{"category":"INVALID_REQUEST_ERROR","code":"INVALID_CURSOR","detail":"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.","field":"cursor"}]},"stack":"Error: Response status code was not ok: 400.\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\requestBuilder.js:367:23\n    at DefaultRequestBuilder.<anonymous> (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\requestBuilder.js:179:50)\n    at step (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:196:27)\n    at Object.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:177:57)\n    at fulfilled (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:167:62)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":400,"timestamp":"2025-05-05T10:14:59.205Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:258:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:14:59.208Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:16:04.579Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:16:05.378Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:16:05.379Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:16:05.572Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:16:05.574Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:16:05.765Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:16:05.765Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:16:05.766Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:16:05.767Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:16:05.767Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:16:05.768Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:16:05.768Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:16:05.769Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:16:05.770Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:16:05.770Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:16:05.792Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:16:05.796Z"}
+{"errors":{"cursor":[{"branch":[{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:16:10.236Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:258:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:16:10.240Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:18:06.660Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:18:07.510Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:18:07.511Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:18:07.715Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:18:07.718Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:18:07.920Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:18:07.921Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:18:07.922Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:18:07.923Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:18:07.924Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:18:07.925Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:18:07.926Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:18:07.927Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:18:07.928Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:18:07.929Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:18:07.957Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:18:07.960Z"}
+{"errors":{"cursor":[{"branch":[{"query":{"filter":{"customerIds":["ZNWYK722DE2CB793CJ0PN4TAW8"]}}}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"query\":{\"filter\":{\"customerIds\":[\"ZNWYK722DE2CB793CJ0PN4TAW8\"]}}}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"query":{"filter":{"customerIds":["ZNWYK722DE2CB793CJ0PN4TAW8"]}}}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"query\":{\"filter\":{\"customerIds\":[\"ZNWYK722DE2CB793CJ0PN4TAW8\"]}}}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"query\":{\"filter\":{\"customerIds\":[\"ZNWYK722DE2CB793CJ0PN4TAW8\"]}}}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:18:15.032Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:264:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:18:15.035Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:21:18.166Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:21:19.014Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:21:19.015Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:21:19.218Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:21:19.220Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:21:19.423Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:21:19.424Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:21:19.424Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:21:19.425Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:21:19.426Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:21:19.426Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:21:19.427Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:21:19.428Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:21:19.428Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:21:19.429Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:21:19.452Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:21:19.455Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:21:22.714Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:21:23.589Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:21:23.590Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:21:23.795Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:21:23.797Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:21:24.014Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:21:24.014Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:21:24.015Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:21:24.015Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:21:24.016Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:21:24.017Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:21:24.018Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:21:24.019Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:21:24.020Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:21:24.022Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:21:24.055Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:21:24.061Z"}
+{"errors":{"cursor":[{"branch":[{"cursor":0,"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\",\"cursor\":0}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"cursor":0,"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\",\"cursor\":0}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\",\"cursor\":0}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:21:28.146Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:261:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:21:28.150Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:23:29.921Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:23:31.993Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:23:31.994Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:23:32.186Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:23:32.188Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:23:32.378Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:23:32.379Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:23:32.380Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:23:32.381Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:23:32.382Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:23:32.383Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:23:32.383Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:23:32.384Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:23:32.385Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:23:32.386Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:23:32.415Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:23:32.418Z"}
+{"errors":{"cursor":[{"branch":[{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:23:37.895Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:260:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:23:37.901Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:25:29.974Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:25:30.764Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:25:30.765Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:25:30.962Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:25:30.963Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:25:31.152Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:25:31.154Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:25:31.155Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:25:31.156Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:25:31.157Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:25:31.158Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:25:31.160Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:25:31.161Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:25:31.162Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:25:31.164Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:25:31.198Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:25:31.201Z"}
+{"errors":{"cursor":[{"branch":[{"customer_id":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customer_id":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:25:34.174Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:260:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:25:34.180Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:26:54.832Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:26:55.666Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:26:55.668Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:26:55.863Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:26:55.864Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:26:56.055Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:26:56.055Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:26:56.056Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:26:56.057Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:26:56.057Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:26:56.058Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:26:56.059Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:26:56.059Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:26:56.060Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:26:56.060Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:26:56.085Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:26:56.089Z"}
+{"errors":{"cursor":[{"branch":[{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:26:59.475Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:258:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:26:59.478Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:28:11.463Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:28:12.302Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:28:12.303Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:28:12.502Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:28:12.504Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:28:12.702Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:28:12.703Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:28:12.703Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:28:12.704Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:28:12.704Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:28:12.705Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:28:12.706Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:28:12.706Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:28:12.707Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:28:12.708Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:28:12.732Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:28:12.735Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:28:55.007Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:28:55.876Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:28:55.877Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:28:56.089Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:28:56.090Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:28:56.299Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:28:56.300Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:28:56.300Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:28:56.301Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:28:56.302Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:28:56.302Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:28:56.303Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:28:56.304Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:28:56.304Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:28:56.305Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:28:56.329Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:28:56.333Z"}
+{"errors":{"cursor":[{"branch":[{"customer_id":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customer_id":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:29:07.587Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:258:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:29:07.593Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:29:20.811Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:29:21.684Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:29:21.685Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:29:21.889Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:29:21.891Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:29:22.101Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:29:22.102Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:29:22.103Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:29:22.103Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:29:22.104Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:29:22.105Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:29:22.105Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:29:22.106Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:29:22.107Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:29:22.107Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:29:22.130Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:29:22.133Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:30:49.445Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:30:50.286Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:30:50.287Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:30:50.490Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:30:50.492Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:30:50.694Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:30:50.695Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:30:50.695Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:30:50.696Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:30:50.697Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:30:50.697Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:30:50.698Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:30:50.698Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:30:50.699Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:30:50.699Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:30:50.721Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:30:50.725Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:32:09.480Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:32:10.277Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:32:10.278Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:32:10.471Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:32:10.473Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:32:10.665Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:32:10.666Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:32:10.667Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:32:10.669Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:32:10.670Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:32:10.671Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:32:10.672Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:32:10.674Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:32:10.675Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:32:10.676Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:32:10.718Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:32:10.723Z"}
+{"body":"{\"errors\":[{\"category\":\"INVALID_REQUEST_ERROR\",\"code\":\"INVALID_CURSOR\",\"detail\":\"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.\",\"field\":\"cursor\"}]}","errors":[{"category":"INVALID_REQUEST_ERROR","code":"INVALID_CURSOR","detail":"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.","field":"cursor"}],"headers":{"cf-cache-status":"DYNAMIC","cf-ray":"93af92957d7c9093-KHI","connection":"keep-alive","content-type":"application/json","date":"Mon, 05 May 2025 10:32:12 GMT","server":"cloudflare","set-cookie":["__cf_bm=VDChRY5fkcDL2Ao0rtrwO46O8RhO61vJS2ssJZ_Bnxo-1746441132-1.0.1.1-TswMJIDi6WWch6M8psm.HETu4Gjj_JTWmlJqVaCgQ4BBGcmoiD48wsnD2.q0GNBBkyMj8Li6ISfVOydX_UwHrN971PZHGlQl3duv354yP2I; path=/; expires=Mon, 05-May-25 11:02:12 GMT; domain=.squareupsandbox.com; HttpOnly; Secure; SameSite=None"],"square-version":"2022-09-21","strict-transport-security":"max-age=631152000; includeSubDomains; preload","transfer-encoding":"chunked","vary":"Origin, Accept-Encoding","x-content-type-options":"nosniff","x-download-options":"noopen","x-envoy-decorator-operation":"/v2/cards/**","x-frame-options":"SAMEORIGIN","x-permitted-cross-domain-policies":"none","x-speleo-traceid":"CDN-2529d78d-6f4e-4d8b-a03a-022620d4c210","x-sq-dc":"aws","x-sq-istio-migration-ingress-proxy":"sq-envoy","x-sq-istio-migration-ingress-region":"us-west-2","x-sq-region":"us-west-2","x-xss-protection":"1; mode=block"},"level":"error","message":"Error getting user cards: Response status code was not ok: 400.","request":{"headers":{"Square-Version":"2022-09-21","authorization":"Bearer EAAAl61UE892_J1VLWZZJiHwdklwSAIthBlJ4cCSPJNaRtJDyA7GtVe9vuqp1JSY","user-agent":"Square-TypeScript-SDK/22.0.0 (2022-09-21) node/20.14.0 (win32) "},"method":"GET","url":"https://connect.squareupsandbox.com/v2/cards?cursor=ZNWYK722DE2CB793CJ0PN4TAW8"},"result":{"errors":[{"category":"INVALID_REQUEST_ERROR","code":"INVALID_CURSOR","detail":"The provided cursor `ZNWYK722DE2CB793CJ0PN4TAW8` was not found.","field":"cursor"}]},"stack":"Error: Response status code was not ok: 400.\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\requestBuilder.js:367:23\n    at DefaultRequestBuilder.<anonymous> (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\requestBuilder.js:179:50)\n    at step (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:196:27)\n    at Object.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:177:57)\n    at fulfilled (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\tslib\\tslib.js:167:62)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)","statusCode":400,"timestamp":"2025-05-05T10:32:13.653Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:258:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:32:13.658Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:33:46.174Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:33:47.013Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:33:47.014Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:33:47.216Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:33:47.219Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:33:47.423Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:33:47.425Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:33:47.426Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:33:47.427Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:33:47.428Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:33:47.429Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:33:47.431Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:33:47.432Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:33:47.434Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:33:47.435Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:33:47.479Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:33:47.482Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:34:07.741Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:34:08.587Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:34:08.588Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:34:08.781Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:34:08.784Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:34:08.978Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:34:08.979Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:34:08.979Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:34:08.980Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:34:08.981Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:34:08.981Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:34:08.982Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:34:08.983Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:34:08.983Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:34:08.984Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:34:09.009Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:34:09.012Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:34:21.079Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:34:21.889Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:34:21.890Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:34:22.084Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:34:22.086Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:34:22.276Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:34:22.277Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:34:22.277Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:34:22.278Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:34:22.278Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:34:22.279Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:34:22.279Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:34:22.280Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:34:22.281Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:34:22.281Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:34:22.304Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:34:22.307Z"}
+{"errors":{"cursor":[{"branch":[{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:34:24.311Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:261:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:34:24.315Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:34:38.498Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:34:39.296Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:34:39.298Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:34:39.484Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:34:39.485Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:34:39.671Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:34:39.671Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:34:39.672Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:34:39.672Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:34:39.673Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:34:39.673Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:34:39.674Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:34:39.675Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:34:39.675Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:34:39.676Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:34:39.702Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:34:39.705Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:36:25.549Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:36:26.398Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:36:26.399Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:36:26.602Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:36:26.606Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:36:26.804Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:36:26.805Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:36:26.805Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:36:26.805Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:36:26.806Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:36:26.806Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:36:26.807Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:36:26.808Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:36:26.808Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:36:26.809Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:36:26.831Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:36:26.835Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:37:21.819Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:37:22.617Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:37:22.618Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:37:22.808Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:37:22.809Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:37:23.000Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:37:23.001Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:37:23.001Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:37:23.002Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:37:23.003Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:37:23.003Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:37:23.004Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:37:23.005Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:37:23.005Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:37:23.006Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:37:23.030Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:37:23.035Z"}
+{"level":"error","message":"Error getting user cards: customersApi.listCards is not a function","stack":"TypeError: customersApi.listCards is not a function\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:255:43)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:37:25.482Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:259:11)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:37:25.484Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:39:49.888Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:39:50.713Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:39:50.714Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:39:50.912Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:39:50.915Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:39:51.114Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:39:51.115Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:39:51.116Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:39:51.117Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:39:51.118Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:39:51.119Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:39:51.120Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:39:51.121Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:39:51.122Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:39:51.123Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:39:51.157Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:39:51.160Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:40:32.744Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:40:33.524Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:40:33.526Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:40:33.715Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:40:33.717Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:40:33.904Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:40:33.905Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:40:33.905Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:40:33.906Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:40:33.907Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:40:33.908Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:40:33.909Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:40:33.909Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:40:33.910Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:40:33.911Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:40:33.933Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:40:33.936Z"}
+{"level":"error","message":"Error getting user cards: cardsApi.searchCards is not a function","stack":"TypeError: cardsApi.searchCards is not a function\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:255:39)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:40:36.631Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:265:11)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:40:36.634Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:40:51.245Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:40:52.029Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:40:52.030Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:40:52.219Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:40:52.221Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:40:52.409Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:40:52.410Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:40:52.410Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:40:52.411Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:40:52.411Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:40:52.412Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:40:52.412Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:40:52.413Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:40:52.413Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:40:52.414Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:40:52.438Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:40:52.443Z"}
+{"errors":{"cursor":[{"branch":[{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:40:54.583Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:261:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:40:54.586Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:41:28.452Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:41:29.309Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:41:29.310Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:41:29.512Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:41:29.515Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:41:29.718Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:41:29.719Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:41:29.720Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:41:29.720Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:41:29.721Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:41:29.722Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:41:29.723Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:41:29.723Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:41:29.724Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:41:29.724Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:41:29.747Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:41:29.753Z"}
+{"errors":{"cursor":[{"branch":[{"filter":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"filter\":{\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"filter":{"customerId":"ZNWYK722DE2CB793CJ0PN4TAW8"}}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"filter\":{\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"filter\":{\"customerId\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:41:32.722Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:263:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:41:32.726Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:41:43.981Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:41:44.763Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:41:44.764Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:41:44.952Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:41:44.954Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:41:45.141Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:41:45.142Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:41:45.142Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:41:45.143Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:41:45.144Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:41:45.144Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:41:45.145Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:41:45.145Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:41:45.146Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:41:45.147Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:41:45.170Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:41:45.174Z"}
+{"errors":{"cursor":[{"branch":[{"filter":{"customer_id":"ZNWYK722DE2CB793CJ0PN4TAW8"}}],"message":"Expected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"filter\":{\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}}\nType: 'object'\nExpected type: 'Optional<string>'","path":[],"type":"Optional<string>","value":{"filter":{"customer_id":"ZNWYK722DE2CB793CJ0PN4TAW8"}}}]},"level":"error","message":"Error getting user cards: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"filter\":{\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}}\nType: 'object'\nExpected type: 'Optional<string>'","stack":"Error: Argument for 'cursor' failed validation.\n\nExpected value to be of type 'Optional<string>' but found 'object'.\n\nGiven value: {\"filter\":{\"customer_id\":\"ZNWYK722DE2CB793CJ0PN4TAW8\"}}\nType: 'object'\nExpected type: 'Optional<string>'\n    at new ArgumentsValidationError (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\errors\\argumentsValidationError.js:48:24)\n    at DefaultRequestBuilder.prepareArgs (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\@apimatic\\core\\lib\\http\\validate.js:41:15)\n    at CardsApi._callee$ (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:2059:28)\n    at tryCatch (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:230:40)\n    at Generator.invoke [as _invoke] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:460:22)\n    at Generator.next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:285:21)\n    at asyncGeneratorStep (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:13:24)\n    at _next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:35:9)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\node_modules\\square\\dist\\square.cjs.development.js:42:7\n    at new Promise (<anonymous>)","timestamp":"2025-05-05T10:41:47.296Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:263:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:27)","timestamp":"2025-05-05T10:41:47.305Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:44:03.727Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:44:04.567Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:44:04.567Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:44:04.770Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:44:04.772Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:44:04.977Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:44:04.978Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:44:04.979Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:44:04.981Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:44:04.982Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:44:04.983Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:44:04.985Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:44:04.986Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:44:04.987Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:44:04.989Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:44:05.025Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:44:05.029Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:44:31.189Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:44:31.954Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:44:31.955Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:44:33.786Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:44:34.643Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:44:34.644Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:44:34.845Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:44:34.848Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:44:35.047Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:44:35.048Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:44:35.049Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:44:35.049Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:44:35.050Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:44:35.050Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:44:35.051Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:44:35.052Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:44:35.052Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:44:35.053Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:44:35.076Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:44:35.080Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:44:40.252Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:44:42.696Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:44:43.493Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:44:43.494Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:44:43.681Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:44:43.683Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:44:43.871Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:44:43.873Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:44:43.874Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:44:43.875Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:44:43.876Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:44:43.877Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:44:43.878Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:44:43.880Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:44:43.881Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:44:43.882Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:44:43.916Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:44:43.920Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:46:06.019Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:46:06.938Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:46:06.939Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:46:07.158Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:46:07.160Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:46:08.975Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:46:09.873Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:46:09.875Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:46:10.084Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:46:10.085Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:46:10.294Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:46:10.296Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:46:10.297Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:46:10.298Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:46:10.299Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:46:10.301Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:46:10.302Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:46:10.304Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:46:10.305Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:46:10.306Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:46:10.343Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:46:10.346Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:46:20.146Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:46:20.961Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:46:20.963Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:46:21.155Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:46:21.157Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:46:21.350Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:46:21.352Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:46:21.353Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:46:21.354Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:46:21.355Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:46:21.356Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:46:21.358Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:46:21.360Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:46:21.361Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:46:21.362Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:46:21.402Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:46:21.406Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:46:39.417Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:46:40.270Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:46:40.272Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:46:40.476Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:46:40.478Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:46:40.682Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:46:40.684Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:46:40.684Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:46:40.685Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:46:40.686Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:46:40.686Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:46:40.687Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:46:40.687Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:46:40.688Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:46:40.688Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:46:40.711Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:46:40.715Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:46:58.611Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:46:59.411Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:46:59.412Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:46:59.600Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:46:59.602Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:46:59.792Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:46:59.793Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:46:59.794Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:46:59.795Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:46:59.797Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:46:59.798Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:46:59.799Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:46:59.800Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:46:59.802Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:46:59.803Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:46:59.840Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:46:59.843Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:47:22.986Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:47:23.784Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:47:23.785Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:47:23.972Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:47:23.974Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:47:24.162Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:47:24.164Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:47:24.165Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:47:24.166Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:47:24.168Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:47:24.169Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:47:24.170Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:47:24.172Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:47:24.173Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:47:24.174Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:47:24.215Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:47:24.219Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:48:26.638Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:48:27.458Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:48:27.459Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:48:27.646Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:48:27.648Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:48:27.835Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:48:27.836Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:48:27.836Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:48:27.837Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:48:27.838Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:48:27.838Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:48:27.839Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:48:27.840Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:48:27.840Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:48:27.841Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:48:27.864Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:48:27.867Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:48:31.609Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:48:32.456Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:48:32.457Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:48:32.661Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:48:32.664Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:48:32.866Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:48:32.868Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:48:32.869Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:48:32.870Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:48:32.871Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:48:32.872Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:48:32.874Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:48:32.875Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:48:32.877Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:48:32.878Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:48:32.913Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:48:32.916Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:49:01.910Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:49:02.734Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:49:02.735Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:49:02.935Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:49:02.936Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:49:03.134Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:49:03.136Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:49:03.137Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:49:03.138Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:49:03.140Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:49:03.141Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:49:03.142Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:49:03.144Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:49:03.145Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:49:03.146Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:49:03.184Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:49:03.188Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:49:36.910Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:49:37.709Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:49:37.710Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:49:37.898Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:49:37.900Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:49:38.087Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:49:38.088Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:49:38.088Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:49:38.089Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:49:38.090Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:49:38.090Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:49:38.091Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:49:38.092Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:49:38.093Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:49:38.093Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:49:38.117Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:49:38.121Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:52:37.470Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:52:38.358Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:52:38.358Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:52:38.572Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:52:38.573Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:52:38.787Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:52:38.793Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:52:38.794Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:52:38.796Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:52:38.798Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:52:38.798Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:52:38.799Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:52:38.800Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:52:38.800Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:52:38.801Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:52:38.829Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:52:38.833Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:53:00.371Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:53:02.801Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:53:03.676Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:53:03.677Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:53:03.884Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:53:03.886Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:53:04.088Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:53:04.090Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:53:04.091Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:53:04.092Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:53:04.093Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:53:04.094Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:53:04.096Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:53:04.097Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:53:04.099Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:53:04.100Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:53:04.137Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:53:04.142Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:53:10.285Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:53:11.153Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:53:11.155Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:53:11.366Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:53:11.367Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:53:11.577Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:53:11.578Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:53:11.579Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:53:11.580Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:53:11.582Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:53:11.583Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:53:11.584Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:53:11.586Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:53:11.587Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:53:11.589Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:53:11.624Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:53:11.627Z"}
+{"level":"error","message":"Error getting user cards: cardsApi.list is not a function","stack":"TypeError: cardsApi.list is not a function\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:255:39)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:53:15.473Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:263:11)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:53:15.475Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T10:54:57.175Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T10:54:57.962Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T10:54:57.963Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T10:54:58.149Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T10:54:58.150Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T10:54:58.339Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T10:54:58.341Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T10:54:58.342Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T10:54:58.343Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T10:54:58.344Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T10:54:58.345Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T10:54:58.346Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T10:54:58.348Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T10:54:58.349Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T10:54:58.350Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T10:54:58.396Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T10:54:58.400Z"}
+{"level":"error","message":"Error getting user cards: Cannot read properties of undefined (reading 'list')","stack":"TypeError: Cannot read properties of undefined (reading 'list')\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:255:36)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:55:01.030Z"}
+{"level":"error","message":"Error getting user subscriptions: Failed to get user cards","stack":"Error: Failed to get user cards\n    at getUserCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/init/sqaure_client.js:263:11)\n    at listCards (file:///E:/eSpark/vividly-aiplatform-BE/vividly-aiplatform/server/src/controllers/subscription/cards/list_cards.js:12:33)\n    at Layer.handle [as handle_request] (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at complete (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:280:13)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:287:15\n    at pass (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:446:14)\n    at Authenticator.transformAuthInfo (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\authenticator.js:468:5)\n    at E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\middleware\\authenticate.js:284:22\n    at req.login.req.logIn (E:\\eSpark\\vividly-aiplatform-BE\\vividly-aiplatform\\server\\node_modules\\passport\\lib\\http\\request.js:44:13)","timestamp":"2025-05-05T10:55:01.032Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T11:02:50.925Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T11:02:51.731Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T11:02:51.732Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T11:02:51.923Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T11:02:51.925Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T11:02:52.118Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T11:02:52.121Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T11:02:52.122Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T11:02:52.124Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T11:02:52.125Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T11:02:52.126Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T11:02:52.128Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T11:02:52.129Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T11:02:52.130Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T11:02:52.131Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T11:02:52.183Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T11:02:52.190Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T11:07:57.040Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T11:07:57.042Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T11:07:58.192Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T11:08:00.570Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T11:08:00.571Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T11:08:02.039Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T11:08:02.040Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T11:08:02.360Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T11:08:02.361Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T11:08:02.578Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T11:08:04.945Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T11:08:04.946Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T11:08:07.361Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T11:08:07.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T11:17:20.972Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T11:17:21.776Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T11:17:21.778Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T11:17:21.967Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T11:17:21.968Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T11:17:22.157Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T11:17:22.159Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T11:17:22.160Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T11:17:22.161Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T11:17:22.162Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T11:17:22.163Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T11:17:22.163Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T11:17:22.164Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T11:17:22.165Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T11:17:22.165Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T11:17:22.190Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T11:17:22.193Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T11:17:22.338Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T11:17:22.340Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T11:17:23.281Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T11:17:25.537Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T11:17:25.538Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T11:17:26.306Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T11:17:26.308Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-05T11:23:59.224Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-05T11:24:00.134Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-05T11:24:00.136Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-05T11:24:00.352Z"}
+{"count":8,"level":"info","message":"Found migration files","timestamp":"2025-05-05T11:24:00.354Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-05T11:24:00.569Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-05T11:24:00.570Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-05T11:24:00.571Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-05T11:24:00.572Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-05T11:24:00.574Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-05T11:24:00.575Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-05T11:24:00.575Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-05T11:24:00.576Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-05T11:24:00.577Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-05T11:24:00.577Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-05T11:24:00.601Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-05T11:24:00.605Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-05T11:24:00.653Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-05T11:24:00.655Z","token":"f21c7064b7574849513480666cca5f6c828fcb137d504851791a3260bb2cb30bf6162c587d204df1"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-05T11:24:01.596Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-05T11:24:04.140Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-05T11:24:04.142Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-05T11:24:04.337Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-05T11:24:04.339Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}

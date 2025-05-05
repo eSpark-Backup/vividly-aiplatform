@@ -6,6 +6,7 @@ import { validate } from '../middlewares/validate.js';
 import { cancelSubscriptionSchema, createSubscriptionSchema, upgradeSubscriptionSchema } from './subscription.schema.js';
 import { UserSubscription } from '../controllers/subscription/user_subscription.js';
 import { upgradeSubscription } from '../controllers/subscription/upgrade_subscription.js';
+import { listCards } from '../controllers/subscription/cards/list_cards.js';
 
 
 const router = express.Router();
@@ -31,6 +32,11 @@ router.post('/upgrade',
     authenticateJWT,
     validate(upgradeSubscriptionSchema),
     upgradeSubscription
+);
+
+router.get('/cards',
+    authenticateJWT,
+    listCards
 );
 
 export default router;

@@ -6,7 +6,6 @@ import multer from 'multer';
 import {getProfile, updateProfile} from '../controllers/user/profile.js';
 import {uploadImage} from "../helpers/multer.js";
 import upload_student_id from "../controllers/user/upload_student_id.js";
-import { getUserUsage } from '../controllers/user/user_usage.js';
 
 const router = express.Router();
 const upload = multer({
@@ -29,10 +28,5 @@ router.put('/profile',
     validate(updateProfileSchema),
     updateProfile
 );
-
-router.get('/usage', 
-    authenticateJWT,
-    getUserUsage
-    );
 
 export default router;
