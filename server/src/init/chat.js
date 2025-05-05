@@ -12,7 +12,6 @@ import fs from "fs/promises";
 import { v4 as uuidv4 } from 'uuid'
 import { SUBSCRIPTION_STATUS, subscriptionFeatureAccess } from '../constant/index.js';
 import { getUserSubscriptions } from './sqaure_client.js';
-import { log } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
