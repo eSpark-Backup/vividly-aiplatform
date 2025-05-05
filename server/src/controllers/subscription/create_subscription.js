@@ -19,7 +19,7 @@ export const createSubscription = async (req, res) => {
         // Create card
         let cardId;
         try {
-            const createdCardId = await createCard(sourceId, customerId, customer)
+            const createdCardId = await createCard(sourceId, customerId, customer, userId)
             cardId = createdCardId
         } catch (error) {
             logger.error('Subscription creation error:', error);

@@ -1,5 +1,5 @@
 import { logger } from '../../helpers/logger.js';
-import { getPlansCatalogDetails, getUserSubscriptions } from '../../init/sqaure_client.js';
+import { getCardDetails, getPlansCatalogDetails, getUserSubscriptions } from '../../init/sqaure_client.js';
 
 export const UserSubscription = async (req, res) => {
     try {
@@ -19,6 +19,8 @@ export const UserSubscription = async (req, res) => {
 
         const planDetails = await getPlansCatalogDetails(subscription.planId)
 
+        const cardDetails = await getCardDetails(subscription.cardId)
+
         const subscriptionDetails = {
             id: subscription.id,
             planName: planDetails.subscriptionPlanData.name || null,
@@ -27,7 +29,14 @@ export const UserSubscription = async (req, res) => {
             status: subscription.status,
             startDate: subscription.startDate,
             nextBillingDate: subscription.chargedThroughDate,
-            cancelationDate: subscription.canceledDate || null
+            cancelationDate: subscription.canceledDate || null,
+            cardDetails: {
+                id: cardDetails.id,
+                last4: cardDetails.last4,
+                cardBrand: cardDetails.cardBrand,
+                expMonth: cardDetails.expMonth,
+                expYear: cardDetails.expYear,
+            }
         }
 
         return res.status(200).json({ success: true, subscriptionDetails });

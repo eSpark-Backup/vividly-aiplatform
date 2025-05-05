@@ -5,6 +5,7 @@ import { join } from "path"
 import { fileURLToPath } from "url"
 import { dirname } from "path"
 import { logger } from '../helpers/logger.js';
+import pool from './db_conn.js';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 dotenv.config({ path: join(__dirname, '../../.env') })
@@ -58,8 +59,9 @@ export async function createCustomer(customerInfo) {
 }
 
 // Create a card for a customer
-export async function createCard(sourceId, customerId, customerInfo) {
+export async function createCard(sourceId, customerId, customerInfo, userId) {
   const { cardsApi } = getSquareClient()
+  const client = await pool.connect();
 
   try {
     const { result: cardResult } = await cardsApi.createCard({
@@ -74,6 +76,17 @@ export async function createCard(sourceId, customerId, customerInfo) {
     const cardId = cardResult.card?.id
     if (!cardId) {
       throw new Error("Failed to create payment card")
+    }
+
+    const userCards = await getUserCards(customerId);
+
+    // if user has only one card then set it as default
+    if (userCards.length === 1) {
+      const result = await client.query('UPDATE users SET default_card_id = $1 WHERE id = $2 RETURNING *', [cardId, userId])
+
+      if (!result.rows.length) {
+        throw new Error("Failed to update user card id")
+      }
     }
 
     return cardId
@@ -246,6 +259,13 @@ export async function getPlansCatalogDetails(planId) {
   const { catalogApi } = getSquareClient()
   const { result } = await catalogApi.retrieveCatalogObject(planId)
   return result.object
+}
+
+// Get card details
+export async function getCardDetails(cardId) {
+  const { cardsApi } = getSquareClient()
+  const { result } = await cardsApi.retrieveCard(cardId)
+  return result.card
 }
 
 // Get user cards

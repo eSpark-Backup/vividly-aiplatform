@@ -37,3 +37,17 @@ export const upgradeSubscriptionSchema = yup.object({
             .required("New plan ID is required")
     }),
 })
+
+// Schema for creating a card
+export const createCardSchema = yup.object({
+    body: yup.object({
+        sourceId: yup.string().required("Source ID is required"),
+        customer: yup
+            .object({
+                firstName: yup.string().required("First name is required").max(100, "First name too long"),
+                lastName: yup.string().required("Last name is required").max(100, "Last name too long"),
+            })
+            .required("Customer information is required"),
+    }),
+})
+
