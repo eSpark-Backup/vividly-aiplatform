@@ -12,6 +12,7 @@ import fs from "fs/promises";
 import { v4 as uuidv4 } from 'uuid'
 import { SUBSCRIPTION_STATUS, subscriptionFeatureAccess } from '../constant/index.js';
 import { getUserSubscriptions } from './sqaure_client.js';
+import { log } from 'console';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -2149,25 +2150,38 @@ export class ChatServer {
 
             // Get current date info
             const now = new Date()
-            const currentYear = now.getFullYear()
-            const currentMonth = now.getMonth()
+            // const currentYear = now.getFullYear()
+            // const currentMonth = now.getMonth()
 
-            // Calculate subscription period using the same day in current month
-            const subscriptionDay = startDate.getUTCDate()
+            // // Calculate subscription period using the same day in current month
+            // const subscriptionDay = startDate.getUTCDate()
 
-            // Create current month date with same day (handle month length differences)
-            const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-            const actualDay = Math.min(subscriptionDay, daysInCurrentMonth)
-            const subscriptionStartDate = new Date(currentYear, currentMonth, actualDay)
+            // // Create current month date with same day (handle month length differences)
+            // const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+            // const actualDay = Math.min(subscriptionDay, daysInCurrentMonth)
+            // const subscriptionStartDate = new Date(currentYear, currentMonth, actualDay)
 
-            // Calculate end date (same day next month)
-            const daysInNextMonth = new Date(currentYear, currentMonth + 2, 0).getDate()
-            const nextMonthDay = Math.min(subscriptionDay, daysInNextMonth)
-            const subscriptionEndDate = new Date(currentYear, currentMonth + 1, nextMonthDay)
+            // // Calculate end date (same day next month)
+            // const daysInNextMonth = new Date(currentYear, currentMonth + 2, 0).getDate()
+            // const nextMonthDay = Math.min(subscriptionDay, daysInNextMonth)
+            // const subscriptionEndDate = new Date(currentYear, currentMonth + 1, nextMonthDay)
+
+            const billingDay = startDate.getUTCDate();
+
+            // Determine the start of the current billing cycle
+            let cycleStart = new Date(now.getFullYear(), now.getMonth(), billingDay);
+            if (now.getDate() < billingDay) {
+                // If today is before the billing day, shift to last month
+                cycleStart.setMonth(cycleStart.getMonth() - 1);
+            }
+    
+            // Determine the end of this billing cycle
+            const cycleEnd = new Date(cycleStart);
+            cycleEnd.setMonth(cycleEnd.getMonth() + 1);
 
             // Format dates for SQL
-            const formattedStartDate = this.formatDateToYYYYMMDD(subscriptionStartDate)
-            const formattedEndDate = this.formatDateToYYYYMMDD(subscriptionEndDate)
+            const formattedStartDate = this.formatDateToYYYYMMDD(cycleStart)
+            const formattedEndDate = this.formatDateToYYYYMMDD(cycleEnd)
 
             // Query usage metrics using calculated date range
             const result = await client.query(
