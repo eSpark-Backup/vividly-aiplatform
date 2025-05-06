@@ -105,7 +105,7 @@ const StudentVerification = () => {
   }
 
   return (
-    <Card className="w-full overflow-hidden">
+    <div className="w-full overflow-hidden">
       <CardHeader className="sm:flex-row sm:items-center sm:justify-between flex-col items-start gap-2">
         <div>
           <CardTitle className="text-lg sm:text-xl">Student ID Verification</CardTitle>
@@ -179,7 +179,7 @@ const StudentVerification = () => {
           only used for verification purposes.
         </p>
       </CardFooter>
-    </Card>
+    </div>
   )
 }
 

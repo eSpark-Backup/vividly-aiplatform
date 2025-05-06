@@ -118,8 +118,7 @@ const Profile = () => {
 
 
     return (
-        <Card>
-            <div className="max-w-[720px] m-auto space-y-4 py-6 px-6">
+            <div className="max-w-[900px] m-auto space-y-4 py-6 px-6">
                 {/* {USER NAME} */}
                 <div>
                     <p className="font-semibold tracking-tight text-lg sm:text-xl">{firstName} {lastName} </p>
@@ -310,7 +309,6 @@ const Profile = () => {
                 </div>
 
             </div>
-        </Card>
     )
 
 }

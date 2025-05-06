@@ -43,3 +43,13 @@ export async function cancelSubscription(params) {
 
     return data
 }
+
+// Get User Cards | GET
+export async function getUserCards() {
+    const { data } = await request({
+        url: "/subscription/cards",
+        method: "GET",
+    })
+
+    return data
+}

@@ -1,4 +1,4 @@
-import { cancelSubscription, createSubscription, getUserSubscriptionInfo, upgradeSubscription } from "@/services/subscription";
+import { cancelSubscription, createSubscription, getUserCards, getUserSubscriptionInfo, upgradeSubscription } from "@/services/subscription";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
@@ -51,10 +51,20 @@ const useCancelSubscription = () => {
     });
 }
 
+// Get User Cards | GET
+const useGetUserCards = () => {
+    return useQuery({
+        queryKey: ["getUserCards"],
+        queryFn: getUserCards,
+    });
+}
+
+
 
 export {
     useGetUserSubscriptionInfo,
     useCreateSubscription,
     useUpgradeSubscription,
-    useCancelSubscription
+    useCancelSubscription,
+    useGetUserCards
 }

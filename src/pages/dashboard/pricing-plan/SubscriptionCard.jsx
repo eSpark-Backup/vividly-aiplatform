@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { capitalize } from "@/lib/utils"
+import CardView from "../billing/CardView"
 
 export default function SubscriptionCard({
   plan,
@@ -11,6 +12,7 @@ export default function SubscriptionCard({
   nextBillingDate,
   cancelationDate,
   recurring,
+  cardDetails,
   onCancelSubscription,
 }) {
   return (
@@ -45,11 +47,22 @@ export default function SubscriptionCard({
 
           <div className="space-y-4">
             <div>
+              <p className="text-sm text-gray-500 mb-1">Card Details</p>
+              <CardView
+                cardDetails={cardDetails}
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <div>
               <p className="text-sm text-gray-500 mb-1">Recurring</p>
               <p className="text-base text-black dark:text-white">{capitalize(recurring)}</p>
             </div>
           </div>
         </div>
+
+
 
         <div className="mt-6">
           <Button
