@@ -53,3 +53,14 @@ export async function getUserCards() {
 
     return data
 }
+
+// Add User Card | POST
+export async function addUserCard(params) {
+    const { data } = await request({
+        url: "/subscription/add-card",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}
