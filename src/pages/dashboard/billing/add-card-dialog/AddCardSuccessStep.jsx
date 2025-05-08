@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { CheckCircle } from 'lucide-react'
 import { motion } from "framer-motion"
 
-export function CardAddedSuccessStep({ onGoToPaymentMethods }) {
+export function CardAddedSuccessStep({ onClose }) {
   return (
     <motion.div 
       className="w-full flex flex-col items-center gap-6 py-4"
@@ -40,11 +40,11 @@ export function CardAddedSuccessStep({ onGoToPaymentMethods }) {
 
       {/* Action Button */}
       <Button 
-        onClick={onGoToPaymentMethods} 
+        onClick={onClose} 
         className="w-full bg-[linear-gradient(99.78deg,#9181F4_-5.85%,#5038ED_109.55%)] shadow-[0px_8px_21px_0px_rgba(0,0,0,0.16)] hover:opacity-90"
         size="lg"
       >
-        Go to Payment Methods
+        Close
       </Button>
     </motion.div>
   )
