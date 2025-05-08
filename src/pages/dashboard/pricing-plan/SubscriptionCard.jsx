@@ -1,9 +1,7 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { capitalize } from "@/lib/utils"
-import CardView from "../billing/CardView"
+import CardBox from "../billing/CardBox"
 
 export default function SubscriptionCard({
   plan,
@@ -48,7 +46,7 @@ export default function SubscriptionCard({
           <div className="space-y-4">
             <div>
               <p className="text-sm text-gray-500 mb-1">Card Details</p>
-              <CardView
+              <CardBox
                 cardDetails={cardDetails}
               />
             </div>
