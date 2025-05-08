@@ -1,51 +1,49 @@
-import { useState } from "react"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { usePaymentStore } from "@/store/usePaymentStore"
-import { useUserStore } from "@/store/useUserStore"
-import { PaymentDialogHeader } from "../../pricing-plan/payment-dialog/PaymentDialogHeader"
-import { useNavigate } from "react-router-dom"
-import { CustomerCardIntoStep } from "./CustomerCardIntoStep"
-import { AddCardStep } from "./AddCardStep"
-import { CardAddedSuccessStep } from "./AddCardSuccessStep"
+import { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { usePaymentStore } from "@/store/usePaymentStore";
+import { useUserStore } from "@/store/useUserStore";
+import { PaymentDialogHeader } from "../../pricing-plan/payment-dialog/PaymentDialogHeader";
+import { CustomerCardIntoStep } from "./CustomerCardIntoStep";
+import { AddCardStep } from "./AddCardStep";
+import { CardAddedSuccessStep } from "./AddCardSuccessStep";
 
 export function AddCardDialog({ open, onOpenChange, onCancel }) {
-    const navigate = useNavigate();
-    const { selectedPlan, customerInfo } = usePaymentStore()
-    const { firstName, lastName } = useUserStore()
-    
-    const [currentStep, setCurrentStep] = useState(1)
+  const { customerInfo } = usePaymentStore();
+  const { firstName, lastName } = useUserStore();
+
+  const [currentStep, setCurrentStep] = useState(1);
   const getDefaultValues = () => {
-    const hasValidCustomerInfo = !!customerInfo?.firstName && !!customerInfo?.lastName
+    const hasValidCustomerInfo =
+      !!customerInfo?.firstName && !!customerInfo?.lastName;
 
     if (hasValidCustomerInfo) {
       return {
         firstName: customerInfo.firstName,
         lastName: customerInfo.lastName,
-      }
+      };
     }
 
     return {
       firstName,
       lastName,
-    }
-  }
+    };
+  };
 
   const handleContinueToPayment = () => {
-    setCurrentStep(2)
-  }
+    setCurrentStep(2);
+  };
 
   const handleBackToCustomerInfo = () => {
-    setCurrentStep(1)
-  }
+    setCurrentStep(1);
+  };
 
   const handleAddCardSuccess = () => {
-    setCurrentStep(3)
-  }
+    setCurrentStep(3);
+  };
 
-  const handleGoToBilling = () => {
-    onOpenChange(false)
-    navigate("/billing")
-  }
+  const handleCloseCardSuccess = () => {
+    onOpenChange(false);
+  };
 
   return (
     <Dialog open={open}>
@@ -54,14 +52,16 @@ export function AddCardDialog({ open, onOpenChange, onCancel }) {
           {/* Dialog Header */}
           <PaymentDialogHeader
             title={
-              currentStep === 1 || currentStep === 2 ? "Add Card Information" : "Payment Successful!"
+              currentStep === 1 || currentStep === 2
+                ? "Add Card Information"
+                : "Card Added Successfully!"
             }
             description={
               currentStep === 1
                 ? "Please provide your information to continue"
                 : currentStep === 2
-                  ? "Please provide your card information"
-                  : `You're now subscribed to the ${selectedPlan.name} plan`
+                ? "Please provide your card information"
+                : null
             }
           />
 
@@ -78,12 +78,12 @@ export function AddCardDialog({ open, onOpenChange, onCancel }) {
               onAddCardSuccess={handleAddCardSuccess}
             />
           ) : (
-            <CardAddedSuccessStep onGoToPaymentMethods={handleGoToBilling} />
+            <CardAddedSuccessStep onClose={handleCloseCardSuccess} />
           )}
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
 
 export default AddCardDialog;
