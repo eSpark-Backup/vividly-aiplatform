@@ -1,4 +1,4 @@
-import { addUserCard, cancelSubscription, createSubscription, getUserCards, getUserSubscriptionInfo, upgradeSubscription } from "@/services/subscription";
+import { addUserCard, cancelSubscription, createSubscription, getUserCards, getUserSubscriptionInfo, makeCardDefault, upgradeSubscription } from "@/services/subscription";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
@@ -72,12 +72,27 @@ const useAddUserCard = () => {
     });
 }
 
+// Make Card Default | POST
+const useMakeCardDefault = () => {
+    const queryClient = useQueryClient()
 
+    return useMutation({
+        mutationKey: ["makeCardDefault"],
+        mutationFn: makeCardDefault,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getUserCards"] })
+        },
+        onError: (error) => {
+            queryClient.invalidateQueries({ queryKey: ["getUserCards"] })
+        }
+    });
+}
 export {
     useGetUserSubscriptionInfo,
     useCreateSubscription,
     useUpgradeSubscription,
     useCancelSubscription,
     useGetUserCards,
-    useAddUserCard
+    useAddUserCard,
+    useMakeCardDefault
 }

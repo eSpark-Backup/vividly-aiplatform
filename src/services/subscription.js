@@ -64,3 +64,15 @@ export async function addUserCard(params) {
 
     return data
 }
+
+// Make Card Default | POST
+export async function makeCardDefault(params) {
+    const { data } = await request({
+        url: "/subscription/default-card",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}
+
