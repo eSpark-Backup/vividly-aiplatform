@@ -1,7 +1,7 @@
 import { logger } from '../../../helpers/logger.js';
 import { createCustomer, createCard as createSquareCard } from '../../../init/sqaure_client.js';
 
-export const createCard = async (req, res) => {
+export const addCard = async (req, res) => {
     try {
         const userId = req.user.id
         const { square_customer_id } = req.user

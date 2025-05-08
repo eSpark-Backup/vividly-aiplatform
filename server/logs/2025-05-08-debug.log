@@ -1,0 +1,784 @@
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T08:41:27.845Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T08:41:28.763Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T08:41:28.766Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T08:41:28.982Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T08:41:28.983Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T08:41:29.215Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T08:41:29.216Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T08:41:29.217Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T08:41:29.217Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T08:41:29.218Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T08:41:29.219Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T08:41:29.220Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T08:41:29.221Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T08:41:29.222Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T08:41:29.223Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T08:41:29.223Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T08:41:29.258Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T08:41:29.267Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:41:29.335Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:41:29.338Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:41:30.390Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:41:32.800Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:41:32.801Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:41:33.859Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:41:33.861Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:41:34.138Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:41:34.139Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:41:34.351Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:41:36.799Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:41:36.800Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:41:39.137Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:41:39.138Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:43:33.463Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:43:33.463Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:43:34.412Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:43:36.669Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:43:36.679Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:45:51.317Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:45:51.318Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:45:51.336Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:45:51.337Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:45:52.274Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:45:52.339Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:45:54.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:45:54.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:45:54.710Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:45:54.711Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:45:56.327Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:45:56.344Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:45:56.365Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:45:56.395Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:58:36.385Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:58:36.386Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:58:36.397Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:58:36.397Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:58:37.393Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:58:37.453Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:58:39.498Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:58:39.499Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:58:39.892Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:58:39.892Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T08:59:16.496Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T08:59:16.496Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T08:59:16.694Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T08:59:18.980Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T08:59:18.981Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:59:20.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:59:20.311Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:59:22.308Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:59:22.309Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T08:59:22.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T08:59:22.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:29:48.758Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:29:48.759Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:29:48.807Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:29:48.807Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:29:49.766Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:29:49.794Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:29:52.179Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:29:52.179Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:29:52.216Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:29:52.217Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:29:53.761Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:29:53.762Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:29:53.811Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:29:53.812Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:34:04.024Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:34:04.025Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:34:05.087Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:34:07.396Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:34:07.397Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:34:09.305Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:34:09.307Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:34:09.519Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:34:09.519Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:34:09.704Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:34:11.529Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:34:11.531Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:34:14.531Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:34:14.533Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:34:22.458Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:34:22.459Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:34:22.470Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:34:22.471Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:34:22.658Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:34:22.671Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:34:24.740Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:34:24.741Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:34:25.212Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:34:25.213Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:34:25.307Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:34:25.307Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:34:25.515Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:34:27.492Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:34:27.493Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:34:31.217Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:34:31.221Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:36:12.331Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:36:12.332Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:36:13.361Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:36:15.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:36:15.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:36:17.334Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:36:17.336Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:36:17.570Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:36:17.570Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:36:17.766Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:36:19.847Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:36:19.848Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:36:22.576Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:36:22.578Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:36:34.501Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:36:34.502Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:36:35.493Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:36:37.648Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:36:37.649Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:36:39.593Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:36:39.594Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:36:39.878Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:36:39.879Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:36:40.100Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:36:42.034Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:36:42.035Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:36:44.880Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:36:44.882Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:38:47.400Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:38:47.422Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:38:48.420Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:38:50.772Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:38:50.773Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:38:52.400Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:38:52.402Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:38:52.608Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:38:52.608Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:38:52.799Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:38:54.583Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:38:54.584Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:38:57.607Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:38:57.609Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:39:42.056Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:39:42.057Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:39:43.037Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:39:45.211Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:39:45.212Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:39:47.059Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:39:47.061Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:39:47.264Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:39:47.265Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:39:47.462Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:39:49.731Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:39:49.732Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:39:52.271Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:39:52.273Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:01.376Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:01.377Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:01.578Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:03.670Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:03.671Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:41:06.384Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:41:06.385Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:06.614Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:06.615Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:06.817Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:08.798Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:08.799Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:41:12.545Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:41:12.546Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:34.143Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:34.145Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:34.184Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:34.260Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:35.107Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:35.279Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:36.407Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:36.408Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:36.607Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:37.342Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:37.342Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:37.723Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:37.723Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:38.370Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:38.370Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:38.609Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:38.609Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:38.810Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:40.603Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:40.603Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:41.264Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:41.267Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:41.284Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:41.287Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:41.470Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:41.503Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:43.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:43.311Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:43.370Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:43.371Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:43.582Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:44.275Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:44.285Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:45.549Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:45.550Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:41:46.271Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:41:46.272Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:41:46.273Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:41:46.274Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:41:48.627Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:41:48.628Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:41:48.839Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:41:50.612Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:41:50.613Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:02.436Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:02.441Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:02.455Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:02.455Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:03.431Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:03.488Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:04.555Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:04.557Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:04.764Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:05.660Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:05.661Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:05.804Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:05.805Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:06.866Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:06.866Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:42:07.400Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:42:07.401Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:42:07.416Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:42:07.417Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:42:09.556Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:42:09.558Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:11.350Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:11.351Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:11.580Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:14.231Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:14.232Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:38.406Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:38.407Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:38.417Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:38.417Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:39.422Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:39.435Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:41.513Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:41.513Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:41.744Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:41.745Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:42:43.412Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:42:43.414Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:42:43.417Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:42:43.419Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:42:43.632Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:42:43.633Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:42:43.845Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:42:45.989Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:42:45.991Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:42:48.645Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:42:48.646Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:43:19.751Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:43:19.751Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:43:19.953Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:43:22.244Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:43:22.245Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:43:24.751Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:43:24.752Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:43:24.998Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:43:24.999Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:43:25.214Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:43:27.177Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:43:27.177Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:43:29.998Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:43:29.999Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:46:17.719Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:46:17.720Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:46:18.656Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:46:20.847Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:46:20.849Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:46:22.724Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:46:22.725Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:46:22.950Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:46:22.950Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:46:23.155Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:46:25.244Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:46:25.245Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:46:27.956Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:46:27.957Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:49:39.615Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:49:39.617Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:49:39.651Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:49:39.652Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:49:40.661Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:49:41.270Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:49:41.839Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:49:41.844Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:49:42.030Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:49:43.002Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:49:43.003Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:49:43.603Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:49:43.604Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:49:43.947Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:49:43.948Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:49:45.314Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:49:45.315Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:49:45.317Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:49:45.318Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:49:47.395Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:49:47.397Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:49:48.304Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:49:48.314Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:49:48.394Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:49:48.395Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:49:48.516Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:49:48.591Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:49:50.378Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:49:50.379Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:49:50.472Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:49:50.474Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:49:50.548Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:49:50.549Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:49:50.738Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:49:52.703Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:49:52.704Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:49:53.370Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:49:53.371Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:49:54.314Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:49:54.315Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:49:56.309Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:49:56.311Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:51:55.406Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:51:55.407Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:51:55.466Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:51:55.467Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:51:56.431Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:51:56.478Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:51:58.500Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:51:58.501Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:51:58.597Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:51:58.598Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:00.407Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:00.410Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:00.466Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:00.468Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:52:06.063Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:52:06.064Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:52:06.079Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:52:06.080Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:52:06.266Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:52:06.277Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:52:08.316Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:52:08.318Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:52:08.320Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:52:08.321Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:52:08.507Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:52:08.508Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:52:08.524Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:52:09.954Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:52:09.960Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T09:52:09.975Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T09:52:09.975Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:52:10.160Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T09:52:10.177Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:52:10.979Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:52:10.980Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:11.084Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:11.086Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:11.093Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:11.094Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:52:11.985Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:52:11.986Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T09:52:12.319Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T09:52:12.320Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:13.324Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:13.324Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:15.316Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:15.318Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T09:52:15.319Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T09:52:15.320Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:13:31.938Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:13:31.939Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:13:32.902Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:13:35.433Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:13:35.434Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:13:36.942Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:13:36.943Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:13:37.154Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:13:37.155Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:13:37.341Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:13:39.135Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:13:39.136Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:13:42.157Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:13:42.159Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:29:56.172Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:29:56.207Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:29:57.158Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:29:59.740Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:29:59.741Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:30:01.177Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:30:01.179Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:30:01.425Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:30:01.426Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:30:01.630Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:30:03.582Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:30:03.582Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:30:07.314Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:30:07.315Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:32:17.921Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:32:17.921Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:32:18.974Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:32:21.412Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:32:21.414Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:32:22.928Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:32:22.929Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:32:23.148Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:32:23.149Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:32:23.345Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:32:25.290Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:32:25.291Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:32:28.154Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:32:28.156Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:33:56.135Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:33:56.136Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:33:56.337Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:33:58.605Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:33:58.606Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:34:01.133Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:34:01.135Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:34:01.357Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:34:01.358Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:34:01.555Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:34:04.056Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:34:04.057Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:34:07.308Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:34:07.309Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:38:12.235Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:38:12.236Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:38:12.423Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:38:14.269Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:38:14.271Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:38:17.307Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:38:17.309Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:38:17.554Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:38:17.555Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:38:17.747Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:38:19.779Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:38:19.780Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:38:22.289Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:38:22.289Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:38:22.478Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:38:24.406Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:38:24.407Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:38:27.314Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:38:27.315Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:38:27.544Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:38:27.545Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:38:27.731Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:38:29.680Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:38:29.681Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:38:32.548Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:38:32.549Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:39:01.472Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:39:01.472Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:39:02.497Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:39:04.812Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:39:04.813Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:39:06.473Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:39:06.475Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:39:06.709Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:39:06.710Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:39:06.905Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:39:08.757Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:39:08.758Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:39:12.323Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:39:12.332Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:41:06.760Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:41:06.761Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:41:06.804Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:41:06.805Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:41:07.710Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:41:07.759Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:41:09.309Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:41:09.310Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:41:09.513Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:41:09.845Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:41:09.846Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:41:10.004Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:41:10.004Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:41:11.570Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:41:11.571Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:41:12.312Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:41:12.313Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:41:12.314Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:41:12.314Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:41:15.316Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:41:15.320Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:41:23.540Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:41:23.540Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:41:23.596Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:41:23.596Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:41:23.747Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:41:23.810Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:41:25.960Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:41:25.961Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:41:26.308Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:41:26.309Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:41:29.371Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:41:29.373Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:41:29.374Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:41:29.375Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:42:10.440Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:42:10.440Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:42:11.461Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:42:14.113Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:42:14.114Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:42:15.444Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:42:15.446Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T10:42:15.653Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T10:42:15.654Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T10:42:15.868Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T10:42:17.812Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T10:42:17.813Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T10:42:20.654Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T10:42:20.656Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:24:13.444Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:24:13.445Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:24:14.493Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:24:16.807Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:24:16.808Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:24:20.686Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:24:20.687Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:24:20.872Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:24:22.946Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:24:22.946Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T11:24:26.304Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T11:24:26.306Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:24:43.489Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:24:43.489Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:24:44.436Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:24:46.393Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:24:46.393Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:24:47.582Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:24:47.582Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:24:47.772Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:24:50.246Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:24:50.247Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:26:09.050Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:26:09.064Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:26:10.140Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:26:12.521Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:26:12.522Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:26:13.101Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:26:13.101Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:26:13.307Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:26:15.310Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:26:15.311Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T11:26:18.105Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T11:26:18.106Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:35:24.315Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:35:24.316Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:35:25.356Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:35:27.352Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:35:27.354Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T11:35:29.319Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T11:35:29.320Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:35:29.600Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:35:29.601Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:35:29.814Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:35:31.722Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:35:31.723Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T11:35:34.603Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T11:35:34.606Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:36:34.539Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:36:35.054Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:36:40.662Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:36:40.663Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:36:40.851Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:36:43.280Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:36:43.283Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T11:36:45.666Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T11:36:45.667Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T11:36:45.878Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T11:36:45.880Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T11:36:46.081Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T11:36:48.161Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T11:36:48.162Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T11:36:50.881Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T11:36:50.883Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:17.040Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:17.454Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:18.203Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:18.581Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:20.448Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:20.849Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_history","timestamp":"2025-05-08T11:39:22.582Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:04:16.496Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:04:17.518Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:04:17.519Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:04:17.749Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:04:17.750Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:04:17.989Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:04:20.063Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:04:20.862Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:04:20.864Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:04:21.053Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:04:21.055Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:04:21.245Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:04:21.246Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:04:21.247Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:04:21.248Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:04:21.248Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:04:21.249Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:04:21.249Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:04:21.250Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:04:21.251Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:04:21.251Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:04:21.252Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:04:21.277Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:04:21.282Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:05:31.690Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:05:31.692Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:05:32.844Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:05:34.867Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:05:34.868Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:05:37.625Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:05:37.627Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:05:37.899Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:05:37.900Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:05:38.101Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:05:40.073Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:05:40.074Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:05:43.634Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:05:43.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:21:42.799Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:21:42.800Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:21:43.784Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:21:46.077Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:21:46.077Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:21:47.810Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:21:47.811Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:21:48.070Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:21:48.071Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:21:48.273Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:21:50.139Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:21:50.140Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:21:53.637Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:21:53.639Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:22:55.692Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:22:56.518Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:22:56.519Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:22:56.719Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:22:56.720Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:22:56.918Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:22:56.919Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:22:56.920Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:22:56.921Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:22:56.922Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:22:56.923Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:22:56.925Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:22:56.926Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:22:56.928Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:22:56.929Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:22:56.930Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:22:56.966Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:22:56.969Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:26:34.679Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:26:34.680Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:26:34.894Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:26:37.131Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:26:37.132Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:26:39.678Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:26:39.681Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:26:39.949Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:26:39.950Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:26:40.151Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:26:42.457Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:26:42.492Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:26:44.950Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:26:44.953Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:26:53.355Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:26:53.357Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:26:53.569Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:26:56.039Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:26:56.040Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:26:58.368Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:26:58.373Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:26:58.622Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:26:58.628Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:26:58.851Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:27:01.015Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:27:01.016Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:27:03.629Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:27:03.630Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:27:28.585Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:27:29.422Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:27:29.423Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:27:29.623Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:27:29.625Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:27:29.824Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:27:29.826Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:27:29.827Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:27:29.828Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:27:29.829Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:27:29.830Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:27:29.832Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:27:29.833Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:27:29.834Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:27:29.836Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:27:29.837Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:27:29.869Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:27:29.872Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:27:29.992Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:27:29.996Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:27:31.657Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:27:34.088Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:27:34.090Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:28:48.950Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:28:49.789Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:28:49.790Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:28:49.993Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:28:49.994Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:28:50.196Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:28:50.197Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:28:50.197Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:28:50.198Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:28:50.199Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:28:50.199Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:28:50.200Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:28:50.201Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:28:50.201Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:28:50.202Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:28:50.202Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:28:50.226Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:28:50.229Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:28:50.449Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:28:50.452Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:28:51.420Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:28:53.691Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:28:53.693Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:28:54.796Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:28:54.808Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:29:21.349Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:29:22.201Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:29:22.203Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:29:22.408Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:29:22.410Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:29:22.612Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:29:22.613Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:29:22.614Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:29:22.614Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:29:22.615Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:29:22.615Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:29:22.616Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:29:22.617Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:29:22.617Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:29:22.618Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:29:22.618Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:29:22.644Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:29:22.647Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:29:22.665Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:29:22.669Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:29:23.620Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:29:25.853Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:29:25.854Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:29:26.642Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:29:26.648Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}

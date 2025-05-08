@@ -51,3 +51,10 @@ export const createCardSchema = yup.object({
     }),
 })
 
+// Schema for Making a card default
+export const defaultCardSchema = yup.object({
+    body: yup.object({
+        cardId: yup.string().required("Card ID is required"),
+    }),
+})
+
