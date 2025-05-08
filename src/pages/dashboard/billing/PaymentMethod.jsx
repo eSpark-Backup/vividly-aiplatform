@@ -23,9 +23,12 @@ const PaymentMethod = () => {
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold mb-2">No Cards Found</h2>
             <p className="text-muted-foreground">
-              You don't have any cards added. 
+              You don't have any cards added. Add a card to your account.
             </p>
           </div>
+          <Button onClick={"handleAddCard"} className="min-w-[200px]">
+            Add Card
+          </Button>
         </Card>
       </div>
     );
