@@ -1,97 +1,105 @@
-import { useEffect, useState } from "react"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { useGetUserCards, useMakeCardDefault, useRemoveUserCard } from "@/hooks/useSubsciption"
-import { ComponentLoader } from "@/components"
-import { Button } from "@/components/ui/button"
-import { RadioGroup } from "@/components/ui/radio-group"
-import AddCardDialog from "./add-card-dialog"
-import { ConfirmationDialog } from "@/components/ConfirmationDialog"
-import CardView from "./CardView"
-import { useToast } from "@/hooks/use-toast"
+import { useEffect, useState } from "react";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  useGetUserCards,
+  useMakeCardDefault,
+  useRemoveUserCard,
+} from "@/hooks/useSubsciption";
+import { ComponentLoader } from "@/components";
+import { Button } from "@/components/ui/button";
+import { RadioGroup } from "@/components/ui/radio-group";
+import AddCardDialog from "./add-card-dialog";
+import { ConfirmationDialog } from "@/components/ConfirmationDialog";
+import CardView from "./CardView";
+import { useToast } from "@/hooks/use-toast";
 
 const PaymentMethod = () => {
-  const { data: UserData, isLoading: isCardsLoading } = useGetUserCards()
-  const { mutate: makeCardDefault, isPending: isMakingCardDefault } = useMakeCardDefault()
-  const { mutate: removeUserCard, isPending: isRemovingCard } = useRemoveUserCard()
-  const { toast } = useToast()
+  const { data: UserData, isLoading: isCardsLoading } = useGetUserCards();
+  const { mutate: makeCardDefault, isPending: isMakingCardDefault } =
+    useMakeCardDefault();
+  const { mutate: removeUserCard, isPending: isRemovingCard } =
+    useRemoveUserCard();
+  const { toast } = useToast();
 
-  const [showAddCardDialog, setShowAddCardDialog] = useState(false)
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false)
-  const [cardToDelete, setCardToDelete] = useState(null)
-  const [defaultCardId, setDefaultCardId] = useState("")
-  const [pendingCardId, setPendingCardId] = useState(null)
-  const [displayedCardId, setDisplayedCardId] = useState("")
+  const [showAddCardDialog, setShowAddCardDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [cardToDelete, setCardToDelete] = useState(null);
+  const [defaultCardId, setDefaultCardId] = useState("");
+  const [pendingCardId, setPendingCardId] = useState(null);
+  const [displayedCardId, setDisplayedCardId] = useState("");
 
   const showToast = (title, description, type) => {
-    toast({ title, description, type })
-  }
+    toast({ title, description, type });
+  };
 
   const handleAddCard = () => {
-    setShowAddCardDialog(true)
-  }
+    setShowAddCardDialog(true);
+  };
 
   const handleDeleteCard = (cardId) => {
-    setCardToDelete(cardId)
-    setShowDeleteDialog(true)
-  }
+    setCardToDelete(cardId);
+    setShowDeleteDialog(true);
+  };
 
   const confirmDeleteCard = async () => {
     const data = {
       cardId: cardToDelete,
-    }
+    };
 
     removeUserCard(data, {
       onSuccess: () => {
-        showToast("Success", "Card deleted successfully", "success")
-        setShowDeleteDialog(false)
+        showToast("Success", "Card deleted successfully", "success");
+        setShowDeleteDialog(false);
       },
       onError: () => {
-        showToast("Error", "Error deleting card", "error")
-        setShowDeleteDialog(false)
-      }
-      })
-  }
+        showToast("Error", "Error deleting card", "error");
+        setShowDeleteDialog(false);
+      },
+    });
+  };
 
   const handleSetDefaultCard = async (cardId) => {
-    if (cardId === defaultCardId) return
+    if (cardId === defaultCardId) return;
 
-    setPendingCardId(cardId)
-    setDisplayedCardId(cardId)
+    setPendingCardId(cardId);
+    setDisplayedCardId(cardId);
 
     const data = {
       cardId,
-    }
+    };
 
     makeCardDefault(data, {
       onSuccess: () => {
-        setDefaultCardId(cardId)
-        setDisplayedCardId(cardId)
-        showToast("Success", "Default card set successfully", "success")
-        setPendingCardId(null)
+        setDefaultCardId(cardId);
+        setDisplayedCardId(cardId);
+        showToast("Success", "Default card set successfully", "success");
+        setPendingCardId(null);
       },
       onError: () => {
-        setDisplayedCardId(defaultCardId)
-        showToast("Error", "Error setting default card", "error")
-        setPendingCardId(null)
+        setDisplayedCardId(defaultCardId);
+        showToast("Error", "Error setting default card", "error");
+        setPendingCardId(null);
       },
-    })
-  }
+    });
+  };
 
   useEffect(() => {
-    setDisplayedCardId(defaultCardId)
-  }, [defaultCardId])
+    setDisplayedCardId(defaultCardId);
+  }, [defaultCardId]);
 
   useEffect(() => {
     if (UserData?.userCards?.length > 0) {
-      const defaultCard = UserData.userCards.find((card) => card.isDefault)
-      const newDefaultId = defaultCard?.id || UserData.userCards[0].id
-      setDefaultCardId(newDefaultId)
-      setDisplayedCardId(newDefaultId)
+      const defaultCard = UserData.userCards.find((card) => card.isDefault);
+      const newDefaultId = defaultCard?.id || UserData.userCards[0].id;
+      setDefaultCardId(newDefaultId);
+      setDisplayedCardId(newDefaultId);
     }
-  }, [UserData])
+  }, [UserData]);
 
   if (isCardsLoading) {
-    return <ComponentLoader description={"Loading User Cards information..."} />
+    return (
+      <ComponentLoader description={"Loading User Cards information..."} />
+    );
   }
 
   if (!UserData?.userCards?.length) {
@@ -100,11 +108,13 @@ const PaymentMethod = () => {
         <Card className="p-8 flex flex-col items-center justify-center">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold mb-2">No Cards Found</h2>
-            <p className="text-muted-foreground">You have not added any cards to your account.</p>
+            <p className="text-muted-foreground">
+              You have not added any cards to your account.
+            </p>
           </div>
         </Card>
       </div>
-    )
+    );
   }
 
   return (
@@ -116,10 +126,16 @@ const PaymentMethod = () => {
           <Card>
             <CardHeader className="flex flex-row items-center justify-between">
               <h2 className="text-xl font-bold">Cards</h2>
-              <p className="text-sm text-muted-foreground">Select a default payment method</p>
+              <p className="text-sm text-muted-foreground">
+                Select a default payment method
+              </p>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <RadioGroup value={displayedCardId} onValueChange={handleSetDefaultCard} disabled={isMakingCardDefault}>
+            <CardContent className="space-y-4 max-h-96 overflow-y-auto mr-2">
+              <RadioGroup
+                value={displayedCardId}
+                onValueChange={handleSetDefaultCard}
+                disabled={isMakingCardDefault}
+              >
                 {UserData?.userCards?.map((userCard) => (
                   <CardView
                     key={userCard.id}
@@ -133,21 +149,20 @@ const PaymentMethod = () => {
                 ))}
               </RadioGroup>
 
-              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-gray-800">
-                <Button variant="default" onClick={handleAddCard}>
-                  Add Card
-                </Button>
-              </div>
             </CardContent>
           </Card>
         </div>
       </div>
 
+      <Button variant="default" onClick={handleAddCard}>
+        Add Card
+      </Button>
+
       <AddCardDialog
         open={showAddCardDialog}
         onOpenChange={setShowAddCardDialog}
         onCancel={() => {
-          setShowAddCardDialog(false)
+          setShowAddCardDialog(false);
         }}
       />
 
@@ -162,7 +177,7 @@ const PaymentMethod = () => {
         onCancel={() => setShowDeleteDialog(false)}
       />
     </>
-  )
-}
+  );
+};
 
-export default PaymentMethod
+export default PaymentMethod;

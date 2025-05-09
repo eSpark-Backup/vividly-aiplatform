@@ -50,10 +50,10 @@ export function CustomerCardIntoStep({ defaultValues, onCancel, onContinue }) {
                 <Button type="button" onClick={onCancel} variant="secondary" size="lg" className="w-full">
                     Cancel
                 </Button>
-                <Button type="submit" variant="gradient" size="lg" className="w-full">
-                    Continue to Add Card
-                </Button>
-            </div>
-        </form>
+        <Button type="submit" variant="gradient" size="lg" className="w-full">
+          Continue
+        </Button>
+      </div>
+    </form>
     )
 }
