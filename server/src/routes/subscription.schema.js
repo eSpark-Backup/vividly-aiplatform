@@ -34,7 +34,8 @@ export const upgradeSubscriptionSchema = yup.object({
         subscriptionId: yup.string().required("Subscription ID is required"),
         planId: yup
             .string()
-            .required("New plan ID is required")
+            .required("New plan ID is required"),
+        cardId: yup.string().required("Card ID is required"),
     }),
 })
 

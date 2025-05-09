@@ -191,7 +191,7 @@ export async function cancelSubscription(subscriptionId) {
 }
 
 // Upgrade a subscription plan
-export async function upgradeSubscription(customerId, subscriptionId, planId) {
+export async function upgradeSubscription(customerId, subscriptionId, planId, cardId) {
   const { subscriptionsApi } = getSquareClient()
 
   try {
@@ -200,8 +200,6 @@ export async function upgradeSubscription(customerId, subscriptionId, planId) {
     if (!currentSubscription.subscription) {
       throw new Error("Subscription not found")
     }
-
-    const cardId = currentSubscription.subscription.cardId
 
     if (!cardId) {
       throw new Error("No card found for the subscription")
