@@ -1,4 +1,4 @@
-import { addUserCard, cancelSubscription, createSubscription, getUserCards, getUserSubscriptionInfo, makeCardDefault, upgradeSubscription } from "@/services/subscription";
+import { addUserCard, cancelSubscription, createSubscription, getUserCards, getUserSubscriptionInfo, makeCardDefault, removeUserCard, upgradeSubscription } from "@/services/subscription";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 
@@ -87,6 +87,21 @@ const useMakeCardDefault = () => {
         }
     });
 }
+
+// Remove User Card | POST
+const useRemoveUserCard = () => {
+    const queryClient = useQueryClient()
+
+    return useMutation({
+        mutationKey: ["removeUserCard"],
+        mutationFn: removeUserCard,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["getUserCards"] })
+        }
+    });
+}
+
+
 export {
     useGetUserSubscriptionInfo,
     useCreateSubscription,
@@ -94,5 +109,6 @@ export {
     useCancelSubscription,
     useGetUserCards,
     useAddUserCard,
-    useMakeCardDefault
+    useMakeCardDefault,
+    useRemoveUserCard
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { useGetUserCards, useMakeCardDefault } from "@/hooks/useSubsciption"
+import { useGetUserCards, useMakeCardDefault, useRemoveUserCard } from "@/hooks/useSubsciption"
 import { ComponentLoader } from "@/components"
 import { Button } from "@/components/ui/button"
 import { RadioGroup } from "@/components/ui/radio-group"
@@ -12,13 +12,13 @@ import { useToast } from "@/hooks/use-toast"
 const PaymentMethod = () => {
   const { data: UserData, isLoading: isCardsLoading } = useGetUserCards()
   const { mutate: makeCardDefault, isPending: isMakingCardDefault } = useMakeCardDefault()
+  const { mutate: removeUserCard, isPending: isRemovingCard } = useRemoveUserCard()
   const { toast } = useToast()
 
   const [showAddCardDialog, setShowAddCardDialog] = useState(false)
   const [showDeleteDialog, setShowDeleteDialog] = useState(false)
   const [cardToDelete, setCardToDelete] = useState(null)
   const [defaultCardId, setDefaultCardId] = useState("")
-  const [isDeleting, setIsDeleting] = useState(false)
   const [pendingCardId, setPendingCardId] = useState(null)
   const [displayedCardId, setDisplayedCardId] = useState("")
 
@@ -36,15 +36,20 @@ const PaymentMethod = () => {
   }
 
   const confirmDeleteCard = async () => {
-    setIsDeleting(true)
-    try {
-   
-      setShowDeleteDialog(false)
-    } catch (error) {
-      console.error("Error deleting card:", error)
-    } finally {
-      setIsDeleting(false)
+    const data = {
+      cardId: cardToDelete,
     }
+
+    removeUserCard(data, {
+      onSuccess: () => {
+        showToast("Success", "Card deleted successfully", "success")
+        setShowDeleteDialog(false)
+      },
+      onError: () => {
+        showToast("Error", "Error deleting card", "error")
+        setShowDeleteDialog(false)
+      }
+      })
   }
 
   const handleSetDefaultCard = async (cardId) => {
@@ -141,16 +146,18 @@ const PaymentMethod = () => {
       <AddCardDialog
         open={showAddCardDialog}
         onOpenChange={setShowAddCardDialog}
-        onCancel={() => setShowAddCardDialog(false)}
+        onCancel={() => {
+          setShowAddCardDialog(false)
+        }}
       />
 
       <ConfirmationDialog
         open={showDeleteDialog}
         onOpenChange={setShowDeleteDialog}
         variant="confirmation"
-        desc="Are you sure you want to delete this card? This action cannot be undone."
-        buttonText="Delete"
-        isLoading={isDeleting}
+        desc="Are you sure you want to remove this card? This action cannot be undone."
+        buttonText="Remove"
+        isLoading={isRemovingCard}
         onConfirm={confirmDeleteCard}
         onCancel={() => setShowDeleteDialog(false)}
       />

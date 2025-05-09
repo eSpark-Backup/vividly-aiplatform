@@ -76,3 +76,13 @@ export async function makeCardDefault(params) {
     return data
 }
 
+// Remove User Card | POST
+export async function removeUserCard(params) {
+    const { data } = await request({
+        url: "/subscription/remove-card",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}

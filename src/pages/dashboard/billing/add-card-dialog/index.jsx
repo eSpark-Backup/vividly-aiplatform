@@ -42,6 +42,7 @@ export function AddCardDialog({ open, onOpenChange, onCancel }) {
   };
 
   const handleCloseCardSuccess = () => {
+    setCurrentStep(1);
     onOpenChange(false);
   };
 
