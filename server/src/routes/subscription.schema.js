@@ -58,3 +58,10 @@ export const defaultCardSchema = yup.object({
     }),
 })
 
+//Schema for disabling a card
+export const disableCardSchema = yup.object({
+    body: yup.object({
+        cardId: yup.string().required("Card ID is required"),
+    }),
+})
+

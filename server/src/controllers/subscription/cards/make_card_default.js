@@ -19,7 +19,7 @@ export const makeCardDefault = async (req, res) => {
         res.status(200).json({ success: true, message: 'Card updated as default' });
     } catch (error) {
         logger.error('Error updating card as default:', error);
-        res.status(500).json({ success: false, message: 'Error updating card as default' });
+       return res.status(500).json({ success: false, message: 'Error updating card as default' });
     }
 
     finally {

@@ -281,3 +281,15 @@ export async function getUserCards(customerId) {
   }
 }
 
+// Disable a card
+export async function disableCard(cardId) {
+  try {
+    const { cardsApi } = getSquareClient()
+    const { result } = await cardsApi.disableCard(cardId)
+    return result.card
+  } catch (error) {
+    logger.error("Error disabling card:", error)
+    throw new Error("Failed to disable card")
+  }
+}
+

@@ -782,3 +782,550 @@
 {"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:29:25.854Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
 {"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:29:26.642Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
 {"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:29:26.648Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:30:42.373Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:30:42.376Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:30:43.377Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:30:45.558Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:30:45.561Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:30:47.374Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:30:47.376Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:30:47.664Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:30:47.665Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:30:47.869Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:30:50.198Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:30:50.199Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:30:52.673Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:30:52.674Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:37:59.576Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:37:59.843Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:38:00.043Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:38:02.043Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:38:02.044Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:38:04.575Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:38:04.577Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:38:04.788Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:38:04.790Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:38:04.979Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:38:06.948Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:38:06.949Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:38:09.789Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:38:09.790Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:38:31.328Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:38:31.329Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:38:31.533Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:38:33.605Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:38:33.606Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:38:36.327Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:38:36.329Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:38:36.598Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:38:36.599Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:38:36.810Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:38:38.854Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:38:38.856Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:38:41.603Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:38:41.604Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:41:33.522Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:41:33.524Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:41:33.723Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:41:35.875Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:41:35.875Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:41:38.529Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:41:38.531Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:41:38.757Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:41:38.760Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:41:38.964Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:41:41.486Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:41:41.489Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:41:43.832Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:41:43.834Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:42:11.938Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:42:12.768Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:42:12.770Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:42:12.969Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:42:12.971Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:42:13.170Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:42:13.171Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:42:13.172Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:42:13.173Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:42:13.175Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:42:13.176Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:42:13.177Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:42:13.179Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:42:13.180Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:42:13.181Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:42:13.183Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:42:13.225Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:42:13.229Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:42:13.459Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:42:13.462Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:42:14.476Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:42:16.570Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:42:16.572Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:42:18.091Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:42:18.125Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:44:43.491Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:44:43.492Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:45:24.216Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:45:24.217Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:45:49.112Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:45:49.978Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:45:49.979Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:45:50.176Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:45:50.177Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:45:50.374Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:45:50.375Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:45:50.376Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:45:50.376Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:45:50.377Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:45:50.378Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:45:50.378Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:45:50.379Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:45:50.380Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:45:50.381Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:45:50.381Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:45:50.407Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:45:50.410Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:45:52.706Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:45:52.708Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:45:53.730Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:45:55.912Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:45:55.913Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:45:57.715Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:45:57.717Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:45:57.946Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:45:57.955Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:45:58.162Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:46:00.562Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:46:00.562Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:46:02.443Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:46:02.444Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:46:02.642Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:46:04.952Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:46:04.953Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:46:07.448Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:46:07.451Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:46:07.721Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:46:07.722Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:46:07.924Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:46:10.076Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:46:10.077Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:46:12.725Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:46:12.727Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:46:34.344Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:46:35.171Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:46:35.172Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:46:35.372Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:46:35.373Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:46:35.571Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:46:35.572Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:46:35.573Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:46:35.574Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:46:35.576Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:46:35.577Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:46:35.579Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:46:35.581Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:46:35.583Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:46:35.584Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:46:35.586Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:46:35.635Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:46:35.639Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:46:35.655Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:46:35.658Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:46:36.699Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:46:38.948Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:46:38.949Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:46:39.825Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:46:39.826Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:46:51.703Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:46:52.512Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:46:52.513Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:46:52.701Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:46:52.703Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:46:52.891Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:46:52.893Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:46:52.894Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:46:52.895Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:46:52.896Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:46:52.897Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:46:52.899Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:46:52.901Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:46:52.903Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:46:52.905Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:46:52.906Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:46:52.939Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:46:52.942Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:46:53.167Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:46:53.177Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:46:54.238Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:46:56.458Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:46:56.459Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:48:06.756Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:48:07.564Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:48:07.566Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:48:07.759Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:48:07.761Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:48:07.955Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:48:07.956Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:48:07.956Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:48:07.957Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:48:07.958Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:48:07.958Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:48:07.959Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:48:07.960Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:48:07.960Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:48:07.961Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:48:07.962Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:48:07.984Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:48:07.988Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:48:08.141Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:48:08.143Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:48:09.145Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:48:11.702Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:48:11.703Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:48:13.625Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:48:13.627Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:48:36.874Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:48:37.711Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:48:37.712Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:48:37.911Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:48:37.913Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:48:38.111Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:48:38.113Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:48:38.113Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:48:38.114Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:48:38.116Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:48:38.117Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:48:38.119Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:48:38.120Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:48:38.121Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:48:38.122Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:48:38.124Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:48:38.155Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:48:38.158Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:48:38.449Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:48:38.459Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:48:39.583Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:48:41.788Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:48:41.789Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:48:42.633Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:48:42.634Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:49:18.581Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:49:19.410Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:49:19.412Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:49:19.613Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:49:19.615Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:49:19.814Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:49:19.815Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:49:19.816Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:49:19.817Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:49:19.818Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:49:19.819Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:49:19.821Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:49:19.822Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:49:19.823Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:49:19.825Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:49:19.826Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:49:19.856Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:49:19.859Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:49:19.950Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:49:19.951Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:49:20.968Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:49:23.407Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:49:23.408Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:49:23.638Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:49:23.639Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T13:51:47.755Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T13:51:48.545Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T13:51:48.546Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T13:51:48.738Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T13:51:48.740Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T13:51:48.934Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T13:51:48.935Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T13:51:48.936Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T13:51:48.937Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T13:51:48.939Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T13:51:48.940Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T13:51:48.941Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T13:51:48.943Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T13:51:48.944Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T13:51:48.946Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T13:51:48.947Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T13:51:49.002Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T13:51:49.007Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:51:49.292Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:51:49.295Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:51:50.335Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:51:52.982Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:51:52.983Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:51:52.984Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:51:52.986Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:24.733Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:24.734Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:24.751Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:24.752Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:25.706Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:25.739Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:27.640Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:27.640Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:27.727Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:27.727Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:27.742Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:27.742Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:27.841Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:27.928Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:27.933Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:28.113Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:28.119Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:28.124Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:28.124Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:29.671Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:29.672Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:30.122Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:30.123Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:30.143Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:30.144Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:30.629Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:30.631Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:30.632Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:30.633Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:30.635Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:30.636Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:30.837Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:32.793Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:32.794Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:33.638Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:33.639Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:33.640Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:33.641Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:33.641Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:33.642Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:36.634Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:36.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:45.841Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:45.841Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T13:58:45.867Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T13:58:45.868Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:46.041Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T13:58:46.070Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:48.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:48.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T13:58:48.531Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T13:58:48.532Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:51.627Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:51.630Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T13:58:51.631Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T13:58:51.632Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:00:17.074Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:00:17.075Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T14:01:50.815Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T14:01:51.588Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T14:01:51.589Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T14:01:51.776Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T14:01:51.778Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T14:01:51.964Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T14:01:51.965Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T14:01:51.965Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T14:01:51.966Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T14:01:51.967Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T14:01:51.967Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T14:01:51.968Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T14:01:51.969Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T14:01:51.969Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T14:01:51.970Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T14:01:51.971Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T14:01:51.996Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T14:01:51.999Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:01:52.254Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:01:52.257Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:01:53.213Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:01:55.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:01:55.365Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:02:42.800Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:02:42.801Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:02:42.842Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:02:42.842Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:02:43.779Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:02:43.805Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:02:45.631Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:02:45.632Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:02:45.832Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:02:45.898Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:02:45.899Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:02:46.119Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:02:46.122Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:02:47.921Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:02:47.922Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:02:48.637Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:02:48.640Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:02:48.642Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:02:48.643Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:02:51.627Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:02:51.629Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:02:58.709Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:02:58.710Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:02:58.745Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:02:58.746Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:02:58.919Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:02:58.947Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:03:01.175Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:03:01.176Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:03:01.291Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:03:01.291Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:03:01.632Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:03:01.633Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:03:01.824Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:03:03.265Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:03:03.267Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:03:03.329Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:03:03.330Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:03:03.458Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:03:03.536Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:03:03.883Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:03:03.884Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:03:04.439Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:03:04.440Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:03:04.441Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:03:04.442Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:03:05.439Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:03:05.439Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:03:05.764Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:03:05.764Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:03:07.637Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:03:07.639Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:03:08.631Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:03:08.635Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:03:08.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:03:08.637Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:06:25.860Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:06:25.861Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T14:07:59.512Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T14:08:00.377Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T14:08:00.378Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T14:08:00.580Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T14:08:00.581Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T14:08:00.785Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T14:08:00.786Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T14:08:00.787Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T14:08:00.787Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T14:08:00.788Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T14:08:00.788Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T14:08:00.789Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T14:08:00.790Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T14:08:00.791Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T14:08:00.791Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T14:08:00.792Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T14:08:00.828Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T14:08:00.834Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:08:01.334Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:08:01.350Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:08:02.376Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:08:04.573Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:08:04.575Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:08:05.180Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:08:05.185Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:08:05.373Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:08:07.525Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:08:07.526Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:08:10.181Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:08:10.183Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:08:10.434Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:08:10.435Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:08:10.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:08:12.636Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:08:12.637Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:08:15.440Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:08:15.442Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T14:08:36.622Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T14:08:37.517Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T14:08:37.519Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T14:08:37.711Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T14:08:37.713Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T14:08:37.904Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T14:08:37.905Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T14:08:37.906Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T14:08:37.907Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T14:08:37.908Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T14:08:37.908Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T14:08:37.909Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T14:08:37.911Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T14:08:37.911Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T14:08:37.912Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T14:08:37.913Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T14:08:37.937Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T14:08:37.940Z"}
+{"clientIp":"::ffff:127.0.0.1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:08:37.965Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:08:37.967Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:08:38.961Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:08:41.363Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:08:41.364Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:08:41.639Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:08:41.641Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T14:13:13.865Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T14:13:14.648Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T14:13:14.649Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T14:13:14.835Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T14:13:14.836Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T14:13:15.023Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T14:13:15.024Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T14:13:15.024Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T14:13:15.025Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T14:13:15.026Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T14:13:15.026Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T14:13:15.027Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T14:13:15.027Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T14:13:15.028Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T14:13:15.029Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T14:13:15.029Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T14:13:15.054Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T14:13:15.058Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:13:18.586Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:13:18.588Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:13:19.554Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:13:21.664Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:13:21.665Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:13:23.707Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:13:23.709Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-08T14:13:32.131Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-08T14:13:33.483Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-08T14:13:33.484Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-08T14:13:33.670Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-08T14:13:33.671Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-08T14:13:33.857Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-08T14:13:33.858Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-08T14:13:33.859Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-08T14:13:33.860Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-08T14:13:33.861Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-08T14:13:33.861Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-08T14:13:33.862Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-08T14:13:33.863Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-08T14:13:33.863Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-08T14:13:33.864Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-08T14:13:33.865Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-08T14:13:33.900Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-08T14:13:33.905Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:13:34.076Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:13:34.079Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:13:35.080Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:13:37.541Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:13:37.544Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:13:37.549Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:13:37.553Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:14:12.155Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:14:12.156Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:14:12.349Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:14:14.683Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:14:14.684Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:14:17.169Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:14:17.170Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:14:17.377Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:14:17.385Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:14:17.586Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:14:19.879Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:14:19.880Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-08T14:14:22.372Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-08T14:14:22.374Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-08T14:50:37.650Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-08T14:50:37.679Z","token":"364c475729d2eeb81c8167f5b8886a3aa2fce44fb52776c7d97c54165b622ebae1adb2e9dce08e3c"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-08T14:50:38.721Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-08T14:50:41.079Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-08T14:50:41.079Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
