@@ -30,7 +30,7 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
   const { date: nextBillingDate, isMonthly } = calculateNextBillingDate(selectedPlan)
 
   const handlePaymentSuccess = () => {    
-    const upgradeSubscriptionData = { subscriptionId, planId: selectedPlan?.id }
+    const upgradeSubscriptionData = { subscriptionId, planId: selectedPlan?.id, cardId: selectedCard?.id };
     upgradeSubscription(upgradeSubscriptionData, {
       onSuccess: (data) => {
         if (data.success) {

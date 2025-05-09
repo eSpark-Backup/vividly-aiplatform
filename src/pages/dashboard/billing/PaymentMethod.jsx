@@ -90,7 +90,7 @@ const PaymentMethod = () => {
   useEffect(() => {
     if (UserData?.userCards?.length > 0) {
       const defaultCard = UserData.userCards.find((card) => card.isDefault);
-      const newDefaultId = defaultCard?.id || UserData.userCards[0].id;
+      const newDefaultId = defaultCard?.id || "";
       setDefaultCardId(newDefaultId);
       setDisplayedCardId(newDefaultId);
     }
