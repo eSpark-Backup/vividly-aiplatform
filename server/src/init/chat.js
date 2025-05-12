@@ -2149,21 +2149,6 @@ export class ChatServer {
 
             // Get current date info
             const now = new Date()
-            // const currentYear = now.getFullYear()
-            // const currentMonth = now.getMonth()
-
-            // // Calculate subscription period using the same day in current month
-            // const subscriptionDay = startDate.getUTCDate()
-
-            // // Create current month date with same day (handle month length differences)
-            // const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
-            // const actualDay = Math.min(subscriptionDay, daysInCurrentMonth)
-            // const subscriptionStartDate = new Date(currentYear, currentMonth, actualDay)
-
-            // // Calculate end date (same day next month)
-            // const daysInNextMonth = new Date(currentYear, currentMonth + 2, 0).getDate()
-            // const nextMonthDay = Math.min(subscriptionDay, daysInNextMonth)
-            // const subscriptionEndDate = new Date(currentYear, currentMonth + 1, nextMonthDay)
 
             const billingDay = startDate.getUTCDate();
 
