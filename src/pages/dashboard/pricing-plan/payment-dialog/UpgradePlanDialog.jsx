@@ -1,53 +1,59 @@
-import { useEffect, useState } from "react"
-import { Dialog, DialogContent } from "@/components/ui/dialog"
-import { usePaymentStore } from "@/store/usePaymentStore"
-import { useNavigate } from "react-router-dom"
-import { PaymentDialogHeader } from "./PaymentDialogHeader"
-import { ConfirmationStep } from "./ConfirmationStep"
-import { SuccessStep } from "./SuccessStep"
-import { useGetUserCards, useUpgradeSubscription } from "@/hooks/useSubsciption"
-import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore"
-import { handleSubscriptionApiError } from "@/lib/apiErrorHandler"
-import { calculateNextBillingDate } from "@/lib/utils"
-import { useToast } from "@/hooks/use-toast"
+import { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { usePaymentStore } from "@/store/usePaymentStore";
+import { useNavigate } from "react-router-dom";
+import { PaymentDialogHeader } from "./PaymentDialogHeader";
+import { ConfirmationStep } from "./ConfirmationStep";
+import { SuccessStep } from "./SuccessStep";
+import {
+  useGetUserCards,
+  useUpgradeSubscription,
+} from "@/hooks/useSubsciption";
+import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
+import { handleSubscriptionApiError } from "@/lib/apiErrorHandler";
+import { calculateNextBillingDate } from "@/lib/utils";
+import { useToast } from "@/hooks/use-toast";
 
 export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
-
-  const navigate = useNavigate()
-  const { toast } = useToast()
-  const { selectedPlan, clearPayment } = usePaymentStore()
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const { selectedPlan, clearPayment } = usePaymentStore();
   const { id: subscriptionId } = useUserSubscriptionStore();
-  const { mutate: upgradeSubscription, isPending } = useUpgradeSubscription()
-  const [currentStep, setCurrentStep] = useState(1)
+  const { mutate: upgradeSubscription, isPending } = useUpgradeSubscription();
+  const [currentStep, setCurrentStep] = useState(1);
   const { data: UserData, isLoading: isCardsLoading } = useGetUserCards();
-    const [selectedCard, setSelectedCard] = useState(null);
-
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const showToast = (title, description, type) => {
     toast({ title, description, type });
-};
+  };
 
-  const { date: nextBillingDate, isMonthly } = calculateNextBillingDate(selectedPlan)
+  const { date: nextBillingDate, isMonthly } =
+    calculateNextBillingDate(selectedPlan);
 
-  const handlePaymentSuccess = () => {    
-    const upgradeSubscriptionData = { subscriptionId, planId: selectedPlan?.id, cardId: selectedCard?.id };
+  const handlePaymentSuccess = () => {
+    const upgradeSubscriptionData = {
+      subscriptionId,
+      planId: selectedPlan?.id,
+      cardId: selectedCard?.id,
+    };
     upgradeSubscription(upgradeSubscriptionData, {
       onSuccess: (data) => {
         if (data.success) {
-          setCurrentStep(2)
+          setCurrentStep(2);
         }
       },
       onError: (error) => {
         handleSubscriptionApiError(showToast, error);
-      }
-    })
-  }
+      },
+    });
+  };
 
   const handleGoToBilling = () => {
-    onOpenChange(false)
-    clearPayment()
-    navigate("/billing")
-  }
+    onOpenChange(false);
+    clearPayment();
+    navigate("/billing");
+  };
 
   return (
     <Dialog open={open}>
@@ -78,10 +84,13 @@ export function UpgradePlanDialog({ open, onOpenChange, onCancel }) {
               setSelectedCard={setSelectedCard}
             />
           ) : (
-            <SuccessStep planName={selectedPlan?.name} onGoToBilling={handleGoToBilling} />
+            <SuccessStep
+              planName={selectedPlan?.name}
+              onGoToBilling={handleGoToBilling}
+            />
           )}
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
