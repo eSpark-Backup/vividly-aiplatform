@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react"
 import { ComponentLoader } from "@/components";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CreditCard, Info } from "lucide-react";
+import { Info } from "lucide-react";
 import { PaymentCardSelector } from "./PaymentCardSelector";
 
 

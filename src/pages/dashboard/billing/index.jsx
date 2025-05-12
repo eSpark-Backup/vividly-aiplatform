@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { ChevronRight, CreditCard, Receipt } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Subscription from "./Subscription";
-// import PaymentMethodTab from "./payment-method-tab"
 import { useLocation, useNavigate } from "react-router-dom";
 import PaymentMethod from "./PaymentMethod";
 

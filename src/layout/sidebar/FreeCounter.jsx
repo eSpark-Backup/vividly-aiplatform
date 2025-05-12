@@ -6,7 +6,6 @@ import { useFeatureAccess } from "@/hooks/useFeatureAccess";
 import { ProgressBar } from "@/components";
 import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 import { UpgradeModal } from "./Upgrade-Modal";
-import { useState } from "react";
 import { useDialogStore } from "@/store/useDialogStore";
 
 const FreeCounter = () => {

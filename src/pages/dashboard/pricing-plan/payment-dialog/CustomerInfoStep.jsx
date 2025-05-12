@@ -3,7 +3,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { usePaymentStore } from "@/store/usePaymentStore"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 

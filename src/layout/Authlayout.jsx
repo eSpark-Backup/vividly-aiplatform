@@ -2,7 +2,7 @@ import { vividlyLogoLight, vividlyLogoDark } from "@/assets";
 import { useTheme } from "@/components";
 import { themes } from "@/constant";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { ThemeToggle } from "./index";
 
 function AuthLayout({ children, onLightPoster, onDarkPoster }) {
