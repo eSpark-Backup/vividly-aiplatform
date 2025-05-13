@@ -10,6 +10,7 @@ import passport from 'passport';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/user.js';
 import speechRoutes from './routes/speech.js';
+import subscriptionRoutes from './routes/subscription.js';
 import { ChatServer } from './init/chat.js';
 import { runMigrations } from './helpers/migrate.js';
 import { logger } from './helpers/logger.js'
@@ -42,6 +43,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/speech', speechRoutes);
+app.use('/subscription', subscriptionRoutes);
+
 
 new ChatServer(server);
 
