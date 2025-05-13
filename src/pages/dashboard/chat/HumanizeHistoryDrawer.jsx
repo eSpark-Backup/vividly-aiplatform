@@ -4,10 +4,14 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/co
 import { History, Loader } from 'lucide-react'
 import { useWebSocketContext } from "@/services/WebSocketProvider"
 import MarkdownDisplay from "./MarkdownDisplay"
+import FeatureAccessWrapper from "@/components/FeatureAccessWrapper"
+import { PLAN_FEATURE_ENUMS } from "@/constant"
 
 const HumanizeHistoryDrawer = ({ message }) => {
     const [isOpen, setIsOpen] = useState(false)
     const { sendHumanizeCommand, sendReHumanizeCommand, isHumanizeLoading, humanizedContent, getSpecificMessageHumanizeHistory, isSpecificMessageHistoryLoading, specficMessageHumanizeHistory } = useWebSocketContext()
+    const { HUMANIZE } = PLAN_FEATURE_ENUMS
+    
 
     useEffect(() => {
         if (isOpen && message) {
@@ -55,13 +59,17 @@ const HumanizeHistoryDrawer = ({ message }) => {
                         {
                             specficMessageHumanizeHistory &&
                             (specficMessageHumanizeHistory.length === 0 ? (
+                                <FeatureAccessWrapper feature={HUMANIZE}>
                                 <Button onClick={handleHumanize} disabled={isHumanizeLoading}>
                                     {isHumanizeLoading ? "Humanizing..." : "Humanize"}
                                 </Button>
+                                </FeatureAccessWrapper>
                             ) : (
-                                <Button onClick={handleReHumanize} disabled={isHumanizeLoading}>
-                                    {isHumanizeLoading ? "Humanizing..." : "Re-humanize"}
-                                </Button>
+                                <FeatureAccessWrapper feature={HUMANIZE}>
+                                    <Button onClick={handleReHumanize} disabled={isHumanizeLoading}>
+                                        {isHumanizeLoading ? "Humanizing..." : "Re-humanize"}
+                                    </Button>
+                                </FeatureAccessWrapper>
                             ))
                         }
 

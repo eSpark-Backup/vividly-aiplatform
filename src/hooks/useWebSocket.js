@@ -27,6 +27,9 @@ export function useWebSocket(url) {
   const [isHumanizeLoading, setIsHumanizeLoading] = useState(false)
   const [isConversationLoading, setIsConversationLoading] = useState(false)
   const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false)
+  const [userImageGenerationCount, setUserImageGenerationCount] = useState(101)
+  const [userImageAnalysisCount, setUserImageAnalysisCount] = useState(101)
+  const [isUserUsageLoading, setIsUserUsageLoading] = useState(true)
   const [isSpecificMessageHistoryLoading, setIsSpecificMessageHistoryLoading] = useState(false)
 
   const maxReconnectAttempts = 3
@@ -94,6 +97,9 @@ export function useWebSocket(url) {
           setIsConversationLoading(true)
           sendSocketCommand({ type: "get_conversations" })
         }
+
+        sendSocketCommand({ type: "get_user_usage" })
+
       }
 
       socket.current.onclose = (event) => {
@@ -115,6 +121,9 @@ export function useWebSocket(url) {
           switch (data.type) {
             case "chat_stream":
               handleChatStream(data)
+              break
+            case "user_usage":
+              handleUserUsage(data)
               break
             case "image_analysis_complete":
               handleImageAnalysisChat(data)
@@ -372,6 +381,13 @@ export function useWebSocket(url) {
     console.error("TTS chunk error")
   }, [])
 
+  const handleUserUsage = useCallback((data) => {
+    const { image_generation_count, image_analysis_count } = data.user_usage
+    setUserImageGenerationCount(image_generation_count || 0)
+    setUserImageAnalysisCount(image_analysis_count || 0)
+    setIsUserUsageLoading(false)
+  }, [])
+
   //COMMNADS FROM USER
 
   const sendMessage = useCallback(
@@ -613,6 +629,9 @@ export function useWebSocket(url) {
     setHasMoreMessages,
     initialLoadComplete,
     setInitialLoadComplete,
+    userImageGenerationCount,
+    userImageAnalysisCount,
+    isUserUsageLoading,
   }
 }
 

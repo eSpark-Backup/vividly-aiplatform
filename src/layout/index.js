@@ -17,5 +17,5 @@ export {
     FreeCounter,
     UserProfile,
     ChatHistory,
-    ThemeToggle
+    ThemeToggle,
 }

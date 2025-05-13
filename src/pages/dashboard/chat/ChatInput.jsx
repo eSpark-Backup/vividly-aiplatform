@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
-import { MAX_FILE_SIZE, MODES } from "@/constant";
+import { MAX_FILE_SIZE, MODES, PLAN_FEATURE_ENUMS } from "@/constant";
 import { useChatStore } from "@/store/useChatStore";
 import { useWebSocketContext } from "@/services/WebSocketProvider";
 import SelectedImagePreview from "./SelectedImagePreview";
@@ -15,6 +15,7 @@ import { useDragAndDrop } from "../../../hooks/useDragAndDrop";
 import VoiceSelector from "./VoiceSelector";
 import VoiceModal from "./VoiceModal";
 import { useSearchParams } from "react-router-dom";
+import FeatureAccessWrapper from "@/components/FeatureAccessWrapper";
 
 const ChatInput = React.memo(
   ({
@@ -40,6 +41,7 @@ const ChatInput = React.memo(
 
     const [showVoiceModal, setShowVoiceModal] = useState(false);
 
+    const { VOICE_ASSISTANCE, PICTURE_GENERATION, PICTURE_ANALYSIS, HUMANIZE } = PLAN_FEATURE_ENUMS
     const isImageMode = MODES.CHAT_WITH_IMAGE === mode;
 
     const fileInputRef = useRef(null);
@@ -230,7 +232,8 @@ const ChatInput = React.memo(
                         )}
                       </button>
                     )}
-
+                  
+                    <FeatureAccessWrapper feature={VOICE_ASSISTANCE}>
                     {browserSupportsSpeechRecognition && (
                       <button
                         type="button"
@@ -242,7 +245,9 @@ const ChatInput = React.memo(
                         <Speech className="h-4 w-4" />
                       </button>
                     )}
-
+                    </FeatureAccessWrapper>
+                     
+                    <FeatureAccessWrapper feature={PICTURE_ANALYSIS}>
                     <button
                       type="button"
                       onClick={triggerFileInput}
@@ -252,9 +257,11 @@ const ChatInput = React.memo(
                     >
                       <Upload className="h-4 w-4" />
                     </button>
+                    </FeatureAccessWrapper>
                   </div>
 
                   <div className="flex gap-2">
+                  <FeatureAccessWrapper feature={PICTURE_GENERATION}>
                     <button
                       type="button"
                       onClick={handleChatModes}
@@ -273,6 +280,7 @@ const ChatInput = React.memo(
                         )}
                       />
                     </button>
+                    </FeatureAccessWrapper>
 
                     <button
                       type="submit"
