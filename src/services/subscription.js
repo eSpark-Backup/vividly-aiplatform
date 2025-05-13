@@ -43,3 +43,46 @@ export async function cancelSubscription(params) {
 
     return data
 }
+
+// Get User Cards | GET
+export async function getUserCards() {
+    const { data } = await request({
+        url: "/subscription/cards",
+        method: "GET",
+    })
+
+    return data
+}
+
+// Add User Card | POST
+export async function addUserCard(params) {
+    const { data } = await request({
+        url: "/subscription/add-card",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}
+
+// Make Card Default | POST
+export async function makeCardDefault(params) {
+    const { data } = await request({
+        url: "/subscription/default-card",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}
+
+// Remove User Card | POST
+export async function removeUserCard(params) {
+    const { data } = await request({
+        url: "/subscription/remove-card",
+        method: "POST",
+        data: params
+    })
+
+    return data
+}

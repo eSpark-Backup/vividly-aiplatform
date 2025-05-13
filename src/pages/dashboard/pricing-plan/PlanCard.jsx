@@ -1,5 +1,3 @@
-"use client"
-
 import { cn } from "@/lib/utils"
 import { PAYMENT_RECURRING_PERIOD } from "@/constant"
 import { Button } from "@/components/ui/button"

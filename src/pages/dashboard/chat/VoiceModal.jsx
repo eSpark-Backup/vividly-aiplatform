@@ -1,5 +1,4 @@
-import { Mic, X } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
 import VoiceAnimation from "./VoiceAnimation";
 import { useEffect, useRef, useState } from "react";
 import { SILENCE_DURATION } from "@/constant";
