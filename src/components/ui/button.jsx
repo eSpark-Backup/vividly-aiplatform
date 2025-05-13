@@ -22,6 +22,9 @@ const buttonVariants = cva(
           "bg-[linear-gradient(99.78deg,#9181F4_-5.85%,#5038ED_109.55%)] shadow-[0px_8px_21px_0px_rgba(0,0,0,0.16)]  text-white  rounded-xl hover:opacity-90 ",
         premium:
           "bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-0",
+        popular: "bg-white text-[#7C35F1] hover:bg-gray-50 focus:ring-white focus:ring-offset-[#7C35F1]",
+        selected: "bg-[#813af5] text-white hover:bg-[#7C35F1] focus:ring-purple-500",
+        defaultPlan: "bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-[#7C35F1]",
       },
 
       size: {

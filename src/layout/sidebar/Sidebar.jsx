@@ -1,21 +1,25 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useTheme } from "../../components";
 import { vividlyLogoDark, vividlyLogoLight } from "@/assets";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 import { themes } from "@/constant";
 import { useAuthStore } from "@/store/useAuthStore";
 import { ChatHistory, FreeCounter } from "..";
-import { Search } from "lucide-react";
+import { Loader, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useWebSocketContext } from "@/services/WebSocketProvider";
 import { useUserStore } from "@/store/useUserStore";
+import { useUserSubscriptionStore } from "@/store/useUserSubscriptionStore";
+import { useGetUserSubscriptionInfo } from "@/hooks/useSubsciption";
 
 const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
   const { theme } = useTheme();
   const { user } = useAuthStore();
+  const { planName } = useUserSubscriptionStore();
   const { firstName, lastName } = useUserStore()
-
+  const { isLoading: isSubscriptionInfoLoading } = useGetUserSubscriptionInfo()
   const isDarkTheme = theme === themes[0];
   const [conversationSearch, setConversationSearch] = useState("");
   const { clearMessages } = useWebSocketContext()
@@ -38,11 +42,30 @@ const Sidebar = ({ apiLimitCount = 0, isPro = false }) => {
               <img alt="Logo" src={isDarkTheme ? vividlyLogoDark : vividlyLogoLight} />
             </div>
           </Link>
-          <div className="text-right">
-            {firstName || lastName ? `${firstName} ${lastName}` : "User"}
-            <p className="text-xs text-[#B6F09C]">{user?.email}</p>
-            {/* <p className="text-xs text-[#B6F09C]">Premium</p> */}
-          </div>
+
+
+          {isSubscriptionInfoLoading || !firstName ? (
+            <div className="flex items-center justify-center w-full">
+              <Loader className="h-5 w-5 animate-spin text-muted-foreground" />
+            </div>
+          ) : (
+            <div className="text-right">
+              {`${firstName} ${lastName}`}
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <p className="text-xs text-[#B6F09C] max-w-[150px] truncate">{user?.email}</p>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{user?.email}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+              <p className="text-xs text-[#B6F09C]">{planName?.toLowerCase() || "Vividly Free"}</p>
+            </div>
+          )}
+
+
         </div>
 
         {/* Search Input */}

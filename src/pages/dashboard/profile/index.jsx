@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { useUpdateUserAvatar, useUpdateUserProfile } from "@/hooks/useUser";
 import { handleApiError } from "@/lib/apiErrorHandler";
-import { formatDate } from "@/lib/utils";
+import { formatToISODate } from "@/lib/utils";
 import { profileSchema } from "@/schema";
 import { useUserStore } from "@/store/useUserStore";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -56,7 +56,7 @@ const Profile = () => {
 
         const formatedData = {
             ...data,
-            birthdate: formatDate(data.birthdate),
+            birthdate: formatToISODate(data.birthdate),
         }
 
         if (!formatedData.phone) {

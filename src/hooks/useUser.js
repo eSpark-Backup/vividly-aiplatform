@@ -1,6 +1,8 @@
 import { getUserProfile, updateStudentId, updateUserAvatar, updateUserProfile } from "@/services/user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
+
+// User Profile | GET 
 const useGetUserProfile = () => {
     return useQuery({
         queryKey: ["userProfile"],
@@ -8,6 +10,8 @@ const useGetUserProfile = () => {
     });
 }
 
+
+// Update User Profile | PUT
 const useUpdateUserProfile = () => {
     const queryClient = useQueryClient()
 
@@ -21,6 +25,7 @@ const useUpdateUserProfile = () => {
 
 }
 
+// Update User Avatar | PUT
 const useUpdateUserAvatar = () => {
     const queryClient = useQueryClient()
 
@@ -34,6 +39,7 @@ const useUpdateUserAvatar = () => {
 
 }
 
+// Update User Student Id | POST
 const useUpdateUserStudentId = () => {
     const queryClient = useQueryClient()
 
@@ -46,9 +52,6 @@ const useUpdateUserStudentId = () => {
     });
 
 }
-
-
-
 
 export {
     useGetUserProfile,

@@ -1,5 +1,8 @@
+import { PAYMENT_RECURRING_PERIOD } from "@/constant";
+import { addMonths, addYears, formatDate } from "date-fns"
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge"
+
 
 // Combine clsx and tailwind-merge
 export function cn(...inputs) {
@@ -38,7 +41,35 @@ export const categorizeHistory = (history) => {
 
   return { today, yesterday, last7Days };
 };
-export const formatDate = (date) => {
+
+export const formatToISODate = (date) => {
   const d = date instanceof Date ? date : new Date(date)
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`
 }
+
+export const capitalize = (str) => {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+};
+
+
+export const calculateNextBillingDate = (selectedPlan) => {
+
+  const { MONTHLY } = PAYMENT_RECURRING_PERIOD
+
+
+  const today = new Date()
+  const isMonthly = selectedPlan?.billingPeriod === MONTHLY
+
+  const nextDate = isMonthly ? addMonths(today, 1) : addYears(today, 1)
+
+  return {
+    date: formatDate(nextDate, "do 'of' MMMM, yyyy"),
+    isMonthly,
+  }
+}
+
+export const normalizeRecurring = (period) => {
+  if (period === "ANNUAL") return "ANNUALLY";
+  return period;
+};

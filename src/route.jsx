@@ -1,9 +1,9 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import { AItoHumanize, Billing, Chat, CreatePassword, Explore, ForgotPassword, Home, HowToUse, Landing, LogIn, NotFound, PricingPlan, Profile, ResetPassword, Settings, SignUp, VerifyEmailSent } from "./pages";
 import { DashboardLayout } from "./layout";
 import AuthGuard from "./AuthGuard";
 import { setNavigate } from "./services/NavigationService";
-import { useEffect } from "react";
 import DasbboardGuard from "./DasbboardGuard";
 
 const AppRouter = () => {
