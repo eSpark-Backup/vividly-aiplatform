@@ -1,19 +1,25 @@
-import {WebSocketServer} from 'ws';
+import { WebSocketServer } from 'ws';
 import OpenAI from 'openai';
 import pool from './db_conn.js';
-import {logger} from '../helpers/logger.js';
-import {fileURLToPath} from "url";
-import path, {dirname, join} from "path";
+import { logger } from '../helpers/logger.js';
+import { fileURLToPath } from "url";
+import path, { dirname, join } from "path";
 import dotenv from "dotenv";
 import AWS from 'aws-sdk';
 import crypto from 'crypto';
 import sharp from 'sharp';
 import fs from "fs/promises";
-import {v4 as uuidv4} from 'uuid'
+import { v4 as uuidv4 } from 'uuid'
+import { SUBSCRIPTION_STATUS, subscriptionFeatureAccess } from '../constant/index.js';
+import { getUserSubscriptions } from './sqaure_client.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-dotenv.config({path: join(__dirname, '../../.env')})
+dotenv.config({ path: join(__dirname, '../../.env') })
+
+//Subscription statuses
+const { ACTIVE, FREE } = SUBSCRIPTION_STATUS;
+
 
 // Setup paths
 const UPLOAD_DIR = path.join(__dirname, '../../uploads');
@@ -72,7 +78,7 @@ const IMAGE_EXPIRY = 60 * 60 * 24 * 7; // URL expiry time in seconds (7 days)
 
 export class ChatServer {
     constructor(server) {
-        this.wss = new WebSocketServer({server});
+        this.wss = new WebSocketServer({ server });
         logger.info('ChatServer initialized');
         this.setupWebSocket();
     }
@@ -82,20 +88,20 @@ export class ChatServer {
     setupWebSocket() {
         this.wss.on('connection', async (ws, req) => {
             const clientIp = req.socket.remoteAddress;
-            logger.debug('New connection attempt', {clientIp});
+            logger.debug('New connection attempt', { clientIp });
 
             try {
                 const token = new URL(req.url, 'http://localhost').searchParams.get('token');
                 const user = await this.verifyUserSubscription(token);
 
                 if (!user) {
-                    logger.warn('Unauthorized connection attempt', {clientIp, token});
+                    logger.warn('Unauthorized connection attempt', { clientIp, token });
                     ws.close(4001, 'Unauthorized or inactive subscription');
                     return;
                 }
 
                 ws.userId = user.id;
-                logger.info('User connected', {userId: user.id, email: user.email});
+                logger.info('User connected', { userId: user.id, email: user.email, squareCustomerId: user?.square_customer_id });
 
                 ws.on('message', async (data) => {
                     try {
@@ -335,7 +341,7 @@ export class ChatServer {
                             role: msg.role,
                             content: msg.content
                         })),
-                        {role: 'user', content: message.content}
+                        { role: 'user', content: message.content }
                     ],
                     temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
                     max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
@@ -372,7 +378,7 @@ export class ChatServer {
                             role: msg.role,
                             content: msg.content
                         })),
-                        {role: 'user', content: message.content}
+                        { role: 'user', content: message.content }
                     ],
                     temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
                     max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
@@ -429,39 +435,46 @@ export class ChatServer {
     }
 
     async verifyUserSubscription(token) {
-        logger.debug('Verifying user subscription', {token});
+        logger.debug('Verifying user subscription', { token });
         try {
             const queryProd = `
-                SELECT u.id, u.email
+                SELECT u.id, u.email, u.square_customer_id
                 FROM users u
-                         JOIN subscriptions s ON u.id = s.user_id
-                WHERE s.status = 'active'
-                  AND s.current_period_end > NOW()
-                  AND u.id = (SELECT user_id
+                WHERE u.id = (SELECT user_id
                               FROM refresh_tokens
                               WHERE token = $1
                                 AND revoked_at IS NULL
                                 AND expires_at > NOW())
             `
             const queryStaging = `
-                SELECT u.id, u.email
+                SELECT u.id, u.email, u.square_customer_id
                 FROM users u
-                         JOIN subscriptions s ON u.id = s.user_id
-                WHERE s.status = 'active'
-                  AND s.current_period_end > NOW()
-                  AND u.id = (SELECT user_id
+                WHERE u.id = (SELECT user_id
                               FROM refresh_tokens
                               WHERE token = $1
                               LIMIT 1)
+                              
+
             `
-            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd
+            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd 
             const result = await pool.query(queryToRun, [token]);
 
-            const user = result.rows[0];
+            let subscription = null;
+            if (result.rows[0]?.square_customer_id !== null) {
+                logger.debug('Getting user subscriptions', { userId: result.rows[0].id });
+                const subscriptions = await getUserSubscriptions(result.rows[0].square_customer_id);
+                subscription = subscriptions[subscriptions.length - 1] || null;
+            }
+
+            const user = {
+                ...result.rows[0],
+                subscription
+            }
+
             if (user) {
-                logger.debug('Subscription verified', {userId: user.id, email: user.email});
+                logger.debug('Subscription verified', { userId: user.id, email: user.email });
             } else {
-                logger.warn('Invalid or expired subscription', {token});
+                logger.warn('Invalid or expired subscription', { token });
             }
             return user;
         } catch (error) {
@@ -477,7 +490,7 @@ export class ChatServer {
     // Get image by ID (for direct serving via WebSocket)
     async getImage(ws, message, user) {
         try {
-            const {image_id: imageId} = message;
+            const { image_id: imageId } = message;
 
             if (!imageId) {
                 throw new Error('Image ID is required');
@@ -1006,6 +1019,23 @@ export class ChatServer {
             try {
                 await client.query('BEGIN');
 
+
+                // USAGE BASED ON SUBSCRIPTION: 
+                // Count of image analysis for the user in the last month
+                const userImageAnalysisCount = await client.query(
+                    `SELECT COUNT(*) FROM user_usage_metric WHERE user_id = $1 AND type = 'image_analysis' AND created_at >= NOW() - INTERVAL '1 month'`,
+                    [user.id]
+                );
+
+                const isActive = user.subscription?.status === ACTIVE;
+                const planId = isActive ? user.subscription?.planId : FREE;
+                const hasFeatureAccess = subscriptionFeatureAccess[planId];
+
+                // Check if the user has reached the maximum number of image generations for the month
+                if (userImageAnalysisCount.rows[0].count >= hasFeatureAccess.maxPictureAnalysis) {
+                    throw new Error("You have reached the maximum number of image analysis for the month. Please upgrade to a paid plan to continue.");
+                }
+
                 let conversation;
 
                 if (conversationId) {
@@ -1089,6 +1119,15 @@ export class ChatServer {
                     [aiResponse, tokensUsed, messageId]
                 );
 
+                // create user usage record if the user has not reached the maximum number of image analysis for the month
+                if (userImageAnalysisCount.rows[0].count < hasFeatureAccess.maxPictureAnalysis) {
+                    await client.query(
+                        `INSERT INTO user_usage_metric (user_id, type, image_analysis_id)
+                     VALUES ($1, $2, $3)`,
+                        [user.id, 'image_analysis', imageId]
+                    );
+                }
+
                 await client.query('COMMIT');
 
                 logger.debug('Image analysis completed', {
@@ -1108,6 +1147,11 @@ export class ChatServer {
                         id: imageId,
                         thumbnail: imageData.thumbnail
                     }
+                }));
+
+                ws.send(JSON.stringify({
+                    type: 'user_usage',
+                    user_usage: await this.getUserUsage(user)
                 }));
 
             } catch (error) {
@@ -1134,6 +1178,7 @@ export class ChatServer {
 
     // Add this to your ChatServer class to handle image generation from chat
 
+
     // Handle chat with image generation
     async handleChatWithImage(ws, message, user) {
         const client = await pool.connect();
@@ -1151,8 +1196,26 @@ export class ChatServer {
             streamMode: stream
         });
 
+
         try {
             await client.query('BEGIN');
+
+            // USAGE BASED ON SUBSCRIPTION: 
+            // Count of image generations for the user in the last month
+            const userImageGenerationCount = await client.query(
+                `SELECT COUNT(*) FROM user_usage_metric WHERE user_id = $1 AND type = 'image_generation' AND created_at >= NOW() - INTERVAL '1 month'`,
+                [user.id]
+            );
+
+            const isActive = user.subscription?.status === ACTIVE;
+            const planId = isActive ? user.subscription?.planId : FREE;
+            const hasFeatureAccess = subscriptionFeatureAccess[planId];
+
+            // Check if the user has reached the maximum number of image generations for the month
+            if (userImageGenerationCount.rows[0].count >= hasFeatureAccess.maxPictureGeneration) {
+                throw new Error("You have reached the maximum number of image generations for the month. Please upgrade to a paid plan to continue.");
+            }
+
 
             const imagePrompt = message.content.trim();
 
@@ -1305,6 +1368,16 @@ export class ChatServer {
                     [aiResponse, tokensUsed, aiMessageId]
                 );
 
+
+                if (userImageGenerationCount.rows[0].count < hasFeatureAccess.maxPictureGeneration) {
+                    // create user usage record if the user has not reached the maximum number of image generations for the month
+                    await client.query(
+                        `INSERT INTO user_usage_metric (user_id, type, image_generation_id)
+                     VALUES ($1, $2, $3)`,
+                        [user.id, 'image_generation', generatedImage.id]
+                    );
+                }
+
                 await client.query('COMMIT');
 
                 // Generate a signed URL for the image
@@ -1325,6 +1398,9 @@ export class ChatServer {
                             url: imageSignedUrl
                         }
                     }));
+
+
+
                 } else {
                     // Send single response for non-streaming mode
                     ws.send(JSON.stringify({
@@ -1437,6 +1513,10 @@ export class ChatServer {
                     conversationId: message.conversationId,
                     messages: history
                 }));
+                ws.send(JSON.stringify({
+                    type: 'user_usage',
+                    user_usage: await this.getUserUsage(user)
+                }));
                 break;
             case 'get_conversations':
                 const conversations = await this.getUserConversations(user.id);
@@ -1505,6 +1585,12 @@ export class ChatServer {
                 break;
             case 'image_analysis':
                 await this.handleImageAnalysis(ws, message, user);
+                break;
+            case 'get_user_usage':
+                ws.send(JSON.stringify({
+                    type: 'user_usage',
+                    user_usage: await this.getUserUsage(user)
+                }));
                 break;
             default:
                 ws.send(JSON.stringify({
@@ -1620,6 +1706,16 @@ export class ChatServer {
             // if (textToHumanize.length > ChatServer.MAX_HUMANIZE_LENGTH) {
             //     throw new Error(`Text exceeds maximum length of ${ChatServer.MAX_HUMANIZE_LENGTH} characters`);
             // }
+
+            // USAGE BASED ON SUBSCRIPTION: 
+            const isActive = user.subscription?.status === ACTIVE;
+            const planId = isActive ? user.subscription?.planId : FREE;
+            const hasFeatureAccess = subscriptionFeatureAccess[planId];
+
+            // Check if the user has humanize support
+            if (!hasFeatureAccess.humanizeSupport) {
+                throw new Error("You don't have access to humanize feature. Please upgrade to a paid plan to continue.");
+            }
 
             // Rest of the handling remains the same...
             ws.send(JSON.stringify({
@@ -1814,6 +1910,17 @@ export class ChatServer {
         try {
             await client.query('BEGIN');
 
+            // USAGE BASED ON SUBSCRIPTION: 
+            const isActive = user.subscription?.status === ACTIVE;
+            const planId = isActive ? user.subscription?.planId : FREE;
+            const hasFeatureAccess = subscriptionFeatureAccess[planId];
+
+            // Check if the user has voice assistance support
+            if (!hasFeatureAccess.voiceAssistanceSupport) {
+                throw new Error("You don't have access to voice assistance feature. Please upgrade to a paid plan to continue.");
+            }
+
+
             // Verify existing conversation or create new one
             let conversation;
             if (conversationId) {
@@ -1861,7 +1968,7 @@ export class ChatServer {
                         role: msg.role,
                         content: msg.content
                     })),
-                    {role: 'user', content: message.content}
+                    { role: 'user', content: message.content }
                 ],
                 temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
                 max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
@@ -2023,4 +2130,82 @@ export class ChatServer {
             }));
         }
     }
+
+    async getUserUsage(user) {
+        const client = await pool.connect()
+
+        try {
+            // Determine start date (from subscription or user creation)
+            let startDateStr 
+            if (user.subscription?.status === ACTIVE && user.subscription?.startDate) {
+                startDateStr = user.subscription.startDate
+            } else {
+                const userResult = await client.query("SELECT created_at FROM users WHERE id = $1", [user.id])
+                startDateStr = userResult.rows[0]?.created_at
+            }
+
+            // Extract the day from the start date
+            const startDate = new Date(startDateStr)
+
+            // Get current date info
+            const now = new Date()
+            // const currentYear = now.getFullYear()
+            // const currentMonth = now.getMonth()
+
+            // // Calculate subscription period using the same day in current month
+            // const subscriptionDay = startDate.getUTCDate()
+
+            // // Create current month date with same day (handle month length differences)
+            // const daysInCurrentMonth = new Date(currentYear, currentMonth + 1, 0).getDate()
+            // const actualDay = Math.min(subscriptionDay, daysInCurrentMonth)
+            // const subscriptionStartDate = new Date(currentYear, currentMonth, actualDay)
+
+            // // Calculate end date (same day next month)
+            // const daysInNextMonth = new Date(currentYear, currentMonth + 2, 0).getDate()
+            // const nextMonthDay = Math.min(subscriptionDay, daysInNextMonth)
+            // const subscriptionEndDate = new Date(currentYear, currentMonth + 1, nextMonthDay)
+
+            const billingDay = startDate.getUTCDate();
+
+            // Determine the start of the current billing cycle
+            let cycleStart = new Date(now.getFullYear(), now.getMonth(), billingDay);
+            if (now.getDate() < billingDay) {
+                // If today is before the billing day, shift to last month
+                cycleStart.setMonth(cycleStart.getMonth() - 1);
+            }
+    
+            // Determine the end of this billing cycle
+            const cycleEnd = new Date(cycleStart);
+            cycleEnd.setMonth(cycleEnd.getMonth() + 1);
+
+            // Format dates for SQL
+            const formattedStartDate = this.formatDateToYYYYMMDD(cycleStart)
+            const formattedEndDate = this.formatDateToYYYYMMDD(cycleEnd)
+
+            // Query usage metrics using calculated date range
+            const result = await client.query(
+                `
+            SELECT 
+              COUNT(*) FILTER (WHERE type = 'image_generation') AS image_generation_count,
+              COUNT(*) FILTER (WHERE type = 'image_analysis') AS image_analysis_count
+            FROM user_usage_metric
+            WHERE user_id = $1
+              AND created_at >= $2
+              AND created_at < $3
+            `,
+                [user.id, formattedStartDate, formattedEndDate],
+            )
+
+            return result.rows[0]
+        } finally {
+            client.release()
+        }
+    }
+
+    formatDateToYYYYMMDD(date) {
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, "0")
+        const day = String(date.getDate()).padStart(2, "0")
+        return `${year}-${month}-${day}`
+      }
 }
