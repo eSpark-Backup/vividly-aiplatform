@@ -3,9 +3,13 @@ import { authenticateJWT } from '../middlewares/auth.js';
 import { createSubscription } from '../controllers/subscription/create_subscription.js';
 import { cancelSubscription } from '../controllers/subscription/cancel_subscription.js';
 import { validate } from '../middlewares/validate.js';
-import { cancelSubscriptionSchema, createSubscriptionSchema, upgradeSubscriptionSchema } from './subscription.schema.js';
+import { cancelSubscriptionSchema, createCardSchema, createSubscriptionSchema, defaultCardSchema, disableCardSchema, upgradeSubscriptionSchema } from './subscription.schema.js';
 import { UserSubscription } from '../controllers/subscription/user_subscription.js';
 import { upgradeSubscription } from '../controllers/subscription/upgrade_subscription.js';
+import { listCards } from '../controllers/subscription/cards/list_cards.js';
+import { addCard } from '../controllers/subscription/cards/add_card.js';
+import { makeCardDefault } from '../controllers/subscription/cards/make_card_default.js';
+import { disableCard } from '../controllers/subscription/cards/disableCard.js';
 
 
 const router = express.Router();
@@ -32,5 +36,30 @@ router.post('/upgrade',
     validate(upgradeSubscriptionSchema),
     upgradeSubscription
 );
+
+router.get('/cards',
+    authenticateJWT,
+    listCards
+);
+
+router.post('/add-card',
+    authenticateJWT,
+    validate(createCardSchema),
+    addCard
+);
+
+router.post('/default-card',
+    authenticateJWT,
+    validate(defaultCardSchema),
+    makeCardDefault
+);
+
+router.post('/remove-card',
+    authenticateJWT,
+    validate(disableCardSchema),
+    disableCard
+);
+
+
 
 export default router;

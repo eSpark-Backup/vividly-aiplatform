@@ -1,0 +1,81 @@
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-12T08:37:40.008Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-12T08:37:40.910Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-12T08:37:40.911Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-12T08:37:41.150Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-12T08:37:41.153Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-12T08:37:41.427Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-12T08:37:41.428Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-12T08:37:41.429Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-12T08:37:41.430Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-12T08:37:41.431Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-12T08:37:41.432Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-12T08:37:41.432Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-12T08:37:41.433Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-12T08:37:41.434Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-12T08:37:41.435Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-12T08:37:41.436Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-12T08:37:41.465Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-12T08:37:41.471Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-12T08:37:41.806Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-12T08:37:41.831Z","token":"0066a63335e146a6b4922efb94f6b392e94dd295a22d81b780daf6c6f6b50a52edd6e0176a8e0bf0"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-12T08:37:42.915Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-12T08:37:45.911Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-12T08:37:45.912Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Successful Google authentication for user 9aa9161b-1a2a-4bc9-be16-bd28afb05f99","timestamp":"2025-05-12T08:37:51.763Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-12T08:37:51.801Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-12T08:37:51.804Z","token":"767dacf0bcfbef9d1be169d4d39de00bbe6140de8657cc032afba5ec07b11d7d0c67c596cdd7d81a"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-12T08:37:52.005Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-12T08:37:54.163Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-12T08:37:54.163Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-12T08:37:56.830Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-12T08:37:56.831Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-12T08:37:57.114Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-12T08:37:57.117Z","token":"767dacf0bcfbef9d1be169d4d39de00bbe6140de8657cc032afba5ec07b11d7d0c67c596cdd7d81a"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-12T08:37:57.315Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-12T08:37:59.422Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-12T08:37:59.422Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-12T08:38:02.247Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-12T08:38:02.248Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-12T08:42:07.932Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-12T08:42:08.834Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-12T08:42:08.835Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-12T08:42:09.032Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-12T08:42:09.034Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-12T08:42:09.239Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-12T08:42:09.240Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-12T08:42:09.241Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-12T08:42:09.242Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-12T08:42:09.244Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-12T08:42:09.245Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-12T08:42:09.246Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-12T08:42:09.248Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-12T08:42:09.249Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-12T08:42:09.251Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-12T08:42:09.252Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-12T08:42:09.308Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-12T08:42:09.315Z"}
+{"level":"info","message":"Attempting database connection (attempt 1/5)","timestamp":"2025-05-12T08:42:12.457Z"}
+{"level":"info","message":"Successfully connected to database","timestamp":"2025-05-12T08:42:13.311Z"}
+{"level":"info","message":"Initializing migrations table","timestamp":"2025-05-12T08:42:13.313Z"}
+{"level":"info","message":"Migrations table initialized successfully","timestamp":"2025-05-12T08:42:13.516Z"}
+{"count":9,"level":"info","message":"Found migration files","timestamp":"2025-05-12T08:42:13.518Z"}
+{"level":"debug","message":"Skipping already executed migration: 001_schema_init.sql","timestamp":"2025-05-12T08:42:13.720Z"}
+{"level":"debug","message":"Skipping already executed migration: 002_refresh_token_add.sql","timestamp":"2025-05-12T08:42:13.721Z"}
+{"level":"debug","message":"Skipping already executed migration: 003_add_avatar_to_profiles.sql","timestamp":"2025-05-12T08:42:13.722Z"}
+{"level":"debug","message":"Skipping already executed migration: 004_add_humanization_support.sql","timestamp":"2025-05-12T08:42:13.723Z"}
+{"level":"debug","message":"Skipping already executed migration: 005_add_image_support.sql","timestamp":"2025-05-12T08:42:13.724Z"}
+{"level":"debug","message":"Skipping already executed migration: 006_add_student_id_support.sql","timestamp":"2025-05-12T08:42:13.725Z"}
+{"level":"debug","message":"Skipping already executed migration: 007_add_square_customer_id.sql","timestamp":"2025-05-12T08:42:13.725Z"}
+{"level":"debug","message":"Skipping already executed migration: 008_add_user_usage_metrics.sql","timestamp":"2025-05-12T08:42:13.726Z"}
+{"level":"debug","message":"Skipping already executed migration: 009_add_default_card_id.sql","timestamp":"2025-05-12T08:42:13.726Z"}
+{"level":"info","message":"All migrations completed successfully","timestamp":"2025-05-12T08:42:13.727Z"}
+{"level":"info","message":"Closing database pool","timestamp":"2025-05-12T08:42:13.728Z"}
+{"level":"info","message":"API docs exposed at /api-docs","timestamp":"2025-05-12T08:42:13.753Z"}
+{"level":"info","message":"ChatServer initialized","timestamp":"2025-05-12T08:42:13.759Z"}
+{"clientIp":"::1","level":"debug","message":"New connection attempt","timestamp":"2025-05-12T08:42:13.843Z"}
+{"level":"debug","message":"Verifying user subscription","timestamp":"2025-05-12T08:42:13.845Z","token":"767dacf0bcfbef9d1be169d4d39de00bbe6140de8657cc032afba5ec07b11d7d0c67c596cdd7d81a"}
+{"level":"debug","message":"Getting user subscriptions","timestamp":"2025-05-12T08:42:14.865Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"debug","message":"Subscription verified","timestamp":"2025-05-12T08:42:17.149Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"email":"farazshah116@gmail.com","level":"info","message":"User connected","squareCustomerId":"ZNWYK722DE2CB793CJ0PN4TAW8","timestamp":"2025-05-12T08:42:17.150Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_conversations","timestamp":"2025-05-12T08:42:18.851Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}
+{"level":"debug","message":"Received JSON message","messageType":"get_user_usage","timestamp":"2025-05-12T08:42:18.854Z","userId":"9aa9161b-1a2a-4bc9-be16-bd28afb05f99"}

@@ -34,6 +34,35 @@ export const upgradeSubscriptionSchema = yup.object({
         subscriptionId: yup.string().required("Subscription ID is required"),
         planId: yup
             .string()
-            .required("New plan ID is required")
+            .required("New plan ID is required"),
+        cardId: yup.string().required("Card ID is required"),
     }),
 })
+
+// Schema for creating a card
+export const createCardSchema = yup.object({
+    body: yup.object({
+        sourceId: yup.string().required("Source ID is required"),
+        customer: yup
+            .object({
+                firstName: yup.string().required("First name is required").max(100, "First name too long"),
+                lastName: yup.string().required("Last name is required").max(100, "Last name too long"),
+            })
+            .required("Customer information is required"),
+    }),
+})
+
+// Schema for Making a card default
+export const defaultCardSchema = yup.object({
+    body: yup.object({
+        cardId: yup.string().required("Card ID is required"),
+    }),
+})
+
+//Schema for disabling a card
+export const disableCardSchema = yup.object({
+    body: yup.object({
+        cardId: yup.string().required("Card ID is required"),
+    }),
+})
+

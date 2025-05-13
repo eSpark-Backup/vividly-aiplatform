@@ -5,6 +5,7 @@ import { join } from "path"
 import { fileURLToPath } from "url"
 import { dirname } from "path"
 import { logger } from '../helpers/logger.js';
+import pool from './db_conn.js';
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 dotenv.config({ path: join(__dirname, '../../.env') })
@@ -25,6 +26,7 @@ export function getSquareClient() {
       accessToken: process.env.SQUARE_ACCESS_TOKEN,
       environment: process.env.ENV === "prod" ? Environment.Production : Environment.Sandbox,
     })
+    
   }
   return squareClient
 }
@@ -57,8 +59,9 @@ export async function createCustomer(customerInfo) {
 }
 
 // Create a card for a customer
-export async function createCard(sourceId, customerId, customerInfo) {
+export async function createCard(sourceId, customerId, customerInfo, userId) {
   const { cardsApi } = getSquareClient()
+  const client = await pool.connect();
 
   try {
     const { result: cardResult } = await cardsApi.createCard({
@@ -73,6 +76,17 @@ export async function createCard(sourceId, customerId, customerInfo) {
     const cardId = cardResult.card?.id
     if (!cardId) {
       throw new Error("Failed to create payment card")
+    }
+
+    const userCards = await getUserCards(customerId);
+
+    // if user has only one card then set it as default
+    if (userCards.length === 1) {
+      const result = await client.query('UPDATE users SET default_card_id = $1 WHERE id = $2 RETURNING *', [cardId, userId])
+
+      if (!result.rows.length) {
+        throw new Error("Failed to update user card id")
+      }
     }
 
     return cardId
@@ -177,7 +191,7 @@ export async function cancelSubscription(subscriptionId) {
 }
 
 // Upgrade a subscription plan
-export async function upgradeSubscription(customerId, subscriptionId, planId) {
+export async function upgradeSubscription(customerId, subscriptionId, planId, cardId) {
   const { subscriptionsApi } = getSquareClient()
 
   try {
@@ -186,8 +200,6 @@ export async function upgradeSubscription(customerId, subscriptionId, planId) {
     if (!currentSubscription.subscription) {
       throw new Error("Subscription not found")
     }
-
-    const cardId = currentSubscription.subscription.cardId
 
     if (!cardId) {
       throw new Error("No card found for the subscription")
@@ -245,5 +257,37 @@ export async function getPlansCatalogDetails(planId) {
   const { catalogApi } = getSquareClient()
   const { result } = await catalogApi.retrieveCatalogObject(planId)
   return result.object
+}
+
+// Get card details
+export async function getCardDetails(cardId) {
+  const { cardsApi } = getSquareClient()
+  const { result } = await cardsApi.retrieveCard(cardId)
+  return result.card
+}
+
+// Get user cards
+export async function getUserCards(customerId) {
+  try {
+    const { customersApi } = getSquareClient()
+    const { result } = await customersApi.retrieveCustomer(customerId)
+
+    return result.customer?.cards || []
+  } catch (error) {
+    logger.error("Error getting user cards:", error)
+    throw new Error("Failed to get user cards")
+  }
+}
+
+// Disable a card
+export async function disableCard(cardId) {
+  try {
+    const { cardsApi } = getSquareClient()
+    const { result } = await cardsApi.disableCard(cardId)
+    return result.card
+  } catch (error) {
+    logger.error("Error disabling card:", error)
+    throw new Error("Failed to disable card")
+  }
 }
 

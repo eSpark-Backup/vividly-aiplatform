@@ -4,13 +4,13 @@ import { upgradeSubscription as upgradeSquareSubscription } from '../../init/sqa
 export const upgradeSubscription = async (req, res) => {
     try {
         const { square_customer_id } = req.user
-        const { subscriptionId, planId } = req.body;
+        const { subscriptionId, planId, cardId } = req.body;
 
         if (!square_customer_id) {
             return res.status(400).json({ success: false, error: "No Subscription Found", message: "We're having trouble processing your request. Please try again later." });
         }
 
-        const updatedSubscription = await upgradeSquareSubscription(square_customer_id, subscriptionId, planId);
+        const updatedSubscription = await upgradeSquareSubscription(square_customer_id, subscriptionId, planId, cardId);
 
         res.status(200).json({ success: true, updatedSubscription });
         
