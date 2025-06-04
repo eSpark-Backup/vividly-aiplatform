@@ -173,12 +173,12 @@ export class ChatServer {
     async generateThumbnail(imageBuffer) {
         try {
             const thumbnail = await sharp(imageBuffer)
-                .resize(200, 200, { fit: 'inside' })
+                .resize(200, 200, {fit: 'inside'})
                 .toBuffer();
 
             return thumbnail.toString('base64');
         } catch (error) {
-            logger.warn('Failed to generate thumbnail', { error: error.message });
+            logger.warn('Failed to generate thumbnail', {error: error.message});
             return null;
         }
     }
@@ -653,34 +653,33 @@ export class ChatServer {
     // Modified getConversationHistory to include humanization counts and images
     async getConversationHistory(userId, conversationId, limit = 20, offset = 0) {
         const result = await pool.query(`
-                    SELECT * FROM (
-                SELECT m.*,
-                    c.title as conversation_title,
-                    (SELECT COUNT(*) FROM humanized_messages WHERE message_id = m.id) as humanized_count,
-                    (SELECT json_agg(
-                                    json_build_object(
-                                            'id', ui.id,
-                                            'filename', ui.filename,
-                                            'type', ui.type,
-                                            'size', ui.size,
-                                            'source', ui.source,
-                                            'created_at', ui.created_at,
-                                            'thumbnail', ui.thumbnail
-                                    )
-                            )
-                        FROM message_references mr
-                                JOIN user_images ui ON mr.reference_id = ui.id
-                        WHERE mr.message_id = m.id AND mr.reference_type = 'image'
-                    ) as images
-                FROM messages m
-                        JOIN conversations c ON c.id = m.conversation_id
-                WHERE c.id = $1
-                AND c.user_id = $2
-                ORDER BY m.created_at DESC
-                LIMIT $3 OFFSET $4
-            ) sub
-            ORDER BY sub.created_at ASC;
-`,
+                    SELECT *
+                    FROM (SELECT m.*,
+                                 c.title                                                           as conversation_title,
+                                 (SELECT COUNT(*) FROM humanized_messages WHERE message_id = m.id) as humanized_count,
+                                 (SELECT json_agg(
+                                                 json_build_object(
+                                                         'id', ui.id,
+                                                         'filename', ui.filename,
+                                                         'type', ui.type,
+                                                         'size', ui.size,
+                                                         'source', ui.source,
+                                                         'created_at', ui.created_at,
+                                                         'thumbnail', ui.thumbnail
+                                                 )
+                                         )
+                                  FROM message_references mr
+                                           JOIN user_images ui ON mr.reference_id = ui.id
+                                  WHERE mr.message_id = m.id
+                                    AND mr.reference_type = 'image')                               as images
+                          FROM messages m
+                                   JOIN conversations c ON c.id = m.conversation_id
+                          WHERE c.id = $1
+                            AND c.user_id = $2
+                          ORDER BY m.created_at DESC
+                          LIMIT $3 OFFSET $4) sub
+                    ORDER BY sub.created_at ASC;
+            `,
             [conversationId, userId, limit, offset]
         );
 
@@ -850,9 +849,9 @@ export class ChatServer {
 
             // Store reference in database
             const result = await client.query(
-                `INSERT INTO user_images (
-                    user_id, filename, stored_filename, type, size, source, thumbnail
-                ) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id`,
+                `INSERT INTO user_images (user_id, filename, stored_filename, type, size, source, thumbnail)
+                 VALUES ($1, $2, $3, $4, $5, $6, $7)
+                 RETURNING id`,
                 [
                     user.id,
                     originalFilename,
@@ -945,7 +944,7 @@ export class ChatServer {
         });
 
         try {
-            const { imageId, content: prompt } = message;
+            const {imageId, content: prompt} = message;
 
             if (!imageId) {
                 throw new Error('Image ID is required');
@@ -957,7 +956,10 @@ export class ChatServer {
 
             // Fetch the image from database
             const result = await pool.query(
-                `SELECT * FROM user_images WHERE id = $1 AND user_id = $2`,
+                `SELECT *
+                 FROM user_images
+                 WHERE id = $1
+                   AND user_id = $2`,
                 [imageId, user.id]
             );
 
@@ -1093,7 +1095,7 @@ export class ChatServer {
                         {
                             role: "user",
                             content: [
-                                { type: "text", text: prompt },
+                                {type: "text", text: prompt},
                                 {
                                     type: "image_url",
                                     image_url: {
@@ -1270,36 +1272,28 @@ export class ChatServer {
             try {
                 // Generate image with DALL-E
                 const response = await openai.images.generate({
-                    model: "dall-e-3",
+                    model: process.env.OPENAI_IMAGE_GEN_MODEL,
                     prompt: imagePrompt,
-                    size: "1024x1024",
-                    quality: "standard",
-                    style: "natural",
-                    n: 1,
+                    size: "auto",
+                    quality: "auto"
                 });
 
-                const imageUrl = response.data[0]?.url;
+                const base64ImageData = response.data[0]?.b64_json;
 
-                if (!imageUrl) {
+                if (!base64ImageData) {
                     throw new Error('Failed to generate image');
                 }
 
-                // Download the generated image
-                const imageResponse = await fetch(imageUrl);
-                const imageBuffer = Buffer.from(await imageResponse.arrayBuffer());
+                const imageBuffer = Buffer.from(base64ImageData, 'base64');
 
-                // Generate a unique ID for the image
                 const imageId = uuidv4();
                 const dateNow = Date.now();
 
-                // Create a descriptive filename based on the prompt
                 let originalFilename = `${imagePrompt.substring(0, 50)}${imagePrompt.length > 50 ? '...' : ''}.png`;
                 originalFilename = this.sanitizeFilename(originalFilename);
 
-                // Use S3 for storage instead of local filesystem
                 const s3Key = `${user.id}/${dateNow}_${imageId}.png`;
 
-                // Generate thumbnail
                 const thumbnail = await this.generateThumbnail(imageBuffer);
 
                 // Upload image to S3
@@ -1323,8 +1317,8 @@ export class ChatServer {
                 // Save metadata to database
                 const imageData = await pool.query(
                     `INSERT INTO user_images (user_id, filename, stored_filename, type, size, source, thumbnail)
-                VALUES ($1, $2, $3, $4, $5, $6, $7)
-                RETURNING *`,
+                     VALUES ($1, $2, $3, $4, $5, $6, $7)
+                     RETURNING *`,
                     [
                         user.id,
                         originalFilename,
@@ -1350,7 +1344,9 @@ export class ChatServer {
 
                 // Update the message to indicate it has attachments
                 await client.query(
-                    `UPDATE messages SET has_attachments = TRUE WHERE id = $1`,
+                    `UPDATE messages
+                     SET has_attachments = TRUE
+                     WHERE id = $1`,
                     [aiMessageId]
                 );
 
@@ -1665,7 +1661,7 @@ export class ChatServer {
                     const result = await pool.query(`
                         SELECT humanized_messages.id, humanized_text, conversation_id
                         FROM humanized_messages
-                            JOIN public.messages m on m.id = humanized_messages.message_id
+                                 JOIN public.messages m on m.id = humanized_messages.message_id
                         WHERE user_id = $1
                           AND message_id = $2
                         ORDER BY created_at DESC
@@ -1792,21 +1788,20 @@ export class ChatServer {
     // New method to get user's uploaded images
     async getUserImages(userId, limit = 20, offset = 0) {
         const result = await pool.query(`
-        SELECT 
-            ui.id, 
-            ui.filename, 
-            ui.type, 
-            ui.size, 
-            ui.source, 
-            ui.source_id, 
-            ui.created_at,
-            ui.thumbnail,
-            (SELECT COUNT(*) FROM user_images WHERE source_id = ui.id) as derived_count
-        FROM user_images ui
-        WHERE ui.user_id = $1
-        ORDER BY ui.created_at DESC
-        LIMIT $2 OFFSET $3
-    `, [userId, limit, offset]);
+            SELECT ui.id,
+                   ui.filename,
+                   ui.type,
+                   ui.size,
+                   ui.source,
+                   ui.source_id,
+                   ui.created_at,
+                   ui.thumbnail,
+                   (SELECT COUNT(*) FROM user_images WHERE source_id = ui.id) as derived_count
+            FROM user_images ui
+            WHERE ui.user_id = $1
+            ORDER BY ui.created_at DESC
+            LIMIT $2 OFFSET $3
+        `, [userId, limit, offset]);
 
         const images = result.rows;
 
