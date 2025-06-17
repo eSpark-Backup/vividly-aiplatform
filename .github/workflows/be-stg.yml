@@ -130,6 +130,15 @@ jobs:
           echo "S3_BUCKET: ${{ secrets.S3_BUCKET }}" >> .env
           echo "S3_REGION: ${{ secrets.S3_REGION }}" >> .env
           echo "S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}" >> .env
+          echo "SQUARE_ACCESS_TOKEN: ${{ secrets.SQUARE_ACCESS_TOKEN }}" >> .env
+          echo "LOCATION_ID: ${{ secrets.LOCATION_ID }}" >> .env
+          echo "PLUS_PLAN_MONTHLY_ID: ${{ secrets.PLUS_PLAN_MONTHLY_ID }}" >> .env
+          echo "PLUS_PLAN_ANNUALLY_ID: ${{ secrets.PLUS_PLAN_ANNUALLY_ID }}" >> .env
+          echo "PREMIUM_PLAN_MONTHLY_ID: ${{ secrets.PREMIUM_PLAN_MONTHLY_ID }}" >> .env
+          echo "PREMIUM_PLAN_ANNUALLY_ID: ${{ secrets.PREMIUM_PLAN_ANNUALLY_ID }}" >> .env
+          echo "STUDENT_PLAN_MONTHLY_ID: ${{ secrets.STUDENT_PLAN_MONTHLY_ID }}" >> .env
+          echo "STUDENT_PLAN_ANNUALLY_ID: ${{ secrets.STUDENT_PLAN_ANNUALLY_ID }}" >> .env
+
 
       - name: Build, tag, and push image to Amazon ECR
         id: build-publish
@@ -220,7 +229,16 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           S3_REGION: ${{ secrets.S3_REGION }}
           S3_ENDPOINT: ${{ secrets.S3_ENDPOINT }}
-          
+          SQUARE_ACCESS_TOKEN: ${{ secrets.SQUARE_ACCESS_TOKEN }}
+          LOCATION_ID: ${{ secrets.LOCATION_ID }}
+          PLUS_PLAN_MONTHLY_ID: ${{ secrets.PLUS_PLAN_MONTHLY_ID }}
+          PLUS_PLAN_ANNUALLY_ID: ${{ secrets.PLUS_PLAN_ANNUALLY_ID }}
+          PREMIUM_PLAN_MONTHLY_ID: ${{ secrets.PREMIUM_PLAN_MONTHLY_ID }}
+          PREMIUM_PLAN_ANNUALLY_ID: ${{ secrets.PREMIUM_PLAN_ANNUALLY_ID }}
+          STUDENT_PLAN_MONTHLY_ID: ${{ secrets.STUDENT_PLAN_MONTHLY_ID }}
+          STUDENT_PLAN_ANNUALLY_ID: ${{ secrets.STUDENT_PLAN_ANNUALLY_ID }}          
+
+
         run: |
           docker compose -f docker-compose.yml -f docker-compose.stg.yml pull
           docker compose -f docker-compose.yml -f docker-compose.stg.yml -p "vividly_stack_stg" down
