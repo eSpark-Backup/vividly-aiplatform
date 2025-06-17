@@ -36,6 +36,14 @@ services:
       - S3_BUCKET
       - S3_REGION
       - S3_ENDPOINT
+      - SQUARE_ACCESS_TOKEN
+      - LOCATION_ID
+      - PLUS_PLAN_MONTHLY_ID
+      - PLUS_PLAN_ANNUALLY_ID
+      - PREMIUM_PLAN_MONTHLY_ID
+      - PREMIUM_PLAN_ANNUALLY_ID
+      - STUDENT_PLAN_MONTHLY_ID
+      - STUDENT_PLAN_ANNUALLY_ID
 
     build:
       context: .
