@@ -1272,7 +1272,8 @@ export class ChatServer {
             try {
                 // Generate image with DALL-E
                 const response = await openai.images.generate({
-                    model: process.env.OPENAI_IMAGE_GEN_MODEL,
+                    // model: process.env.OPENAI_IMAGE_GEN_MODEL,
+                    model: "gpt-image-1",
                     prompt: imagePrompt,
                     size: "auto",
                     quality: "auto"
