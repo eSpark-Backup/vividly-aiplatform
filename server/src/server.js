@@ -38,9 +38,10 @@ app.use(cors({
     origin: function (origin, callback) {
         if (!origin) return callback(null, true);
 
-        const regex = /^https:\/\/([a-zA-Z0-9-]+\.)?vividlyai\.ai$/;
+        const vividlyRegex = /^https:\/\/([a-zA-Z0-9-]+\.)?vividlyai\.ai$/;
+        const esparkRegex = /^https:\/\/([a-zA-Z0-9-]+\.)?esparkconsultants\.com$/;
 
-        if (regex.test(origin)) {
+        if (vividlyRegex.test(origin) || esparkRegex.test(origin)) {
             callback(null, true);
         } else {
             callback(new Error('Not allowed by CORS'));
