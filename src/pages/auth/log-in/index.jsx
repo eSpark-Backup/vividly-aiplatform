@@ -56,7 +56,7 @@ function LogIn() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-2">
             <h1 className="lg:text-2xl text-xl font-semibold tracking-tight dark:text-white uppercase">Login</h1>
-            <p className="text-md dark:text-gray-300">How do I get started? Lorem ipsum dolor sit amet.</p>
+            <p className="text-md dark:text-gray-300">How do I get started?</p>
           </div>
 
           <div className="grid gap-4">
