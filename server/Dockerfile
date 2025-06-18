@@ -6,6 +6,7 @@ COPY ["server/package.json", "server/package-lock.json*", "server/npm-shrinkwrap
 RUN apk update
 RUN apk upgrade
 RUN apk add --no-cache ffmpeg
+RUN npm install --os=linux --libc=musl --cpu=x64 sharp
 RUN npm install --silent && mv node_modules ../
 
 COPY . .
