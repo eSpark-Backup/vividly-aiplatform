@@ -98,6 +98,14 @@ jobs:
         touch .env
           echo "VITE_BASE_URL=${{ secrets.VITE_BASE_URL }}" >> .env
           echo "VITE_GOOGLE_CLIENT_ID=${{ secrets.VITE_GOOGLE_CLIENT_ID }}" >> .env
+          echo "VITE_SQUARE_APPLICATION_ID=${{ secrets.VITE_SQUARE_APPLICATION_ID }}" >> .env
+          echo "VITE_SQUARE_LOCATION_ID=${{ secrets.VITE_SQUARE_LOCATION_ID }}" >> .env
+          echo "VITE_VIVIDLY_PLUS_PLAN_MONTHLY_ID=${{ secrets.VITE_VIVIDLY_PLUS_PLAN_MONTHLY_ID }}" >> .env
+          echo "VITE_VIVIDLY_PREMIUM_PLAN_MONTHLY_ID=${{ secrets.VITE_VIVIDLY_PREMIUM_PLAN_MONTHLY_ID }}" >> .env
+          echo "VITE_VIVIDLY_STUDENT_PLAN_MONTHLY_ID=${{ secrets.VITE_VIVIDLY_STUDENT_PLAN_MONTHLY_ID }}" >> .env
+          echo "VITE_VIVIDLY_PLUS_PLAN_ANNUALLY_ID=${{ secrets.VITE_VIVIDLY_PLUS_PLAN_ANNUALLY_ID }}" >> .env
+          echo "VITE_VIVIDLY_PREMIUM_PLAN_ANNUALLY_ID=${{ secrets.VITE_VIVIDLY_PREMIUM_PLAN_ANNUALLY_ID }}" >> .env
+          echo "VITE_VIVIDLY_STUDENT_PLAN_ANNUALLY_ID=${{ secrets.VITE_VIVIDLY_STUDENT_PLAN_ANNUALLY_ID }}" >> .env
 
     - name: Build, tag, and push image to Amazon ECR
       id: build-publish
