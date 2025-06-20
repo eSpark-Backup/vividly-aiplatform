@@ -13,7 +13,7 @@ const VoiceSelector = ({ onVoiceSelect, selectedVoice, disabled = false }) => {
         const getVoices = () => {
             const availableVoices = window.speechSynthesis.getVoices()
             if (availableVoices.length > 0) {
-                setVoices(availableVoices)
+                setVoices(availableVoices.filter((voice) => voice.lang === "en-US"))
 
 
                 if (!selectedVoice && availableVoices.length > 0) {
