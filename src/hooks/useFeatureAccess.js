@@ -9,13 +9,15 @@ export function useFeatureAccess() {
             name: "FREE",
             maxPictureGeneration: 20,
             maxPictureAnalysis: 20,
-            humanizeSupport: false,
+            maxHumanizeUsage: 3,
+            humanizeSupport: true,
             voiceAssistanceSupport: false,
         },
         [import.meta.env.VITE_VIVIDLY_PLUS_PLAN_MONTHLY_ID]: {
             name: "VIVIDLY PLUS MONTHLY",
             maxPictureGeneration: 100,
             maxPictureAnalysis: 100,
+            maxHumanizeUsage: 0,
             humanizeSupport: false,
             voiceAssistanceSupport: false,
         },
@@ -23,6 +25,7 @@ export function useFeatureAccess() {
             ame: "VIVIDLY PLUS ANNUAL",
             maxPictureGeneration: 100,
             maxPictureAnalysis: 100,
+            maxHumanizeUsage: 0,
             humanizeSupport: false,
             voiceAssistanceSupport: false,
         },
@@ -30,6 +33,7 @@ export function useFeatureAccess() {
             name: "VIVIDLY PREMIUM MONTHLY",
             maxPictureGeneration: Infinity,
             maxPictureAnalysis: Infinity,
+            maxHumanizeUsage: 0,
             humanizeSupport: true,
             voiceAssistanceSupport: true,
         },
@@ -37,6 +41,7 @@ export function useFeatureAccess() {
             name: "VIVIDLY PREMIUM ANNUAL",
             maxPictureGeneration: Infinity,
             maxPictureAnalysis: Infinity,
+            maxHumanizeUsage: 0,
             humanizeSupport: true,
             voiceAssistanceSupport: true,
         },
@@ -44,6 +49,7 @@ export function useFeatureAccess() {
             name: "VIVIDLY STUDENT MONTHLY",
             maxPictureGeneration: Infinity,
             maxPictureAnalysis: Infinity,
+            maxHumanizeUsage: 0,
             humanizeSupport: true,
             voiceAssistanceSupport: true,
         },
@@ -51,13 +57,14 @@ export function useFeatureAccess() {
             name: "VIVIDLY STUDENT ANNUAL",
             maxPictureGeneration: Infinity,
             maxPictureAnalysis: Infinity,
+            maxHumanizeUsage: 0,
             humanizeSupport: true,
             voiceAssistanceSupport: true,
         },
     };
 
     const { planId } = useUserSubscriptionStore()
-    const { userImageGenerationCount, userImageAnalysisCount } = useWebSocketContext();
+    const { userImageGenerationCount, userImageAnalysisCount, userHumanizeUsageCount } = useWebSocketContext();
 
     const limits = useMemo(() => {
         const planLimits = planId ? VIVIDLY_FEATURE_LIMITS[planId] : VIVIDLY_FEATURE_LIMITS.FREE
@@ -74,7 +81,7 @@ export function useFeatureAccess() {
             case PICTURE_ANALYSIS:
                 return userImageAnalysisCount < limits.maxPictureAnalysis
             case HUMANIZE:
-                return limits.humanizeSupport
+                return limits.humanizeSupport && userHumanizeUsageCount < limits.maxHumanizeUsage
             case VOICE_ASSISTANCE:
                 return limits.voiceAssistanceSupport
             default:

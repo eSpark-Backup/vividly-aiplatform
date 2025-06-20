@@ -32,8 +32,8 @@ const HumanizeDrawer = ({ message }) => {
 
     return (
         <Sheet open={isOpen} onOpenChange={handleOpenChange}>
-            <SheetTrigger asChild>
                 <FeatureAccessWrapper feature={HUMANIZE} tooltipPosition="right">
+            <SheetTrigger asChild>
                 <Button
                     variant="ghost flex"
                     size="sm"
@@ -42,8 +42,8 @@ const HumanizeDrawer = ({ message }) => {
                     <Sparkle className="h-4 w-4 mr-1" />
                     Humanize
                 </Button>
-                </FeatureAccessWrapper>
             </SheetTrigger>
+                </FeatureAccessWrapper>
             <SheetContent side="right" className="sm:max-w-[500px] w-[90vw] px-3 sm:py-4 py-4">
                 <SheetHeader>
                     <SheetTitle>Message</SheetTitle>

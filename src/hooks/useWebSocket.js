@@ -29,6 +29,7 @@ export function useWebSocket(url) {
   const [isPartialMessageLoading, setIsPartialMessageLoading] = useState(false)
   const [userImageGenerationCount, setUserImageGenerationCount] = useState(101)
   const [userImageAnalysisCount, setUserImageAnalysisCount] = useState(101)
+  const [userHumanizeUsageCount, setUserHumanizeUsageCount] = useState(101)
   const [isUserUsageLoading, setIsUserUsageLoading] = useState(true)
   const [isSpecificMessageHistoryLoading, setIsSpecificMessageHistoryLoading] = useState(false)
 
@@ -382,9 +383,10 @@ export function useWebSocket(url) {
   }, [])
 
   const handleUserUsage = useCallback((data) => {
-    const { image_generation_count, image_analysis_count } = data.user_usage
+    const { image_generation_count, image_analysis_count, humanization_count } = data.user_usage
     setUserImageGenerationCount(image_generation_count || 0)
     setUserImageAnalysisCount(image_analysis_count || 0)
+    setUserHumanizeUsageCount(humanization_count || 0)
     setIsUserUsageLoading(false)
   }, [])
 
@@ -631,6 +633,7 @@ export function useWebSocket(url) {
     setInitialLoadComplete,
     userImageGenerationCount,
     userImageAnalysisCount,
+    userHumanizeUsageCount,
     isUserUsageLoading,
   }
 }

@@ -12,6 +12,7 @@ const FreeCounter = () => {
   const {
     userImageGenerationCount,
     userImageAnalysisCount,
+    userHumanizeUsageCount,
     isUserUsageLoading,
   } = useWebSocketContext();
   const { currentPlan } = useFeatureAccess();
@@ -24,13 +25,20 @@ const FreeCounter = () => {
 
   return (
     <div className="flex flex-col gap-2">
-      <Card className="dark:gradient-glass-effect min-h-[120px] flex flex-col justify-center bg-black">
+      <Card className="dark:gradient-glass-effect min-h-[180px] flex flex-col justify-center bg-black">
         {isUserUsageLoading || isSubscriptionInfoLoading ? (
           <div className="flex items-center justify-center h-full">
             <Loader className="h-6 w-6 animate-spin" />
           </div>
         ) : (
           <CardContent className="py-2">
+            {currentPlan?.name === "FREE" && (
+              <ProgressBar
+                title="Humanization"
+                userCount={userHumanizeUsageCount}
+                maxCount={currentPlan?.maxHumanizeUsage}
+              />
+            )}
             <ProgressBar
               title="Image Generations"
               userCount={userImageGenerationCount}
@@ -54,7 +62,10 @@ const FreeCounter = () => {
         )}
       </Card>
 
-      <UpgradeModal open={showUpgradeDialog} onOpenChange={setShowUpgradeDialog} />
+      <UpgradeModal
+        open={showUpgradeDialog}
+        onOpenChange={setShowUpgradeDialog}
+      />
     </div>
   );
 };
