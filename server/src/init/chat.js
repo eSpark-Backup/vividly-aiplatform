@@ -1656,10 +1656,14 @@ export class ChatServer {
             let reHumanize = message.re_humanize ?? false
             let reHumanizeId, conversationId
 
+            const client = await pool.connect();
+
+            await client.query('BEGIN');
+
             if (message.message_id) {
                 hasMessageId = true
                 if (reHumanize) {
-                    const result = await pool.query(`
+                    const result = await client.query(`
                         SELECT humanized_messages.id, humanized_text, conversation_id
                         FROM humanized_messages
                                  JOIN public.messages m on m.id = humanized_messages.message_id
@@ -1678,7 +1682,7 @@ export class ChatServer {
                     conversationId = result.rows[0].conversation_id
                 } else {
                     // Fetch message content from database
-                    const result = await pool.query(
+                    const result = await client.query(
                         `SELECT m.content, c.user_id, m.conversation_id
                          FROM messages m
                                   JOIN conversations c ON c.id = m.conversation_id
@@ -1707,10 +1711,15 @@ export class ChatServer {
             // USAGE BASED ON SUBSCRIPTION: 
             const isActive = user.subscription?.status === ACTIVE;
             const planId = isActive ? user.subscription?.planId : FREE;
-            const hasFeatureAccess = subscriptionFeatureAccess[planId];
 
-            // Check if the user has humanize support
-            if (!hasFeatureAccess.humanizeSupport) {
+            // limits.humanizeSupport && userHumanizeUsageCount < limits.maxHumanizeUsage
+            const userHumanizeUsageCount = await client.query(
+                `SELECT COUNT(*) FROM user_usage_metric WHERE user_id = $1 AND type = 'humanization'`,
+                [user.id]
+            )
+
+            const limits = subscriptionFeatureAccess[planId];
+            if (limits.humanizeSupport && userHumanizeUsageCount.rows[0].count >= limits.maxHumanizeUsage) {
                 throw new Error("You don't have access to humanize feature. Please upgrade to a paid plan to continue.");
             }
 
@@ -1723,11 +1732,22 @@ export class ChatServer {
 
             const humanizedText = await this.humanizeText(textToHumanize);
 
-            await pool.query(
+            // Update user usage metric
+            const humanizedMessageResult = await client.query(
                 `INSERT INTO humanized_messages(message_id, user_id, humanized_text, re_humanized_id, original_text)
-                 VALUES ($1, $2, $3, $4, $5)`,
+                 VALUES ($1, $2, $3, $4, $5) RETURNING id`,
                 [hasMessageId ? message.message_id : null, user.id, humanizedText, reHumanize ? reHumanizeId : null, textToHumanize]
             )
+
+            const humanizedMessageId = humanizedMessageResult.rows[0].id
+
+            await client.query(
+                `INSERT INTO user_usage_metric(user_id, type, humanization_id)
+                 VALUES ($1, 'humanization', $2)`,
+                [user.id, humanizedMessageId]
+            )
+
+            await client.query('COMMIT');
 
             ws.send(JSON.stringify({
                 type: !message.message_id ? 'text_humanize_complete' : 'humanize_complete',
@@ -1738,7 +1758,22 @@ export class ChatServer {
                 conversation_id: conversationId
             }));
 
+            ws.send(JSON.stringify({
+                type: 'user_usage',
+                user_usage: await this.getUserUsage(user)
+            }));
+
         } catch (error) {
+
+            try {
+                await client.query('ROLLBACK');
+            } catch (rollbackError) {
+                logger.error('Rollback error:', {
+                    error: rollbackError.message,
+                    originalError: error.message
+                });
+            }
+            
             logger.failOperation('humanize-message', error, {
                 userId: user.id,
                 messageId: message.message_id
@@ -2132,7 +2167,7 @@ export class ChatServer {
 
         try {
             // Determine start date (from subscription or user creation)
-            let startDateStr 
+            let startDateStr
             if (user.subscription?.status === ACTIVE && user.subscription?.startDate) {
                 startDateStr = user.subscription.startDate
             } else {
@@ -2168,7 +2203,8 @@ export class ChatServer {
                 `
             SELECT 
               COUNT(*) FILTER (WHERE type = 'image_generation') AS image_generation_count,
-              COUNT(*) FILTER (WHERE type = 'image_analysis') AS image_analysis_count
+              COUNT(*) FILTER (WHERE type = 'image_analysis') AS image_analysis_count,
+              COUNT(*) FILTER (WHERE type = 'humanization') AS humanization_count
             FROM user_usage_metric
             WHERE user_id = $1
               AND created_at >= $2
@@ -2188,5 +2224,5 @@ export class ChatServer {
         const month = String(date.getMonth() + 1).padStart(2, "0")
         const day = String(date.getDate()).padStart(2, "0")
         return `${year}-${month}-${day}`
-      }
+    }
 }
