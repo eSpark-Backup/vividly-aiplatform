@@ -142,7 +142,7 @@ const PricingPlan = () => {
             <PlanCard
               id={isMonthly ? STUDENT_MONTHLY : STUDENT_ANNUALLY}
               name="Vividly Student"
-              price={isMonthly ? 9.99 : 59.99}
+              price={isMonthly ? 12.99 : 59.99}
               promoPrice={5.99}
               promoPeriod={2}
               features={[
