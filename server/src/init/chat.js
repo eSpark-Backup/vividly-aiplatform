@@ -73,26 +73,6 @@ async function deleteFromS3(key) {
     };
 }
 
-const tools = [
-    {
-        type: "function",
-        function: {
-            name: "web_search",
-            description: "Search the web for current information on any topic",
-            parameters: {
-                type: "object",
-                properties: {
-                    query: {
-                        type: "string",
-                        description: "The search query to look up",
-                    },
-                },
-                required: ["query"],
-            },
-        },
-    },
-]
-
 const S3_BUCKET = process.env.S3_BUCKET || 'user-uploads';
 const IMAGE_EXPIRY = 60 * 60 * 24 * 7; // URL expiry time in seconds (7 days)
 
@@ -365,9 +345,7 @@ export class ChatServer {
                     ],
                     temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
                     max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
-                    stream: true,
-                    tools,
-                    tool_choice: "auto",
+                    stream: true
                 });
 
                 for await (const chunk of streamResponse) {
@@ -404,9 +382,7 @@ export class ChatServer {
                     ],
                     temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
                     max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
-                    stream: false,
-                    tools,
-                    tool_choice: "auto",
+                    stream: false
                 });
 
                 aiResponse = response.choices[0]?.message?.content || '';
@@ -480,7 +456,7 @@ export class ChatServer {
                               
 
             `
-            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd
+            const queryToRun = (process.env.ENV === 'dev' || process.env.ENV === 'staging') ? queryStaging : queryProd 
             const result = await pool.query(queryToRun, [token]);
 
             let subscription = null;
@@ -1797,7 +1773,7 @@ export class ChatServer {
                     originalError: error.message
                 });
             }
-
+            
             logger.failOperation('humanize-message', error, {
                 userId: user.id,
                 messageId: message.message_id
@@ -2213,7 +2189,7 @@ export class ChatServer {
                 // If today is before the billing day, shift to last month
                 cycleStart.setMonth(cycleStart.getMonth() - 1);
             }
-
+    
             // Determine the end of this billing cycle
             const cycleEnd = new Date(cycleStart);
             cycleEnd.setMonth(cycleEnd.getMonth() + 1);
