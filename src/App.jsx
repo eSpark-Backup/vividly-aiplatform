@@ -6,8 +6,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google'
 import { WebSocketProvider } from './services/WebSocketProvider'
 
 function App() {
-
-  window.env = import.meta.env;
+  
 
   const queryClient = new QueryClient({
     defaultOptions: {
