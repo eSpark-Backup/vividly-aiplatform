@@ -6,6 +6,7 @@ export const MODES = {
   CHAT: "chat",
   CHAT_WITH_IMAGE: "chat_with_image",
   CHAT_WITH_IMAGE_ANALYSIS: "image_analysis",
+  WEB_SEARCH: "web_search",
 }
 export const PAYMENT_RECURRING_PERIOD = {
    DAILY: "DAILY",
