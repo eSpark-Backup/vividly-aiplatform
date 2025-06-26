@@ -83,7 +83,7 @@ const PricingPlan = () => {
                 "AI Chat",
                 "20 Picture Generation",
                 "20 Picture Analysis",
-                "No Humanize Support",
+                "3 Humanize Support",
                 "No Voice Assistant Support",
               ]}
               billingPeriod={MONTHLY}
