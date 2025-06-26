@@ -1,7 +1,16 @@
 import "regenerator-runtime/runtime";
 import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
-import { Image, Mic, MicOff, Send, Speech, Square, Upload } from "lucide-react";
+import {
+  Globe,
+  Image,
+  Mic,
+  MicOff,
+  Send,
+  Speech,
+  Square,
+  Upload,
+} from "lucide-react";
 import { Textarea } from "@/components/ui/textarea";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -41,8 +50,10 @@ const ChatInput = React.memo(
 
     const [showVoiceModal, setShowVoiceModal] = useState(false);
 
-    const { VOICE_ASSISTANCE, PICTURE_GENERATION, PICTURE_ANALYSIS, HUMANIZE } = PLAN_FEATURE_ENUMS
+    const { VOICE_ASSISTANCE, PICTURE_GENERATION, PICTURE_ANALYSIS, HUMANIZE } =
+      PLAN_FEATURE_ENUMS;
     const isImageMode = MODES.CHAT_WITH_IMAGE === mode;
+    const isWebSearchMode = MODES.WEB_SEARCH === mode;
 
     const fileInputRef = useRef(null);
 
@@ -91,6 +102,10 @@ const ChatInput = React.memo(
 
     const handleChatModes = () => {
       isImageMode ? setMode(MODES.CHAT) : setMode(MODES.CHAT_WITH_IMAGE);
+    };
+
+    const handleWebSearch = () => {
+      setMode(isWebSearchMode ? MODES.CHAT : MODES.WEB_SEARCH);
     };
 
     const handleFileSelect = (e) => {
@@ -232,54 +247,76 @@ const ChatInput = React.memo(
                         )}
                       </button>
                     )}
-                  
+
                     <FeatureAccessWrapper feature={VOICE_ASSISTANCE}>
-                    {browserSupportsSpeechRecognition && (
+                      {browserSupportsSpeechRecognition && (
+                        <button
+                          type="button"
+                          onClick={openVoiceModal}
+                          disabled={disabled || !isConnected}
+                          className="p-3 rounded-lg mr-2 bg-[#1A1D21] text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          aria-label="Voice mode"
+                        >
+                          <Speech className="h-4 w-4" />
+                        </button>
+                      )}
+                    </FeatureAccessWrapper>
+
+                    <FeatureAccessWrapper feature={PICTURE_ANALYSIS}>
                       <button
                         type="button"
-                        onClick={openVoiceModal}
-                        disabled={disabled || !isConnected}
+                        onClick={triggerFileInput}
+                        disabled={disabled || !isConnected || isUploading}
                         className="p-3 rounded-lg mr-2 bg-[#1A1D21] text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                        aria-label="Voice mode"
+                        aria-label="Upload image"
                       >
-                        <Speech className="h-4 w-4" />
+                        <Upload className="h-4 w-4" />
                       </button>
-                    )}
                     </FeatureAccessWrapper>
-                     
-                    <FeatureAccessWrapper feature={PICTURE_ANALYSIS}>
-                    <button
-                      type="button"
-                      onClick={triggerFileInput}
-                      disabled={disabled || !isConnected || isUploading}
-                      className="p-3 rounded-lg mr-2 bg-[#1A1D21] text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                      aria-label="Upload image"
-                    >
-                      <Upload className="h-4 w-4" />
-                    </button>
-                    </FeatureAccessWrapper>
-                  </div>
 
-                  <div className="flex gap-2">
-                  <FeatureAccessWrapper feature={PICTURE_GENERATION}>
                     <button
                       type="button"
-                      onClick={handleChatModes}
+                      onClick={handleWebSearch}
                       disabled={
+                        disabled ||
                         !isConnected ||
                         isPartialMessageLoading ||
-                        listening ||
-                        userUploadedImage
+                        listening
                       }
-                      className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
+                      className={cn(
+                        "p-3 rounded-lg mr-2 bg-[#1A1D21] text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                      )}
+                      aria-label="Web search"
                     >
-                      <Image
+                      <Globe
                         className={cn(
-                          `h-4 w-4`,
-                          isImageMode && "text-[#9C67F4]"
+                          "h-4 w-4",
+                          isWebSearchMode && "text-[#9C67F4]"
                         )}
                       />
                     </button>
+                  </div>
+
+                  <div className="flex gap-2">
+                    <FeatureAccessWrapper feature={PICTURE_GENERATION}>
+                      <button
+                        type="button"
+                        onClick={handleChatModes}
+                        disabled={
+                          !isConnected ||
+                          isPartialMessageLoading ||
+                          listening ||
+                          userUploadedImage
+                        }
+                        className="p-3 text-gray-400 hover:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg bg-[#1A1D21]"
+                      >
+                        <Image
+                          className={cn(
+                            `h-4 w-4`,
+                            isImageMode && "text-[#9C67F4]"
+                          )}
+                        />
+                      </button>
                     </FeatureAccessWrapper>
 
                     <button
