@@ -232,7 +232,7 @@ export class ChatServer {
     }
 
     // Modified handleChatMessage to handle image references
-    async handleChatMessage(ws, message, user) {
+    async handleChatMessage(ws, message, user, type = "chat") {
         const client = await pool.connect();
         let aiResponse = '';
         let tokensUsed = 0;
@@ -334,34 +334,65 @@ export class ChatServer {
                     message_id: userMessageId  // Include user message ID
                 }));
 
-                const streamResponse = await openai.chat.completions.create({
-                    model: process.env.OPENAI_MODEL,
-                    messages: [
-                        ...history.map(msg => ({
-                            role: msg.role,
-                            content: msg.content
-                        })),
-                        { role: 'user', content: message.content }
-                    ],
-                    temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
-                    max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
-                    stream: true
-                });
 
-                for await (const chunk of streamResponse) {
-                    const content = chunk.choices[0]?.delta?.content || '';
-                    if (content) {
-                        aiResponse += content;
-                        tokensUsed += 1;
-                        ws.send(JSON.stringify({
-                            type: 'chat_stream',
-                            conversation_id: conversationId,
-                            message_id: aiMessageId,  // Include assistant message ID in each chunk
-                            chunk: content,
-                            done: false
-                        }));
+                if (type === "chat") {
+                    const streamResponse = await openai.chat.completions.create({
+                        model: process.env.OPENAI_MODEL,
+                        messages: [
+                            ...history.map(msg => ({
+                                role: msg.role,
+                                content: msg.content
+                            })),
+                            { role: 'user', content: message.content }
+                        ],
+                        temperature: parseFloat(process.env.OPENAI_MODEL_TEMPERATURE),
+                        max_tokens: parseInt(process.env.OPENAI_MAX_TOKENS),
+                        stream: true
+                    });
+
+                    for await (const chunk of streamResponse) {
+                        const content = chunk.choices[0]?.delta?.content || '';;
+                        if (content) {
+                            aiResponse += content;
+                            tokensUsed += 1;
+                            ws.send(JSON.stringify({
+                                type: 'chat_stream',
+                                conversation_id: conversationId,
+                                message_id: aiMessageId,  // Include assistant message ID in each chunk
+                                chunk: content,
+                                done: false
+                            }));
+                        }
+                    }
+
+                }
+
+
+                //Web search
+                if (type === "web_search") {
+                    const streamResponse = await openai.responses.create({
+                        model: process.env.OPENAI_MODEL,
+                        input: message.content,
+                        stream: true,
+                        tools: [{ type: "web_search_preview" }],
+                    });
+
+                    for await (const chunk of streamResponse) {
+                        const content = chunk.text;
+                        if (content) {
+                            aiResponse += content;
+                            tokensUsed += 1;
+                            ws.send(JSON.stringify({
+                                type: 'chat_stream',
+                                conversation_id: conversationId,
+                                message_id: aiMessageId,  // Include assistant message ID in each chunk
+                                chunk: content,
+                                done: false
+                            }));
+                        }
                     }
                 }
+
                 // Send completion message for stream
                 ws.send(JSON.stringify({
                     type: 'chat_stream',
@@ -371,6 +402,7 @@ export class ChatServer {
                     done: true
                 }));
             } else {
+
                 const response = await openai.chat.completions.create({
                     model: process.env.OPENAI_MODEL,
                     messages: [
@@ -1490,7 +1522,10 @@ export class ChatServer {
     async handleMessage(ws, message, user) {
         switch (message.type) {
             case 'chat':
-                await this.handleChatMessage(ws, message, user);
+                await this.handleChatMessage(ws, message, user, "chat");
+                break;
+            case 'web_search':
+                await this.handleChatMessage(ws, message, user, "web_search");
                 break;
             case 'chat_with_tts':
                 await this.handleTextToSpeech(ws, message, user);
