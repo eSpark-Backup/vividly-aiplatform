@@ -101,6 +101,12 @@ export function useWebSocket(url) {
 
         sendSocketCommand({ type: "get_user_usage" })
 
+
+        setTimeout(() => {
+          sendSocketCommand({ type: "get_conversations" })
+          sendSocketCommand({ type: "get_user_usage" })
+        }, 5000)
+
       }
 
       socket.current.onclose = (event) => {
