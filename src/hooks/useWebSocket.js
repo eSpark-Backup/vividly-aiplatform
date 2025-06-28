@@ -105,7 +105,7 @@ export function useWebSocket(url) {
         setTimeout(() => {
           sendSocketCommand({ type: "get_conversations" })
           sendSocketCommand({ type: "get_user_usage" })
-        }, 5000)
+        }, 3000)
 
       }
 
