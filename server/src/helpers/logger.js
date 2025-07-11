@@ -25,6 +25,19 @@ const createFileTransport = (level) => {
 
 export function setupLogger() {
     const loggingType = (process.env.LOG_LEVEL || 'basic').toLowerCase();
+    const isLocal = process.env.ENV === "dev"; 
+
+    if (!isLocal) {
+        return {
+            info: () => { },
+            error: () => { },
+            debug: () => { },
+            warn: () => { },
+            startOperation: () => { },
+            endOperation: () => { },
+            failOperation: () => { },
+        };
+    }
 
     const logger = winston.createLogger({
         format: loggerFormat
