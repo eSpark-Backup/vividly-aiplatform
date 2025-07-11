@@ -25,7 +25,7 @@ const createFileTransport = (level) => {
 
 export function setupLogger() {
     const loggingType = (process.env.LOG_LEVEL || 'basic').toLowerCase();
-    const isLocal = process.env.ENV === "dev"; 
+    const isLocal = process.env.LOGGER_ENABLED && process.env.LOGGER_ENABLED.toLowerCase() === "true";
 
     if (!isLocal) {
         return {
